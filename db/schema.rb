@@ -10,7 +10,16 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_11_13_201030) do
+ActiveRecord::Schema.define(version: 2018_11_13_201355) do
+
+  create_table "publication_languages", force: :cascade do |t|
+    t.string "language"
+    t.boolean "is_active", default: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["is_active"], name: "index_publication_languages_on_is_active"
+    t.index ["language"], name: "index_publication_languages_on_language"
+  end
 
   create_table "users", force: :cascade do |t|
     t.string "email", default: "", null: false
