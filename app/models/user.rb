@@ -13,6 +13,7 @@ class User < ApplicationRecord
   #################
   ## VALIDATION ##
   #################
+  validates :name, :presence => true
   validates :email, :presence => true
   validates :encrypted_password, :presence => true
   validates :role, :presence => true
@@ -24,6 +25,7 @@ class User < ApplicationRecord
   rails_admin do
     # list page
     list do
+      field :name
       field :email
       field :role
       field :created_at
@@ -34,6 +36,7 @@ class User < ApplicationRecord
 
     # show page
     show do
+      field :name
       field :email
       field :role
       field :created_at
@@ -52,6 +55,7 @@ class User < ApplicationRecord
 
     # form
     edit do
+      field :name
       field :email
       field :password
       field :password_confirmation
