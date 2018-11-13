@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_11_13_201355) do
+ActiveRecord::Schema.define(version: 2018_11_13_201821) do
 
   create_table "publication_languages", force: :cascade do |t|
     t.string "language"
@@ -40,8 +40,10 @@ ActiveRecord::Schema.define(version: 2018_11_13_201355) do
     t.datetime "updated_at", null: false
     t.integer "role", default: 0
     t.string "name"
+    t.boolean "is_active", default: true
     t.index ["confirmation_token"], name: "index_users_on_confirmation_token", unique: true
     t.index ["email"], name: "index_users_on_email", unique: true
+    t.index ["is_active"], name: "index_users_on_is_active"
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 

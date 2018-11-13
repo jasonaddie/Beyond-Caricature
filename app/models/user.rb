@@ -4,11 +4,11 @@ class User < ApplicationRecord
   devise :database_authenticatable, :registerable, :confirmable,
          :recoverable, :rememberable, :validatable, :trackable
 
-  # keep track of history (changes)
-  has_paper_trail
-
   # define user roles
   enum role: [:uploader, :editor, :admin, :superadmin]
+
+  # keep track of history (changes)
+  has_paper_trail
 
   #################
   ## VALIDATION ##
@@ -28,6 +28,7 @@ class User < ApplicationRecord
       field :name
       field :email
       field :role
+      field :is_active
       field :created_at
       field :current_sign_in_at
       field :confirmation_sent_at
@@ -39,6 +40,7 @@ class User < ApplicationRecord
       field :name
       field :email
       field :role
+      field :is_active
       field :created_at
       field :updated_at
       field :sign_in_count
@@ -60,6 +62,7 @@ class User < ApplicationRecord
       field :password
       field :password_confirmation
       field :role
+      field :is_active
     end
   end
 
