@@ -1,18 +1,18 @@
-class PublicationLanguage < ApplicationRecord
-
+class News < ApplicationRecord
   # keep track of history (changes)
   has_paper_trail
 
   #################
   ## TRANSLATIONS ##
   #################
-  translates :language
+  translates :title, :summary, :text
   accepts_nested_attributes_for :translations, allow_destroy: true
 
   #################
   ## VALIDATION ##
   #################
-  translation_class.validates :language, presence: true
+  translation_class.validates :title, presence: true
+  translation_class.validates :text, presence: true
 
   #################
   ## RAILS ADMIN CONFIGURATION ##
@@ -20,18 +20,23 @@ class PublicationLanguage < ApplicationRecord
   rails_admin do
     configure :translations, :globalize_tabs
     # control the order in the admin nav menu
-    weight 150
+    weight 300
 
     # list page
     list do
-      field :language
-      field :is_active
+      field :title
+      field :summmary
+      field :is_public
+      field :date_publish
     end
 
     # show page
     show do
-      field :language
-      field :is_active
+      field :title
+      field :summary
+      field :text
+      field :is_public
+      field :date_publish
       field :created_at
       field :updated_at
     end
@@ -41,7 +46,8 @@ class PublicationLanguage < ApplicationRecord
       field :translations do
         label "Translations"
       end
-      field :is_active
+      field :date_publish
+      field :is_public
     end
   end
 end

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_11_14_180137) do
+ActiveRecord::Schema.define(version: 2018_11_14_195649) do
 
   create_table "illustrator_translations", force: :cascade do |t|
     t.integer "illustrator_id", null: false
@@ -35,6 +35,28 @@ ActiveRecord::Schema.define(version: 2018_11_14_180137) do
     t.index ["is_public"], name: "index_illustrators_on_is_public"
   end
 
+  create_table "news", force: :cascade do |t|
+    t.date "date_publish"
+    t.boolean "is_public"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["date_publish"], name: "index_news_on_date_publish"
+    t.index ["is_public"], name: "index_news_on_is_public"
+  end
+
+  create_table "news_translations", force: :cascade do |t|
+    t.integer "news_id", null: false
+    t.string "locale", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.string "title"
+    t.text "summary"
+    t.text "text"
+    t.index ["locale"], name: "index_news_translations_on_locale"
+    t.index ["news_id"], name: "index_news_translations_on_news_id"
+    t.index ["title"], name: "index_news_translations_on_title"
+  end
+
   create_table "publication_language_translations", force: :cascade do |t|
     t.integer "publication_language_id", null: false
     t.string "locale", null: false
@@ -50,6 +72,28 @@ ActiveRecord::Schema.define(version: 2018_11_14_180137) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["is_active"], name: "index_publication_languages_on_is_active"
+  end
+
+  create_table "research_translations", force: :cascade do |t|
+    t.integer "research_id", null: false
+    t.string "locale", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.string "title"
+    t.text "summary"
+    t.text "text"
+    t.index ["locale"], name: "index_research_translations_on_locale"
+    t.index ["research_id"], name: "index_research_translations_on_research_id"
+    t.index ["title"], name: "index_research_translations_on_title"
+  end
+
+  create_table "researches", force: :cascade do |t|
+    t.date "date_publish"
+    t.boolean "is_public"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["date_publish"], name: "index_researches_on_date_publish"
+    t.index ["is_public"], name: "index_researches_on_is_public"
   end
 
   create_table "users", force: :cascade do |t|

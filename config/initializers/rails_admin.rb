@@ -50,7 +50,9 @@ RailsAdmin.config do |config|
   config.included_models = [
     'User',
     'PublicationLanguage','PublicationLanguage::Translation',
-    'Illustrator', 'Illustrator::Translation'
+    'Illustrator', 'Illustrator::Translation',
+    'News', 'News::Translation',
+    'Research', 'Resaerch::Translation'
   ]
 
   config.model 'PublicationLanguage::Translation' do
@@ -67,5 +69,21 @@ RailsAdmin.config do |config|
       help ''
     end
     include_fields :locale, :name, :bio
+  end
+
+  config.model 'News::Translation' do
+    visible false
+    configure :locale, :hidden do
+      help ''
+    end
+    include_fields :locale, :title, :summary, :text
+  end
+
+  config.model 'Research::Translation' do
+    visible false
+    configure :locale, :hidden do
+      help ''
+    end
+    include_fields :locale, :title, :summary, :text
   end
 end

@@ -23,6 +23,9 @@ class User < ApplicationRecord
   ## RAILS ADMIN CONFIGURATION ##
   #################
   rails_admin do
+    # control the order in the admin nav menu
+    weight 400
+
     # list page
     list do
       field :name

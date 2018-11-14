@@ -18,6 +18,8 @@ class Illustrator < ApplicationRecord
   #################
   rails_admin do
     configure :translations, :globalize_tabs
+    # control the order in the admin nav menu
+    weight 100
 
     # list page
     list do
