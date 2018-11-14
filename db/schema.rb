@@ -10,15 +10,23 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_11_13_201821) do
+ActiveRecord::Schema.define(version: 2018_11_13_205315) do
+
+  create_table "publication_language_translations", force: :cascade do |t|
+    t.integer "publication_language_id", null: false
+    t.string "locale", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.string "language"
+    t.index ["locale"], name: "index_publication_language_translations_on_locale"
+    t.index ["publication_language_id"], name: "index_3b9f159e130bba83a1635d416364467009519f06"
+  end
 
   create_table "publication_languages", force: :cascade do |t|
-    t.string "language"
     t.boolean "is_active", default: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["is_active"], name: "index_publication_languages_on_is_active"
-    t.index ["language"], name: "index_publication_languages_on_language"
   end
 
   create_table "users", force: :cascade do |t|

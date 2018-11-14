@@ -40,4 +40,23 @@ RailsAdmin.config do |config|
     history_index
     history_show
   end
+
+
+  # show all fields in show page, even if empty
+  config.compact_show_view = false
+
+  # list all models to include in admin section
+  # - have to include all translation models too
+  config.included_models = [
+    'User',
+    'PublicationLanguage','PublicationLanguage::Translation'
+  ]
+
+  config.model 'PublicationLanguage::Translation' do
+    visible false
+    configure :locale, :hidden do
+      help ''
+    end
+    include_fields :locale, :language
+  end
 end

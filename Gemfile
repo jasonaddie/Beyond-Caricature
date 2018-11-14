@@ -54,6 +54,11 @@ gem 'cancancan', '~> 2.3'
 gem 'paper_trail', '~> 10.0', '>= 10.0.1'
 gem 'paper_trail-association_tracking'
 
+# translations
+gem 'globalize', '~> 5.2'
+
+# translation tabs in forms
+gem 'rails_admin_globalize_field', '~> 0.4.0'
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
