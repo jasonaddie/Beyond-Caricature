@@ -21,6 +21,16 @@ class Illustrator < ApplicationRecord
     # control the order in the admin nav menu
     weight 100
 
+    # configuration
+    configure :date_birth do
+      date_format :default
+      datepicker_options showTodayButton: false, format: 'YYYY-MM-DD', viewMode: 'decades'
+    end
+    configure :date_death do
+      date_format :default
+      datepicker_options showTodayButton: false, format: 'YYYY-MM-DD', viewMode: 'decades'
+    end
+
     # list page
     list do
       field :name

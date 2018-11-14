@@ -22,6 +22,12 @@ class News < ApplicationRecord
     # control the order in the admin nav menu
     weight 300
 
+    # configuration
+    configure :date_publish do
+      date_format :default
+      datepicker_options showTodayButton: true, format: 'YYYY-MM-DD'
+    end
+
     # list page
     list do
       field :title
