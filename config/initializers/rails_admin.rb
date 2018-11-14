@@ -49,7 +49,8 @@ RailsAdmin.config do |config|
   # - have to include all translation models too
   config.included_models = [
     'User',
-    'PublicationLanguage','PublicationLanguage::Translation'
+    'PublicationLanguage','PublicationLanguage::Translation',
+    'Illustrator', 'Illustrator::Translation'
   ]
 
   config.model 'PublicationLanguage::Translation' do
@@ -58,5 +59,13 @@ RailsAdmin.config do |config|
       help ''
     end
     include_fields :locale, :language
+  end
+
+  config.model 'Illustrator::Translation' do
+    visible false
+    configure :locale, :hidden do
+      help ''
+    end
+    include_fields :locale, :name, :bio
   end
 end

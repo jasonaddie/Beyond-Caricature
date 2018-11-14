@@ -29,10 +29,7 @@ class User < ApplicationRecord
       field :email
       field :role
       field :is_active
-      field :created_at
       field :current_sign_in_at
-      field :confirmation_sent_at
-      field :confirmed_at
     end
 
     # show page

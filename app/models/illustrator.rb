@@ -1,18 +1,17 @@
-class PublicationLanguage < ApplicationRecord
-
+class Illustrator < ApplicationRecord
   # keep track of history (changes)
   has_paper_trail
 
   #################
   ## TRANSLATIONS ##
   #################
-  translates :language
+  translates :name, :bio
   accepts_nested_attributes_for :translations, allow_destroy: true
 
   #################
   ## VALIDATION ##
   #################
-  translation_class.validates :language, presence: true
+  translation_class.validates :name, presence: true
 
   #################
   ## RAILS ADMIN CONFIGURATION ##
@@ -22,14 +21,20 @@ class PublicationLanguage < ApplicationRecord
 
     # list page
     list do
-      field :language
-      field :is_active
+      field :name
+      field :bio
+      field :date_birth
+      field :date_death
+      field :is_public
     end
 
     # show page
     show do
-      field :language
-      field :is_active
+      field :name
+      field :bio
+      field :date_birth
+      field :date_death
+      field :is_public
       field :created_at
       field :updated_at
     end
@@ -39,7 +44,9 @@ class PublicationLanguage < ApplicationRecord
       field :translations do
         label "Translations"
       end
-      field :is_active
+      field :date_birth
+      field :date_death
+      field :is_public
     end
   end
 end

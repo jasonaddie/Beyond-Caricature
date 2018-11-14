@@ -10,7 +10,30 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_11_13_205315) do
+ActiveRecord::Schema.define(version: 2018_11_14_180137) do
+
+  create_table "illustrator_translations", force: :cascade do |t|
+    t.integer "illustrator_id", null: false
+    t.string "locale", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.string "name"
+    t.text "bio"
+    t.index ["illustrator_id"], name: "index_illustrator_translations_on_illustrator_id"
+    t.index ["locale"], name: "index_illustrator_translations_on_locale"
+    t.index ["name"], name: "index_illustrator_translations_on_name"
+  end
+
+  create_table "illustrators", force: :cascade do |t|
+    t.date "date_birth"
+    t.date "date_death"
+    t.boolean "is_public", default: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["date_birth"], name: "index_illustrators_on_date_birth"
+    t.index ["date_death"], name: "index_illustrators_on_date_death"
+    t.index ["is_public"], name: "index_illustrators_on_is_public"
+  end
 
   create_table "publication_language_translations", force: :cascade do |t|
     t.integer "publication_language_id", null: false
