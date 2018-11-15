@@ -8,6 +8,12 @@ class Illustration < ApplicationRecord
   belongs_to :illustrator
   has_many :illustration_tags, dependent: :destroy
   has_many :tags, through: :illustration_tags
+  has_many :illustration_publications, dependent: :destroy
+  has_many :publications, through: :illustration_publications
+  # has_many :publications, through: :illustration_publications, -> { not_journals }, inverse_of: :illustrations
+
+  has_many :illustration_issues, dependent: :destroy
+  has_many :issues, through: :illustration_issues
 
   #################
   ## TRANSLATIONS ##
@@ -19,6 +25,21 @@ class Illustration < ApplicationRecord
   ## VALIDATION ##
   #################
   # translation_class.validates :title, presence: true
+
+  #################
+  ## METHODS ##
+  #################
+  def publications_count
+    self.illustration_publications.count
+  end
+
+  def issues_count
+    self.illustration_issues.count
+  end
+
+  def combined_publications_count
+    publications_count + issues_count
+  end
 
   #################
   ## RAILS ADMIN CONFIGURATION ##
@@ -33,11 +54,18 @@ class Illustration < ApplicationRecord
       date_format :default
       datepicker_options showTodayButton: true, format: 'YYYY-MM-DD'
     end
+    # publication list should not show journals
+    configure :publications do
+      #TODO
+    end
 
     # list page
     list do
       field :title
       field :illustrator
+      field :combined_publications_count do
+        label "Publication Illustrations"
+      end
       field :is_public
       field :date_publish
     end
@@ -47,6 +75,9 @@ class Illustration < ApplicationRecord
       field :title
       field :context
       field :illustrator
+      field :combined_publications_count do
+        label "Publication Illustrations"
+      end
       field :tags
       field :is_public
       field :date_publish
@@ -60,6 +91,8 @@ class Illustration < ApplicationRecord
       field :translations do
         label "Translations"
       end
+      field :publications
+      field :issues
       field :tags
       field :is_public
       field :date_publish

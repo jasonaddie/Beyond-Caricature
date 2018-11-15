@@ -7,6 +7,8 @@ class Publication < ApplicationRecord
   #################
   belongs_to :publication_language
   has_many :issues, dependent: :nullify
+  has_many :illustration_publications, dependent: :destroy
+  has_many :illustrations, through: :illustration_publications
 
   #################
   ## TRANSLATIONS ##
@@ -30,6 +32,7 @@ class Publication < ApplicationRecord
   ## SCOPES ##
   #################
   scope :journals, -> { where(publication_type: :journal) }
+  scope :not_journals, -> { where.not(publication_type: :journal) }
 
   #################
   ## METHODS ##
@@ -37,6 +40,15 @@ class Publication < ApplicationRecord
   def issue_count
     self.issues.count if self.journal?
   end
+
+  def illustration_count
+    if self.journal?
+      IllustrationIssue.where(issue_id: self.issue_ids).count
+    else
+      self.illustration_publications.count
+    end
+  end
+
 
   #################
   ## RAILS ADMIN CONFIGURATION ##
@@ -72,6 +84,9 @@ class Publication < ApplicationRecord
       field :issue_count do
         label "Issues on File"
       end
+      field :illustration_count do
+        label "Illustrations on File"
+      end
       field :is_public
       field :date_publish
     end
@@ -83,6 +98,9 @@ class Publication < ApplicationRecord
       field :title
       field :issue_count do
         label "Issues on File"
+      end
+      field :illustration_count do
+        label "Illustrations on File"
       end
       field :about
       field :editor

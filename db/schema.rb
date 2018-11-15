@@ -10,7 +10,33 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_11_15_130054) do
+ActiveRecord::Schema.define(version: 2018_11_15_190424) do
+
+  create_table "illustration_issues", force: :cascade do |t|
+    t.integer "illustration_id"
+    t.integer "issue_id"
+    t.integer "page_number_start"
+    t.integer "page_number_end"
+    t.boolean "is_public", default: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["illustration_id"], name: "index_illustration_issues_on_illustration_id"
+    t.index ["is_public"], name: "index_illustration_issues_on_is_public"
+    t.index ["issue_id"], name: "index_illustration_issues_on_issue_id"
+  end
+
+  create_table "illustration_publications", force: :cascade do |t|
+    t.integer "illustration_id"
+    t.integer "publication_id"
+    t.integer "page_number_start"
+    t.integer "page_number_end"
+    t.boolean "is_public", default: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["illustration_id"], name: "index_illustration_publications_on_illustration_id"
+    t.index ["is_public"], name: "index_illustration_publications_on_is_public"
+    t.index ["publication_id"], name: "index_illustration_publications_on_publication_id"
+  end
 
   create_table "illustration_tags", force: :cascade do |t|
     t.integer "illustration_id"

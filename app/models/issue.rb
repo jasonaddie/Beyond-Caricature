@@ -6,12 +6,21 @@ class Issue < ApplicationRecord
   ## ASSOCIATIONS ##
   #################
   belongs_to :publication, -> { journals }, inverse_of: :issues
+  has_many :illustration_issues, dependent: :destroy
+  has_many :illustrations, through: :illustration_issues
 
   #################
   ## VALIDATION ##
   #################
   validates :issue_number, presence: true
   validates :date_publication, presence: true
+
+  #################
+  ## METHODS ##
+  #################
+  def illustration_count
+    self.illustration_issues.count
+  end
 
   #################
   ## RAILS ADMIN CONFIGURATION ##
@@ -29,6 +38,7 @@ class Issue < ApplicationRecord
       date_format :default
       datepicker_options showTodayButton: false, format: 'YYYY-MM-DD', viewMode: 'decades'
     end
+    # publication list should only show journals
     configure :publication do
       associated_collection_scope do
         resource_scope = bindings[:object].class.reflect_on_association(:publication).source_reflection.scope
@@ -44,6 +54,9 @@ class Issue < ApplicationRecord
       field :publication
       field :issue_number
       field :date_publication
+      field :illustration_count do
+        label "Illustrations on File"
+      end
       field :is_public
       field :date_publish
     end
@@ -53,6 +66,9 @@ class Issue < ApplicationRecord
       field :publication
       field :issue_number
       field :date_publication
+      field :illustration_count do
+        label "Illustrations on File"
+      end
       field :is_public
       field :date_publish
       field :created_at

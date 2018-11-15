@@ -23,7 +23,7 @@ class Tag < ApplicationRecord
   ## METHODS ##
   #################
   def illustration_count
-    self.illustrations.count
+    self.illustration_tags.count
   end
 
   #################

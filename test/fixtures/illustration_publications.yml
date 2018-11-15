@@ -1,0 +1,17 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  illustration: one
+  publication: one
+  issue: one
+  page_number_start: 1
+  page_number_end: 1
+  is_public: false
+
+two:
+  illustration: two
+  publication: two
+  issue: two
+  page_number_start: 1
+  page_number_end: 1
+  is_public: false
