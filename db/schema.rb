@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_11_15_114836) do
+ActiveRecord::Schema.define(version: 2018_11_15_123445) do
 
   create_table "illustration_tags", force: :cascade do |t|
     t.integer "illustration_id"
@@ -104,6 +104,40 @@ ActiveRecord::Schema.define(version: 2018_11_15_114836) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["is_active"], name: "index_publication_languages_on_is_active"
+  end
+
+  create_table "publication_translations", force: :cascade do |t|
+    t.integer "publication_id", null: false
+    t.string "locale", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.string "title"
+    t.text "about"
+    t.string "editor"
+    t.string "publisher"
+    t.string "writer"
+    t.index ["locale"], name: "index_publication_translations_on_locale"
+    t.index ["publication_id"], name: "index_publication_translations_on_publication_id"
+    t.index ["title"], name: "index_publication_translations_on_title"
+  end
+
+  create_table "publications", force: :cascade do |t|
+    t.integer "publication_type", default: 0
+    t.integer "publication_language_id"
+    t.boolean "is_public", default: false
+    t.date "date_publish"
+    t.integer "year_publication_start"
+    t.integer "year_publication_end"
+    t.date "date_publication"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["date_publication"], name: "index_publications_on_date_publication"
+    t.index ["date_publish"], name: "index_publications_on_date_publish"
+    t.index ["is_public"], name: "index_publications_on_is_public"
+    t.index ["publication_language_id"], name: "index_publications_on_publication_language_id"
+    t.index ["publication_type"], name: "index_publications_on_publication_type"
+    t.index ["year_publication_end"], name: "index_publications_on_year_publication_end"
+    t.index ["year_publication_start"], name: "index_publications_on_year_publication_start"
   end
 
   create_table "research_translations", force: :cascade do |t|

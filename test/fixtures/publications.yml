@@ -1,0 +1,29 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  publication_type: 1
+  publication_language: one
+  title: MyString
+  about: MyText
+  is_public: false
+  date_publish: 2018-11-15
+  editor: MyString
+  publisher: MyText
+  writer: MyText
+  year_publication_start: 1
+  year_publication_end: 1
+  date_publication: 2018-11-15
+
+two:
+  publication_type: 1
+  publication_language: two
+  title: MyString
+  about: MyText
+  is_public: false
+  date_publish: 2018-11-15
+  editor: MyString
+  publisher: MyText
+  writer: MyText
+  year_publication_start: 1
+  year_publication_end: 1
+  date_publication: 2018-11-15

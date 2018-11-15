@@ -1,4 +1,6 @@
 class Illustration < ApplicationRecord
+  # keep track of history (changes)
+  has_paper_trail
 
   #################
   ## ASSOCIATIONS ##
@@ -24,7 +26,7 @@ class Illustration < ApplicationRecord
   rails_admin do
     configure :translations, :globalize_tabs
     # control the order in the admin nav menu
-    weight 50
+    weight 10
 
     # configuration
     configure :date_publish do

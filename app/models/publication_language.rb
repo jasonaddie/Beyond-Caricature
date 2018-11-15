@@ -1,5 +1,4 @@
 class PublicationLanguage < ApplicationRecord
-
   # keep track of history (changes)
   has_paper_trail
 

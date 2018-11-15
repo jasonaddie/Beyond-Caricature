@@ -48,6 +48,11 @@ RailsAdmin.config do |config|
   # show all fields in show page, even if empty
   config.compact_show_view = false
 
+  # add fields that should be used by default to get the 'name'
+  # - used in drop downs, etc
+  # - default is title and name
+  config.label_methods << :language
+
   # list all models to include in admin section
   # - have to include all translation models too
   config.included_models = [
@@ -57,7 +62,8 @@ RailsAdmin.config do |config|
     'News', 'News::Translation',
     'Research', 'Resaerch::Translation',
     'Tag', 'Tag::Translation',
-    'Illustration', 'Illustration::Translation'
+    'Illustration', 'Illustration::Translation',
+    'Publication', 'Publication::Translation'
   ]
 
   config.model 'PublicationLanguage::Translation' do
@@ -106,5 +112,13 @@ RailsAdmin.config do |config|
       help ''
     end
     include_fields :locale, :title, :context
+  end
+
+  config.model 'Publication::Translation' do
+    visible false
+    configure :locale, :hidden do
+      help ''
+    end
+    include_fields :locale, :title, :about, :editor, :publisher, :writer
   end
 end
