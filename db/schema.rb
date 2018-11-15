@@ -10,7 +10,30 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_11_15_095749) do
+ActiveRecord::Schema.define(version: 2018_11_15_100614) do
+
+  create_table "illustration_translations", force: :cascade do |t|
+    t.integer "illustration_id", null: false
+    t.string "locale", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.string "title"
+    t.text "context"
+    t.index ["illustration_id"], name: "index_illustration_translations_on_illustration_id"
+    t.index ["locale"], name: "index_illustration_translations_on_locale"
+    t.index ["title"], name: "index_illustration_translations_on_title"
+  end
+
+  create_table "illustrations", force: :cascade do |t|
+    t.integer "illustrator_id"
+    t.boolean "is_public", default: false
+    t.date "date_publish"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["date_publish"], name: "index_illustrations_on_date_publish"
+    t.index ["illustrator_id"], name: "index_illustrations_on_illustrator_id"
+    t.index ["is_public"], name: "index_illustrations_on_is_public"
+  end
 
   create_table "illustrator_translations", force: :cascade do |t|
     t.integer "illustrator_id", null: false

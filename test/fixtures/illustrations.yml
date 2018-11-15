@@ -1,0 +1,15 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  title: MyString
+  illustrator: one
+  context: MyText
+  is_public: false
+  date_publish: 2018-11-15
+
+two:
+  title: MyString
+  illustrator: two
+  context: MyText
+  is_public: false
+  date_publish: 2018-11-15
