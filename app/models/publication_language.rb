@@ -12,7 +12,7 @@ class PublicationLanguage < ApplicationRecord
   #################
   ## VALIDATION ##
   #################
-  translation_class.validates :language, presence: true
+  # translation_class.validates :language, presence: true
 
   #################
   ## RAILS ADMIN CONFIGURATION ##

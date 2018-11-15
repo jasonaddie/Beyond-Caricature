@@ -11,8 +11,8 @@ class Research < ApplicationRecord
   #################
   ## VALIDATION ##
   #################
-  translation_class.validates :title, presence: true
-  translation_class.validates :text, presence: true
+  # translation_class.validates :title, presence: true
+  # translation_class.validates :text, presence: true
 
   #################
   ## RAILS ADMIN CONFIGURATION ##

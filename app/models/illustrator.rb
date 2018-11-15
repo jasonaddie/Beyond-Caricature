@@ -11,7 +11,7 @@ class Illustrator < ApplicationRecord
   #################
   ## VALIDATION ##
   #################
-  translation_class.validates :name, presence: true
+  # translation_class.validates :name, presence: true
 
   #################
   ## RAILS ADMIN CONFIGURATION ##
