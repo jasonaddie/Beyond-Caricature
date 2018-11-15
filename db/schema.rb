@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_11_15_123445) do
+ActiveRecord::Schema.define(version: 2018_11_15_130054) do
 
   create_table "illustration_tags", force: :cascade do |t|
     t.integer "illustration_id"
@@ -65,6 +65,20 @@ ActiveRecord::Schema.define(version: 2018_11_15_123445) do
     t.index ["date_birth"], name: "index_illustrators_on_date_birth"
     t.index ["date_death"], name: "index_illustrators_on_date_death"
     t.index ["is_public"], name: "index_illustrators_on_is_public"
+  end
+
+  create_table "issues", force: :cascade do |t|
+    t.integer "publication_id"
+    t.string "issue_number"
+    t.date "date_publication"
+    t.boolean "is_public", default: false
+    t.date "date_publish"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["date_publication"], name: "index_issues_on_date_publication"
+    t.index ["date_publish"], name: "index_issues_on_date_publish"
+    t.index ["is_public"], name: "index_issues_on_is_public"
+    t.index ["publication_id"], name: "index_issues_on_publication_id"
   end
 
   create_table "news", force: :cascade do |t|

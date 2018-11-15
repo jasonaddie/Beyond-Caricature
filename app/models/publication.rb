@@ -6,6 +6,7 @@ class Publication < ApplicationRecord
   ## ASSOCIATIONS ##
   #################
   belongs_to :publication_language
+  has_many :issues, dependent: :nullify
 
   #################
   ## TRANSLATIONS ##
@@ -24,6 +25,18 @@ class Publication < ApplicationRecord
   # translation_class.validates :title, presence: true
   validates :publication_type, presence: true
   validates :publication_language, presence: true
+
+  #################
+  ## SCOPES ##
+  #################
+  scope :journals, -> { where(publication_type: :journal) }
+
+  #################
+  ## METHODS ##
+  #################
+  def issue_count
+    self.issues.count if self.journal?
+  end
 
   #################
   ## RAILS ADMIN CONFIGURATION ##
@@ -53,18 +66,24 @@ class Publication < ApplicationRecord
 
     # list page
     list do
-      field :title
       field :publication_type
       field :publication_language
+      field :title
+      field :issue_count do
+        label "Issues on File"
+      end
       field :is_public
       field :date_publish
     end
 
     # show page
     show do
-      field :title
       field :publication_type
       field :publication_language
+      field :title
+      field :issue_count do
+        label "Issues on File"
+      end
       field :about
       field :editor
       field :publisher
@@ -91,8 +110,8 @@ class Publication < ApplicationRecord
       field :year_publication_end
       field :date_publication
 
-      field :date_publish
       field :is_public
+      field :date_publish
     end
   end
 end

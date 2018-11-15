@@ -52,8 +52,8 @@ class News < ApplicationRecord
       field :translations do
         label "Translations"
       end
-      field :date_publish
       field :is_public
+      field :date_publish
     end
   end
 end

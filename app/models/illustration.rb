@@ -61,8 +61,8 @@ class Illustration < ApplicationRecord
         label "Translations"
       end
       field :tags
-      field :date_publish
       field :is_public
+      field :date_publish
     end
   end
 
