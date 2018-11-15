@@ -80,7 +80,12 @@ RailsAdmin.config do |config|
     configure :locale, :hidden do
       help ''
     end
+
     include_fields :locale, :name, :bio
+
+    edit do
+      field :bio, :ck_editor
+    end
   end
 
   config.model 'News::Translation' do
@@ -89,6 +94,11 @@ RailsAdmin.config do |config|
       help ''
     end
     include_fields :locale, :title, :summary, :text
+
+    edit do
+      field :summary, :ck_editor
+      field :text, :ck_editor
+    end
   end
 
   config.model 'Research::Translation' do
@@ -97,6 +107,11 @@ RailsAdmin.config do |config|
       help ''
     end
     include_fields :locale, :title, :summary, :text
+
+    edit do
+      field :summary, :ck_editor
+      field :text, :ck_editor
+    end
   end
 
   config.model 'Tag::Translation' do
@@ -113,6 +128,10 @@ RailsAdmin.config do |config|
       help ''
     end
     include_fields :locale, :title, :context
+
+    edit do
+      field :context, :ck_editor
+    end
   end
 
   config.model 'Publication::Translation' do
@@ -121,5 +140,9 @@ RailsAdmin.config do |config|
       help ''
     end
     include_fields :locale, :title, :about, :editor, :publisher, :writer
+
+    edit do
+      field :about, :ck_editor
+    end
   end
 end
