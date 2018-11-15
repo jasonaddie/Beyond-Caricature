@@ -36,7 +36,7 @@ class Issue < ApplicationRecord
     end
     configure :date_publication do
       date_format :default
-      datepicker_options showTodayButton: false, format: 'YYYY-MM-DD', viewMode: 'decades'
+      datepicker_options showTodayButton: false, format: 'YYYY-MM-DD', viewMode: 'years', minDate: '1800-01-01', maxDate: "#{Time.now.year}-12-31"
     end
     # publication list should only show journals
     configure :publication do

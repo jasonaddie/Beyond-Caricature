@@ -65,15 +65,15 @@ class Publication < ApplicationRecord
     end
     configure :date_publication do
       date_format :default
-      datepicker_options showTodayButton: false, format: 'YYYY', viewMode: 'decades'
+      datepicker_options showTodayButton: false, format: 'YYYY', viewMode: 'years', minDate: '1800-01-01', maxDate: "#{Time.now.year}-12-31"
     end
     configure :year_publication_start, :date do
       date_format :default
-      datepicker_options showTodayButton: false, format: 'YYYY', viewMode: 'decades'
+      datepicker_options showTodayButton: false, format: 'YYYY', viewMode: 'years', minDate: '1800-01-01', maxDate: "#{Time.now.year}-12-31"
     end
     configure :year_publication_end, :date do
       date_format :default
-      datepicker_options showTodayButton: false, format: 'YYYY', viewMode: 'decades'
+      datepicker_options showTodayButton: false, format: 'YYYY', viewMode: 'years', minDate: '1800-01-01', maxDate: "#{Time.now.year}-12-31"
     end
 
     # list page

@@ -36,11 +36,11 @@ class Illustrator < ApplicationRecord
     # configuration
     configure :date_birth do
       date_format :default
-      datepicker_options showTodayButton: false, format: 'YYYY-MM-DD', viewMode: 'decades'
+      datepicker_options showTodayButton: false, format: 'YYYY-MM-DD', viewMode: 'years', minDate: '1800-01-01', maxDate: "#{Time.now.year}-12-31"
     end
     configure :date_death do
       date_format :default
-      datepicker_options showTodayButton: false, format: 'YYYY-MM-DD', viewMode: 'decades'
+      datepicker_options showTodayButton: false, format: 'YYYY-MM-DD', viewMode: 'years', minDate: '1800-01-01', maxDate: "#{Time.now.year}-12-31"
     end
 
     # list page
