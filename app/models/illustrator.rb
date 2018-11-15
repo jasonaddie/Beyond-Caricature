@@ -19,6 +19,13 @@ class Illustrator < ApplicationRecord
   # translation_class.validates :name, presence: true
 
   #################
+  ## METHODS ##
+  #################
+  def illustration_count
+    self.illustrations.count
+  end
+
+  #################
   ## RAILS ADMIN CONFIGURATION ##
   #################
   rails_admin do
@@ -42,6 +49,9 @@ class Illustrator < ApplicationRecord
       field :bio
       field :date_birth
       field :date_death
+      field :illustration_count do
+        label "Illustrations on File"
+      end
       field :is_public
     end
 
@@ -51,6 +61,9 @@ class Illustrator < ApplicationRecord
       field :bio
       field :date_birth
       field :date_death
+      field :illustration_count do
+        label "Illustrations on File"
+      end
       field :is_public
       field :created_at
       field :updated_at

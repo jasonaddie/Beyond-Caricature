@@ -3,6 +3,12 @@ class Tag < ApplicationRecord
   has_paper_trail
 
   #################
+  ## ASSOCIATIONS ##
+  #################
+  has_many :illustration_tags, dependent: :destroy
+  has_many :illustrations, through: :illustration_tags
+
+  #################
   ## TRANSLATIONS ##
   #################
   translates :name
@@ -12,6 +18,13 @@ class Tag < ApplicationRecord
   ## VALIDATION ##
   #################
   # translation_class.validates :name, presence: true
+
+  #################
+  ## METHODS ##
+  #################
+  def illustration_count
+    self.illustrations.count
+  end
 
   #################
   ## RAILS ADMIN CONFIGURATION ##
@@ -24,11 +37,17 @@ class Tag < ApplicationRecord
     # list page
     list do
       field :name
+      field :illustration_count do
+        label "Tagged Illustrations"
+      end
     end
 
     # show page
     show do
       field :name
+      field :illustration_count do
+        label "Tagged Illustrations"
+      end
       field :created_at
       field :updated_at
     end

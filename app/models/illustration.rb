@@ -4,6 +4,8 @@ class Illustration < ApplicationRecord
   ## ASSOCIATIONS ##
   #################
   belongs_to :illustrator
+  has_many :illustration_tags, dependent: :destroy
+  has_many :tags, through: :illustration_tags
 
   #################
   ## TRANSLATIONS ##
@@ -41,7 +43,9 @@ class Illustration < ApplicationRecord
     # show page
     show do
       field :title
+      field :context
       field :illustrator
+      field :tags
       field :is_public
       field :date_publish
       field :created_at
@@ -54,6 +58,7 @@ class Illustration < ApplicationRecord
       field :translations do
         label "Translations"
       end
+      field :tags
       field :date_publish
       field :is_public
     end
