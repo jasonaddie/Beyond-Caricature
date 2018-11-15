@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_11_14_195649) do
+ActiveRecord::Schema.define(version: 2018_11_15_095749) do
 
   create_table "illustrator_translations", force: :cascade do |t|
     t.integer "illustrator_id", null: false
@@ -94,6 +94,22 @@ ActiveRecord::Schema.define(version: 2018_11_14_195649) do
     t.datetime "updated_at", null: false
     t.index ["date_publish"], name: "index_researches_on_date_publish"
     t.index ["is_public"], name: "index_researches_on_is_public"
+  end
+
+  create_table "tag_translations", force: :cascade do |t|
+    t.integer "tag_id", null: false
+    t.string "locale", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.string "name"
+    t.index ["locale"], name: "index_tag_translations_on_locale"
+    t.index ["name"], name: "index_tag_translations_on_name"
+    t.index ["tag_id"], name: "index_tag_translations_on_tag_id"
+  end
+
+  create_table "tags", force: :cascade do |t|
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "users", force: :cascade do |t|

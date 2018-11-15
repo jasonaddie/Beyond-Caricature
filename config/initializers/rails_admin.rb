@@ -55,7 +55,8 @@ RailsAdmin.config do |config|
     'PublicationLanguage','PublicationLanguage::Translation',
     'Illustrator', 'Illustrator::Translation',
     'News', 'News::Translation',
-    'Research', 'Resaerch::Translation'
+    'Research', 'Resaerch::Translation',
+    'Tag', 'Tag::Translation'
   ]
 
   config.model 'PublicationLanguage::Translation' do
@@ -88,5 +89,13 @@ RailsAdmin.config do |config|
       help ''
     end
     include_fields :locale, :title, :summary, :text
+  end
+
+  config.model 'Tag::Translation' do
+    visible false
+    configure :locale, :hidden do
+      help ''
+    end
+    include_fields :locale, :name
   end
 end
