@@ -1,6 +1,21 @@
 class Publication < ApplicationRecord
-  # keep track of history (changes)
+  #################
+  ## HISTORY TRACKING ##
+  #################
   has_paper_trail
+
+  #################
+  ## ATTACHED FILES ##
+  #################
+  has_one_attached :scanned_file
+  # have to add method to delete attached file
+  attr_accessor :remove_scanned_file
+  after_save { asset.purge if remove_scanned_file == '1' }
+
+  has_one_attached :cover_image
+  # have to add method to delete attached file
+  attr_accessor :remove_cover_image
+  after_save { asset.purge if remove_cover_image == '1' }
 
   #################
   ## ASSOCIATIONS ##
@@ -75,9 +90,21 @@ class Publication < ApplicationRecord
       date_format :default
       datepicker_options showTodayButton: false, format: 'YYYY', viewMode: 'years', minDate: '1800-01-01', maxDate: "#{Time.now.year}-12-31"
     end
+    # create link to file
+    configure :scanned_file do
+      pretty_value do
+        bindings[:view].content_tag(:a,
+          'View',
+          href: Rails.application.routes.url_helpers.rails_blob_path(bindings[:object].scanned_file, only_path: true),
+          target: '_blank',
+          class: 'btn btn-info btn-sm'
+        )
+      end
+    end
 
     # list page
     list do
+      field :cover_image
       field :publication_type
       field :publication_language
       field :title
@@ -93,8 +120,10 @@ class Publication < ApplicationRecord
 
     # show page
     show do
+      field :cover_image
       field :publication_type
       field :publication_language
+      field :scanned_file
       field :title
       field :issue_count do
         label "Issues on File"
@@ -119,6 +148,8 @@ class Publication < ApplicationRecord
     edit do
       field :publication_type
       field :publication_language
+      field :cover_image
+      field :scanned_file
 
       field :translations do
         label "Translations"

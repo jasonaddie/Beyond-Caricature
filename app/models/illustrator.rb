@@ -1,6 +1,16 @@
 class Illustrator < ApplicationRecord
-  # keep track of history (changes)
+  #################
+  ## HISTORY TRACKING ##
+  #################
   has_paper_trail
+
+  #################
+  ## ATTACHED FILES ##
+  #################
+  has_one_attached :image
+  # have to add method to delete attached file
+  attr_accessor :remove_image
+  after_save { asset.purge if remove_image == '1' }
 
   #################
   ## ASSOCIATIONS ##
@@ -45,6 +55,7 @@ class Illustrator < ApplicationRecord
 
     # list page
     list do
+      field :image
       field :name
       field :bio
       field :date_birth
@@ -57,6 +68,7 @@ class Illustrator < ApplicationRecord
 
     # show page
     show do
+      field :image
       field :name
       field :bio
       field :date_birth
@@ -74,6 +86,7 @@ class Illustrator < ApplicationRecord
       field :translations do
         label "Translations"
       end
+      field :image
       field :date_birth
       field :date_death
       field :is_public

@@ -7,7 +7,9 @@ class User < ApplicationRecord
   # define user roles
   enum role: [:uploader, :editor, :admin, :superadmin]
 
-  # keep track of history (changes)
+  #################
+  ## HISTORY TRACKING ##
+  #################
   has_paper_trail
 
   #################

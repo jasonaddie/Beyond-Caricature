@@ -1,6 +1,16 @@
 class Illustration < ApplicationRecord
-  # keep track of history (changes)
+  #################
+  ## HISTORY TRACKING ##
+  #################
   has_paper_trail
+
+  #################
+  ## ATTACHED FILES ##
+  #################
+  has_one_attached :image
+  # have to add method to delete attached file
+  attr_accessor :remove_image
+  after_save { asset.purge if remove_image == '1' }
 
   #################
   ## ASSOCIATIONS ##
@@ -61,6 +71,7 @@ class Illustration < ApplicationRecord
 
     # list page
     list do
+      field :image
       field :title
       field :illustrator
       field :combined_publications_count do
@@ -72,6 +83,7 @@ class Illustration < ApplicationRecord
 
     # show page
     show do
+      field :image
       field :title
       field :context
       field :illustrator
@@ -87,6 +99,7 @@ class Illustration < ApplicationRecord
 
     # form
     edit do
+      field :image
       field :illustrator
       field :translations do
         label "Translations"

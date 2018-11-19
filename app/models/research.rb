@@ -1,6 +1,16 @@
 class Research < ApplicationRecord
-  # keep track of history (changes)
+  #################
+  ## HISTORY TRACKING ##
+  #################
   has_paper_trail
+
+  #################
+  ## ATTACHED FILES ##
+  #################
+  has_one_attached :cover_image
+  # have to add method to delete attached file
+  attr_accessor :remove_cover_image
+  after_save { asset.purge if remove_cover_image == '1' }
 
   #################
   ## TRANSLATIONS ##
@@ -30,14 +40,16 @@ class Research < ApplicationRecord
 
     # list page
     list do
+      field :cover_image
       field :title
-      field :summmary
+      field :summary
       field :is_public
       field :date_publish
     end
 
     # show page
     show do
+      field :cover_image
       field :title
       field :summary
       field :text
@@ -52,6 +64,7 @@ class Research < ApplicationRecord
       field :translations do
         label "Translations"
       end
+      field :cover_image
       field :is_public
       field :date_publish
     end

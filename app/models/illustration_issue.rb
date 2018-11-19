@@ -1,5 +1,7 @@
 class IllustrationIssue < ApplicationRecord
-  # keep track of history (changes)
+  #################
+  ## HISTORY TRACKING ##
+  #################
   has_paper_trail
 
   #################
