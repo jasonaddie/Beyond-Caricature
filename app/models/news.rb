@@ -37,6 +37,16 @@ class News < ApplicationRecord
       date_format :default
       datepicker_options showTodayButton: true, format: 'YYYY-MM-DD'
     end
+    configure :summary do
+      pretty_value do
+        value.html_safe
+      end
+    end
+    configure :text do
+      pretty_value do
+        value.html_safe
+      end
+    end
 
     # list page
     list do

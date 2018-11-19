@@ -68,6 +68,11 @@ class Illustration < ApplicationRecord
     configure :publications do
       #TODO
     end
+    configure :context do
+      pretty_value do
+        value.html_safe
+      end
+    end
 
     # list page
     list do

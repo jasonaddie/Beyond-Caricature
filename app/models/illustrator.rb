@@ -52,12 +52,16 @@ class Illustrator < ApplicationRecord
       date_format :default
       datepicker_options showTodayButton: false, format: 'YYYY-MM-DD', viewMode: 'years', minDate: '1800-01-01', maxDate: "#{Time.now.year}-12-31"
     end
+    configure :bio do
+      pretty_value do
+        value.html_safe
+      end
+    end
 
     # list page
     list do
       field :image
       field :name
-      field :bio
       field :date_birth
       field :date_death
       field :illustration_count do
