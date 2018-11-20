@@ -63,6 +63,9 @@ gem 'rails_admin_globalize_field', '~> 0.4.0'
 # wysiwyg editor
 gem 'ckeditor', '~> 4.2', '>= 4.2.4'
 
+# to connect to digitalocean spaces
+gem "aws-sdk-s3", require: false
+
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]
