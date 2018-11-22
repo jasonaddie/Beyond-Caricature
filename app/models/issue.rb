@@ -1,3 +1,17 @@
+# == Schema Information
+#
+# Table name: issues
+#
+#  id               :integer          not null, primary key
+#  publication_id   :integer
+#  issue_number     :string
+#  date_publication :date
+#  is_public        :boolean          default(FALSE)
+#  date_publish     :date
+#  created_at       :datetime         not null
+#  updated_at       :datetime         not null
+#
+
 class Issue < ApplicationRecord
   #################
   ## HISTORY TRACKING ##
@@ -83,7 +97,7 @@ class Issue < ApplicationRecord
       field :issue_number
       field :date_publication
       field :illustration_count do
-        label "Illustrations on File"
+        label I18n.t('labels.illustration_count')
       end
       field :is_public
       field :date_publish
@@ -97,7 +111,7 @@ class Issue < ApplicationRecord
       field :issue_number
       field :date_publication
       field :illustration_count do
-        label "Illustrations on File"
+        label I18n.t('labels.illustration_count')
       end
       field :is_public
       field :date_publish

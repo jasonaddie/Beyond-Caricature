@@ -1,3 +1,12 @@
+# == Schema Information
+#
+# Table name: tags
+#
+#  id         :integer          not null, primary key
+#  created_at :datetime         not null
+#  updated_at :datetime         not null
+#
+
 class Tag < ApplicationRecord
   #################
   ## HISTORY TRACKING ##
@@ -40,7 +49,7 @@ class Tag < ApplicationRecord
     list do
       field :name
       field :illustration_count do
-        label "Tagged Illustrations"
+        label I18n.t('labels.illustration_count')
       end
     end
 
@@ -48,7 +57,7 @@ class Tag < ApplicationRecord
     show do
       field :name
       field :illustration_count do
-        label "Tagged Illustrations"
+        label I18n.t('labels.illustration_count')
       end
       field :created_at
       field :updated_at
@@ -57,7 +66,7 @@ class Tag < ApplicationRecord
     # form
     edit do
       field :translations do
-        label "Translations"
+        label I18n.t('labels.translations')
       end
     end
   end

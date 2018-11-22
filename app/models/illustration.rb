@@ -1,3 +1,15 @@
+# == Schema Information
+#
+# Table name: illustrations
+#
+#  id             :integer          not null, primary key
+#  illustrator_id :integer
+#  is_public      :boolean          default(FALSE)
+#  date_publish   :date
+#  created_at     :datetime         not null
+#  updated_at     :datetime         not null
+#
+
 class Illustration < ApplicationRecord
   #################
   ## HISTORY TRACKING ##
@@ -80,7 +92,7 @@ class Illustration < ApplicationRecord
       field :title
       field :illustrator
       field :combined_publications_count do
-        label "Publication Illustrations"
+        label I18n.t('labels.combined_publications_count')
       end
       field :is_public
       field :date_publish
@@ -93,7 +105,7 @@ class Illustration < ApplicationRecord
       field :context
       field :illustrator
       field :combined_publications_count do
-        label "Publication Illustrations"
+        label I18n.t('labels.combined_publications_count')
       end
       field :tags
       field :is_public
@@ -107,7 +119,7 @@ class Illustration < ApplicationRecord
       field :image
       field :illustrator
       field :translations do
-        label "Translations"
+        label I18n.t('labels.translations')
       end
       field :publications
       field :issues

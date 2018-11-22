@@ -78,6 +78,9 @@ group :development do
   # Spring speeds up development by keeping your application running in the background. Read more: https://github.com/rails/spring
   gem 'spring'
   gem 'spring-watcher-listen', '~> 2.0.0'
+
+  # add comments at top of model files of which fields are in the model
+  gem 'annotate', '~> 2.7', '>= 2.7.4'
 end
 
 group :test do

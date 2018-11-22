@@ -1,3 +1,19 @@
+# == Schema Information
+#
+# Table name: publications
+#
+#  id                      :integer          not null, primary key
+#  publication_type        :integer          default("journal")
+#  publication_language_id :integer
+#  is_public               :boolean          default(FALSE)
+#  date_publish            :date
+#  year_publication_start  :integer
+#  year_publication_end    :integer
+#  date_publication        :date
+#  created_at              :datetime         not null
+#  updated_at              :datetime         not null
+#
+
 class Publication < ApplicationRecord
   #################
   ## HISTORY TRACKING ##
@@ -131,10 +147,10 @@ class Publication < ApplicationRecord
       field :scanned_file
       field :title
       field :issue_count do
-        label "Issues on File"
+        label I18n.t('labels.issue_count')
       end
       field :illustration_count do
-        label "Illustrations on File"
+        label I18n.t('labels.illustration_count')
       end
       field :about
       field :editor
@@ -157,7 +173,7 @@ class Publication < ApplicationRecord
       field :scanned_file
 
       field :translations do
-        label "Translations"
+        label I18n.t('labels.translations')
       end
 
       field :year_publication_start

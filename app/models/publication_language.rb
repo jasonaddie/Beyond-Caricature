@@ -1,3 +1,13 @@
+# == Schema Information
+#
+# Table name: publication_languages
+#
+#  id         :integer          not null, primary key
+#  is_active  :boolean          default(FALSE)
+#  created_at :datetime         not null
+#  updated_at :datetime         not null
+#
+
 class PublicationLanguage < ApplicationRecord
   #################
   ## HISTORY TRACKING ##
@@ -40,7 +50,7 @@ class PublicationLanguage < ApplicationRecord
     # form
     edit do
       field :translations do
-        label "Translations"
+        label I18n.t('labels.translations')
       end
       field :is_active
     end

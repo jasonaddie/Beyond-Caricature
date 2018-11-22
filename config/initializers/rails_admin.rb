@@ -44,6 +44,9 @@ RailsAdmin.config do |config|
     history_show
   end
 
+  # app name
+  config.main_app_name = Proc.new { |controller| [ I18n.t('meta.site_name'), "Admin" ] }
+
 
   # show all fields in show page, even if empty
   config.compact_show_view = false

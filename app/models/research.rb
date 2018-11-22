@@ -1,3 +1,14 @@
+# == Schema Information
+#
+# Table name: researches
+#
+#  id           :integer          not null, primary key
+#  date_publish :date
+#  is_public    :boolean
+#  created_at   :datetime         not null
+#  updated_at   :datetime         not null
+#
+
 class Research < ApplicationRecord
   #################
   ## HISTORY TRACKING ##
@@ -72,7 +83,7 @@ class Research < ApplicationRecord
     # form
     edit do
       field :translations do
-        label "Translations"
+        label I18n.t('labels.translations')
       end
       field :cover_image
       field :is_public

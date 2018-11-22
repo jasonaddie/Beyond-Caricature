@@ -1,3 +1,15 @@
+# == Schema Information
+#
+# Table name: illustrators
+#
+#  id         :integer          not null, primary key
+#  date_birth :date
+#  date_death :date
+#  is_public  :boolean          default(FALSE)
+#  created_at :datetime         not null
+#  updated_at :datetime         not null
+#
+
 class Illustrator < ApplicationRecord
   #################
   ## HISTORY TRACKING ##
@@ -65,7 +77,7 @@ class Illustrator < ApplicationRecord
       field :date_birth
       field :date_death
       field :illustration_count do
-        label "Illustrations on File"
+        label I18n.t('labels.illustration_count')
       end
       field :is_public
     end
@@ -78,7 +90,7 @@ class Illustrator < ApplicationRecord
       field :date_birth
       field :date_death
       field :illustration_count do
-        label "Illustrations on File"
+        label I18n.t('labels.illustration_count')
       end
       field :is_public
       field :created_at
@@ -88,7 +100,7 @@ class Illustrator < ApplicationRecord
     # form
     edit do
       field :translations do
-        label "Translations"
+        label I18n.t('labels.translations')
       end
       field :image
       field :date_birth
