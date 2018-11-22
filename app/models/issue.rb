@@ -77,9 +77,12 @@ class Issue < ApplicationRecord
         end
       end
     end
-
+    configure :cover_image do
+      html_attributes required: required? && !value.present?, accept: 'image/*'
+    end
     # create link to file
     configure :scanned_file do
+      html_attributes required: required? && !value.present?, accept: '.pdf'
       pretty_value do
         bindings[:view].content_tag(:a,
           'View',

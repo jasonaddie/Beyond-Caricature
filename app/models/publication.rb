@@ -106,8 +106,12 @@ class Publication < ApplicationRecord
       date_format :default
       datepicker_options showTodayButton: false, format: 'YYYY', viewMode: 'years', minDate: '1800-01-01', maxDate: "#{Time.now.year}-12-31"
     end
+    configure :cover_image do
+      html_attributes required: required? && !value.present?, accept: 'image/*'
+    end
     # create link to file
     configure :scanned_file do
+      html_attributes required: required? && !value.present?, accept: '.pdf'
       pretty_value do
         bindings[:view].content_tag(:a,
           'View',

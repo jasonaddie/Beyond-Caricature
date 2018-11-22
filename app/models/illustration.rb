@@ -85,6 +85,9 @@ class Illustration < ApplicationRecord
         value.html_safe
       end
     end
+    configure :image do
+      html_attributes required: required? && !value.present?, accept: 'image/*'
+    end
 
     # list page
     list do

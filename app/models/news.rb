@@ -58,6 +58,9 @@ class News < ApplicationRecord
         value.html_safe
       end
     end
+    configure :cover_image do
+      html_attributes required: required? && !value.present?, accept: 'image/*'
+    end
 
     # list page
     list do
