@@ -162,3 +162,9 @@ en:
     site_name: Beyond Caricature
     sub_title:
     description:
+  languages:
+    en: English
+    ru: Russian
+    az: Azeri
+    ka: Georgian
+    hy: Armenian

@@ -4,9 +4,11 @@
 
 body.rails_admin .form-horizontal .tab-content .tab-pane{
   border-bottom: 1px solid #ddd;
+  margin-bottom: 25px;
 }
 
 .nav-tabs > li > a,
 .nav-tabs > li.active > a, .nav-tabs > li.active > a:hover, .nav-tabs > li.active > a:focus{
   outline: none;
 }
+
