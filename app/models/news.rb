@@ -26,14 +26,18 @@ class News < ApplicationRecord
   #################
   ## TRANSLATIONS ##
   #################
-  translates :title, :summary, :text
+  translates :title, :summary, :text, :is_public, :date_publish
   accepts_nested_attributes_for :translations, allow_destroy: true
 
   #################
   ## VALIDATION ##
   #################
-  # translation_class.validates :title, presence: true
-  # translation_class.validates :text, presence: true
+
+  #################
+  ## CALLBACKS ##
+  #################
+  before_save :set_publish_dates
+  validate :check_public_required_fields
 
   #################
   ## RAILS ADMIN CONFIGURATION ##
@@ -44,10 +48,6 @@ class News < ApplicationRecord
     weight 300
 
     # configuration
-    configure :date_publish do
-      date_format :default
-      datepicker_options showTodayButton: true, format: 'YYYY-MM-DD'
-    end
     configure :summary do
       pretty_value do
         value.html_safe
@@ -58,26 +58,41 @@ class News < ApplicationRecord
         value.html_safe
       end
     end
+    configure :is_public do
+      # build an inline list that shows the status of each language
+      pretty_value do
+        bindings[:view].content_tag(:ul, class: 'list-inline is-public-status') do
+          I18n.available_locales.collect do |locale|
+            bindings[:view].content_tag(
+              :li,
+              locale.upcase,
+              class: bindings[:object].send("is_public_translations")[locale] ? 'public' : 'not-public',
+              title: I18n.t("languages.#{locale}") + ' - ' + I18n.t("status.#{bindings[:object].send("is_public_translations")[locale]}")
+            )
+          end.join.html_safe
+        end
+      end
+    end
     configure :cover_image do
       html_attributes required: required? && !value.present?, accept: 'image/*'
     end
 
     # list page
     list do
+      field :is_public
       field :cover_image
       field :title
       field :summary
-      field :is_public
       field :date_publish
     end
 
     # show page
     show do
+      field :is_public
       field :cover_image
       field :title
       field :summary
       field :text
-      field :is_public
       field :date_publish
       field :created_at
       field :updated_at
@@ -85,12 +100,20 @@ class News < ApplicationRecord
 
     # form
     edit do
+      field :cover_image
       field :translations do
         label I18n.t('labels.translations')
       end
-      field :cover_image
-      field :is_public
-      field :date_publish
     end
+  end
+
+  #################
+  ## PRIVATE METHODS ##
+  #################
+  private
+
+  def check_public_required_fields
+    # call the methohd in the application record base object
+    super(%w(title summary text))
   end
 end

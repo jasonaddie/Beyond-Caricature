@@ -83,12 +83,19 @@ RailsAdmin.config do |config|
     configure :locale, :hidden do
       help ''
     end
+    configure :is_public do
+      html_attributes required: required? && !value.present?, class: 'is-public-field'
+    end
 
-    include_fields :locale, :name, :bio
+    include_fields :locale, :is_public, :name, :bio
 
     edit do
       field :bio, :ck_editor
+      fields :name, :bio do
+        help I18n.t('admin.help.required_for_publication')
+      end
     end
+
   end
 
   config.model 'News::Translation' do
@@ -96,11 +103,17 @@ RailsAdmin.config do |config|
     configure :locale, :hidden do
       help ''
     end
-    include_fields :locale, :title, :summary, :text
+    configure :is_public do
+      html_attributes required: required? && !value.present?, class: 'is-public-field'
+    end
+    include_fields :locale, :is_public, :title, :summary, :text
 
     edit do
       field :summary, :ck_editor
       field :text, :ck_editor
+      fields :title, :summary, :text do
+        help I18n.t('admin.help.required_for_publication')
+      end
     end
   end
 
@@ -109,11 +122,17 @@ RailsAdmin.config do |config|
     configure :locale, :hidden do
       help ''
     end
-    include_fields :locale, :title, :summary, :text
+    configure :is_public do
+      html_attributes required: required? && !value.present?, class: 'is-public-field'
+    end
+    include_fields :locale, :is_public, :title, :summary, :text
 
     edit do
       field :summary, :ck_editor
       field :text, :ck_editor
+      fields :title, :summary, :text do
+        help I18n.t('admin.help.required_for_publication')
+      end
     end
   end
 
@@ -130,10 +149,16 @@ RailsAdmin.config do |config|
     configure :locale, :hidden do
       help ''
     end
-    include_fields :locale, :title, :context
+    configure :is_public do
+      html_attributes required: required? && !value.present?, class: 'is-public-field'
+    end
+    include_fields :locale, :is_public, :title, :context
 
     edit do
       field :context, :ck_editor
+      fields :title do
+        help I18n.t('admin.help.required_for_publication')
+      end
     end
   end
 
@@ -142,10 +167,16 @@ RailsAdmin.config do |config|
     configure :locale, :hidden do
       help ''
     end
-    include_fields :locale, :title, :about, :editor, :publisher, :writer
+    configure :is_public do
+      html_attributes required: required? && !value.present?, class: 'is-public-field'
+    end
+    include_fields :locale, :is_public, :title, :about, :editor, :publisher, :writer
 
     edit do
       field :about, :ck_editor
+      fields :title do
+        help I18n.t('admin.help.required_for_publication')
+      end
     end
   end
 end

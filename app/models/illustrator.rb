@@ -32,13 +32,18 @@ class Illustrator < ApplicationRecord
   #################
   ## TRANSLATIONS ##
   #################
-  translates :name, :bio
+  translates :name, :bio, :is_public, :date_publish
   accepts_nested_attributes_for :translations, allow_destroy: true
 
   #################
   ## VALIDATION ##
   #################
-  # translation_class.validates :name, presence: true
+
+  #################
+  ## CALLBACKS ##
+  #################
+  before_save :set_publish_dates
+  validate :check_public_required_fields
 
   #################
   ## METHODS ##
@@ -72,9 +77,25 @@ class Illustrator < ApplicationRecord
     configure :image do
       html_attributes required: required? && !value.present?, accept: 'image/*'
     end
+    configure :is_public do
+      # build an inline list that shows the status of each language
+      pretty_value do
+        bindings[:view].content_tag(:ul, class: 'list-inline is-public-status') do
+          I18n.available_locales.collect do |locale|
+            bindings[:view].content_tag(
+              :li,
+              locale.upcase,
+              class: bindings[:object].send("is_public_translations")[locale] ? 'public' : 'not-public',
+              title: I18n.t("languages.#{locale}") + ' - ' + I18n.t("status.#{bindings[:object].send("is_public_translations")[locale]}")
+            )
+          end.join.html_safe
+        end
+      end
+    end
 
     # list page
     list do
+      field :is_public
       field :image
       field :name
       field :date_birth
@@ -82,11 +103,12 @@ class Illustrator < ApplicationRecord
       field :illustration_count do
         label I18n.t('labels.illustration_count')
       end
-      field :is_public
+      field :date_publish
     end
 
     # show page
     show do
+      field :is_public
       field :image
       field :name
       field :bio
@@ -95,7 +117,7 @@ class Illustrator < ApplicationRecord
       field :illustration_count do
         label I18n.t('labels.illustration_count')
       end
-      field :is_public
+      field :date_publish
       field :created_at
       field :updated_at
     end
@@ -108,7 +130,17 @@ class Illustrator < ApplicationRecord
       field :image
       field :date_birth
       field :date_death
-      field :is_public
     end
+  end
+
+
+  #################
+  ## PRIVATE METHODS ##
+  #################
+  private
+
+  def check_public_required_fields
+    # call the methohd in the application record base object
+    super(%w(name bio))
   end
 end

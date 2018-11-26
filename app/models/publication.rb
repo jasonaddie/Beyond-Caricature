@@ -44,7 +44,7 @@ class Publication < ApplicationRecord
   #################
   ## TRANSLATIONS ##
   #################
-  translates :title, :about, :editor, :publisher, :writer
+  translates :title, :about, :editor, :publisher, :writer, :is_public, :date_publish
   accepts_nested_attributes_for :translations, allow_destroy: true
 
   #################
@@ -58,6 +58,12 @@ class Publication < ApplicationRecord
   # translation_class.validates :title, presence: true
   validates :publication_type, presence: true
   validates :publication_language, presence: true
+
+  #################
+  ## CALLBACKS ##
+  #################
+  before_save :set_publish_dates
+  validate :check_public_required_fields
 
   #################
   ## SCOPES ##
@@ -90,9 +96,20 @@ class Publication < ApplicationRecord
     weight 20
 
     # configuration
-    configure :date_publish do
-      date_format :default
-      datepicker_options showTodayButton: true, format: 'YYYY-MM-DD'
+    configure :is_public do
+      # build an inline list that shows the status of each language
+      pretty_value do
+        bindings[:view].content_tag(:ul, class: 'list-inline is-public-status') do
+          I18n.available_locales.collect do |locale|
+            bindings[:view].content_tag(
+              :li,
+              locale.upcase,
+              class: bindings[:object].send("is_public_translations")[locale] ? 'public' : 'not-public',
+              title: I18n.t("languages.#{locale}") + ' - ' + I18n.t("status.#{bindings[:object].send("is_public_translations")[locale]}")
+            )
+          end.join.html_safe
+        end
+      end
     end
     configure :date_publication do
       date_format :default
@@ -129,6 +146,7 @@ class Publication < ApplicationRecord
 
     # list page
     list do
+      field :is_public
       field :cover_image
       field :publication_type
       field :publication_language
@@ -139,12 +157,12 @@ class Publication < ApplicationRecord
       field :illustration_count do
         label "Illustrations on File"
       end
-      field :is_public
       field :date_publish
     end
 
     # show page
     show do
+      field :is_public
       field :cover_image
       field :publication_type
       field :publication_language
@@ -160,11 +178,10 @@ class Publication < ApplicationRecord
       field :editor
       field :publisher
       field :writer
-      field :is_public
-      field :date_publish
       field :year_publication_start
       field :year_publication_end
       field :date_publication
+      field :date_publish
       field :created_at
       field :updated_at
     end
@@ -183,9 +200,17 @@ class Publication < ApplicationRecord
       field :year_publication_start
       field :year_publication_end
       field :date_publication
-
-      field :is_public
-      field :date_publish
     end
+  end
+
+
+  #################
+  ## PRIVATE METHODS ##
+  #################
+  private
+
+  def check_public_required_fields
+    # call the methohd in the application record base object
+    super(%w(title))
   end
 end

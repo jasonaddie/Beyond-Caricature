@@ -57,6 +57,9 @@ gem 'paper_trail-association_tracking'
 # translations
 gem 'globalize', '~> 5.2'
 
+# make working with translation form fields a bit easier
+# gem 'globalize-accessors', '~> 0.2.1'
+
 # translation tabs in forms
 gem 'rails_admin_globalize_field', '~> 0.4.0'
 

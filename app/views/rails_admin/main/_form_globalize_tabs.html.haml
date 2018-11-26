@@ -4,12 +4,15 @@
 .controls
   .globalize-errors
     = form.errors_for(field)
-  %ul.nav.nav-tabs{ :style => 'margin-top:5px' }
+  %ul.nav.nav-tabs.globalize-tabs{ :style => 'margin-top:5px', data: {'help-text': I18n.t('admin.help.required_for_publication')} }
     - field.available_locales.each do |locale|
       - klass = "localized-pane-#{locale}-#{key}-#{form.object.id}"
       %li{ class: ( 'active' if locale == field.current_locale ) }
-        %a{ href: "#", title: I18n.t("languages.#{locale}"), data: { toggle: "tab",  target: ".#{klass}:first"} }= locale.upcase
-.tab-content
+        %a{ href: "#", title: I18n.t("languages.#{locale}"), data: { toggle: "tab",  target: ".#{klass}:first"} }
+          %span{ title: I18n.t("labels.required_for_publication") } **
+          = locale.upcase
+          %span{ title: I18n.t("labels.required_for_publication") } **
+.tab-content.globalize-tab-content
   - field.available_locales.each do |locale|
     - klass = "localized-pane-#{locale}-#{key}-#{form.object.id}"
     = form.fields_for field.name, field.translations[locale], wrapper: false do |nested_form|

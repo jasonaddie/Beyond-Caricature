@@ -1,7 +1,7 @@
 class CreateIllustrations < ActiveRecord::Migration[5.2]
   def change
     create_table :illustrations do |t|
-      t.references :illustrator, foreign_key: true
+      t.references :illustrator
       t.boolean :is_public, default: false
       t.date :date_publish
 

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_11_19_183245) do
+ActiveRecord::Schema.define(version: 2018_11_28_081441) do
 
   create_table "active_storage_attachments", force: :cascade do |t|
     t.string "name", null: false
@@ -75,20 +75,20 @@ ActiveRecord::Schema.define(version: 2018_11_19_183245) do
     t.datetime "updated_at", null: false
     t.string "title"
     t.text "context"
+    t.boolean "is_public", default: false
+    t.date "date_publish"
+    t.index ["date_publish"], name: "index_illustration_translations_on_date_publish"
     t.index ["illustration_id"], name: "index_illustration_translations_on_illustration_id"
+    t.index ["is_public"], name: "index_illustration_translations_on_is_public"
     t.index ["locale"], name: "index_illustration_translations_on_locale"
     t.index ["title"], name: "index_illustration_translations_on_title"
   end
 
   create_table "illustrations", force: :cascade do |t|
     t.integer "illustrator_id"
-    t.boolean "is_public", default: false
-    t.date "date_publish"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["date_publish"], name: "index_illustrations_on_date_publish"
     t.index ["illustrator_id"], name: "index_illustrations_on_illustrator_id"
-    t.index ["is_public"], name: "index_illustrations_on_is_public"
   end
 
   create_table "illustrator_translations", force: :cascade do |t|
@@ -98,7 +98,11 @@ ActiveRecord::Schema.define(version: 2018_11_19_183245) do
     t.datetime "updated_at", null: false
     t.string "name"
     t.text "bio"
+    t.boolean "is_public", default: false
+    t.date "date_publish"
+    t.index ["date_publish"], name: "index_illustrator_translations_on_date_publish"
     t.index ["illustrator_id"], name: "index_illustrator_translations_on_illustrator_id"
+    t.index ["is_public"], name: "index_illustrator_translations_on_is_public"
     t.index ["locale"], name: "index_illustrator_translations_on_locale"
     t.index ["name"], name: "index_illustrator_translations_on_name"
   end
@@ -106,12 +110,10 @@ ActiveRecord::Schema.define(version: 2018_11_19_183245) do
   create_table "illustrators", force: :cascade do |t|
     t.date "date_birth"
     t.date "date_death"
-    t.boolean "is_public", default: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["date_birth"], name: "index_illustrators_on_date_birth"
     t.index ["date_death"], name: "index_illustrators_on_date_death"
-    t.index ["is_public"], name: "index_illustrators_on_is_public"
   end
 
   create_table "issues", force: :cascade do |t|
@@ -129,12 +131,8 @@ ActiveRecord::Schema.define(version: 2018_11_19_183245) do
   end
 
   create_table "news", force: :cascade do |t|
-    t.date "date_publish"
-    t.boolean "is_public"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["date_publish"], name: "index_news_on_date_publish"
-    t.index ["is_public"], name: "index_news_on_is_public"
   end
 
   create_table "news_translations", force: :cascade do |t|
@@ -145,6 +143,10 @@ ActiveRecord::Schema.define(version: 2018_11_19_183245) do
     t.string "title"
     t.text "summary"
     t.text "text"
+    t.boolean "is_public", default: false
+    t.date "date_publish"
+    t.index ["date_publish"], name: "index_news_translations_on_date_publish"
+    t.index ["is_public"], name: "index_news_translations_on_is_public"
     t.index ["locale"], name: "index_news_translations_on_locale"
     t.index ["news_id"], name: "index_news_translations_on_news_id"
     t.index ["title"], name: "index_news_translations_on_title"
@@ -177,6 +179,10 @@ ActiveRecord::Schema.define(version: 2018_11_19_183245) do
     t.string "editor"
     t.string "publisher"
     t.string "writer"
+    t.boolean "is_public", default: false
+    t.date "date_publish"
+    t.index ["date_publish"], name: "index_publication_translations_on_date_publish"
+    t.index ["is_public"], name: "index_publication_translations_on_is_public"
     t.index ["locale"], name: "index_publication_translations_on_locale"
     t.index ["publication_id"], name: "index_publication_translations_on_publication_id"
     t.index ["title"], name: "index_publication_translations_on_title"
@@ -185,16 +191,12 @@ ActiveRecord::Schema.define(version: 2018_11_19_183245) do
   create_table "publications", force: :cascade do |t|
     t.integer "publication_type", default: 0
     t.integer "publication_language_id"
-    t.boolean "is_public", default: false
-    t.date "date_publish"
     t.integer "year_publication_start"
     t.integer "year_publication_end"
     t.date "date_publication"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["date_publication"], name: "index_publications_on_date_publication"
-    t.index ["date_publish"], name: "index_publications_on_date_publish"
-    t.index ["is_public"], name: "index_publications_on_is_public"
     t.index ["publication_language_id"], name: "index_publications_on_publication_language_id"
     t.index ["publication_type"], name: "index_publications_on_publication_type"
     t.index ["year_publication_end"], name: "index_publications_on_year_publication_end"
@@ -209,18 +211,18 @@ ActiveRecord::Schema.define(version: 2018_11_19_183245) do
     t.string "title"
     t.text "summary"
     t.text "text"
+    t.boolean "is_public", default: false
+    t.date "date_publish"
+    t.index ["date_publish"], name: "index_research_translations_on_date_publish"
+    t.index ["is_public"], name: "index_research_translations_on_is_public"
     t.index ["locale"], name: "index_research_translations_on_locale"
     t.index ["research_id"], name: "index_research_translations_on_research_id"
     t.index ["title"], name: "index_research_translations_on_title"
   end
 
   create_table "researches", force: :cascade do |t|
-    t.date "date_publish"
-    t.boolean "is_public"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["date_publish"], name: "index_researches_on_date_publish"
-    t.index ["is_public"], name: "index_researches_on_is_public"
   end
 
   create_table "tag_translations", force: :cascade do |t|

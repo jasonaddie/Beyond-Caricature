@@ -69,7 +69,7 @@ en:
         one: User
         other: Users
     attributes:
-      illustration:
+      illustration/translation:
         illustrator_id: Illustrator
         is_public: Is Public?
         date_publish: Date Made Public
@@ -91,7 +91,7 @@ en:
       illustration_tag:
         illustration_id: Illustration
         tag_id: Tag
-      illustrator:
+      illustrator/translation:
         date_birth: Birth Date
         date_death: Death Date
         is_public: Is public?
@@ -106,14 +106,14 @@ en:
         date_publish: Date Made Public
         scanned_file: PDF File
         cover_image: Cover Image
-      news:
+      news/translation:
         is_public: Is Public?
         date_publish: Date Made Public
         title: Title
         summary: Summary
         text: Text
         cover_image: Cover Image
-      publication:
+      publication/translation:
         publication_type: Publication Type
         publication_language_id: Publication Language
         is_public: Is Public?
@@ -128,10 +128,10 @@ en:
         writer: Writer
         scanned_file: PDF File
         cover_image: Cover Image
-      publication_langauge:
+      publication_langauge/translation:
         is_active: Is Active?
-        language: Language
-      research:
+        language: Language asdf asd f
+      research/translation:
         is_public: Is Public?
         date_publish: Date Made Public
         title: Title
@@ -140,24 +140,14 @@ en:
         cover_image: Cover Image
       tag:
         name: Name
-  admin:
-    help:
-      illustration:
-      illustration_issue:
-      illustration_publication:
-      illustration_tag:
-      illustrator:
-      issue:
-      news:
-      publication:
-      publication_langauge:
-      research:
-      tag:
   labels:
     translations: Translation Fields
     illustration_count: Illustrations on File
     issue_count: Issues on File
     combined_publications_count: Publication Illustrations
+    is_public_status: Public Status
+    required_for_publication: Required fields for making public are missing
+    language_error: "%{lang} Error: %{msg}"
   meta:
     site_name: Beyond Caricature
     sub_title:
@@ -168,3 +158,8 @@ en:
     az: Azeri
     ka: Georgian
     hy: Armenian
+  status:
+    'yes': 'Yes'
+    'true': 'Yes'
+    'no': 'No'
+    'false': 'No'
