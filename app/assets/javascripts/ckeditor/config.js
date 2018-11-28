@@ -1,8 +1,6 @@
 // To generate configuration: http://ckeditor.com/latest/samples/toolbarconfigurator/index.html#basic
 
 CKEDITOR.editorConfig = function( config ) {
-  config.width = 500;
-
   config.toolbarGroups = [
     { name: 'document', groups: [ 'mode', 'document', 'doctools' ] },
     { name: 'editing', groups: [ 'find', 'selection', 'spellchecker', 'editing' ] },

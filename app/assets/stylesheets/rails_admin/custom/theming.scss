@@ -38,3 +38,9 @@ ul.is-public-status li.not-public{
 ul.is-public-status li.public{
   background-color: #5cb85c;
 }
+
+/*  set width for ckeditors */
+.cke{
+  min-width: 500px;
+  max-width: 75%;
+}
