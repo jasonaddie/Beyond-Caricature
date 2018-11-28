@@ -56,7 +56,7 @@ en:
       publication:
         one: Publication
         other: Publications
-      publication_langauge:
+      publication_language:
         one: Publication Language
         other: Publication Languages
       research:
@@ -69,13 +69,18 @@ en:
         one: User
         other: Users
     attributes:
-      illustration/translation:
+      illustration:
         illustrator_id: Illustrator
+        image: Image
         is_public: Is Public?
         date_publish: Date Made Public
         title: Title
         context: Context
-        image: Image
+      illustration/translation:
+        is_public: Is Public?
+        date_publish: Date Made Public
+        title: Title
+        context: Context
       illustration_issue:
         illustration_id: Illustration
         issue_id: Issue
@@ -91,13 +96,17 @@ en:
       illustration_tag:
         illustration_id: Illustration
         tag_id: Tag
-      illustrator/translation:
+      illustrator:
         date_birth: Birth Date
         date_death: Death Date
-        is_public: Is public?
+        is_public: Is Public?
         name: Name
         bio: Biography
         image: Image
+      illustrator/translation:
+        is_public: Is Public?
+        name: Name
+        bio: Biography
       issue:
         publication_id: Publication
         issue_number: Issue Number
@@ -106,14 +115,20 @@ en:
         date_publish: Date Made Public
         scanned_file: PDF File
         cover_image: Cover Image
-      news/translation:
+      news:
         is_public: Is Public?
         date_publish: Date Made Public
         title: Title
         summary: Summary
         text: Text
         cover_image: Cover Image
-      publication/translation:
+      news/translation:
+        is_public: Is Public?
+        date_publish: Date Made Public
+        title: Title
+        summary: Summary
+        text: Text
+      publication:
         publication_type: Publication Type
         publication_language_id: Publication Language
         is_public: Is Public?
@@ -128,16 +143,31 @@ en:
         writer: Writer
         scanned_file: PDF File
         cover_image: Cover Image
-      publication_langauge/translation:
+      publication/translation:
+        is_public: Is Public?
+        date_publish: Date Made Public
+        title: Title
+        about: About
+        editor: Editor
+        publisher: Publisher
+        writer: Writer
+      publication_language:
         is_active: Is Active?
-        language: Language asdf asd f
-      research/translation:
+      publication_language/translation:
+        language: Language
+      research:
         is_public: Is Public?
         date_publish: Date Made Public
         title: Title
         summary: Summary
         text: Text
         cover_image: Cover Image
+      research/translation:
+        is_public: Is Public?
+        date_publish: Date Made Public
+        title: Title
+        summary: Summary
+        text: Text
       tag:
         name: Name
   labels:
