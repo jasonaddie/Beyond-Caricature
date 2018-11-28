@@ -32,7 +32,7 @@ class Illustrator < ApplicationRecord
   #################
   ## TRANSLATIONS ##
   #################
-  translates :name, :bio, :is_public, :date_publish
+  translates :name, :bio, :is_public, :date_publish, :versioning => :paper_trail
   accepts_nested_attributes_for :translations, allow_destroy: true
 
   #################

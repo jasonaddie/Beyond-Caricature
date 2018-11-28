@@ -44,7 +44,7 @@ class Publication < ApplicationRecord
   #################
   ## TRANSLATIONS ##
   #################
-  translates :title, :about, :editor, :publisher, :writer, :is_public, :date_publish
+  translates :title, :about, :editor, :publisher, :writer, :is_public, :date_publish, :versioning => :paper_trail
   accepts_nested_attributes_for :translations, allow_destroy: true
 
   #################

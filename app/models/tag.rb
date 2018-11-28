@@ -22,7 +22,7 @@ class Tag < ApplicationRecord
   #################
   ## TRANSLATIONS ##
   #################
-  translates :name
+  translates :name, :versioning => :paper_trail
   accepts_nested_attributes_for :translations, allow_destroy: true
 
   #################

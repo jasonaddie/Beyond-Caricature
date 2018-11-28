@@ -26,7 +26,7 @@ class News < ApplicationRecord
   #################
   ## TRANSLATIONS ##
   #################
-  translates :title, :summary, :text, :is_public, :date_publish
+  translates :title, :summary, :text, :is_public, :date_publish, :versioning => :paper_trail
   accepts_nested_attributes_for :translations, allow_destroy: true
 
   #################

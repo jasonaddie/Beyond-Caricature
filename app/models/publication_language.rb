@@ -17,7 +17,7 @@ class PublicationLanguage < ApplicationRecord
   #################
   ## TRANSLATIONS ##
   #################
-  translates :language
+  translates :language, :versioning => :paper_trail
   accepts_nested_attributes_for :translations, allow_destroy: true
 
   #################

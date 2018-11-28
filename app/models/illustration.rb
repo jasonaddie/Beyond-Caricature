@@ -40,7 +40,7 @@ class Illustration < ApplicationRecord
   #################
   ## TRANSLATIONS ##
   #################
-  translates :title, :context, :is_public, :date_publish
+  translates :title, :context, :is_public, :date_publish, :versioning => :paper_trail
   accepts_nested_attributes_for :translations, allow_destroy: true
 
   #################
