@@ -12,11 +12,14 @@
 
 ActiveRecord::Schema.define(version: 2018_11_28_100449) do
 
+  # These are extensions that must be enabled in order to support this database
+  enable_extension "plpgsql"
+
   create_table "active_storage_attachments", force: :cascade do |t|
     t.string "name", null: false
     t.string "record_type", null: false
-    t.integer "record_id", null: false
-    t.integer "blob_id", null: false
+    t.bigint "record_id", null: false
+    t.bigint "blob_id", null: false
     t.datetime "created_at", null: false
     t.index ["blob_id"], name: "index_active_storage_attachments_on_blob_id"
     t.index ["record_type", "record_id", "name", "blob_id"], name: "index_active_storage_attachments_uniqueness", unique: true
@@ -34,8 +37,8 @@ ActiveRecord::Schema.define(version: 2018_11_28_100449) do
   end
 
   create_table "illustration_issues", force: :cascade do |t|
-    t.integer "illustration_id"
-    t.integer "issue_id"
+    t.bigint "illustration_id"
+    t.bigint "issue_id"
     t.integer "page_number_start"
     t.integer "page_number_end"
     t.boolean "is_public", default: false
@@ -47,8 +50,8 @@ ActiveRecord::Schema.define(version: 2018_11_28_100449) do
   end
 
   create_table "illustration_publications", force: :cascade do |t|
-    t.integer "illustration_id"
-    t.integer "publication_id"
+    t.bigint "illustration_id"
+    t.bigint "publication_id"
     t.integer "page_number_start"
     t.integer "page_number_end"
     t.boolean "is_public", default: false
@@ -60,8 +63,8 @@ ActiveRecord::Schema.define(version: 2018_11_28_100449) do
   end
 
   create_table "illustration_tags", force: :cascade do |t|
-    t.integer "illustration_id"
-    t.integer "tag_id"
+    t.bigint "illustration_id"
+    t.bigint "tag_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["illustration_id"], name: "index_illustration_tags_on_illustration_id"
@@ -85,7 +88,7 @@ ActiveRecord::Schema.define(version: 2018_11_28_100449) do
   end
 
   create_table "illustrations", force: :cascade do |t|
-    t.integer "illustrator_id"
+    t.bigint "illustrator_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["illustrator_id"], name: "index_illustrations_on_illustrator_id"
@@ -117,7 +120,7 @@ ActiveRecord::Schema.define(version: 2018_11_28_100449) do
   end
 
   create_table "issues", force: :cascade do |t|
-    t.integer "publication_id"
+    t.bigint "publication_id"
     t.string "issue_number"
     t.date "date_publication"
     t.boolean "is_public", default: false
@@ -190,7 +193,7 @@ ActiveRecord::Schema.define(version: 2018_11_28_100449) do
 
   create_table "publications", force: :cascade do |t|
     t.integer "publication_type", default: 0
-    t.integer "publication_language_id"
+    t.bigint "publication_language_id"
     t.integer "year_publication_start"
     t.integer "year_publication_end"
     t.date "date_publication"
@@ -280,9 +283,9 @@ ActiveRecord::Schema.define(version: 2018_11_28_100449) do
     t.integer "item_id", null: false
     t.string "event", null: false
     t.string "whodunnit"
-    t.text "object", limit: 1073741823
+    t.text "object"
     t.datetime "created_at"
-    t.text "object_changes", limit: 1073741823
+    t.text "object_changes"
     t.integer "transaction_id"
     t.string "locale"
     t.index ["item_type", "item_id"], name: "index_versions_on_item_type_and_item_id"
