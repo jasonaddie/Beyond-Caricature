@@ -140,7 +140,7 @@ class Publication < ApplicationRecord
     end
     configure :about do
       pretty_value do
-        value.html_safe
+        value.nil? ? nil : value.html_safe
       end
     end
 

@@ -63,7 +63,7 @@ RailsAdmin.config do |config|
     'PublicationLanguage','PublicationLanguage::Translation',
     'Illustrator', 'Illustrator::Translation',
     'News', 'News::Translation',
-    'Research', 'Resaerch::Translation',
+    'Research', 'Research::Translation',
     'Tag', 'Tag::Translation',
     'Illustration', 'Illustration::Translation',
     'Publication', 'Publication::Translation',

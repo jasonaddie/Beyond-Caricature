@@ -65,12 +65,12 @@ class Research < ApplicationRecord
     end
     configure :summary do
       pretty_value do
-        value.html_safe
+        value.nil? ? nil : value.html_safe
       end
     end
     configure :text do
       pretty_value do
-        value.html_safe
+        value.nil? ? nil : value.html_safe
       end
     end
     configure :cover_image do
