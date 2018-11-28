@@ -16,6 +16,8 @@ Rails.application.routes.draw do
   end
 
   match '', to: redirect("/#{I18n.default_locale}"), via: :all # handles /
-  match '*path', to: redirect("/#{I18n.default_locale}/%{path}"), via: :all # handles /not-a-locale/anything
+
+  # have to turn the following off so activestorage urls work
+  # match '*path', to: redirect("/#{I18n.default_locale}/%{path}"), via: :all # handles /not-a-locale/anything
 
 end
