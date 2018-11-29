@@ -61,6 +61,9 @@ gem 'globalize', '~> 5.2'
 # versioning with globalize and papertrail
 gem 'globalize-versioning', '~> 0.3.0'
 
+# manage locale files
+gem 'i18n-tasks', '~> 0.9.28'
+
 # translation tabs in forms
 gem 'rails_admin_globalize_field', '~> 0.4.0'
 

@@ -9,7 +9,7 @@
     - if logout_path.present?
       %li= link_to content_tag('span', t('admin.misc.log_out'), class: 'label label-danger'), logout_path, method: logout_method
   %li.dropdown
-    %a{ href: "#", title: "lang switcher", class: "dropdown-toggle", data: { toggle: "dropdown" }, role: "button", aria: {haspopup: "true", expanded: 'false'} }= I18n.locale.upcase
+    %a{ href: "#", title: I18n.t('labels.language_switcher'), class: "dropdown-toggle", data: { toggle: "dropdown" }, role: "button", aria: {haspopup: "true", expanded: 'false'} }= I18n.locale.upcase
     %ul.dropdown-menu
       - I18n.available_locales.each do |locale|
         %li= link_to locale.upcase, "/#{locale}/admin", title: I18n.t("languages.#{locale}")
