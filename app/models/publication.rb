@@ -188,18 +188,28 @@ class Publication < ApplicationRecord
 
     # form
     edit do
-      field :publication_type
+      field :publication_type do
+        html_attributes class: 'publication-type'
+      end
       field :publication_language
       field :cover_image
-      field :scanned_file
+      field :scanned_file do
+        css_class 'publication-file'
+      end
 
       field :translations do
         label I18n.t('labels.translations')
       end
 
-      field :year_publication_start
-      field :year_publication_end
-      field :date_publication
+      field :year_publication_start do
+        css_class 'publication-year-start'
+      end
+      field :year_publication_end do
+        css_class 'publication-year-end'
+      end
+      field :date_publication do
+        css_class 'publication-date'
+      end
     end
   end
 

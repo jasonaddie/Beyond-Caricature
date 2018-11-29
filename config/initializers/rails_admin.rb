@@ -170,12 +170,21 @@ RailsAdmin.config do |config|
     configure :is_public do
       html_attributes required: required? && !value.present?, class: 'is-public-field'
     end
-    include_fields :locale, :is_public, :title, :about, :editor, :publisher, :writer
+    include_fields :locale, :is_public, :title, :editor, :publisher, :writer, :about
 
     edit do
       field :about, :ck_editor
       fields :title do
         help I18n.t('admin.help.required_for_publication')
+      end
+      fields :editor do
+        css_class 'publication-editor'
+      end
+      fields :publisher do
+        css_class 'publication-publisher'
+      end
+      fields :writer do
+        css_class 'publication-writer'
       end
     end
   end

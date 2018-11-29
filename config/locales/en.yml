@@ -133,8 +133,8 @@ en:
         publication_language_id: Publication Language
         is_public: Is Public?
         date_publish: Date Made Public
-        year_publication_start: Year Publication State
-        year_publication_end: Year Publication End
+        year_publication_start: Publication Year
+        year_publication_end: Publication Year End
         date_publication: Publication Date
         title: Title
         about: About
