@@ -48,6 +48,24 @@ class User < ApplicationRecord
 
 
   #################
+  ## METHODS ##
+  #################
+  # instead of deleting, indicate the user requested a delete & timestamp it
+  def soft_delete
+    update_attribute(:deleted_at, Time.current)
+  end
+
+  # ensure user account is active
+  def active_for_authentication?
+    super && !deleted_at
+  end
+
+  # provide a custom message for a deleted account
+  def inactive_message
+    !deleted_at ? super : :deleted_account
+  end
+
+  #################
   ## RAILS ADMIN CONFIGURATION ##
   #################
   rails_admin do
@@ -59,7 +77,7 @@ class User < ApplicationRecord
       field :name
       field :email
       field :role
-      field :is_active
+      field :deleted_at
       field :current_sign_in_at
     end
 
@@ -68,7 +86,7 @@ class User < ApplicationRecord
       field :name
       field :email
       field :role
-      field :is_active
+      field :deleted_at
       field :created_at
       field :updated_at
       field :sign_in_count
@@ -90,7 +108,9 @@ class User < ApplicationRecord
       field :password
       field :password_confirmation
       field :role
-      field :is_active
+      field :deleted_at do
+        help I18n.t('admin.help.soft_delete')
+      end
     end
   end
 

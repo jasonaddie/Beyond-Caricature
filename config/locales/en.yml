@@ -194,3 +194,6 @@ en:
     'true': 'Yes'
     'no': 'No'
     'false': 'No'
+  devise:
+    failure:
+      deleted_account: "Your account has been deleted and you can no longer login."

@@ -1,5 +1,11 @@
 RailsAdmin.config do |config|
 
+  ## Custom Actions
+  require Rails.root.join('lib', 'rails_admin', 'user_soft_delete.rb')
+  RailsAdmin::Config::Actions.register(RailsAdmin::Config::Actions::UserSoftDelete)
+
+
+
   ### Popular gems integration
 
   ## == Devise ==
@@ -39,9 +45,13 @@ RailsAdmin.config do |config|
     end
     show_in_app
 
+    ## Custom actions
+    user_soft_delete
+
     ## With an audit adapter, you can add:
     history_index
     history_show
+
   end
 
   # app name
