@@ -17,8 +17,11 @@ module BeyondCaricature
     # the framework and any gems in your application.
 
 
+    config.assets.paths << Rails.root.join("app", "assets", "fonts")
+
+
     # locales
-    I18n.available_locales = [:en, :ru, :ka, :hy, :az]
+    I18n.available_locales = [:az, :hy, :ka, :en, :ru]
     config.i18n.default_locale = :en
     config.time_zone = 'Tbilisi'
   end

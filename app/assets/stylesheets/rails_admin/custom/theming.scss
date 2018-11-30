@@ -2,6 +2,13 @@
   *= require rails_admin/ra.globalize_tabs
 */
 
+
+/* set defualt font */
+body.rails_admin{
+  font-family: 'SourceSansPro';
+}
+
+
 body.rails_admin .form-horizontal .tab-content .tab-pane{
   border-bottom: 1px solid #ddd;
   margin-bottom: 25px;

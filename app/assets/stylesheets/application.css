@@ -14,3 +14,28 @@
  *= require_self
  */
 
+@font-face {
+  font-family: 'SourceSansPro';
+  src: url('/assets/fonts/SourceSansPro-Regular.ttf') format("truetype");
+}
+@font-face {
+  font-family: 'SourceSansProLight';
+  src: url('/assets/fonts/SourceSansPro-Light.ttf') format("truetype");
+}
+@font-face {
+  font-family: 'SourceSansProBold';
+  src: url('/assets/fonts/SourceSansPro-Bold.ttf') format("truetype");
+}
+@font-face {
+  font-family: 'SourceSansProSemibold';
+  src: url('/assets/fonts/SourceSansPro-SemiBold.ttf') format("truetype");
+}
+@font-face {
+  font-family: 'SourceSansProExtraLight';
+  src: url('/assets/fonts/SourceSansPro-ExtraLight.ttf') format("truetype");
+}
+@font-face {
+  font-family: 'SourceSansProBlack';
+  src: url('/assets/fonts/SourceSansPro-Black.ttf') format("truetype");
+}
+
