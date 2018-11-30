@@ -45,6 +45,11 @@ class Issue < ApplicationRecord
   validates :date_publication, presence: true
 
   #################
+  ## CALLBACKS ##
+  #################
+  before_save :set_publish_date
+
+  #################
   ## METHODS ##
   #################
   def illustration_count
@@ -95,6 +100,7 @@ class Issue < ApplicationRecord
 
     # list page
     list do
+      field :is_public
       field :cover_image
       field :publication
       field :issue_number
@@ -102,21 +108,20 @@ class Issue < ApplicationRecord
       field :illustration_count do
         label I18n.t('labels.illustration_count')
       end
-      field :is_public
       field :date_publish
     end
 
     # show page
     show do
-      field :cover_image
-      field :scanned_file
+      field :is_public
       field :publication
       field :issue_number
       field :date_publication
+      field :cover_image
+      field :scanned_file
       field :illustration_count do
         label I18n.t('labels.illustration_count')
       end
-      field :is_public
       field :date_publish
       field :created_at
       field :updated_at
@@ -124,13 +129,12 @@ class Issue < ApplicationRecord
 
     # form
     edit do
-      field :cover_image
-      field :scanned_file
+      field :is_public
       field :publication
       field :issue_number
       field :date_publication
-      field :is_public
-      field :date_publish
+      field :cover_image
+      field :scanned_file
     end
   end
 

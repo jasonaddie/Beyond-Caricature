@@ -50,7 +50,7 @@ class Illustration < ApplicationRecord
   #################
   ## CALLBACKS ##
   #################
-  before_save :set_publish_dates
+  before_save :set_translation_publish_dates
   validate :check_public_required_fields
 
   #################

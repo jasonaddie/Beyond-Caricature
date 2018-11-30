@@ -36,9 +36,17 @@ class ApplicationRecord < ActiveRecord::Base
   end
 
 
+  # if the is_public is being set to true,
+  # then also set the publish date
+  def set_publish_date
+    if self.is_public == true && self.is_public_changed?
+      self.date_publish = Time.now
+    end
+  end
+
   # check each language and if the is_public is being set to true,
   # then also set the publish date
-  def set_publish_dates
+  def set_translation_publish_dates
     self.is_public_translations.each do |locale, flag|
       if flag == true
         # is public = true, check date
