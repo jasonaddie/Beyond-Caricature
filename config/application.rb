@@ -21,7 +21,7 @@ module BeyondCaricature
 
 
     # locales
-    I18n.available_locales = [:az, :hy, :ka, :en, :ru]
+    I18n.available_locales = [:az, :hy, :en, :ka, :ru]
     config.i18n.default_locale = :en
     config.time_zone = 'Tbilisi'
   end

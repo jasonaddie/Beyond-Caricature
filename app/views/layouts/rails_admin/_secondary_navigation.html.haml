@@ -12,5 +12,5 @@
     %a{ href: "#", title: I18n.t('labels.language_switcher'), class: "dropdown-toggle", data: { toggle: "dropdown" }, role: "button", aria: {haspopup: "true", expanded: 'false'} }= I18n.locale.upcase
     %ul.dropdown-menu
       - I18n.available_locales.each do |locale|
-        %li= link_to locale.upcase, "/#{locale}/admin", title: I18n.t("languages.#{locale}")
+        %li= link_to locale.upcase, request.params.merge(locale: locale), title: I18n.t("languages.#{locale}")
 
