@@ -43,6 +43,9 @@ class Research < ApplicationRecord
   ## RAILS ADMIN CONFIGURATION ##
   #################
   rails_admin do
+    # group with News in navigation
+    parent News
+
     configure :translations, :globalize_tabs
     # control the order in the admin nav menu
     weight 300

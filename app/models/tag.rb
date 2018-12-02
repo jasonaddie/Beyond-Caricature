@@ -41,9 +41,12 @@ class Tag < ApplicationRecord
   ## RAILS ADMIN CONFIGURATION ##
   #################
   rails_admin do
+    # group with Publication Language in navigation
+    parent PublicationLanguage
+
     configure :translations, :globalize_tabs
     # control the order in the admin nav menu
-    weight 140
+    weight 150
 
     # list page
     list do

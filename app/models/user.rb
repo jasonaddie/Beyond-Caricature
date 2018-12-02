@@ -69,6 +69,9 @@ class User < ApplicationRecord
   ## RAILS ADMIN CONFIGURATION ##
   #################
   rails_admin do
+    # make a parent for naviation
+    navigation_label 'Admin'
+
     # control the order in the admin nav menu
     weight 400
 

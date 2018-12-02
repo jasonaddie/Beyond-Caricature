@@ -60,6 +60,9 @@ class Issue < ApplicationRecord
   ## RAILS ADMIN CONFIGURATION ##
   #################
   rails_admin do
+    # group with illustrations in navigation
+    parent Illustration
+
     # control the order in the admin nav menu
     weight 30
 

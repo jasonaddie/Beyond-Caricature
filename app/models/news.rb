@@ -43,6 +43,9 @@ class News < ApplicationRecord
   ## RAILS ADMIN CONFIGURATION ##
   #################
   rails_admin do
+    # make a parent for naviation
+    navigation_label 'News Items'
+
     configure :translations, :globalize_tabs
     # control the order in the admin nav menu
     weight 300

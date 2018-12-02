@@ -72,6 +72,9 @@ class Illustration < ApplicationRecord
   ## RAILS ADMIN CONFIGURATION ##
   #################
   rails_admin do
+    # make a parent for naviation
+    navigation_label 'Primary Data'
+
     configure :translations, :globalize_tabs
     # control the order in the admin nav menu
     weight 10

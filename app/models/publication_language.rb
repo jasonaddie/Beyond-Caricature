@@ -29,9 +29,12 @@ class PublicationLanguage < ApplicationRecord
   ## RAILS ADMIN CONFIGURATION ##
   #################
   rails_admin do
+    # make a parent for naviation
+    navigation_label 'Supporting Data'
+
     configure :translations, :globalize_tabs
     # control the order in the admin nav menu
-    weight 150
+    weight 140
 
     # list page
     list do
