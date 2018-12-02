@@ -32,6 +32,9 @@
 en:
   activerecord:
     models:
+      highlight:
+        one: Highlight
+        other: Highlights
       illustration:
         one: Illustration
         other: Illustrations
@@ -69,6 +72,19 @@ en:
         one: User
         other: Users
     attributes:
+      highlight:
+        is_public: Is Public?
+        date_publish: Date Made Public
+        title: Title
+        summary: Summary
+        link: Link To
+        cover_image: Cover Image
+      highlight/translation:
+        is_public: Is Public?
+        date_publish: Date Made Public
+        title: Title
+        summary: Summary
+        link: Link To
       illustration:
         illustrator_id: Illustrator
         image: Image
@@ -179,6 +195,7 @@ en:
     required_for_publication: Required fields for making public are missing
     language_error: "%{lang} Error: %{msg}"
     language_switcher: Language Switcher
+    view: View
   meta:
     site_name: Beyond Caricature
     sub_title:

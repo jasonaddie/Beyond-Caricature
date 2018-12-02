@@ -77,7 +77,8 @@ RailsAdmin.config do |config|
     'Tag', 'Tag::Translation',
     'Illustration', 'Illustration::Translation',
     'Publication', 'Publication::Translation',
-    'Issue'
+    'Issue',
+    'Highlight', 'Highlight::Translation',
   ]
 
   config.model 'PublicationLanguage::Translation' do
@@ -141,6 +142,24 @@ RailsAdmin.config do |config|
       field :summary, :ck_editor
       field :text, :ck_editor
       fields :title, :summary, :text do
+        help I18n.t('admin.help.required_for_publication')
+      end
+    end
+  end
+
+  config.model 'Highlight::Translation' do
+    visible false
+    configure :locale, :hidden do
+      help ''
+    end
+    configure :is_public do
+      html_attributes required: required? && !value.present?, class: 'is-public-field'
+    end
+    include_fields :locale, :is_public, :title, :summary, :link
+
+    edit do
+      field :summary, :ck_editor
+      fields :title, :summary, :link do
         help I18n.t('admin.help.required_for_publication')
       end
     end

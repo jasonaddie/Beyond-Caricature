@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_11_30_202911) do
+ActiveRecord::Schema.define(version: 2018_12_02_183208) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -34,6 +34,28 @@ ActiveRecord::Schema.define(version: 2018_11_30_202911) do
     t.string "checksum", null: false
     t.datetime "created_at", null: false
     t.index ["key"], name: "index_active_storage_blobs_on_key", unique: true
+  end
+
+  create_table "highlight_translations", force: :cascade do |t|
+    t.integer "highlight_id", null: false
+    t.string "locale", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.string "title"
+    t.text "summary"
+    t.string "link"
+    t.boolean "is_public", default: false
+    t.date "date_publish"
+    t.index ["date_publish"], name: "index_highlight_translations_on_date_publish"
+    t.index ["highlight_id"], name: "index_highlight_translations_on_highlight_id"
+    t.index ["is_public"], name: "index_highlight_translations_on_is_public"
+    t.index ["locale"], name: "index_highlight_translations_on_locale"
+    t.index ["title"], name: "index_highlight_translations_on_title"
+  end
+
+  create_table "highlights", force: :cascade do |t|
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "illustration_issues", force: :cascade do |t|
