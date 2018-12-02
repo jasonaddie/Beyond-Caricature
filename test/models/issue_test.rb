@@ -2,8 +2,8 @@
 #
 # Table name: issues
 #
-#  id               :integer          not null, primary key
-#  publication_id   :integer
+#  id               :bigint(8)        not null, primary key
+#  publication_id   :bigint(8)
 #  issue_number     :string
 #  date_publication :date
 #  is_public        :boolean          default(FALSE)

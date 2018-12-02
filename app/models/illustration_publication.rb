@@ -2,9 +2,9 @@
 #
 # Table name: illustration_publications
 #
-#  id                :integer          not null, primary key
-#  illustration_id   :integer
-#  publication_id    :integer
+#  id                :bigint(8)        not null, primary key
+#  illustration_id   :bigint(8)
+#  publication_id    :bigint(8)
 #  page_number_start :integer
 #  page_number_end   :integer
 #  is_public         :boolean          default(FALSE)

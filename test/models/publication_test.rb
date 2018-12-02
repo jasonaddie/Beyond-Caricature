@@ -2,11 +2,9 @@
 #
 # Table name: publications
 #
-#  id                      :integer          not null, primary key
+#  id                      :bigint(8)        not null, primary key
 #  publication_type        :integer          default("journal")
-#  publication_language_id :integer
-#  is_public               :boolean          default(FALSE)
-#  date_publish            :date
+#  publication_language_id :bigint(8)
 #  year_publication_start  :integer
 #  year_publication_end    :integer
 #  date_publication        :date
