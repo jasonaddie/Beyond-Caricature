@@ -59,6 +59,9 @@ en:
       publication:
         one: Publication
         other: Publications
+      publication_editor:
+        one: Journal Editor
+        other: Journal Editors
       publication_language:
         one: Publication Language
         other: Publication Languages
@@ -149,9 +152,7 @@ en:
         publication_language_id: Publication Language
         is_public: Is Public?
         date_publish: Date Made Public
-        year_publication_start: Publication Year
-        year_publication_end: Publication Year End
-        date_publication: Publication Date
+        year: Publication Year
         title: Title
         about: About
         editor: Editor
@@ -159,6 +160,8 @@ en:
         writer: Writer
         scanned_file: PDF File
         cover_image: Cover Image
+        publication_editor: Journal Editor
+        publication_editors: Journal Editors
       publication/translation:
         is_public: Is Public?
         date_publish: Date Made Public
@@ -167,6 +170,11 @@ en:
         editor: Editor
         publisher: Publisher
         writer: Writer
+      publication/publication_editor:
+        editor: Editor
+        publisher: Publisher
+        year_start: Year Start
+        year_end: Year End
       publication_language:
         is_active: Is Active?
       publication_language/translation:

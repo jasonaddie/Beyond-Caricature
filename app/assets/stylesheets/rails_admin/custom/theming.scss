@@ -20,13 +20,13 @@ body.rails_admin .form-horizontal .tab-content .tab-pane{
 }
 
 /* form with globalize tabs and is_public field to indciate if validation errors occur */
-.nav-tabs.globalize-tabs > li > a span{
-  display: none;
-}
-.nav-tabs.globalize-tabs > li > a span.active{
-  display: inline;
+.nav-tabs.globalize-tabs > li > a span.required-for-public-validation-indicator,
+.has_many_association_type .nav-tabs > li > a span.required-for-public-validation-indicator{
+  display: block;
   color: #d9534f;
   font-weight: bold;
+  margin-top: -8px;
+  line-height: 10px;
 }
 
 body.rails_admin .form-horizontal .tab-content .tab-pane.invalid{

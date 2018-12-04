@@ -65,6 +65,7 @@ RailsAdmin.config do |config|
   # - used in drop downs, etc
   # - default is title and name
   config.label_methods << :language
+  config.label_methods << :editor
 
   # list all models to include in admin section
   # - have to include all translation models too
@@ -77,6 +78,7 @@ RailsAdmin.config do |config|
     'Tag', 'Tag::Translation',
     'Illustration', 'Illustration::Translation',
     'Publication', 'Publication::Translation',
+    'PublicationEditor', 'PublicationEditor::Translation',
     'Issue',
     'Highlight', 'Highlight::Translation',
   ]
@@ -215,6 +217,18 @@ RailsAdmin.config do |config|
       fields :writer do
         css_class 'publication-writer'
       end
+    end
+  end
+
+  config.model 'PublicationEditor::Translation' do
+    visible false
+    configure :locale, :hidden do
+      help ''
+    end
+    include_fields :locale, :editor, :publisher
+
+    fields :editor do
+      help I18n.t('admin.help.required_for_publication')
     end
   end
 end

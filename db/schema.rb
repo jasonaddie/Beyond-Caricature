@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_12_02_183208) do
+ActiveRecord::Schema.define(version: 2018_12_04_151615) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -177,6 +177,26 @@ ActiveRecord::Schema.define(version: 2018_12_02_183208) do
     t.index ["title"], name: "index_news_translations_on_title"
   end
 
+  create_table "publication_editor_translations", force: :cascade do |t|
+    t.integer "publication_editor_id", null: false
+    t.string "locale", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.string "editor"
+    t.string "publisher"
+    t.index ["locale"], name: "index_publication_editor_translations_on_locale"
+    t.index ["publication_editor_id"], name: "index_publication_editor_translations_on_publication_editor_id"
+  end
+
+  create_table "publication_editors", force: :cascade do |t|
+    t.bigint "publication_id"
+    t.integer "year_start"
+    t.integer "year_end"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["publication_id"], name: "index_publication_editors_on_publication_id"
+  end
+
   create_table "publication_language_translations", force: :cascade do |t|
     t.integer "publication_language_id", null: false
     t.string "locale", null: false
@@ -216,16 +236,12 @@ ActiveRecord::Schema.define(version: 2018_12_02_183208) do
   create_table "publications", force: :cascade do |t|
     t.integer "publication_type", default: 0
     t.bigint "publication_language_id"
-    t.integer "year_publication_start"
-    t.integer "year_publication_end"
-    t.date "date_publication"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["date_publication"], name: "index_publications_on_date_publication"
+    t.integer "year"
     t.index ["publication_language_id"], name: "index_publications_on_publication_language_id"
     t.index ["publication_type"], name: "index_publications_on_publication_type"
-    t.index ["year_publication_end"], name: "index_publications_on_year_publication_end"
-    t.index ["year_publication_start"], name: "index_publications_on_year_publication_start"
+    t.index ["year"], name: "index_publications_on_year"
   end
 
   create_table "research_translations", force: :cascade do |t|

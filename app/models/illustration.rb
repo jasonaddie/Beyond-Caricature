@@ -49,7 +49,7 @@ class Illustration < ApplicationRecord
   ## CALLBACKS ##
   #################
   before_save :set_translation_publish_dates
-  validate :check_public_required_fields
+  validate :check_self_public_required_fields
 
   #################
   ## METHODS ##
@@ -153,7 +153,7 @@ class Illustration < ApplicationRecord
   #################
   private
 
-  def check_public_required_fields
+  def check_self_public_required_fields
     # call the methohd in the application record base object
     super(%w(title))
   end

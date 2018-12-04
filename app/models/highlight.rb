@@ -35,7 +35,7 @@ class Highlight < ApplicationRecord
   ## CALLBACKS ##
   #################
   before_save :set_translation_publish_dates
-  validate :check_public_required_fields
+  validate :check_self_public_required_fields
 
   #################
   ## RAILS ADMIN CONFIGURATION ##
@@ -115,7 +115,7 @@ class Highlight < ApplicationRecord
   #################
   private
 
-  def check_public_required_fields
+  def check_self_public_required_fields
     # call the methohd in the application record base object
     super(%w(title summary link))
   end
