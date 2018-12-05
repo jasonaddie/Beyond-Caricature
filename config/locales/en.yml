@@ -141,6 +141,7 @@ en:
         summary: Summary
         text: Text
         cover_image: Cover Image
+        slideshow_images: Sliedshow Images
       news/translation:
         is_public: Is Public?
         date_publish: Date Made Public
@@ -186,6 +187,7 @@ en:
         summary: Summary
         text: Text
         cover_image: Cover Image
+        slideshow_images: Sliedshow Images
       research/translation:
         is_public: Is Public?
         date_publish: Date Made Public

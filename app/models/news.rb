@@ -21,6 +21,12 @@ class News < ApplicationRecord
   attr_accessor :remove_cover_image
   after_save { asset.purge if remove_cover_image == '1' }
 
+  has_many_attached :slideshow_images
+  attr_accessor :remove_slideshow_images
+  after_save do
+    Array(remove_slideshow_images).each { |id| slideshow_images.find_by_id(id).try(:purge) }
+  end
+
   #################
   ## TRANSLATIONS ##
   #################
@@ -94,6 +100,7 @@ class News < ApplicationRecord
       field :title
       field :summary
       field :text
+      field :slideshow_images
       field :date_publish
       field :created_at
       field :updated_at
@@ -105,6 +112,7 @@ class News < ApplicationRecord
       field :translations do
         label I18n.t('labels.translations')
       end
+      field :slideshow_images
     end
   end
 
