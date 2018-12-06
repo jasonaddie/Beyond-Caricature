@@ -1,3 +1,5 @@
+//= require rails_admin/themes/material/ui.js
+
 function check_form_public_fields(){
   // for forms with globalize tabs and is_public field
   // update validation status of each language for making public

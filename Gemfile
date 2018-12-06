@@ -45,6 +45,9 @@ gem 'bootsnap', '>= 1.1.0', require: false
 # admin interface
 gem 'rails_admin', '~> 1.4', '>= 1.4.2'
 
+# rails admin theming
+gem 'rails_admin_material', '~> 0.2.1'
+
 # authentication
 gem 'devise', '~> 4.2'
 
