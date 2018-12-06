@@ -25,13 +25,5 @@ module BeyondCaricature
     config.i18n.default_locale = :en
     config.time_zone = 'Tbilisi'
 
-
-    # turn off activestorage routes - HACK
-    ## NOTE - the routes are normally loaded through gem but
-    #         the locale route scope causes a problem with that
-    #         so removing them here and manually adding in routes file
-   initializer(:remove_activestorage_routes, after: :add_routing_paths) {|app|
-      app.routes_reloader.paths.delete_if {|path| path =~ /activestorage/}}
-
   end
 end
