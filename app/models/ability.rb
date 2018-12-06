@@ -29,15 +29,35 @@ class Ability
     # See the wiki for details:
     # https://github.com/CanCanCommunity/cancancan/wiki/Defining-Abilities
 
-    can :read, :all                 # allow everyone to read everything
+    shared_resources = [
+        Illustration, IllustrationIssue, IllustrationPublication, IllustrationTag, Illustrator,
+        Issue, Publication, PublicationEditor, PublicationLanguage, Tag
+    ]
+    news_resources = [
+        Highlight, News, Research
+    ]
+
+    # abilities are written from least restrictive access to most restrictive access
+
+    can :read, shared_resources
+
     return unless user
-    can :access, :rails_admin       # only allow admin users to access Rails Admin
-    can :read, :dashboard           # allow access to dashboard
-    if user.superadmin?
-      can :manage, :all             # allow superadmins to do anything
-    elsif user.admin?
-    elsif user.editor?
-    elsif user.uploader?
-    end
+    can :access, :rails_admin
+    can :read, :dashboard
+    # cannot :history, :all
+
+    can :manage, shared_resources
+    return if user.uploader?
+
+    # can :history, :all
+    can :manage, news_resources
+    return if user.editor?
+
+    can :manage, User
+    return if user.admin?
+
+    can :manage, :all
+    return if user.superadmin?
+
   end
 end

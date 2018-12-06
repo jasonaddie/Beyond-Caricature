@@ -107,6 +107,12 @@ RailsAdmin.config do |config|
       fields :name, :bio do
         help I18n.t('admin.help.required_for_publication')
       end
+      # uploader's cannot make anything public
+      field :is_public do
+        visible do
+          !bindings[:view]._current_user.uploader?
+        end
+      end
     end
 
   end
@@ -127,6 +133,12 @@ RailsAdmin.config do |config|
       fields :title, :summary, :text do
         help I18n.t('admin.help.required_for_publication')
       end
+      # uploader's cannot make anything public
+      field :is_public do
+        visible do
+          !bindings[:view]._current_user.uploader?
+        end
+      end
     end
   end
 
@@ -146,6 +158,12 @@ RailsAdmin.config do |config|
       fields :title, :summary, :text do
         help I18n.t('admin.help.required_for_publication')
       end
+      # uploader's cannot make anything public
+      field :is_public do
+        visible do
+          !bindings[:view]._current_user.uploader?
+        end
+      end
     end
   end
 
@@ -163,6 +181,12 @@ RailsAdmin.config do |config|
       field :summary, :ck_editor
       fields :title, :summary, :link do
         help I18n.t('admin.help.required_for_publication')
+      end
+      # uploader's cannot make anything public
+      field :is_public do
+        visible do
+          !bindings[:view]._current_user.uploader?
+        end
       end
     end
   end
@@ -190,6 +214,12 @@ RailsAdmin.config do |config|
       fields :title do
         help I18n.t('admin.help.required_for_publication')
       end
+      # uploader's cannot make anything public
+      field :is_public do
+        visible do
+          !bindings[:view]._current_user.uploader?
+        end
+      end
     end
   end
 
@@ -216,6 +246,12 @@ RailsAdmin.config do |config|
       end
       fields :writer do
         css_class 'publication-writer'
+      end
+      # uploader's cannot make anything public
+      field :is_public do
+        visible do
+          !bindings[:view]._current_user.uploader?
+        end
       end
     end
   end
