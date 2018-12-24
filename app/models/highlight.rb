@@ -16,10 +16,11 @@ class Highlight < ApplicationRecord
   #################
   ## ATTACHED FILES ##
   #################
-  has_one_attached :cover_image
-  # have to add method to delete attached file
-  attr_accessor :remove_cover_image
-  after_save { asset.purge if remove_cover_image == '1' }
+  # has_one_attached :cover_image
+  # # have to add method to delete attached file
+  # attr_accessor :remove_cover_image
+  # after_save { asset.purge if remove_cover_image == '1' }
+  dragonfly_accessor :cover_image
 
   #################
   ## TRANSLATIONS ##
@@ -30,6 +31,8 @@ class Highlight < ApplicationRecord
   #################
   ## VALIDATION ##
   #################
+  validates_size_of :cover_image, maximum: 5.megabytes
+  validates_property :ext, of: :cover_image, in: ['jpg', 'jpeg', 'png']
 
   #################
   ## CALLBACKS ##

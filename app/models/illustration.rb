@@ -17,10 +17,11 @@ class Illustration < ApplicationRecord
   #################
   ## ATTACHED FILES ##
   #################
-  has_one_attached :image
-  # have to add method to delete attached file
-  attr_accessor :remove_image
-  after_save { asset.purge if remove_image == '1' }
+  # has_one_attached :image
+  # # have to add method to delete attached file
+  # attr_accessor :remove_image
+  # after_save { asset.purge if remove_image == '1' }
+  dragonfly_accessor :image
 
   #################
   ## ASSOCIATIONS ##
@@ -44,6 +45,8 @@ class Illustration < ApplicationRecord
   #################
   ## VALIDATION ##
   #################
+  validates_size_of :image, maximum: 5.megabytes
+  validates_property :ext, of: :image, in: ['jpg', 'jpeg', 'png']
 
   #################
   ## CALLBACKS ##

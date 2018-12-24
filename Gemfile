@@ -74,10 +74,15 @@ gem 'rails_admin_globalize_field', '~> 0.4.0'
 gem 'ckeditor', '~> 4.2', '>= 4.2.4'
 
 # to connect to digitalocean spaces
-gem "aws-sdk-s3", require: false
+# gem "aws-sdk-s3", require: false
 
 # postgres db
 gem 'pg', '~> 0.18.4'
+
+# image storage / processing
+gem 'dragonfly', '~> 1.2'
+# store images on s3
+gem 'dragonfly-s3_data_store', '~> 1.3'
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console

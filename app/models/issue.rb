@@ -21,15 +21,19 @@ class Issue < ApplicationRecord
   #################
   ## ATTACHED FILES ##
   #################
-  has_one_attached :scanned_file
-  # have to add method to delete attached file
-  attr_accessor :remove_scanned_file
-  after_save { asset.purge if remove_scanned_file == '1' }
+  # has_one_attached :scanned_file
+  # # have to add method to delete attached file
+  # attr_accessor :remove_scanned_file
+  # after_save { asset.purge if remove_scanned_file == '1' }
 
-  has_one_attached :cover_image
-  # have to add method to delete attached file
-  attr_accessor :remove_cover_image
-  after_save { asset.purge if remove_cover_image == '1' }
+  # has_one_attached :cover_image
+  # # have to add method to delete attached file
+  # attr_accessor :remove_cover_image
+  # after_save { asset.purge if remove_cover_image == '1' }
+
+  dragonfly_accessor :scanned_file
+  dragonfly_accessor :cover_image
+
 
   #################
   ## ASSOCIATIONS ##
@@ -43,6 +47,9 @@ class Issue < ApplicationRecord
   #################
   validates :issue_number, presence: true
   validates :date_publication, presence: true
+  validates_size_of :cover_image, maximum: 5.megabytes
+  validates_property :ext, of: :cover_image, in: ['jpg', 'jpeg', 'png']
+  validates_property :ext, of: :scanned_file, as: 'pdf'
 
   #################
   ## CALLBACKS ##
@@ -91,10 +98,11 @@ class Issue < ApplicationRecord
     # create link to file
     configure :scanned_file do
       html_attributes required: required? && !value.present?, accept: '.pdf'
+      image false
       pretty_value do
         bindings[:view].content_tag(:a,
-          'View',
-          href: Rails.application.routes.url_helpers.rails_blob_path(bindings[:object].scanned_file, only_path: true),
+          I18n.t('labels.view'),
+          href: bindings[:object].scanned_file.url,
           target: '_blank',
           class: 'btn btn-info btn-sm'
         )
