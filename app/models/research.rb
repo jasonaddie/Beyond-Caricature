@@ -22,13 +22,20 @@ class Research < ApplicationRecord
   # attr_accessor :remove_cover_image
   # after_save { asset.purge if remove_cover_image == '1' }
 
-  has_many_attached :slideshow_images
-  attr_accessor :remove_slideshow_images
-  after_save do
-    Array(remove_slideshow_images).each { |id| slideshow_images.find_by_id(id).try(:purge) }
-  end
+  # has_many_attached :slideshow_images
+  # attr_accessor :remove_slideshow_images
+  # after_save do
+  #   Array(remove_slideshow_images).each { |id| slideshow_images.find_by_id(id).try(:purge) }
+  # end
 
   dragonfly_accessor :cover_image
+
+  #################
+  ## ASSOCIATIONS ##
+  #################
+  has_many :slideshows, as: :imageable, dependent: :destroy
+  accepts_nested_attributes_for :slideshows, allow_destroy: true,
+    reject_if: ->(slideshow){ slideshow['image'].blank?}
 
   #################
   ## TRANSLATIONS ##
@@ -88,6 +95,18 @@ class Research < ApplicationRecord
     configure :cover_image do
       html_attributes required: required? && !value.present?, accept: 'image/*'
     end
+    configure :slideshows do
+      # show list of images in slideshow
+      pretty_value do
+        bindings[:view].content_tag(:ul, class: 'list-unstyled') do
+          bindings[:object].slideshows.sorted.collect do |slideshow_image|
+            bindings[:view].content_tag(:li) do
+              bindings[:view].tag(:img, { :src => slideshow_image.image.thumb('400x').url })
+            end
+          end.join.html_safe
+        end
+      end
+    end
 
     # list page
     list do
@@ -105,7 +124,7 @@ class Research < ApplicationRecord
       field :title
       field :summary
       field :text
-      field :slideshow_images
+      field :slideshows
       field :date_publish
       field :created_at
       field :updated_at
@@ -117,7 +136,7 @@ class Research < ApplicationRecord
       field :translations do
         label I18n.t('labels.translations')
       end
-      field :slideshow_images
+      field :slideshows
     end
   end
 

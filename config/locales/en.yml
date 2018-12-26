@@ -68,6 +68,9 @@ en:
       research:
         one: Research
         other: Researches
+      slideshow:
+        one: Slideshow Image
+        other: Slideshow Images
       tag:
         one: Tag
         other: Tags
@@ -141,13 +144,17 @@ en:
         summary: Summary
         text: Text
         cover_image: Cover Image
-        slideshow_images: Sliedshow Images
+        slideshow: Sliedshow Image
+        slideshows: Sliedshow Images
       news/translation:
         is_public: Is Public?
         date_publish: Date Made Public
         title: Title
         summary: Summary
         text: Text
+      news/slideshow:
+        image: Image
+        sort: Sort Order
       publication:
         publication_type: Publication Type
         publication_language_id: Publication Language
@@ -187,13 +194,17 @@ en:
         summary: Summary
         text: Text
         cover_image: Cover Image
-        slideshow_images: Sliedshow Images
+        slideshow: Sliedshow Image
+        slideshows: Sliedshow Images
       research/translation:
         is_public: Is Public?
         date_publish: Date Made Public
         title: Title
         summary: Summary
         text: Text
+      research/slideshow:
+        image: Image
+        sort: Sort Order
       tag:
         name: Name
   labels:

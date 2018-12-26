@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_12_26_135131) do
+ActiveRecord::Schema.define(version: 2018_12_26_181931) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -316,6 +316,17 @@ ActiveRecord::Schema.define(version: 2018_12_26_135131) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.string "cover_image_uid"
+  end
+
+  create_table "slideshows", force: :cascade do |t|
+    t.integer "sort", default: 0
+    t.string "image_uid"
+    t.string "imageable_type"
+    t.bigint "imageable_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["imageable_type", "imageable_id"], name: "index_slideshows_on_imageable_type_and_imageable_id"
+    t.index ["sort"], name: "index_slideshows_on_sort"
   end
 
   create_table "tag_translations", force: :cascade do |t|
