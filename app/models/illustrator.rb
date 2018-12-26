@@ -7,6 +7,7 @@
 #  date_death :date
 #  created_at :datetime         not null
 #  updated_at :datetime         not null
+#  image_uid  :string
 #
 
 class Illustrator < ApplicationRecord

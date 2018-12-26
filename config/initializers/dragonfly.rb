@@ -26,6 +26,30 @@ Dragonfly.app.configure do
         endpoint: Rails.application.credentials.dig(:aws, :endpoint)
       }
   end
+
+  # if the generated image exists,
+  # pull from the datastore
+  # else generate it
+  define_url do |app, job, opts|
+      thumb = Thumb.find_by_job(job.signature)
+      if thumb
+        app.datastore.url_for(thumb.uid, :scheme => 'https')
+      else
+        app.server.url_for(job)
+      end
+  end
+
+  # save the different image versions
+  # that are generated to file after
+  # the image is generated
+  before_serve do |job, env|
+      uid = job.store
+
+      Thumb.create!(
+          :uid => uid,
+          :job => job.signature
+      )
+  end
 end
 
 # Logger

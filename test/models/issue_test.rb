@@ -10,6 +10,8 @@
 #  date_publish     :date
 #  created_at       :datetime         not null
 #  updated_at       :datetime         not null
+#  cover_image_uid  :string
+#  scanned_file_uid :string
 #
 
 require 'test_helper'

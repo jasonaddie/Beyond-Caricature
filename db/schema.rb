@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_12_24_222554) do
+ActiveRecord::Schema.define(version: 2018_12_26_135131) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -332,6 +332,15 @@ ActiveRecord::Schema.define(version: 2018_12_24_222554) do
   create_table "tags", force: :cascade do |t|
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+  end
+
+  create_table "thumbs", force: :cascade do |t|
+    t.string "uid"
+    t.string "job"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["job"], name: "index_thumbs_on_job"
+    t.index ["uid"], name: "index_thumbs_on_uid"
   end
 
   create_table "translations", force: :cascade do |t|

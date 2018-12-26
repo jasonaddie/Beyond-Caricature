@@ -1,18 +1,17 @@
 # == Schema Information
 #
-# Table name: illustrators
+# Table name: thumbs
 #
 #  id         :bigint(8)        not null, primary key
-#  date_birth :date
-#  date_death :date
+#  uid        :string
+#  job        :string
 #  created_at :datetime         not null
 #  updated_at :datetime         not null
-#  image_uid  :string
 #
 
 require 'test_helper'
 
-class IllustratorTest < ActiveSupport::TestCase
+class ThumbTest < ActiveSupport::TestCase
   # test "the truth" do
   #   assert true
   # end

@@ -8,6 +8,8 @@
 #  created_at              :datetime         not null
 #  updated_at              :datetime         not null
 #  year                    :integer
+#  cover_image_uid         :string
+#  scanned_file_uid        :string
 #
 
 require 'test_helper'
