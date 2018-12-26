@@ -41,8 +41,8 @@ class Highlight < ApplicationRecord
   ## RAILS ADMIN CONFIGURATION ##
   #################
   rails_admin do
-    # group with News in navigation
-    parent News
+    # add to a navigration group
+    navigation_label I18n.t('navigation_groups.news')
 
     configure :translations, :globalize_tabs
     # control the order in the admin nav menu

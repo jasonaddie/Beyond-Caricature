@@ -41,8 +41,8 @@ class Tag < ApplicationRecord
   ## RAILS ADMIN CONFIGURATION ##
   #################
   rails_admin do
-    # group with Publication Language in navigation
-    parent PublicationLanguage
+    # add to a navigration group
+    navigation_label I18n.t('navigation_groups.supporting')
 
     configure :translations, :globalize_tabs
     # control the order in the admin nav menu

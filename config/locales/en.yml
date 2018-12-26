@@ -217,6 +217,11 @@ en:
     language_error: "%{lang} Error: %{msg}"
     language_switcher: Language Switcher
     view: View
+  navigation_groups:
+    primary: Primary Data
+    supporting: Supporting Data
+    news: News Items
+    admin: Admin
   meta:
     site_name: Beyond Caricature
     sub_title:

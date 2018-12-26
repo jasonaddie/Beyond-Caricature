@@ -70,8 +70,8 @@ class Illustration < ApplicationRecord
   ## RAILS ADMIN CONFIGURATION ##
   #################
   rails_admin do
-    # make a parent for naviation
-    navigation_label 'Primary Data'
+    # add to a navigration group
+    navigation_label I18n.t('navigation_groups.primary')
 
     configure :translations, :globalize_tabs
     # control the order in the admin nav menu
