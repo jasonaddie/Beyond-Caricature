@@ -20,11 +20,6 @@ Rails.application.routes.draw do
 
   match '', to: redirect("/#{I18n.default_locale}"), via: :all # handles /
 
-  # if the route is not activestorage, then redirect
-  # constraints(ActiveStorageRouteConstraint) do
-  #   match '*path', to: redirect("/#{I18n.default_locale}/%{path}"), via: :all # handles /not-a-locale/anything
-  # end
-
   match '*path', to: redirect("/#{I18n.default_locale}/%{path}"), via: :all # handles /not-a-locale/anything
 
 

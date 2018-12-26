@@ -23,16 +23,6 @@ class Issue < ApplicationRecord
   #################
   ## ATTACHED FILES ##
   #################
-  # has_one_attached :scanned_file
-  # # have to add method to delete attached file
-  # attr_accessor :remove_scanned_file
-  # after_save { asset.purge if remove_scanned_file == '1' }
-
-  # has_one_attached :cover_image
-  # # have to add method to delete attached file
-  # attr_accessor :remove_cover_image
-  # after_save { asset.purge if remove_cover_image == '1' }
-
   dragonfly_accessor :scanned_file
   dragonfly_accessor :cover_image
 

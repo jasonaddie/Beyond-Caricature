@@ -18,10 +18,6 @@ class Illustration < ApplicationRecord
   #################
   ## ATTACHED FILES ##
   #################
-  # has_one_attached :image
-  # # have to add method to delete attached file
-  # attr_accessor :remove_image
-  # after_save { asset.purge if remove_image == '1' }
   dragonfly_accessor :image
 
   #################
