@@ -92,12 +92,14 @@ class Issue < ApplicationRecord
       html_attributes required: required? && !value.present?, accept: '.pdf'
       image false
       pretty_value do
-        bindings[:view].content_tag(:a,
-          I18n.t('labels.view'),
-          href: bindings[:object].scanned_file.url,
-          target: '_blank',
-          class: 'btn btn-info btn-sm'
-        )
+        if bindings[:object].scanned_file.present?
+          bindings[:view].content_tag(:a,
+            I18n.t('labels.view'),
+            href: bindings[:object].scanned_file.url,
+            target: '_blank',
+            class: 'btn btn-info btn-sm'
+          )
+        end
       end
     end
 

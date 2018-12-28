@@ -56,10 +56,12 @@ class Highlight < ApplicationRecord
     end
     configure :link do
       pretty_value do
-        bindings[:view].content_tag(:a, I18n.t('labels.view'),
-            href: bindings[:object].link,
-            target: :blank,
-            class: 'btn btn-sm btn-default')
+        if bindings[:object].link.present?
+          bindings[:view].content_tag(:a, I18n.t('labels.view'),
+              href: bindings[:object].link,
+              target: :blank,
+              class: 'btn btn-sm btn-default')
+        end
       end
     end
     configure :is_public do
@@ -96,6 +98,7 @@ class Highlight < ApplicationRecord
       field :cover_image
       field :title
       field :summary
+      field :link
       field :date_publish
       field :created_at
       field :updated_at
