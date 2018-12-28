@@ -71,7 +71,7 @@ gem 'i18n-tasks', '~> 0.9.28'
 gem 'rails_admin_globalize_field', '~> 0.4.0'
 
 # wysiwyg editor
-gem 'ckeditor', '~> 4.2', '>= 4.2.4'
+gem 'ckeditor', github: 'galetahub/ckeditor'
 
 # to connect to digitalocean spaces
 # gem "aws-sdk-s3", require: false

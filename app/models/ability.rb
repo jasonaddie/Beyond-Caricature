@@ -43,10 +43,13 @@ class Ability
 
     return unless user
     can :access, :rails_admin
+    can :access, :ckeditor
     can :read, :dashboard
     # cannot :history, :all
 
     can :manage, shared_resources
+    can [:read, :create, :destroy], Ckeditor::Picture
+    can [:read, :create, :destroy], Ckeditor::AttachmentFile
     return if user.uploader?
 
     # can :history, :all

@@ -1,4 +1,5 @@
 //= require rails_admin/themes/material/ui.js
+//= require ckeditor/init
 
 function check_form_public_fields(){
   // for forms with globalize tabs and is_public field
@@ -247,13 +248,18 @@ function publication_form_type_change(){
 
 
 
-
-
-
-
-
-
-
 // call functions when rails admin page loads
 $(document).on('rails_admin.dom_ready', function(){ check_form_public_fields(); });
 $(document).on('rails_admin.dom_ready', function(){ publication_form_type_change(); });
+
+
+
+// get ckeditor to work nicely with turbolinks
+// from: https://github.com/galetahub/ckeditor#turbolink-integration
+function set_ckeditor_turbolinks(){
+  $('.ckeditor').each(function(){
+    CKEDITOR.replace $(this).attr('id')
+  })
+}
+$(document).ready(ready)
+$(document).on('page:load', ready)

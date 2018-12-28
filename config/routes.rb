@@ -4,6 +4,9 @@ Rails.application.routes.draw do
   # rails_admin routes
   mount RailsAdmin::Engine => '/admin', as: 'rails_admin'
 
+  ####################
+  # ckeditor image upload routes
+  mount Ckeditor::Engine => '/ckeditor'
 
   ####################
   # have locale in url

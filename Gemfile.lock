@@ -1,3 +1,11 @@
+GIT
+  remote: https://github.com/galetahub/ckeditor.git
+  revision: c341b3ecfd8ea360f17feca59e932753b7e83b47
+  specs:
+    ckeditor (4.2.4)
+      orm_adapter (~> 0.5.0)
+      terrapin
+
 GEM
   remote: https://rubygems.org/
   specs:
@@ -71,12 +79,7 @@ GEM
     chromedriver-helper (2.1.0)
       archive-zip (~> 0.10)
       nokogiri (~> 1.8)
-    ckeditor (4.2.4)
-      cocaine
-      orm_adapter (~> 0.5.0)
     climate_control (0.2.0)
-    cocaine (0.6.0)
-      terrapin (= 0.6.0)
     coffee-rails (4.2.2)
       coffee-script (>= 2.2.0)
       railties (>= 4.0.0)
@@ -354,7 +357,7 @@ DEPENDENCIES
   cancancan (~> 2.3)
   capybara (>= 2.15)
   chromedriver-helper
-  ckeditor (~> 4.2, >= 4.2.4)
+  ckeditor!
   coffee-rails (~> 4.2)
   devise (~> 4.2)
   dragonfly (~> 1.2)
