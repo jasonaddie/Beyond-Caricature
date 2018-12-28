@@ -258,8 +258,8 @@ $(document).on('rails_admin.dom_ready', function(){ publication_form_type_change
 // from: https://github.com/galetahub/ckeditor#turbolink-integration
 function set_ckeditor_turbolinks(){
   $('.ckeditor').each(function(){
-    CKEDITOR.replace $(this).attr('id')
-  })
+    CKEDITOR.replace($(this).attr('id'));
+  });
 }
-$(document).ready(ready)
-$(document).on('page:load', ready)
+$(document).ready(set_ckeditor_turbolinks);
+$(document).on('page:load', set_ckeditor_turbolinks);
