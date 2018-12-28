@@ -44,11 +44,15 @@ Dragonfly.app.configure do
   # the image is generated
   before_serve do |job, env|
     uid = job.store
+    ext = File.extname(uid).gsub('.', '')
 
-    Thumb.create!(
-        :uid => uid,
-        :job => job.signature
-    )
+    # only save the thumb if it is an image
+    if (%w(jpg jpeg png).include?(ext))
+      Thumb.create!(
+          :uid => uid,
+          :job => job.signature
+      )
+    end
   end
 end
 
