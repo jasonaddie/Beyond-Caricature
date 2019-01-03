@@ -25,6 +25,10 @@ class News < ApplicationRecord
   has_many :slideshows, as: :imageable, dependent: :destroy
   accepts_nested_attributes_for :slideshows, allow_destroy: true,
     reject_if: ->(slideshow){ slideshow['image'].blank?}
+  has_many :related_items, as: :news_itemable, dependent: :destroy
+  accepts_nested_attributes_for :related_items, allow_destroy: true,
+    reject_if: ->(item){ item['related_item_type'].blank? && item['publication_id'].blank? && item['issue_id'].blank? &&
+                        item['illustration_id'].blank? && item['illustrator_id'].blank?}
 
   #################
   ## TRANSLATIONS ##
@@ -126,6 +130,7 @@ class News < ApplicationRecord
         label I18n.t('labels.translations')
       end
       field :slideshows
+      field :related_items
     end
   end
 

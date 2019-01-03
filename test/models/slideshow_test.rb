@@ -3,7 +3,7 @@
 # Table name: slideshows
 #
 #  id             :bigint(8)        not null, primary key
-#  sort           :integer
+#  sort           :integer          default(0)
 #  image_uid      :string
 #  imageable_type :string
 #  imageable_id   :bigint(8)

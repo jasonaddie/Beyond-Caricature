@@ -3,7 +3,7 @@
 # Table name: publications
 #
 #  id                      :bigint(8)        not null, primary key
-#  publication_type        :integer          default("journal")
+#  publication_type        :integer
 #  publication_language_id :bigint(8)
 #  created_at              :datetime         not null
 #  updated_at              :datetime         not null
@@ -34,6 +34,7 @@ class Publication < ApplicationRecord
   has_many :publication_editors, dependent: :destroy
   accepts_nested_attributes_for :publication_editors, allow_destroy: true,
     reject_if: ->(edior){ edior['editor'].blank? && edior['publisher'].blank? && edior['year_start'].blank? && edior['year_end'].blank?}
+  has_many :related_items, dependent: :nullify
 
   #################
   ## TRANSLATIONS ##

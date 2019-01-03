@@ -65,6 +65,9 @@ en:
       publication_language:
         one: Publication Language
         other: Publication Languages
+      related_item:
+        one: Related Item
+        other: Related Items
       research:
         one: Research
         other: Researches
@@ -146,15 +149,19 @@ en:
         cover_image: Cover Image
         slideshow: Sliedshow Image
         slideshows: Sliedshow Images
+        related_item: Related Item
+        related_items: Related Items
+        related_item_type: Type
+        publication_id: Publication
+        issue_id: Issue
+        illustration_id: Illustration
+        illustrator_id: Illustrator
       news/translation:
         is_public: Is Public?
         date_publish: Date Made Public
         title: Title
         summary: Summary
         text: Text
-      news/slideshow:
-        image: Image
-        sort: Sort Order
       publication:
         publication_type: Publication Type
         publication_language_id: Publication Language
@@ -178,7 +185,7 @@ en:
         editor: Editor
         publisher: Publisher
         writer: Writer
-      publication/publication_editor:
+      publication_editor:
         editor: Editor
         publisher: Publisher
         year_start: Year Start
@@ -187,6 +194,12 @@ en:
         is_active: Is Active?
       publication_language/translation:
         language: Language
+      related_item:
+        related_item_type: Type
+        publication_id: Publication
+        issue_id: Issue
+        illustration_id: Illustration
+        illustrator_id: Illustrator
       research:
         is_public: Is Public?
         date_publish: Date Made Public
@@ -202,7 +215,7 @@ en:
         title: Title
         summary: Summary
         text: Text
-      research/slideshow:
+      slideshow:
         image: Image
         sort: Sort Order
       tag:

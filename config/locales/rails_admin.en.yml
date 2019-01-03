@@ -161,3 +161,4 @@ en:
       sort: Lower number will be shown before a higher number (i.e., 0 shows before 1)
     errors:
       required_for_publication: is required for making the language public
+      required_related_item: is required

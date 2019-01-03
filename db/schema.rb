@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_12_28_164151) do
+ActiveRecord::Schema.define(version: 2019_01_03_163301) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -296,7 +296,7 @@ ActiveRecord::Schema.define(version: 2018_12_28_164151) do
   end
 
   create_table "publications", force: :cascade do |t|
-    t.integer "publication_type", default: 0
+    t.integer "publication_type"
     t.bigint "publication_language_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
@@ -306,6 +306,24 @@ ActiveRecord::Schema.define(version: 2018_12_28_164151) do
     t.index ["publication_language_id"], name: "index_publications_on_publication_language_id"
     t.index ["publication_type"], name: "index_publications_on_publication_type"
     t.index ["year"], name: "index_publications_on_year"
+  end
+
+  create_table "related_items", force: :cascade do |t|
+    t.integer "related_item_type"
+    t.integer "news_itemable_id"
+    t.string "news_itemable_type"
+    t.bigint "publication_id"
+    t.bigint "illustration_id"
+    t.bigint "illustrator_id"
+    t.bigint "issue_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["illustration_id"], name: "index_related_items_on_illustration_id"
+    t.index ["illustrator_id"], name: "index_related_items_on_illustrator_id"
+    t.index ["issue_id"], name: "index_related_items_on_issue_id"
+    t.index ["news_itemable_id", "news_itemable_type"], name: "idx_related_items_news"
+    t.index ["publication_id"], name: "index_related_items_on_publication_id"
+    t.index ["related_item_type"], name: "index_related_items_on_related_item_type"
   end
 
   create_table "research_translations", force: :cascade do |t|

@@ -3,7 +3,7 @@
 # Table name: publications
 #
 #  id                      :bigint(8)        not null, primary key
-#  publication_type        :integer          default("journal")
+#  publication_type        :integer
 #  publication_language_id :bigint(8)
 #  created_at              :datetime         not null
 #  updated_at              :datetime         not null

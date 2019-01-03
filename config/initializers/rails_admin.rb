@@ -81,7 +81,8 @@ RailsAdmin.config do |config|
     'PublicationEditor', 'PublicationEditor::Translation',
     'Issue',
     'Highlight', 'Highlight::Translation',
-    'Slideshow'
+    'Slideshow',
+    'RelatedItem'
   ]
 
   config.model 'PublicationLanguage::Translation' do

@@ -1,6 +1,9 @@
 ru:
   activerecord:
     models:
+      highlight:
+        one: Highlight
+        other: Highlights
       illustration:
         one: Illustration
         other: Illustrations
@@ -25,12 +28,21 @@ ru:
       publication:
         one: Publication
         other: Publications
+      publication_editor:
+        one: Journal Editor
+        other: Journal Editors
       publication_language:
         one: Publication Language
         other: Publication Languages
+      related_item:
+        one: Related Item
+        other: Related Items
       research:
         one: Research
         other: Researches
+      slideshow:
+        one: Slideshow Image
+        other: Slideshow Images
       tag:
         one: Tag
         other: Tags
@@ -38,6 +50,19 @@ ru:
         one: User
         other: Users
     attributes:
+      highlight:
+        is_public: Is Public?
+        date_publish: Date Made Public
+        title: Title
+        summary: Summary
+        link: Link To
+        cover_image: Cover Image
+      highlight/translation:
+        is_public: Is Public?
+        date_publish: Date Made Public
+        title: Title
+        summary: Summary
+        link: Link To
       illustration:
         illustrator_id: Illustrator
         image: Image
@@ -91,6 +116,15 @@ ru:
         summary: Summary
         text: Text
         cover_image: Cover Image
+        slideshow: Sliedshow Image
+        slideshows: Sliedshow Images
+        related_item: Related Item
+        related_items: Related Items
+        related_item_type: Type
+        publication_id: Publication
+        issue_id: Issue
+        illustration_id: Illustration
+        illustrator_id: Illustrator
       news/translation:
         is_public: Is Public?
         date_publish: Date Made Public
@@ -102,9 +136,7 @@ ru:
         publication_language_id: Publication Language
         is_public: Is Public?
         date_publish: Date Made Public
-        year_publication_start: Publication Year
-        year_publication_end: Publication Year End
-        date_publication: Publication Date
+        year: Publication Year
         title: Title
         about: About
         editor: Editor
@@ -112,6 +144,8 @@ ru:
         writer: Writer
         scanned_file: PDF File
         cover_image: Cover Image
+        publication_editor: Journal Editor
+        publication_editors: Journal Editors
       publication/translation:
         is_public: Is Public?
         date_publish: Date Made Public
@@ -120,10 +154,21 @@ ru:
         editor: Editor
         publisher: Publisher
         writer: Writer
+      publication_editor:
+        editor: Editor
+        publisher: Publisher
+        year_start: Year Start
+        year_end: Year End
       publication_language:
         is_active: Is Active?
       publication_language/translation:
         language: Language
+      related_item:
+        related_item_type: Type
+        publication_id: Publication
+        issue_id: Issue
+        illustration_id: Illustration
+        illustrator_id: Illustrator
       research:
         is_public: Is Public?
         date_publish: Date Made Public
@@ -131,12 +176,17 @@ ru:
         summary: Summary
         text: Text
         cover_image: Cover Image
+        slideshow: Sliedshow Image
+        slideshows: Sliedshow Images
       research/translation:
         is_public: Is Public?
         date_publish: Date Made Public
         title: Title
         summary: Summary
         text: Text
+      slideshow:
+        image: Image
+        sort: Sort Order
       tag:
         name: Name
   labels:
@@ -147,6 +197,13 @@ ru:
     is_public_status: Public Status
     required_for_publication: Required fields for making public are missing
     language_error: "%{lang} Error: %{msg}"
+    language_switcher: Language Switcher
+    view: View
+  navigation_groups:
+    primary: Primary Data
+    supporting: Supporting Data
+    news: News Items
+    admin: Admin
   meta:
     site_name: Beyond Caricature
     sub_title:
@@ -162,3 +219,6 @@ ru:
     'true': 'Yes'
     'no': 'No'
     'false': 'No'
+  devise:
+    failure:
+      deleted_account: "Your account has been deleted and you can no longer login."
