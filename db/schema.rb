@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_01_03_163301) do
+ActiveRecord::Schema.define(version: 2019_01_03_190323) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -26,6 +26,19 @@ ActiveRecord::Schema.define(version: 2019_01_03_163301) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["type"], name: "index_ckeditor_assets_on_type"
+  end
+
+  create_table "friendly_id_slugs", force: :cascade do |t|
+    t.string "slug", null: false
+    t.integer "sluggable_id", null: false
+    t.string "sluggable_type", limit: 50
+    t.string "scope"
+    t.datetime "created_at"
+    t.string "locale"
+    t.index ["locale"], name: "index_friendly_id_slugs_on_locale"
+    t.index ["slug", "sluggable_type", "locale"], name: "index_friendly_id_slugs_on_slug_and_sluggable_type_and_locale"
+    t.index ["slug", "sluggable_type", "scope", "locale"], name: "index_friendly_id_slugs_uniqueness", unique: true
+    t.index ["sluggable_type", "sluggable_id"], name: "index_friendly_id_slugs_on_sluggable_type_and_sluggable_id"
   end
 
   create_table "highlight_translations", force: :cascade do |t|
@@ -95,10 +108,12 @@ ActiveRecord::Schema.define(version: 2019_01_03_163301) do
     t.text "context"
     t.boolean "is_public", default: false
     t.date "date_publish"
+    t.string "slug"
     t.index ["date_publish"], name: "index_illustration_translations_on_date_publish"
     t.index ["illustration_id"], name: "index_illustration_translations_on_illustration_id"
     t.index ["is_public"], name: "index_illustration_translations_on_is_public"
     t.index ["locale"], name: "index_illustration_translations_on_locale"
+    t.index ["slug"], name: "index_illustration_translations_on_slug"
     t.index ["title"], name: "index_illustration_translations_on_title"
   end
 
@@ -107,7 +122,9 @@ ActiveRecord::Schema.define(version: 2019_01_03_163301) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.string "image_uid"
+    t.string "slug"
     t.index ["illustrator_id"], name: "index_illustrations_on_illustrator_id"
+    t.index ["slug"], name: "index_illustrations_on_slug", unique: true
   end
 
   create_table "illustrator_translations", force: :cascade do |t|
@@ -119,11 +136,13 @@ ActiveRecord::Schema.define(version: 2019_01_03_163301) do
     t.text "bio"
     t.boolean "is_public", default: false
     t.date "date_publish"
+    t.string "slug"
     t.index ["date_publish"], name: "index_illustrator_translations_on_date_publish"
     t.index ["illustrator_id"], name: "index_illustrator_translations_on_illustrator_id"
     t.index ["is_public"], name: "index_illustrator_translations_on_is_public"
     t.index ["locale"], name: "index_illustrator_translations_on_locale"
     t.index ["name"], name: "index_illustrator_translations_on_name"
+    t.index ["slug"], name: "index_illustrator_translations_on_slug"
   end
 
   create_table "illustrators", force: :cascade do |t|
@@ -132,8 +151,10 @@ ActiveRecord::Schema.define(version: 2019_01_03_163301) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.string "image_uid"
+    t.string "slug"
     t.index ["date_birth"], name: "index_illustrators_on_date_birth"
     t.index ["date_death"], name: "index_illustrators_on_date_death"
+    t.index ["slug"], name: "index_illustrators_on_slug", unique: true
   end
 
   create_table "issues", force: :cascade do |t|
@@ -146,10 +167,12 @@ ActiveRecord::Schema.define(version: 2019_01_03_163301) do
     t.datetime "updated_at", null: false
     t.string "cover_image_uid"
     t.string "scanned_file_uid"
+    t.string "slug"
     t.index ["date_publication"], name: "index_issues_on_date_publication"
     t.index ["date_publish"], name: "index_issues_on_date_publish"
     t.index ["is_public"], name: "index_issues_on_is_public"
     t.index ["publication_id"], name: "index_issues_on_publication_id"
+    t.index ["slug"], name: "index_issues_on_slug", unique: true
   end
 
   create_table "lit_incomming_localizations", id: :serial, force: :cascade do |t|
@@ -220,6 +243,8 @@ ActiveRecord::Schema.define(version: 2019_01_03_163301) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.string "cover_image_uid"
+    t.string "slug"
+    t.index ["slug"], name: "index_news_on_slug", unique: true
   end
 
   create_table "news_translations", force: :cascade do |t|
@@ -232,10 +257,12 @@ ActiveRecord::Schema.define(version: 2019_01_03_163301) do
     t.text "text"
     t.boolean "is_public", default: false
     t.date "date_publish"
+    t.string "slug"
     t.index ["date_publish"], name: "index_news_translations_on_date_publish"
     t.index ["is_public"], name: "index_news_translations_on_is_public"
     t.index ["locale"], name: "index_news_translations_on_locale"
     t.index ["news_id"], name: "index_news_translations_on_news_id"
+    t.index ["slug"], name: "index_news_translations_on_slug"
     t.index ["title"], name: "index_news_translations_on_title"
   end
 
@@ -288,10 +315,12 @@ ActiveRecord::Schema.define(version: 2019_01_03_163301) do
     t.string "writer"
     t.boolean "is_public", default: false
     t.date "date_publish"
+    t.string "slug"
     t.index ["date_publish"], name: "index_publication_translations_on_date_publish"
     t.index ["is_public"], name: "index_publication_translations_on_is_public"
     t.index ["locale"], name: "index_publication_translations_on_locale"
     t.index ["publication_id"], name: "index_publication_translations_on_publication_id"
+    t.index ["slug"], name: "index_publication_translations_on_slug"
     t.index ["title"], name: "index_publication_translations_on_title"
   end
 
@@ -303,8 +332,10 @@ ActiveRecord::Schema.define(version: 2019_01_03_163301) do
     t.integer "year"
     t.string "cover_image_uid"
     t.string "scanned_file_uid"
+    t.string "slug"
     t.index ["publication_language_id"], name: "index_publications_on_publication_language_id"
     t.index ["publication_type"], name: "index_publications_on_publication_type"
+    t.index ["slug"], name: "index_publications_on_slug", unique: true
     t.index ["year"], name: "index_publications_on_year"
   end
 
@@ -336,10 +367,12 @@ ActiveRecord::Schema.define(version: 2019_01_03_163301) do
     t.text "text"
     t.boolean "is_public", default: false
     t.date "date_publish"
+    t.string "slug"
     t.index ["date_publish"], name: "index_research_translations_on_date_publish"
     t.index ["is_public"], name: "index_research_translations_on_is_public"
     t.index ["locale"], name: "index_research_translations_on_locale"
     t.index ["research_id"], name: "index_research_translations_on_research_id"
+    t.index ["slug"], name: "index_research_translations_on_slug"
     t.index ["title"], name: "index_research_translations_on_title"
   end
 
@@ -347,6 +380,8 @@ ActiveRecord::Schema.define(version: 2019_01_03_163301) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.string "cover_image_uid"
+    t.string "slug"
+    t.index ["slug"], name: "index_researches_on_slug", unique: true
   end
 
   create_table "slideshows", force: :cascade do |t|

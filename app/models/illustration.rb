@@ -36,8 +36,24 @@ class Illustration < ApplicationRecord
   #################
   ## TRANSLATIONS ##
   #################
-  translates :title, :context, :is_public, :date_publish, :versioning => :paper_trail
+  translates :title, :context, :is_public, :date_publish, :slug, :versioning => :paper_trail
   accepts_nested_attributes_for :translations, allow_destroy: true
+
+  #################
+  ## SLUG
+  #################
+  extend FriendlyId
+  friendly_id :title, use: [:globalize, :history, :slugged]
+
+  # for genereate friendly_id
+  def should_generate_new_friendly_id?
+    super
+  end
+
+  # for locale sensitive transliteration with friendly_id
+  def normalize_friendly_id(input)
+    input.to_s.to_url
+  end
 
   #################
   ## VALIDATION ##

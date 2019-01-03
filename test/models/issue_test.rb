@@ -12,6 +12,7 @@
 #  updated_at       :datetime         not null
 #  cover_image_uid  :string
 #  scanned_file_uid :string
+#  slug             :string
 #
 
 require 'test_helper'

@@ -35,6 +35,22 @@ class Issue < ApplicationRecord
   has_many :illustrations, through: :illustration_issues
 
   #################
+  ## SLUG
+  #################
+  extend FriendlyId
+  friendly_id :issue_number, use: [:slugged]
+
+  # for genereate friendly_id
+  def should_generate_new_friendly_id?
+    super
+  end
+
+  # for locale sensitive transliteration with friendly_id
+  def normalize_friendly_id(input)
+    input.to_s.to_url
+  end
+
+  #################
   ## VALIDATION ##
   #################
   validates :issue_number, presence: true
