@@ -63,15 +63,23 @@ class RelatedItem < ApplicationRecord
       end
       field :publication do
         html_attributes class: 'related-item publication'
+        inline_add false
+        inline_edit false
       end
       field :issue do
         html_attributes class: 'related-item issue'
+        inline_add false
+        inline_edit false
       end
       field :illustration do
         html_attributes class: 'related-item illustration'
+        inline_add false
+        inline_edit false
       end
       field :illustrator do
         html_attributes class: 'related-item illustrator'
+        inline_add false
+        inline_edit false
       end
     end
   end
