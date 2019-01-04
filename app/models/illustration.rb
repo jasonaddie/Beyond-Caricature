@@ -68,6 +68,12 @@ class Illustration < ApplicationRecord
   validate :check_self_public_required_fields
 
   #################
+  ## SCOPES ##
+  #################
+  scope :published, -> { where(is_public: true) }
+  scope :sort_published_desc, -> { order(date_publish: :desc) }
+
+  #################
   ## METHODS ##
   #################
   def publications_count

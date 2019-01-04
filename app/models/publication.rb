@@ -64,6 +64,12 @@ class Publication < ApplicationRecord
   enum publication_type: [:journal, :book, :original]
 
   #################
+  ## SCOPES ##
+  #################
+  scope :published, -> { where(is_public: true) }
+  scope :sort_published_desc, -> { order(date_publish: :desc) }
+
+  #################
   ## VALIDATION ##
   #################
   validates :publication_type, presence: true
