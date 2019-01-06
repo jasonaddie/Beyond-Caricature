@@ -1,0 +1,28 @@
+<h1><%= t('labels.research') %></h1>
+
+<% if @researches.present? %>
+  <ul>
+    <% @researches.each do |research| %>
+      <li>
+        <div>
+          <%= link_to research_path(research) do %>
+            <%= image_tag research.cover_image.thumb('300x200#').url if research.cover_image_stored? %>
+          <% end %>
+        </div>
+        <div>
+          <%= link_to research.title, research_path(research) %>
+        </div>
+        <div>
+          <%= research.date_publish %>
+        </div>
+        <div>
+          <%= simple_format(research.summary) %>
+        </div>
+      </li>
+    <% end %>
+  </ul>
+<% else %>
+
+  <p><%= t('messages.no_data') %></p>
+
+<% end %>

@@ -1,0 +1,36 @@
+<h1><%= @research.title %></h1>
+
+<div>
+  <%= image_tag @research.cover_image.thumb('300x200#').url if @research.cover_image_stored? %>
+</div>
+<div>
+  <%= @research.date_publish %>
+</div>
+<div>
+  <%= simple_format(@research.text) %>
+</div>
+
+<% if @research.slideshows.present? %>
+  <h2><%= t('labels.slideshow') %></h2>
+
+  <ul>
+    <% @research.slideshows.each do |image| %>
+      <li>
+        <%= image_tag image.image.thumb('300x200#').url if image.image_stored? %>
+      </li>
+    <% end %>
+  </ul>
+<% end %>
+
+
+<% if @research.related_items.present? %>
+  <h2><%= t('labels.related_items') %></h2>
+
+  <ul>
+    <% @research.related_items.each do |related_item| %>
+      <li>
+        <%= link_to related_item.item_title, related_item.item_link %>
+      </li>
+    <% end %>
+  </ul>
+<% end %>

@@ -39,3 +39,6 @@
   src: url('/assets/fonts/SourceSansPro-Black.ttf') format("truetype");
 }
 
+body{
+  font-family: 'SourceSansPro';
+}

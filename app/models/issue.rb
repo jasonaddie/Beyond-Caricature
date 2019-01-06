@@ -71,6 +71,11 @@ class Issue < ApplicationRecord
     self.illustration_issues.count
   end
 
+  # journal name and issue number
+  def full_title
+    "#{self.publication.title} - #{self.issue_number}"
+  end
+
   #################
   ## SCOPES ##
   #################

@@ -42,6 +42,35 @@ class RelatedItem < ApplicationRecord
   validate :provided_reference
 
   #################
+  ## METHODS ##
+  #################
+  # return the title of the published item this record is tied to
+  def item_title
+    if self.publication?
+      self.publication.title
+    elsif self.issue?
+      self.issue.full_title
+    elsif self.illustration?
+      self.illustration.title
+    elsif self.illustrator?
+      self.illustrator.name
+    end
+  end
+
+  # return the link to the published item this record is tied to
+  def item_link
+    if self.publication?
+      Rails.application.routes.url_helpers.publication_path(I18n.locale, self.publication)
+    elsif self.issue?
+      Rails.application.routes.url_helpers.issue_path(I18n.locale, self.issue.publication, self.issue)
+    elsif self.illustration?
+      Rails.application.routes.url_helpers.illustration_path(I18n.locale, self.illustration)
+    elsif self.illustrator?
+      Rails.application.routes.url_helpers.illustrator_path(I18n.locale, self.illustrator)
+    end
+  end
+
+  #################
   ## RAILS ADMIN CONFIGURATION ##
   #################
   rails_admin do

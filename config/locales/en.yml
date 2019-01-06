@@ -230,6 +230,12 @@ en:
     language_error: "%{lang} Error: %{msg}"
     language_switcher: Language Switcher
     view: View
+    news: News
+    research: Research
+    related_items: Releated Items
+    slideshow: Slideshow
+  messages:
+    no_data: There is no data on record at this time.
   navigation_groups:
     primary: Primary Data
     supporting: Supporting Data
