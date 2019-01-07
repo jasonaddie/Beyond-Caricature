@@ -10,9 +10,32 @@
   </head>
 
   <body>
-    <p class="notice"><%= notice %></p>
-    <p class="alert"><%= alert %></p>
 
-    <%= yield %>
+    <nav style="position: fixed; top: 0; height: 40px;">
+      <%= link_to t('meta.site_name'), root_path %>
+      |
+      <%= link_to t('labels.publications'), publications_path %>
+      |
+      <%= link_to t('labels.illustrations'), illustrations_path %>
+      |
+      <%= link_to t('labels.illustrators'), illustrators_path %>
+      |
+      <%= link_to t('labels.news'), news_index_path %>
+      |
+      <%= link_to t('labels.research'), researches_path %>
+      |
+      <%= link_to t('labels.about'), about_path %>
+      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+      <% I18n.available_locales.each do |locale| %>
+        <%= link_to locale, request.params.merge(locale: locale), title: I18n.t("languages.#{locale}") %>
+      <% end %>
+    </nav>
+
+    <div style="margin-top: 40px;">
+      <p class="notice"><%= notice %></p>
+      <p class="alert"><%= alert %></p>
+
+      <%= yield %>
+    </div>
   </body>
 </html>
