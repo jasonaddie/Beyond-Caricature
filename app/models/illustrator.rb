@@ -25,6 +25,7 @@ class Illustrator < ApplicationRecord
   ## ASSOCIATIONS ##
   #################
   has_many :illustrations, dependent: :nullify
+  has_many :related_items, dependent: :nullify
 
   #################
   ## TRANSLATIONS ##

@@ -1,34 +1,3 @@
-# Files in the config/locales directory are used for internationalization
-# and are automatically loaded by Rails. If you want to use locales other
-# than English, add the necessary files in this directory.
-#
-# To use the locales, use `I18n.t`:
-#
-#     I18n.t 'hello'
-#
-# In views, this is aliased to just `t`:
-#
-#     <%= t('hello') %>
-#
-# To use a different locale, set it with `I18n.locale`:
-#
-#     I18n.locale = :es
-#
-# This would use the information in config/locales/es.yml.
-#
-# The following keys must be escaped otherwise they will not be retrieved by
-# the default I18n backend:
-#
-# true, false, on, off, yes, no
-#
-# Instead, surround them with single quotes.
-#
-# en:
-#   'true': 'foo'
-#
-# To learn more, please read the Rails Internationalization guide
-# available at http://guides.rubyonrails.org/i18n.html.
-
 en:
   activerecord:
     models:
@@ -164,6 +133,10 @@ en:
         text: Text
       publication:
         publication_type: Publication Type
+        publication_types:
+          journal: Journal
+          book: Book
+          original: Original
         publication_language_id: Publication Language
         is_public: Is Public?
         date_publish: Date Made Public
@@ -230,12 +203,43 @@ en:
     language_error: "%{lang} Error: %{msg}"
     language_switcher: Language Switcher
     view: View
+    view_file: View PDF
     news: News
     research: Research
     related_items: Releated Items
     slideshow: Slideshow
+    publications: Publications
+    illustrations: Illustrations
+    illustrators: Illustrators
+    issues: Issues
+    all_news: All News
+    all_research: All Research
+    about: About
+    highlights: Highlights
+    meta:
+      publication_type: Type
+      publication_language: Language
+      illustration_count: Illustrations
+      issue_count: Issues
+      publication_count: Publications
+      publication_year: Year
+      creation_year: Year
+      editor: Editor
+      publisher: Publisher
+      writer: Writer
+      year_start: Start
+      year_end: End
+      issue_number: Issue
+      publication_date: Published
+      in_the_news: In The News
+      journal: Journal
+      published_in: Published In
+      date_birth: Born
+      date_death: Died
   messages:
     no_data: There is no data on record at this time.
+    no_issues: There are no issues on record at this time.
+    no_illustrations: There are no illustrations on record at this time.
   navigation_groups:
     primary: Primary Data
     supporting: Supporting Data

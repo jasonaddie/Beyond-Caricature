@@ -1,0 +1,23 @@
+  <h2><%= t('labels.illustrations') %></h2>
+
+  <% if illustrations.present? %>
+    <ul>
+      <% illustrations.each do |illustration| %>
+        <li>
+          <div>
+            <%= link_to illustration_path(illustration) do %>
+              <%= image_tag illustration.image.thumb('100x100#').url if illustration.image_stored? %>
+            <% end %>
+          </div>
+          <ul>
+            <li>
+              <strong><%= t('labels.meta.illustrator') %>:</strong>
+              <%= illustration.illustrator.name %>
+            </li>
+          </ul>
+        </li>
+      <% end %>
+    </ul>
+  <% else %>
+    <p><%= t('messages.no_illustrations') %></p>
+  <% end %>

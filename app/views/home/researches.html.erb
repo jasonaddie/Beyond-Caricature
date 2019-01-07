@@ -6,7 +6,7 @@
       <li>
         <div>
           <%= link_to research_path(research) do %>
-            <%= image_tag research.cover_image.thumb('300x200#').url if research.cover_image_stored? %>
+            <%= image_tag research.cover_image.thumb('100x100#').url if research.cover_image_stored? %>
           <% end %>
         </div>
         <div>

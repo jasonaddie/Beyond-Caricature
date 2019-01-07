@@ -1,0 +1,36 @@
+<h1><%= t('labels.illustrators') %></h1>
+
+<% if @illustrators.present? %>
+  <ul>
+    <% @illustrators.each do |illustrator| %>
+      <li>
+        <div>
+          <%= link_to illustrator_path(illustrator) do %>
+            <%= image_tag illustrator.image.thumb('100x100#').url if illustrator.image_stored? %>
+          <% end %>
+        </div>
+        <div>
+          <%= link_to illustrator.name, illustrator_path(illustrator) %>
+        </div>
+        <ul>
+          <li>
+            <strong><%= t('labels.meta.birth_date') %>:</strong>
+            <%= illustrator.date_birth %>
+          </li>
+          <li>
+            <strong><%= t('labels.meta.death_date') %>:</strong>
+            <%= illustrator.date_death %>
+          </li>
+          <li>
+            <strong><%= t('labels.meta.illustration_count') %>:</strong>
+            <%= number_with_delimiter(illustrator.illustration_count) %>
+          </li>
+        </ul>
+      </li>
+    <% end %>
+  </ul>
+<% else %>
+
+  <p><%= t('messages.no_data') %></p>
+
+<% end %>

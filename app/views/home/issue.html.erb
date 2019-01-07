@@ -1,0 +1,52 @@
+<% pub = Publication %>
+
+<h1><%= @issue.full_title %></h1>
+
+<div>
+  <%= image_tag @issue.cover_image.thumb('300x200#').url if @issue.cover_image_stored? %>
+</div>
+
+
+<ul>
+  <li>
+    <strong><%= t('labels.meta.journal') %>:</strong>
+    <%= link_to @publication.title, publication_path(@publication) %>
+  </li>
+  <li>
+    <strong><%= t('labels.meta.issue_number') %>:</strong>
+    <%= @issue.issue_number %>
+  </li>
+  <li>
+    <strong><%= t('labels.meta.publication_date') %>:</strong>
+    <%= @issue.date_publication %>
+  </li>
+  <li>
+    <strong><%= t('labels.meta.publication_language') %>:</strong>
+    <%= @publication.publication_language.language %>
+  </li>
+  <li>
+    <strong><%= t('labels.meta.illustration_count') %>:</strong>
+    <%= number_with_delimiter(@issue.illustration_count) %>
+  </li>
+  <% if @issue.scanned_file.present? %>
+    <li>
+      <%= link_to t('labels.view_file'), @issue.scanned_file.url, target: :blank %>
+    </li>
+  <% end %>
+
+  <% if @issue.related_items.present? %>
+    <strong><%= t('labels.meta.in_the_news') %>:</strong>
+    <li>
+      <ul>
+        <% @issue.related_items.each do |related_item| %>
+          <li>
+            <%= link_to related_item.news_itemable.title, polymorphic_path(related_item.news_itemable) %>
+          </li>
+        <% end %>
+      </ul>
+    </li>
+  <% end %>
+
+</ul>
+
+<%= render partial: "illustrations", locals: {illustrations: @issue.illustrations.published.sort_published_desc} %>

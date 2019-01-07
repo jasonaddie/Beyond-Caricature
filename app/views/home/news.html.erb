@@ -5,12 +5,12 @@
     <% @news.each do |news_item| %>
       <li>
         <div>
-          <%= link_to news_item_path(news_item) do %>
-            <%= image_tag news_item.cover_image.thumb('300x200#').url if news_item.cover_image_stored? %>
+          <%= link_to news_path(news_item) do %>
+            <%= image_tag news_item.cover_image.thumb('100x100#').url if news_item.cover_image_stored? %>
           <% end %>
         </div>
         <div>
-          <%= link_to news_item.title, news_item_path(news_item) %>
+          <%= link_to news_item.title, news_path(news_item) %>
         </div>
         <div>
           <%= news_item.date_publish %>

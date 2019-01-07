@@ -1,0 +1,27 @@
+  <h2><%= t('labels.issues') %></h2>
+
+  <% if issues.present? %>
+    <ul>
+      <% issues.each do |issue| %>
+        <li>
+          <div>
+            <%= link_to issue_path(publication, issue) do %>
+              <%= image_tag issue.cover_image.thumb('100x100#').url if issue.cover_image_stored? %>
+            <% end %>
+          </div>
+          <ul>
+            <li>
+              <strong><%= t('labels.meta.issue_number') %>:</strong>
+              <%= issue.issue_number %>
+            </li>
+            <li>
+              <strong><%= t('labels.meta.publication_date') %>:</strong>
+              <%= issue.date_publication %>
+            </li>
+          </ul>
+        </li>
+      <% end %>
+    </ul>
+  <% else %>
+    <p><%= t('messages.no_issues') %></p>
+  <% end %>

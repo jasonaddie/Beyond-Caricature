@@ -133,6 +133,10 @@ ru:
         text: Text
       publication:
         publication_type: Publication Type
+        publication_types:
+          journal: Journal
+          book: Book
+          original: Original
         publication_language_id: Publication Language
         is_public: Is Public?
         date_publish: Date Made Public
@@ -199,6 +203,43 @@ ru:
     language_error: "%{lang} Error: %{msg}"
     language_switcher: Language Switcher
     view: View
+    view_file: View PDF
+    news: News
+    research: Research
+    related_items: Releated Items
+    slideshow: Slideshow
+    publications: Publications
+    illustrations: Illustrations
+    illustrators: Illustrators
+    issues: Issues
+    all_news: All News
+    all_research: All Research
+    about: About
+    highlights: Highlights
+    meta:
+      publication_type: Type
+      publication_language: Language
+      illustration_count: Illustrations
+      issue_count: Issues
+      publication_count: Publications
+      publication_year: Year
+      creation_year: Year
+      editor: Editor
+      publisher: Publisher
+      writer: Writer
+      year_start: Start
+      year_end: End
+      issue_number: Issue
+      publication_date: Published
+      in_the_news: In The News
+      journal: Journal
+      published_in: Published In
+      date_birth: Born
+      date_death: Died
+  messages:
+    no_data: There is no data on record at this time.
+    no_issues: There are no issues on record at this time.
+    no_illustrations: There are no illustrations on record at this time.
   navigation_groups:
     primary: Primary Data
     supporting: Supporting Data

@@ -1,0 +1,110 @@
+<% pub = Publication %>
+
+<h1><%= @publication.title %></h1>
+
+<div>
+  <%= image_tag @publication.cover_image.thumb('300x200#').url if @publication.cover_image_stored? %>
+</div>
+<div>
+  <%= simple_format(@publication.about) %>
+</div>
+
+
+<ul>
+  <li>
+    <strong><%= t('labels.meta.publication_type') %>:</strong>
+    <%= pub.human_enum_name(:publication_type, @publication.publication_type) %>
+  </li>
+  <li>
+    <strong><%= t('labels.meta.publication_language') %>:</strong>
+    <%= @publication.publication_language.language %>
+  </li>
+  <% if @publication.book?  %>
+    <li>
+      <strong><%= t('labels.meta.publication_year') %>:</strong>
+      <%= @publication.year %>
+    </li>
+  <% elsif @publication.original?  %>
+    <li>
+      <strong><%= t('labels.meta.creation_year') %>:</strong>
+      <%= @publication.year %>
+    </li>
+  <% end %>
+  <% if @publication.journal? %>
+    <li>
+      <strong><%= t('labels.meta.issue_count') %>:</strong>
+      <%= number_with_delimiter(@publication.issue_count) %>
+    </li>
+  <% end %>
+  <% if @publication.book? %>
+    <li>
+      <strong><%= t('labels.meta.editor') %>:</strong>
+      <%= @publication.editor %>
+    </li>
+    <li>
+      <strong><%= t('labels.meta.publisher') %>:</strong>
+      <%= @publication.publisher %>
+    </li>
+    <li>
+      <strong><%= t('labels.meta.writer') %>:</strong>
+      <%= @publication.writer %>
+    </li>
+  <% end %>
+  <% if @publication.journal? %>
+    <li>
+      <table>
+        <thead>
+          <tr>
+            <th><%= t('labels.meta.editor') %></th>
+            <th><%= t('labels.meta.publisher') %></th>
+            <th><%= t('labels.meta.year_start') %></th>
+            <th><%= t('labels.meta.year_end') %></th>
+          </tr>
+        </thead>
+        <tbody>
+          <% @publication.publication_editors.each do |publication_editor| %>
+            <tr>
+              <td><%= publication_editor.editor %></td>
+              <td><%= publication_editor.publisher %></td>
+              <td><%= publication_editor.year_start %></td>
+              <td><%= publication_editor.year_end %></td>
+            </tr>
+          <% end %>
+        </tbody>
+      </table>
+    </li>
+  <% end %>
+  <li>
+    <strong><%= t('labels.meta.illustration_count') %>:</strong>
+    <%= number_with_delimiter(@publication.illustration_count) %>
+  </li>
+  <% if (@publication.book? || @publication.original?) && @publication.scanned_file.present? %>
+    <li>
+      <%= link_to t('labels.view_file'), @publication.scanned_file.url, target: :blank %>
+    </li>
+  <% end %>
+
+  <% if @publication.related_items.present? %>
+    <strong><%= t('labels.meta.in_the_news') %>:</strong>
+    <li>
+      <ul>
+        <% @publication.related_items.each do |related_item| %>
+          <li>
+            <%= link_to related_item.news_itemable.title, polymorphic_path(related_item.news_itemable) %>
+          </li>
+        <% end %>
+      </ul>
+    </li>
+  <% end %>
+
+</ul>
+
+
+
+<% if @publication.journal? %>
+  <%= render partial: "issues", locals: {publication: @publication, issues: @publication.issues.published.sort_publication_desc} %>
+
+<% elsif @publication.book? || @publication.original? %>
+  <%= render partial: "illustrations", locals: {illustrations: @publication.illustrations.published.sort_published_desc} %>
+
+<% end %>

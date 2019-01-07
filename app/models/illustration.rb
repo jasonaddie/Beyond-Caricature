@@ -32,6 +32,7 @@ class Illustration < ApplicationRecord
 
   has_many :illustration_issues, dependent: :destroy
   has_many :issues, through: :illustration_issues
+  has_many :related_items, dependent: :nullify
 
   #################
   ## TRANSLATIONS ##

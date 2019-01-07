@@ -33,6 +33,7 @@ class Issue < ApplicationRecord
   belongs_to :publication, -> { journals }, inverse_of: :issues
   has_many :illustration_issues, dependent: :destroy
   has_many :illustrations, through: :illustration_issues
+  has_many :related_items, dependent: :nullify
 
   #################
   ## SLUG

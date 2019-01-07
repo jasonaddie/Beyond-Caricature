@@ -10,7 +10,6 @@ class HomeController < ApplicationController
 
   def publication
     @publication = Publication.friendly.published.find(params[:id])
-    @issues = @publication.issues.published.sort_publication_desc
   end
 
   def issue

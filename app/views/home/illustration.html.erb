@@ -1,0 +1,53 @@
+<h1><%= @illustration.title %></h1>
+
+<div>
+  <%= image_tag @illustration.image.thumb('300x200#').url if @illustration.image_stored? %>
+</div>
+<div>
+  <%= simple_format(@illustration.context) %>
+</div>
+
+
+<ul>
+  <li>
+    <strong><%= t('labels.meta.illustrator') %>:</strong>
+    <%= link_to @illustration.illustrator.name, illustrator_path(@illustration.illustrator) %>
+  </li>
+
+  <% if @illustration.publications.present? || @illustration.issues.present? %>
+    <li>
+      <strong><%= t('labels.meta.published_in') %>:</strong>
+      <ul>
+        <% if @illustration.publications.present? %>
+          <% @illustration.publications.each do |publication| %>
+            <li>
+              <%= link_to publication.title, publication_path(publication) %>
+            </li>
+          <% end %>
+        <% end %>
+        <% if @illustration.issues.present? %>
+          <% @illustration.issues.each do |issue| %>
+            <li>
+              <%= link_to issue.full_title, issue_path(issue.publication, issue) %>
+            </li>
+          <% end %>
+        <% end %>
+      </ul>
+    </li>
+  <% end %>
+
+  <% if @illustration.related_items.present? %>
+    <strong><%= t('labels.meta.in_the_news') %>:</strong>
+    <li>
+      <ul>
+        <% @illustration.related_items.each do |related_item| %>
+          <li>
+            <%= link_to related_item.news_itemable.title, polymorphic_path(related_item.news_itemable) %>
+          </li>
+        <% end %>
+      </ul>
+    </li>
+  <% end %>
+
+</ul>
+
