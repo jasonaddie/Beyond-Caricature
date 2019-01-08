@@ -26,6 +26,11 @@ class PublicationLanguage < ApplicationRecord
   # translation_class.validates :language, presence: true
 
   #################
+  ## SCOPES ##
+  #################
+  scope :active, -> { where(is_active: true) }
+
+  #################
   ## RAILS ADMIN CONFIGURATION ##
   #################
   rails_admin do

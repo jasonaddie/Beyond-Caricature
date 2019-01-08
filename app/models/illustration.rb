@@ -23,7 +23,7 @@ class Illustration < ApplicationRecord
   #################
   ## ASSOCIATIONS ##
   #################
-  belongs_to :illustrator
+  belongs_to :illustrator, -> { published }
   has_many :illustration_tags, dependent: :destroy
   has_many :tags, through: :illustration_tags
   has_many :illustration_publications, dependent: :destroy
@@ -71,7 +71,7 @@ class Illustration < ApplicationRecord
   #################
   ## SCOPES ##
   #################
-  scope :published, -> { where(is_public: true) }
+  scope :published, -> { with_translations(I18n.locale).where('illustration_translations.is_public': true) }
   scope :sort_published_desc, -> { order(date_publish: :desc) }
 
   #################
@@ -127,6 +127,16 @@ class Illustration < ApplicationRecord
     end
     configure :image do
       html_attributes required: required? && !value.present?, accept: 'image/*'
+    end
+    configure :illustrator do
+      # limit to only published issues
+      associated_collection_scope do
+        resource_scope = bindings[:object].class.reflect_on_association(:illustrator).source_reflection.scope
+
+        proc do |scope|
+          resource_scope ? scope.merge(resource_scope) : scope
+        end
+      end
     end
 
     # list page

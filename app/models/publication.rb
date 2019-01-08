@@ -27,7 +27,7 @@ class Publication < ApplicationRecord
   #################
   ## ASSOCIATIONS ##
   #################
-  belongs_to :publication_language
+  belongs_to :publication_language, -> { active }
   has_many :issues, dependent: :nullify
   has_many :illustration_publications, dependent: :destroy
   has_many :illustrations, through: :illustration_publications
@@ -66,7 +66,7 @@ class Publication < ApplicationRecord
   #################
   ## SCOPES ##
   #################
-  scope :published, -> { where(is_public: true) }
+  scope :published, -> { with_translations(I18n.locale).where('publication_translations.is_public': true) }
   scope :sort_published_desc, -> { order(date_publish: :desc) }
 
   #################
@@ -154,6 +154,16 @@ class Publication < ApplicationRecord
             target: '_blank',
             class: 'btn btn-info btn-sm'
           )
+        end
+      end
+    end
+    configure :publication_language do
+      # limit to only published issues
+      associated_collection_scope do
+        resource_scope = bindings[:object].class.reflect_on_association(:publication_language).source_reflection.scope
+
+        proc do |scope|
+          resource_scope ? scope.merge(resource_scope) : scope
         end
       end
     end

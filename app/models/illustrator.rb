@@ -64,7 +64,7 @@ class Illustrator < ApplicationRecord
   #################
   ## SCOPES ##
   #################
-  scope :published, -> { where(is_public: true) }
+  scope :published, -> { with_translations(I18n.locale).where('illustrator_translations.is_public': true) }
   scope :sort_published_desc, -> { order(date_publish: :desc) }
 
   #################

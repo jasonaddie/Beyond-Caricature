@@ -25,10 +25,10 @@ class RelatedItem < ApplicationRecord
   ## ASSOCIATIONS ##
   #################
   belongs_to :news_itemable, polymorphic: true
-  belongs_to :publication, optional: true
-  belongs_to :illustrator, optional: true
-  belongs_to :illustration, optional: true
-  belongs_to :issue, optional: true
+  belongs_to :publication, -> { published }, optional: true
+  belongs_to :illustrator, -> { published }, optional: true
+  belongs_to :illustration, -> { published }, optional: true
+  belongs_to :issue, -> { published }, optional: true
 
   #################
   ## ENUMS ##
@@ -80,6 +80,50 @@ class RelatedItem < ApplicationRecord
     parent News
 
     # configuration
+    configure :publication do
+      # limit to only published issues
+      associated_collection_scope do
+        resource_scope = bindings[:object].class.reflect_on_association(:publication).source_reflection.scope
+
+        proc do |scope|
+          resource_scope ? scope.merge(resource_scope) : scope
+        end
+      end
+    end
+
+    configure :issue do
+      # limit to only published issues
+      associated_collection_scope do
+        resource_scope = bindings[:object].class.reflect_on_association(:issue).source_reflection.scope
+
+        proc do |scope|
+          resource_scope ? scope.merge(resource_scope) : scope
+        end
+      end
+    end
+
+    configure :illustration do
+      # limit to only published issues
+      associated_collection_scope do
+        resource_scope = bindings[:object].class.reflect_on_association(:illustration).source_reflection.scope
+
+        proc do |scope|
+          resource_scope ? scope.merge(resource_scope) : scope
+        end
+      end
+    end
+
+    configure :illustrator do
+      # limit to only published issues
+      associated_collection_scope do
+        resource_scope = bindings[:object].class.reflect_on_association(:illustrator).source_reflection.scope
+
+        proc do |scope|
+          resource_scope ? scope.merge(resource_scope) : scope
+        end
+      end
+    end
+
 
     # list page
 
