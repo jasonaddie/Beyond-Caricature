@@ -138,21 +138,25 @@ class RelatedItem < ApplicationRecord
         html_attributes class: 'related-item publication'
         inline_add false
         inline_edit false
+        help I18n.t('admin.help.only_public_items')
       end
       field :issue do
         html_attributes class: 'related-item issue'
         inline_add false
         inline_edit false
+        help I18n.t('admin.help.only_public_items')
       end
       field :illustration do
         html_attributes class: 'related-item illustration'
         inline_add false
         inline_edit false
+        help I18n.t('admin.help.only_public_items')
       end
       field :illustrator do
         html_attributes class: 'related-item illustrator'
         inline_add false
         inline_edit false
+        help I18n.t('admin.help.only_public_items')
       end
     end
   end

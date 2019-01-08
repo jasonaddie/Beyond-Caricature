@@ -1,8 +1,3 @@
-# 02.03.2016 Перевод gem rails_admin ~> 0.8
-
-# Не забудьте добавить переводы названия модели (в т.ч. мн. ч.) и - опционально - атрибутов.
-# Некоторые переводы, где нужны склонения, видоизменены, тем не менее, имхо,
-# это не повлияло на удобство интерфейса
 ru:
   admin:
     js:
@@ -153,3 +148,12 @@ ru:
         default_col_sep: ","
         col_sep: "Разделитель столбцов"
         col_sep_help: "Разделитель по умолчанию ('%{value}')" # value is default_col_sep
+    help:
+      required_for_publication: Required for making public
+      soft_delete: To re-activate a user, delete the date
+      sort: Lower number will be shown before a higher number (i.e., 0 shows before 1)
+      only_public_items: Only published items are shown in the list
+      only_active_languages: Only active languages are shown in the list
+    errors:
+      required_for_publication: is required for making the language public
+      required_related_item: is required

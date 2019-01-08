@@ -159,6 +159,8 @@ en:
       required_for_publication: Required for making public
       soft_delete: To re-activate a user, delete the date
       sort: Lower number will be shown before a higher number (i.e., 0 shows before 1)
+      only_public_items: Only published items are shown in the list
+      only_active_languages: Only active languages are shown in the list
     errors:
       required_for_publication: is required for making the language public
       required_related_item: is required
