@@ -17,7 +17,7 @@ gem 'uglifier', '>= 1.3.0'
 # Transpile app-like JavaScript. Read more: https://github.com/rails/webpacker
 gem 'webpacker', '~> 3.5', '>= 3.5.5'
 # See https://github.com/rails/execjs#readme for more supported runtimes
-gem 'mini_racer', '~> 0.2.4', platforms: :ruby
+# gem 'mini_racer', '~> 0.2.4', platforms: :ruby
 
 # use react components
 gem 'react_on_rails', '~> 11.1', '>= 11.1.8'
@@ -96,6 +96,8 @@ gem 'stringex', '~> 2.8', '>= 2.8.5'
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]
+
+  gem 'dotenv-rails', '~> 2.6'
 end
 
 group :development do
