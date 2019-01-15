@@ -1,5 +1,5 @@
 .byebug_history
-.env*
+.env.*
 .git
 .gitignore
 .dockerignore

@@ -30,8 +30,6 @@ services:
       - "3001:3000"
     depends_on:
       - db
-    volumes:
-      - .:/app
     networks:
       - net1
 
