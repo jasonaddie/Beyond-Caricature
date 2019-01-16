@@ -46,5 +46,10 @@ module BeyondCaricature
     config.i18n.default_locale = :en
     config.time_zone = 'Tbilisi'
 
+    # set the default url option of locale here so
+    # middleware that creates links knows what locale to use
+    config.after_initialize do
+       Rails.application.routes.default_url_options[:locale] = I18n.default_locale
+    end
   end
 end

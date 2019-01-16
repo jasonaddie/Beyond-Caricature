@@ -14,6 +14,8 @@ Rails.application.routes.draw do
 
     devise_for :users, :controllers => { :registrations => 'users/registrations' }
 
+    # if url is admin, redirect to url with locale as querystring param
+    match "/admin", to: redirect("/admin?locale=#{I18n.locale}"), via: :all
 
     # public pages
     get '/publications', to: 'home#publications', as: 'publications'
