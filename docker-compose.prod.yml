@@ -1,0 +1,26 @@
+version: '3.7'
+
+services:
+  db:
+    restart: unless-stopped
+    env_file:
+      - ./.env.production
+
+  app:
+    restart: unless-stopped
+    image: schmerling/app:0.1
+    env_file:
+      - ./.env.production
+    environment:
+      - POSTGRES_HOST=db
+      - RAILS_ENV=production
+      - NODE_ENV=production
+
+  server:
+    restart: unless-stopped
+    environment:
+      DOMAINS: 'test.schmerling.org -> http://app:3000'
+      PRODUCTION: 'true'
+      CLIENT_MAX_BODY_SIZE: '20m'
+      PROXY_SEND_TIMEOUT: 30
+      PROXY_READ_TIMEOUT: 30

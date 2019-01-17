@@ -1,0 +1,28 @@
+version: '3.7'
+
+services:
+  db:
+    restart: 'no'
+    env_file:
+      - ./.env
+
+  app:
+    restart: 'no'
+    build:
+      context: .
+      dockerfile: ruby.dockerfile
+      args:
+        - ADDITIONAL_PACKAGES=nodejs-current yarn
+        - EXECJS_RUNTIME=Node
+        - RAILS_ENV=development
+        - NODE_ENV=development
+    env_file:
+      - ./.env
+    environment:
+      - POSTGRES_HOST=db
+
+  server:
+    restart: 'no'
+    environment:
+      DOMAINS: 'dev.local -> http://app:3000'
+      STAGE: 'local'

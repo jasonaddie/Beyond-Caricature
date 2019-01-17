@@ -1,10 +1,9 @@
 version: '3.7'
+
 services:
   db:
     container_name: schmerling_postgres
     image: postgres:10-alpine
-    env_file:
-      - ./.env
     volumes:
       - db-data:/var/lib/postgresql/data
     ports:
@@ -14,16 +13,6 @@ services:
 
   app:
     container_name: schmerling_app
-    build:
-      context: .
-      dockerfile: ruby.dockerfile
-      args:
-        - ADDITIONAL_PACKAGES=nodejs-current yarn
-        - EXECJS_RUNTIME=Node
-        - RAILS_ENV=development
-        - NODE_ENV=development
-    env_file:
-      - ./.env
     environment:
       - POSTGRES_HOST=db
     ports:
@@ -45,9 +34,6 @@ services:
     ports:
       - '80:80'
       - '443:443'
-    environment:
-      DOMAINS: 'dev.local -> http://app:3000'
-      STAGE: 'local'
 
 volumes:
   db-data:
