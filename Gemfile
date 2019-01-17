@@ -96,11 +96,13 @@ gem 'stringex', '~> 2.8', '>= 2.8.5'
 # better log formatting
 gem 'lograge', '~> 0.10.0'
 
+# manage environmental variables
+gem 'dotenv-rails', '~> 2.6'
+
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]
 
-  gem 'dotenv-rails', '~> 2.6'
 end
 
 group :development do
