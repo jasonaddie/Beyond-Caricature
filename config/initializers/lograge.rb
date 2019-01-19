@@ -1,8 +1,10 @@
-Rails.application.configure do
-  config.lograge.enabled = true
+if Rails.env.production?
+  Rails.application.configure do
+    config.lograge.enabled = true
 
-  # add time to lograge
-  config.lograge.custom_options = lambda do |event|
-    { time: Time.now }
+    # add time to lograge
+    config.lograge.custom_options = lambda do |event|
+      { time: Time.now }
+    end
   end
 end
