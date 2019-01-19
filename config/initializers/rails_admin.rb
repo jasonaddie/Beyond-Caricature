@@ -66,6 +66,7 @@ RailsAdmin.config do |config|
   # - default is title and name
   config.label_methods << :language
   config.label_methods << :editor
+  config.label_methods << :full_title
 
   # list all models to include in admin section
   # - have to include all translation models too

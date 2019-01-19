@@ -164,7 +164,10 @@ class Issue < ApplicationRecord
     # form
     edit do
       field :is_public
-      field :publication
+      field :publication do
+        inline_add false
+        inline_edit false
+      end
       field :issue_number
       field :date_publication
       field :cover_image
