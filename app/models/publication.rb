@@ -32,9 +32,9 @@ class Publication < ApplicationRecord
   has_many :illustration_publications, dependent: :destroy
   has_many :illustrations, through: :illustration_publications
   has_many :publication_editors, dependent: :destroy
-  accepts_nested_attributes_for :publication_editors, allow_destroy: true,
-    reject_if: ->(edior){ edior['editor'].blank? && edior['publisher'].blank? && edior['year_start'].blank? && edior['year_end'].blank?}
   has_many :related_items, dependent: :nullify
+  accepts_nested_attributes_for :publication_editors, allow_destroy: true,
+    reject_if: ->(editor){ reject_publication_editors?(editor)}
 
   #################
   ## TRANSLATIONS ##
@@ -68,6 +68,40 @@ class Publication < ApplicationRecord
   #################
   scope :published, -> { with_translations(I18n.locale).where('publication_translations.is_public': true) }
   scope :sort_published_desc, -> { order(date_publish: :desc) }
+
+  # if there are no values in all publication editor translations and years, then reject
+  def self.reject_publication_editors?(editor)
+    # editor['editor'].blank? && editor['publisher'].blank? && editor['year_start'].blank? && editor['year_end'].blank?
+    translation_fields = %w(editor publisher)
+    nontranslation_fields = %w(year_start year_end)
+    found_value = false
+
+    # check nontranslation fields first
+    nontranslation_fields.each do |field|
+      if !editor[field].blank?
+        found_value = true
+        break
+      end
+    end
+
+    if !found_value
+      # no nontranslation, value so now check translation value
+      # format is {"translations_attributes"=>{"0"=>{"locale"=>"", "editor"=>"", "publisher"=>""}, "1"=>{"locale"=>"", "editor"=>"", "publisher"=>""}, ... }
+      # so get values of translations_attributes hash and then check the field values
+      editor["translations_attributes"].values.each do |trans_values|
+        translation_fields.each do |field|
+          if !trans_values[field].blank?
+            found_value = true
+            break
+          end
+        end
+        break if found_value
+      end
+    end
+
+    return !found_value
+  end
+
 
   #################
   ## VALIDATION ##
@@ -300,4 +334,5 @@ class Publication < ApplicationRecord
     # call the methohd in the application record base object
     super(%w(title))
   end
+
 end
