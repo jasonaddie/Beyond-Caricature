@@ -48,6 +48,18 @@ class User < ApplicationRecord
 
 
   #################
+  ## SCOPES ##
+  #################
+  def self.roles_for_select
+    options = {}
+    roles.each do |key, value|
+      options[I18n.t("activerecord.attributes.#{model_name.i18n_key}.roles.#{key}")] = value
+    end
+    return options
+  end
+
+
+  #################
   ## METHODS ##
   #################
   # instead of deleting, indicate the user requested a delete & timestamp it
@@ -65,6 +77,12 @@ class User < ApplicationRecord
     !deleted_at ? super : :deleted_account
   end
 
+  # show the translated name of the enum value
+  def role_formatted
+    self.role? ? I18n.t("activerecord.attributes.#{model_name.i18n_key}.roles.#{role}") : nil
+  end
+
+
   #################
   ## RAILS ADMIN CONFIGURATION ##
   #################
@@ -74,6 +92,14 @@ class User < ApplicationRecord
 
     # control the order in the admin nav menu
     weight 400
+
+    # configuration
+    configure :role do
+      enum User.roles_for_select
+      pretty_value do
+        bindings[:object].role_formatted
+      end
+    end
 
     # list page
     list do

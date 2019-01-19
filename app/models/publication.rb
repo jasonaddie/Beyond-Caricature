@@ -69,6 +69,14 @@ class Publication < ApplicationRecord
   scope :published, -> { with_translations(I18n.locale).where('publication_translations.is_public': true) }
   scope :sort_published_desc, -> { order(date_publish: :desc) }
 
+  def self.publication_types_for_select
+    options = {}
+    publication_types.each do |key, value|
+      options[I18n.t("activerecord.attributes.#{model_name.i18n_key}.publication_types.#{key}")] = value
+    end
+    return options
+  end
+
   # if there are no values in all publication editor translations and years, then reject
   def self.reject_publication_editors?(editor)
     # editor['editor'].blank? && editor['publisher'].blank? && editor['year_start'].blank? && editor['year_end'].blank?
@@ -145,6 +153,10 @@ class Publication < ApplicationRecord
     !self.is_public_translations.values.index(true).nil?
   end
 
+  # show the translated name of the enum value
+  def publication_type_formatted
+    self.publication_type? ? I18n.t("activerecord.attributes.#{model_name.i18n_key}.publication_types.#{publication_type}") : nil
+  end
 
   #################
   ## RAILS ADMIN CONFIGURATION ##
@@ -171,6 +183,12 @@ class Publication < ApplicationRecord
             )
           end.join.html_safe
         end
+      end
+    end
+    configure :publication_type do
+      enum Publication.publication_types_for_select
+      pretty_value do
+        bindings[:object].publication_type_formatted
       end
     end
     configure :cover_image do

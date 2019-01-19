@@ -169,6 +169,11 @@ ru:
         language: Language
       related_item:
         related_item_type: Type
+        related_item_types:
+          publication: Publication
+          issue: Issue
+          illustration: Illustration
+          illustrator: Illustrator
         publication_id: Publication
         issue_id: Issue
         illustration_id: Illustration
@@ -193,6 +198,15 @@ ru:
         sort: Sort Order
       tag:
         name: Name
+      user:
+        email: Email
+        name: Name
+        role: Role
+        roles:
+          uploader: Uploader
+          editor: Editor
+          admin: Admin
+          superadmin: Super Admin
   labels:
     translations: Translation Fields
     illustration_count: Illustrations on File

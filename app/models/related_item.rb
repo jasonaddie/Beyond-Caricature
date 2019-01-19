@@ -42,6 +42,18 @@ class RelatedItem < ApplicationRecord
   validate :provided_reference
 
   #################
+  ## SCOPES ##
+  #################
+  def self.related_item_types_for_select
+    options = {}
+    related_item_types.each do |key, value|
+      options[I18n.t("activerecord.attributes.#{model_name.i18n_key}.related_item_types.#{key}")] = value
+    end
+    return options
+  end
+
+
+  #################
   ## METHODS ##
   #################
   # return the title of the published item this record is tied to
@@ -69,6 +81,12 @@ class RelatedItem < ApplicationRecord
       Rails.application.routes.url_helpers.illustrator_path(I18n.locale, self.illustrator)
     end
   end
+
+  # show the translated name of the enum value
+  def related_item_type_formatted
+    self.related_item_type? ? I18n.t("activerecord.attributes.#{model_name.i18n_key}.related_item_types.#{related_item_type}") : nil
+  end
+
 
   #################
   ## RAILS ADMIN CONFIGURATION ##
@@ -121,6 +139,13 @@ class RelatedItem < ApplicationRecord
         proc do |scope|
           resource_scope ? scope.merge(resource_scope) : scope
         end
+      end
+    end
+
+    configure :related_item_type do
+      enum RelatedItem.related_item_types_for_select
+      pretty_value do
+        bindings[:object].related_item_type_formatted
       end
     end
 
