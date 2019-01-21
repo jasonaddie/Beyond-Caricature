@@ -79,7 +79,6 @@ class Publication < ApplicationRecord
 
   # if there are no values in all publication editor translations and years, then reject
   def self.reject_publication_editors?(editor)
-    # editor['editor'].blank? && editor['publisher'].blank? && editor['year_start'].blank? && editor['year_end'].blank?
     translation_fields = %w(editor publisher)
     nontranslation_fields = %w(year_start year_end)
     found_value = false

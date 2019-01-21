@@ -7,6 +7,9 @@ en:
       illustration:
         one: Illustration
         other: Illustrations
+      illustration_annotation:
+        one: Annotation
+        other: Annotations
       illustration_issue:
         one: Illustration Issue
         other: Illustration Issues
@@ -70,11 +73,16 @@ en:
         date_publish: Date Made Public
         title: Title
         context: Context
+        illustration_annotation: Annotation
+        illustration_annotations: Annotations
       illustration/translation:
         is_public: Is Public?
         date_publish: Date Made Public
         title: Title
         context: Context
+      illustration_annotations:
+        sort: Sort
+        annotation: Annotation
       illustration_issue:
         illustration_id: Illustration
         issue_id: Issue

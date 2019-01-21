@@ -29,6 +29,9 @@ class Illustration < ApplicationRecord
   has_many :illustration_publications, dependent: :destroy
   has_many :publications, through: :illustration_publications
   # has_many :publications, through: :illustration_publications, -> { not_journals }, inverse_of: :illustrations
+  has_many :illustration_annotations, dependent: :destroy
+  accepts_nested_attributes_for :illustration_annotations, allow_destroy: true,
+    reject_if: ->(annotation){ reject_annotation?(annotation)}
 
   has_many :illustration_issues, dependent: :destroy
   has_many :issues, through: :illustration_issues
@@ -73,6 +76,39 @@ class Illustration < ApplicationRecord
   #################
   scope :published, -> { with_translations(I18n.locale).where('illustration_translations.is_public': true) }
   scope :sort_published_desc, -> { order(date_publish: :desc) }
+
+  # if there are no values in all translations, then reject
+  def self.reject_annotation?(annotation)
+    translation_fields = %w(annotation)
+    nontranslation_fields = %w(sort)
+    found_value = false
+
+    # check nontranslation fields first
+    nontranslation_fields.each do |field|
+      if !annotation[field].blank?
+        found_value = true
+        break
+      end
+    end
+
+    if !found_value
+      # no nontranslation, value so now check translation value
+      # format is {"translations_attributes"=>{"0"=>{"locale"=>"", "annotation"=>""}, "1"=>{"locale"=>"", "annotation"=>""}, ... }
+      # so get values of translations_attributes hash and then check the field values
+      annotation["translations_attributes"].values.each do |trans_values|
+        translation_fields.each do |field|
+          if !trans_values[field].blank?
+            found_value = true
+            break
+          end
+        end
+        break if found_value
+      end
+    end
+
+    return !found_value
+  end
+
 
   #################
   ## METHODS ##
@@ -138,6 +174,16 @@ class Illustration < ApplicationRecord
         end
       end
     end
+    configure :illustration_annotations do
+      # show list of annotations
+      pretty_value do
+        bindings[:view].content_tag(:ol) do
+          bindings[:object].illustration_annotations.sorted.collect do |annotation|
+            bindings[:view].content_tag(:li, annotation.annotation)
+          end.join.html_safe
+        end
+      end
+    end
 
     # list page
     list do
@@ -158,6 +204,7 @@ class Illustration < ApplicationRecord
       field :title
       field :context
       field :illustrator
+      field :illustration_annotations
       field :combined_publications_count do
         label I18n.t('labels.combined_publications_count')
       end
@@ -174,6 +221,7 @@ class Illustration < ApplicationRecord
       field :translations do
         label I18n.t('labels.translations')
       end
+      field :illustration_annotations
       field :publications
       field :issues
       field :tags

@@ -78,6 +78,7 @@ RailsAdmin.config do |config|
     'Research', 'Research::Translation',
     'Tag', 'Tag::Translation',
     'Illustration', 'Illustration::Translation',
+    'IllustrationAnnotation', 'IllustrationAnnotation::Translation',
     'Publication', 'Publication::Translation',
     'PublicationEditor', 'PublicationEditor::Translation',
     'Issue',
@@ -224,6 +225,14 @@ RailsAdmin.config do |config|
         end
       end
     end
+  end
+
+  config.model 'IllustrationAnnotation::Translation' do
+    visible false
+    configure :locale, :hidden do
+      help ''
+    end
+    include_fields :locale, :annotation
   end
 
   config.model 'Publication::Translation' do

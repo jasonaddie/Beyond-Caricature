@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_01_03_190323) do
+ActiveRecord::Schema.define(version: 2019_01_21_065949) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -62,6 +62,25 @@ ActiveRecord::Schema.define(version: 2019_01_03_190323) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.string "cover_image_uid"
+  end
+
+  create_table "illustration_annotation_translations", force: :cascade do |t|
+    t.integer "illustration_annotation_id", null: false
+    t.string "locale", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.string "annotation", limit: 1000
+    t.index ["illustration_annotation_id"], name: "index_7938b22a3d4e6cbb84b7378dac6a6f60586b231b"
+    t.index ["locale"], name: "index_illustration_annotation_translations_on_locale"
+  end
+
+  create_table "illustration_annotations", force: :cascade do |t|
+    t.bigint "illustration_id"
+    t.integer "sort", limit: 2, default: 0
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["illustration_id"], name: "index_illustration_annotations_on_illustration_id"
+    t.index ["sort"], name: "index_illustration_annotations_on_sort"
   end
 
   create_table "illustration_issues", force: :cascade do |t|

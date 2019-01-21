@@ -44,8 +44,8 @@ class PublicationEditor < ApplicationRecord
   rails_admin do
     visible false
 
-    # group with illustrations in navigation
-    parent Illustration
+    # group with publication in navigation
+    parent Publication
 
     configure :translations, :globalize_tabs
 

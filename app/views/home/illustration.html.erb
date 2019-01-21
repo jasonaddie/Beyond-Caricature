@@ -51,3 +51,15 @@
 
 </ul>
 
+
+<% if @illustration.illustration_annotations.sorted.present? %>
+  <h2><%= t('labels.annotations') %></h2>
+
+  <ol>
+    <% @illustration.illustration_annotations.sorted.each do |annotation| %>
+      <li>
+        <%= annotation.annotation %>
+      </li>
+    <% end %>
+  </ol>
+<% end %>
