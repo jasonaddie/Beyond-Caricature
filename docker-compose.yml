@@ -34,6 +34,10 @@ services:
     ports:
       - '80:80'
       - '443:443'
+    environment:
+      CLIENT_MAX_BODY_SIZE: '20m'
+      PROXY_SEND_TIMEOUT: 30
+      PROXY_READ_TIMEOUT: 30
 
 volumes:
   db-data:

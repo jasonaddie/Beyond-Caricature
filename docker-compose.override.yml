@@ -26,3 +26,4 @@ services:
     environment:
       DOMAINS: 'dev.local -> http://app:3000'
       STAGE: 'local'
+
