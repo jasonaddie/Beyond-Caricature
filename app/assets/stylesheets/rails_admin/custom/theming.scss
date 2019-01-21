@@ -41,10 +41,10 @@ ul.is-public-status li{
   padding: 3px 6px;
 }
 ul.is-public-status li.not-public{
-  background-color: #f0ad4e;
+  background-color: $translation-not-public;
 }
 ul.is-public-status li.public{
-  background-color: #5cb85c;
+  background-color: $translation-public;
 }
 
 /*  set width for ckeditors */
