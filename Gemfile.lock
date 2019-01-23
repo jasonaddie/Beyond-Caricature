@@ -289,6 +289,7 @@ GEM
       execjs (~> 2.5)
       rails (>= 3.2)
       rainbow (~> 3.0)
+    redcarpet (3.4.0)
     regexp_parser (1.2.0)
     remotipart (1.4.2)
     request_store (1.4.1)
@@ -391,6 +392,7 @@ DEPENDENCIES
   rails_admin_globalize_field (~> 0.4.0)
   rails_admin_material (~> 0.2.1)
   react_on_rails (~> 11.1, >= 11.1.8)
+  redcarpet (~> 3.4)
   sass-rails (~> 5.0)
   selenium-webdriver
   spring

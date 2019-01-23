@@ -119,6 +119,10 @@ az:
         breadcrumb: "Delete"
         link: "Delete '%{object_label}'"
         done: "deleted"
+      changelog:
+        title: "Change Log"
+        menu: "Change Log"
+        breadcrumb: "Change Log"
     form:
       cancel: "Cancel"
       basic_info: "Basic info"

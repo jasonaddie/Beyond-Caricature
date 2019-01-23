@@ -3,7 +3,8 @@ RailsAdmin.config do |config|
   ## Custom Actions
   require Rails.root.join('lib', 'rails_admin', 'user_soft_delete.rb')
   RailsAdmin::Config::Actions.register(RailsAdmin::Config::Actions::UserSoftDelete)
-
+  require Rails.root.join('lib', 'rails_admin', 'changelog.rb')
+  RailsAdmin::Config::Actions.register(RailsAdmin::Config::Actions::Changelog)
 
 
   ### Popular gems integration
@@ -47,6 +48,7 @@ RailsAdmin.config do |config|
 
     ## Custom actions
     user_soft_delete
+    changelog
 
     ## With an audit adapter, you can add:
     history_index

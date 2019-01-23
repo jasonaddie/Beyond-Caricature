@@ -112,6 +112,16 @@ ru:
         title: "История для %{model_label} '%{object_label}'"
         menu: "История"
         breadcrumb: "история"
+      user_soft_delete:
+        title: "Delete %{model_label} '%{object_label}'"
+        menu: "Delete"
+        breadcrumb: "Delete"
+        link: "Delete '%{object_label}'"
+        done: "deleted"
+      changelog:
+        title: "Change Log"
+        menu: "Change Log"
+        breadcrumb: "Change Log"
     form:
       cancel: "Отмена"
       basic_info: "Основное"
