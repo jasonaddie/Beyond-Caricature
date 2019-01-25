@@ -1,5 +1,6 @@
 //= require rails_admin/themes/material/ui.js
 //= require ckeditor/init
+//= require rails_admin/custom/ckeditor_ajax
 
 function check_form_public_fields(){
   // for forms with globalize tabs and is_public field

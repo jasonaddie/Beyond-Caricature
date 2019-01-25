@@ -7,6 +7,9 @@ These are items that are have been finished, but not released yet.
 - Ability to control sort order by dragging/dropping items in News/Research Slideshows and Illustration Annotations
 - Change Log page to admin section so admins can see what is happening with the app
 
+### Fixed
+- In popup forms that have rich-text editors, the text entered into the rich-text editor field is now saved
+
 ## [0.4] - 2019-01-21
 ### Added
 - Theme colors that match publc page design colors
