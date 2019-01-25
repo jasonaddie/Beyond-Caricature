@@ -221,7 +221,10 @@ class Illustration < ApplicationRecord
       field :translations do
         label I18n.t('labels.translations')
       end
-      field :illustration_annotations
+      field :illustration_annotations do
+        partial "form_nested_many_sorting"
+        help I18n.t('admin.help.sort')
+      end
       field :publications
       field :issues
       field :tags

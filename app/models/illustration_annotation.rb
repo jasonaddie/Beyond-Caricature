@@ -46,8 +46,9 @@ class IllustrationAnnotation < ApplicationRecord
 
     # form
     edit do
-      field :sort
-
+      field :sort, :hidden do
+        html_attributes class: 'sort-hidden-input'
+      end
       field :translations do
         label I18n.t('labels.translations')
       end

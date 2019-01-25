@@ -323,3 +323,21 @@ function related_item_type_change(){
 
 // call functions when rails admin page loads
 $(document).on('rails_admin.dom_ready', function(){ related_item_type_change(); });
+
+
+
+
+//
+$(document).on('rails_admin.dom_ready', function(){
+  $('.tab-content.sort-items').sortable({
+    containment: "parent",
+    // update all of the sort values with the new order
+    update: function(e,ui){
+      // get all sort inputs and then update the value
+      var $inputs = $(ui.item).closest('.tab-content.sort-items').find('input.sort-hidden-input');
+      $inputs.each(function(index){
+        $(this).val(index);
+      })
+    }
+  });
+});

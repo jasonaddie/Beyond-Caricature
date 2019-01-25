@@ -70,3 +70,41 @@ ul.is-public-status li.public{
   display: inherit;
   margin-top: 20px !important;
 }
+
+/* nested forms - indent the nested part so it is easy to see where it ends */
+.has_many_association_type .tab-content .fields.tab-pane{
+  margin-left: 0;
+}
+@media(min-width: 768px){
+  .has_many_association_type .tab-content .fields.tab-pane{
+    margin-left: 16.6667%;
+  }
+}
+
+
+/* nested forms with sorting */
+.tab-content.sort-items{
+  margin-bottom: 25px;
+}
+.tab-content.sort-items > .fields.tab-pane{
+  display: block !important;
+  margin-bottom: 10px !important;
+}
+
+.tab-content.sort-items span.move-item{
+  display: block;
+  opacity: 0;
+  position: absolute;
+  top: 0px;
+  left: 50px;
+  -webkit-transition: opacity .15s ease;
+  transition: opacity .15s ease;
+  cursor: move;
+}
+body.rails_admin .form-horizontal .tab-content.sort-items .tab-pane:hover > span.move-item {
+  opacity: 1;
+}
+.tab-content.sort-items input[type="file"]{
+  display: inline-block !important;
+  margin-left: 20px;
+}

@@ -66,8 +66,9 @@ class Slideshow < ApplicationRecord
     # form
     edit do
       field :image
-      field :sort do
-        help I18n.t('admin.help.sort')
+      # hide the field since the user controls the sort by dragging fields
+      field :sort, :hidden do
+        html_attributes class: 'sort-hidden-input'
       end
     end
   end
