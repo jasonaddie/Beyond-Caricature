@@ -123,6 +123,7 @@ az:
         title: "Change Log"
         menu: "Change Log"
         breadcrumb: "Change Log"
+        version: "Version"
     form:
       cancel: "Cancel"
       basic_info: "Basic info"

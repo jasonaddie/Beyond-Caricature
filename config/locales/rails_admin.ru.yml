@@ -122,6 +122,7 @@ ru:
         title: "Change Log"
         menu: "Change Log"
         breadcrumb: "Change Log"
+        version: "Version"
     form:
       cancel: "Отмена"
       basic_info: "Основное"
