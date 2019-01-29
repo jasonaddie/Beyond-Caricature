@@ -167,6 +167,7 @@ en:
       move: Drag this item up or down to change the order you want them to appear
       only_public_items: Only published items are shown in the list
       only_active_languages: Only active languages are shown in the list
+      missing_annotation_image: After you load an illustration, the image will appear here.
     errors:
       required_for_publication: is required for making the language public
       required_related_item: is required

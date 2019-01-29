@@ -153,7 +153,6 @@ class News < ApplicationRecord
       end
       field :slideshows do
         partial "form_nested_many_sorting"
-        help I18n.t('admin.help.sort')
       end
       field :related_items
     end

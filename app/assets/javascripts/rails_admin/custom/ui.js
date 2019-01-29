@@ -5,6 +5,7 @@
 //= require rails_admin/custom/check_form_public_fields
 //= require rails_admin/custom/related_item_type_change
 //= require rails_admin/custom/update_sortable_sort_values
+//= require rails_admin/custom/annotate_image
 
 
 // get ckeditor to work nicely with turbolinks

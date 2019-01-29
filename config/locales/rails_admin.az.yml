@@ -166,6 +166,7 @@ az:
       sort: Lower number will be shown before a higher number (i.e., 0 shows before 1)
       only_public_items: Only published items are shown in the list
       only_active_languages: Only active languages are shown in the list
+      missing_annotation_image: After you load an illustration, the image will appear here.
     errors:
       required_for_publication: is required for making the language public
       required_related_item: is required
