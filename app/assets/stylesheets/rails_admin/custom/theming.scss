@@ -87,6 +87,8 @@ ul.is-public-status li.public{
   width: 100%;
   vertical-align: top;
   margin: 0 15px 25px;
+  position: relative;
+  z-index: 200;
 }
 @media(min-width: 768px){
   .has_many_association_type .annotation-image{
@@ -98,6 +100,29 @@ ul.is-public-status li.public{
   margin: 0 auto;
   max-width: 100%;
 }
+.has_many_association_type .annotation-image .marker,
+.tab-content.annotations .marker{
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 24px;
+  height: 24px;
+  border-radius: 50%;
+  background: $brand-info;
+  -webkit-transition: display .15s ease;
+  transition: display .15s ease;
+  display: inherit;
+}
+.has_many_association_type .annotation-image .marker .marker-number,
+.tab-content.annotations .marker .marker-number{
+  color: #fff;
+  text-align: center;
+  margin-top: 2px;
+}
+.has_many_association_type .annotation-image .marker.updating{
+  display: none;
+}
+
 .has_many_association_type .tab-content.annotations {
   display: inline-block;
   width: 100%;
@@ -142,7 +167,50 @@ body.rails_admin .form-horizontal .tab-content.sort-items .tab-pane:hover > span
   margin-left: 20px;
 }
 
-/* reduce space used for globalize tabs with annotations */
+/* nested form with annotations */
+
+form.has-mask{
+  position: relative;
+}
+form.has-mask .mask{
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 100;
+  background-color: rgba(0,0,0,0.5);
+  display: none;
+  -webkit-transition: display .15s ease;
+  transition: display .15s ease;
+}
+form.has-mask .mask.active{
+  display: block;
+}
+
+.tab-content.annotations span.annotation-add{
+  display: block;
+  opacity: 0;
+  position: absolute;
+  top: 0px;
+  left: 100px;
+  -webkit-transition: opacity .15s ease;
+  transition: opacity .15s ease;
+  cursor: pointer;
+}
+body.rails_admin .form-horizontal .tab-content.annotations .tab-pane:hover > span.annotation-add {
+  opacity: 1;
+}
+
+.tab-content.annotations .marker{
+  display: block;
+  opacity: 1;
+  position: absolute;
+  top: 0px;
+  left: 145px;
+  margin-top: 10px;
+}
+
 
 .tab-content.annotations .globalize_tabs_type > label{
   display:none;

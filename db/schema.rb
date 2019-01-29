@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_01_21_065949) do
+ActiveRecord::Schema.define(version: 2019_01_29_163406) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -79,6 +79,8 @@ ActiveRecord::Schema.define(version: 2019_01_21_065949) do
     t.integer "sort", limit: 2, default: 0
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.decimal "x", precision: 5, scale: 4
+    t.decimal "y", precision: 5, scale: 4
     t.index ["illustration_id"], name: "index_illustration_annotations_on_illustration_id"
     t.index ["sort"], name: "index_illustration_annotations_on_sort"
   end

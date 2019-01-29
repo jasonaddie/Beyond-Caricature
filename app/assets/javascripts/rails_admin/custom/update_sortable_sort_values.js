@@ -7,10 +7,18 @@ function update_sortable_sort_values(){
     // update all of the sort values with the new order
     update: function(e,ui){
       // get all sort inputs and then update the value
-      var $inputs = $(ui.item).closest('.tab-content.sort-items').find('input.sort-hidden-input');
+      var $tab_content = $(ui.item).closest('.tab-content.sort-items');
+      var $inputs = $tab_content.find('input.hidden-input-sort');
       $inputs.each(function(index){
         $(this).val(index);
       })
+
+      // if this is annotations, also update the narker numbers
+      if ($tab_content.hasClass('annotations')){
+        $tab_content.find('.marker .marker-number').each(function(index){
+          $(this).html(index+1);
+        })
+      }
     }
   });
 }

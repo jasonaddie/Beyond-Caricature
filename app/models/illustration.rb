@@ -80,7 +80,7 @@ class Illustration < ApplicationRecord
   # if there are no values in all translations, then reject
   def self.reject_annotation?(annotation)
     translation_fields = %w(annotation)
-    nontranslation_fields = %w(sort)
+    nontranslation_fields = %w(sort x y)
     found_value = false
 
     # check nontranslation fields first

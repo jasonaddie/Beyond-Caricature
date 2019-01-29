@@ -68,7 +68,7 @@ class Slideshow < ApplicationRecord
       field :image
       # hide the field since the user controls the sort by dragging fields
       field :sort, :hidden do
-        html_attributes class: 'sort-hidden-input'
+        html_attributes class: 'hidden-input-sort'
       end
     end
   end
