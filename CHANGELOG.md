@@ -6,6 +6,10 @@ These are items that are have been finished, but not released yet.
 
 None at this time.
 
+## [0.6] - 2019-01-30
+### Changed
+- Updated the changelog
+
 ## [0.5] - 2019-01-30
 ### Added
 - Ability to control sort order by dragging/dropping items in News/Research Slideshows and Illustration Annotations
