@@ -1,3 +1,67 @@
 // Place all the styles related to the Home controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+
+@import 'rails_admin/custom/variables';
+
+// annotation markers
+.annotation-marker{
+  width: 24px;
+  height: 24px;
+  border-radius: 50%;
+  background: $brand-info;
+  -webkit-transition: display .15s ease;
+  transition: display .15s ease;
+  display: inherit;
+}
+.annotation-marker .marker-number{
+  color: #fff;
+  text-align: center;
+  margin-top: 2px;
+}
+
+.annotation-markers{
+  display: inline-block;
+  width: 100%;
+  vertical-align: top;
+  margin: 0 15px 25px;
+  position: relative;
+  z-index: 200;
+}
+@media(min-width: 768px){
+  .annotation-markers{
+    width: calc(50% - 30px);
+  }
+}
+
+.annotation-markers .annotation-marker{
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+
+.annotation-markers img{
+  margin: 0 auto;
+  max-width: 100%;
+}
+
+.annotation-list{
+  list-style-type:none;
+  display: inline-block;
+  width: 100%;
+}
+@media(min-width: 768px){
+  .annotation-list {
+    width: calc(45% - 30px);
+  }
+}
+
+.annotation-list li{
+  line-height: 30px;
+}
+.annotation-list .annotation-marker{
+  display: inline-block;
+}
+.annotation-list .annotation-marker .marker-number{
+  line-height: 25px;
+}

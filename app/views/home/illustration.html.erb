@@ -1,7 +1,7 @@
 <h1><%= @illustration.title %></h1>
 
 <div>
-  <%= image_tag @illustration.image.thumb('300x200#').url if @illustration.image_stored? %>
+  <%= image_tag @illustration.image.thumb('50x50%').url if @illustration.image_stored? %>
 </div>
 <div>
   <%= simple_format(@illustration.context) %>
@@ -52,14 +52,29 @@
 </ul>
 
 
-<% if @illustration.illustration_annotations.sorted.present? %>
+<% if @illustration.illustration_annotations.sorted.present? && @illustration.image_stored? %>
   <h2><%= t('labels.annotations') %></h2>
 
-  <ol>
-    <% @illustration.illustration_annotations.sorted.each do |annotation| %>
+  <div class='annotation-markers'>
+    <%= image_tag @illustration.image.thumb('40x40%').url %>
+    <%
+      img_width = @illustration.image.thumb('40x40%').width
+      img_height = @illustration.image.thumb('40x40%').height
+    %>
+    <% @illustration.illustration_annotations.sorted.each_with_index do |annotation, index| %>
+
+      <div class="annotation-marker" style="left: <%= (annotation.x*img_width).round(2)%>px; top: <%= (annotation.y*img_height).round(2)%>px">
+        <div class="marker-number"><%= index+1 %></div>
+      </div>
+    <% end %>
+  </div>
+
+  <ul class='annotation-list'>
+    <% @illustration.illustration_annotations.sorted.each_with_index do |annotation, index| %>
       <li>
+        <div class="annotation-marker"><div class="marker-number"><%= index+1 %></div></div>
         <%= annotation.annotation %>
       </li>
     <% end %>
-  </ol>
+  </ul>
 <% end %>
