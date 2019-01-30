@@ -6,9 +6,13 @@ These are items that are have been finished, but not released yet.
 
 None at this time.
 
+## [0.7] - 2019-01-30
+### Fixed
+- Issue form now opens without throwing an error
+
 ## [0.6] - 2019-01-30
 ### Changed
-- Updated the changelog
+- Updated the changelog content
 
 ## [0.5] - 2019-01-30
 ### Added
