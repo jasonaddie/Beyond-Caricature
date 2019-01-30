@@ -5,6 +5,12 @@ function annotate_image(){
   var $img = $img_container.find('img')
   var $mask = $('form .mask')
 
+  function reload_vars(){
+    $img_container = $('.has_many_association_type .annotation-image')
+    $img = $img_container.find('img')
+    $mask = $('form .mask')
+  }
+
   //////////////////////////////////////////////////////
   function load_image_preview_into_container(){
     var $img_preview = $('#illustration_image_field .controls img.preview')
@@ -76,6 +82,7 @@ function annotate_image(){
   // this event is the same event that is called via nested form hooks
   //  https://github.com/sferik/rails_admin/blob/master/app/assets/javascripts/rails_admin/ra.nested-form-hooks.coffee
   $(document).on('nested:fieldAdded', 'form .has_many_association_type.illustration_annotations_field', function(content){
+    reload_vars()
 
     // check if image is in section, if not load it
     if (!$img.length){
@@ -99,6 +106,8 @@ function annotate_image(){
   $('form input#illustration_image[data-fileupload]').on('change', function(){
     // the image is changed
 
+    reload_vars()
+
     // hide any image already there
     $img.fadeOut('slow')
 
@@ -113,6 +122,7 @@ function annotate_image(){
   //////////////////////////////////////////////////////
   // turn on ability to add marker to image
   $('.tab-content.annotations').on('click', '.annotation-add', function() {
+    reload_vars()
     var $tab_pane = $(this).closest('.fields.tab-pane')
     var unique_id = $tab_pane.attr('id')
     var index = $(this).closest('.tab-content').find('> .fields.tab-pane').index($tab_pane)
@@ -133,6 +143,7 @@ function annotate_image(){
   //////////////////////////////////////////////////////
   // add a marker to the image
   $img_container.on('click', 'img.marking', function (e) {
+    reload_vars()
     var marker_number = $(this).data('marker-number')
     var unique_id = $(this).data('unique-id')
     var $tab_pane = $('#' + unique_id)
@@ -169,6 +180,7 @@ function annotate_image(){
   //////////////////////////////////////////////////////
   // if mask is on and user clicks on it, turn mask off
   $('form').on('click', '.mask', function(){
+    reload_vars()
 
     // if there is an existing marker, show it again
     $img_container.find('.marker.updating').removeClass('updating')
