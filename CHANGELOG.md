@@ -3,8 +3,13 @@ The numbers in brackets (i.e., [0.1]), indicate the version number of the app.
 
 ## [Unreleased]
 These are items that are have been finished, but not released yet.
+
+None at this time.
+
+## [0.5] - 2019-01-30
 ### Added
 - Ability to control sort order by dragging/dropping items in News/Research Slideshows and Illustration Annotations
+- Ability to place illustration annotation markers on image
 - Change Log page to admin section so admins can see what is happening with the app
 
 ### Fixed
