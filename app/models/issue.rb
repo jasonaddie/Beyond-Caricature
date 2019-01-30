@@ -74,7 +74,11 @@ class Issue < ApplicationRecord
 
   # journal name and issue number
   def full_title
-    "#{self.publication.title} - #{self.issue_number}"
+    if self.publication
+      "#{self.publication.title} - #{self.issue_number}"
+    else
+      self.issue_number
+    end
   end
 
   #################
