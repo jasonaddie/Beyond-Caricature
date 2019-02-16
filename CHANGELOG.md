@@ -7,6 +7,8 @@ These are items that are have been finished, but not released yet.
 ### Added
 - Help text for image and file form fields to indicate what file types are allowed and any file size limits
 
+### Fixed
+- In Publication Editor form fields and Illustration Annotation form fields, switching language tabs properly works now
 
 ## [0.7] - 2019-01-30
 ### Fixed
