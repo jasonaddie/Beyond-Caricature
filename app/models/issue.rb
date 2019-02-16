@@ -174,8 +174,12 @@ class Issue < ApplicationRecord
       end
       field :issue_number
       field :date_publication
-      field :cover_image
-      field :scanned_file
+      field :cover_image do
+        help I18n.t('admin.help.image')
+      end
+      field :scanned_file do
+        help I18n.t('admin.help.file')
+      end
     end
   end
 

@@ -322,9 +322,12 @@ class Publication < ApplicationRecord
       field :publication_language do
         help I18n.t('admin.help.only_active_languages')
       end
-      field :cover_image
+      field :cover_image do
+        help I18n.t('admin.help.image')
+      end
       field :scanned_file do
         css_class 'publication-file'
+        help I18n.t('admin.help.file')
       end
 
       field :translations do

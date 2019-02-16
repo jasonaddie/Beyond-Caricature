@@ -216,7 +216,9 @@ class Illustration < ApplicationRecord
 
     # form
     edit do
-      field :image
+      field :image do
+        help I18n.t('admin.help.image')
+      end
       field :illustrator
       field :translations do
         label I18n.t('labels.translations')

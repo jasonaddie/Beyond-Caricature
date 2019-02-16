@@ -152,7 +152,9 @@ class Illustrator < ApplicationRecord
       field :translations do
         label I18n.t('labels.translations')
       end
-      field :image
+      field :image do
+        help I18n.t('admin.help.image')
+      end
       field :date_birth
       field :date_death
     end

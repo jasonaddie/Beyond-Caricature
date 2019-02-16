@@ -170,6 +170,8 @@ en:
       missing_annotation_image: After you load an illustration, the image will appear here.
       annotation:
         add: Place marker on image
+      image: Only jpg, jpeg or png files are allowed. Image must be less than 5MB.
+      file: Only PDF files are allowed. There is no size limit.
     errors:
       required_for_publication: is required for making the language public
       required_related_item: is required
