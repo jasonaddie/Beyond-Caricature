@@ -95,7 +95,7 @@ class User < ApplicationRecord
 
     # configuration
     configure :role do
-      enum User.roles_for_select
+      # enum User.roles_for_select
       pretty_value do
         bindings[:object].role_formatted
       end

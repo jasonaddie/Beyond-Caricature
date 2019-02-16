@@ -143,7 +143,7 @@ class RelatedItem < ApplicationRecord
     end
 
     configure :related_item_type do
-      enum RelatedItem.related_item_types_for_select
+      # enum RelatedItem.related_item_types_for_select
       pretty_value do
         bindings[:object].related_item_type_formatted
       end

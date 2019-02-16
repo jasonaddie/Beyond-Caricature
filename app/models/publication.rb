@@ -185,7 +185,7 @@ class Publication < ApplicationRecord
       end
     end
     configure :publication_type do
-      enum Publication.publication_types_for_select
+      # enum Publication.publication_types_for_select
       pretty_value do
         bindings[:object].publication_type_formatted
       end
