@@ -14,11 +14,9 @@ function update_sortable_sort_values(){
       })
 
       // if this is annotations, also update the narker numbers
-      if ($tab_content.hasClass('annotations')){
-        $tab_content.find('.marker .marker-number').each(function(index){
-          $(this).html(index+1);
-        })
-      }
+      var annotate_imgs = new annotate_image();
+      annotate_imgs.remove_markers();
+      annotate_imgs.add_markers();
     }
   });
 }

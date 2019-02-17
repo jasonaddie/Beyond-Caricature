@@ -37,7 +37,7 @@ function annotate_image(){
   //////////////////////////////////////////////////////
   // if there are annotations on record,
   // add the markers on the image and in each tab pane
-  function add_markers(){
+  this.add_markers = function(){
     var $tab_panes = $('.tab-content.annotations > .fields.tab-pane')
     var $existing_markers = $img_container.find('.marker')
     var img_width = $img.width()
@@ -68,6 +68,13 @@ function annotate_image(){
         }
       });
     }
+  }
+
+  //////////////////////////////////////////////////////
+  // delete all markers on the image and in the tab panes
+  this.remove_markers = function(){
+    $('.tab-content.annotations > .fields.tab-pane > .marker').remove()
+    $img_container.find('.marker').remove()
   }
 
 

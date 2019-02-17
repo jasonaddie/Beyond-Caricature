@@ -10,6 +10,7 @@ These are items that are have been finished, but not released yet.
 ### Fixed
 - In Publication Editor form fields and Illustration Annotation form fields, switching language tabs properly works now
 - If pre-defined lists (i.e., publication types) are translated in the forms, on edit, an existing value is not properly selected. As temporary fix, turned off translating pre-defined lists
+- Illustration annotation marker numbers are properly updated after sorting
 
 ## [0.7] - 2019-01-30
 ### Fixed
