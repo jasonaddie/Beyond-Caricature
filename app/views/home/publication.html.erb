@@ -80,7 +80,7 @@
   </li>
   <% if (@publication.book? || @publication.original?) && @publication.scanned_file.present? %>
     <li>
-      <%= link_to t('labels.view_file'), @publication.scanned_file.url, target: :blank %>
+      <%= link_to t('labels.view_file_with_size', size: number_to_human_size(@publication.scanned_file_size)), @publication.scanned_file.url, target: :blank %>
     </li>
   <% end %>
 

@@ -127,7 +127,7 @@ class Issue < ApplicationRecord
       pretty_value do
         if bindings[:object].scanned_file.present?
           bindings[:view].content_tag(:a,
-            I18n.t('labels.view'),
+            I18n.t('labels.view_file_with_size', size: ActionController::Base.helpers.number_to_human_size(bindings[:object].scanned_file_size)),
             href: bindings[:object].scanned_file.url,
             target: '_blank',
             class: 'btn btn-info btn-sm'
