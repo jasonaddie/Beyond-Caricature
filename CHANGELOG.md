@@ -12,6 +12,8 @@ These are items that are have been finished, but not released yet.
 - In Publication Editor form fields and Illustration Annotation form fields, switching language tabs properly works now
 - If pre-defined lists (i.e., publication types) are translated in the forms, on edit, an existing value is not properly selected. As temporary fix, turned off translating pre-defined lists
 - Illustration annotation marker numbers are properly updated after sorting
+- News/Research Slideshow and Illustration Annotation sections are visible by default if items exist in the section
+- Illustration Annotation markers are loaded by default when an existing record is opened
 
 ## [0.7] - 2019-01-30
 ### Fixed

@@ -15,6 +15,10 @@ body.rails_admin .form-horizontal .tab-content .tab-pane{
   margin-bottom: 25px;
 }
 
+.nav-tabs.disabled{
+  display: none !important;
+}
+
 .nav-tabs > li > a,
 .nav-tabs > li.active > a, .nav-tabs > li.active > a:hover, .nav-tabs > li.active > a:focus{
   outline: none;

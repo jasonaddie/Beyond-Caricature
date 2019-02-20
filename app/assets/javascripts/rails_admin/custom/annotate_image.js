@@ -88,7 +88,7 @@ function annotate_image(){
   // - if image is not in section, load it
   // this event is the same event that is called via nested form hooks
   //  https://github.com/sferik/rails_admin/blob/master/app/assets/javascripts/rails_admin/ra.nested-form-hooks.coffee
-  $(document).on('nested:fieldAdded', 'form .has_many_association_type.illustration_annotations_field', function(content){
+  this.show_image_section = function(){
     reload_vars()
 
     // check if image is in section, if not load it
@@ -102,30 +102,7 @@ function annotate_image(){
       // now that the image is loaded, show the markers
       add_markers();
     })
-
-    // update temp-id-placeholder with real number
-    // need to replace in each tab and each tab-pane
-    var placeholder = '[temp-id-placeholder]';
-    var temp_id = new Date().getTime().toString();
-    $(content.field).find('.controls .nav li a').each(function(){
-      $(this).data('target', $(this).data('target').replace(placeholder, temp_id))
-    })
-    $(content.field).find('.tab-content .tab-pane').each(function(){
-      // find the class
-      var cls;
-      this.classList.forEach(function(value) {
-        if (cls === undefined && value.includes(placeholder)){
-          cls = value;
-        }
-      });
-
-      // update the class name
-      if (cls){
-        // $(this).toggleClass("'" + cls + " " + cls.replace(placeholder, temp_id) + "'")
-        $(this).addClass(cls.replace(placeholder, temp_id)).removeClass(cls)
-      }
-    })
-  });
+  }
 
 
   //////////////////////////////////////////////////////
@@ -222,9 +199,18 @@ function annotate_image(){
   //////////////////////////////////////////////////////
   // on page load, if this is illustration form
   // add mask div
+  // load markers if data already exists
   if ($img_container.length){
     $('form').append('<div class="mask"></div>')
     $('form').addClass('has-mask')
+
+    if ($('.tab-content.annotations').is(':visible') && $('.tab-content.annotations > div').length > 0){
+      // let's wait for the image to load before adding markers
+      // so markers will be placed in the correct spot
+      setTimeout(function() {
+        add_markers()
+      }, 2000);
+    }
   }
 
 

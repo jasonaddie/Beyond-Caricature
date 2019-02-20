@@ -6,6 +6,7 @@
       = form.link_to_add "<i class=\"icon-plus icon-white\"></i> #{wording_for(:link, :new, field.associated_model_config.abstract_model)}".html_safe, field.name, { class: 'btn btn-info' }
   = form.errors_for(field)
   = form.help_for(field)
+  %ul.nav.nav-tabs.disabled
 
 .tab-content.sort-items
   %span{class: 'help-block'}

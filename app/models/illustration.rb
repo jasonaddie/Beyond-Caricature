@@ -175,6 +175,11 @@ class Illustration < ApplicationRecord
       end
     end
     configure :illustration_annotations do
+      # determine if the has many block should be open when page loads
+      active do
+        bindings[:object].illustration_annotations.present?
+      end
+
       # show list of annotations
       pretty_value do
         bindings[:view].content_tag(:ol) do

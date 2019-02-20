@@ -111,6 +111,11 @@ class News < ApplicationRecord
       html_attributes required: required? && !value.present?, accept: 'image/*'
     end
     configure :slideshows do
+      # determine if the has many block should be open when page loads
+      active do
+        bindings[:object].slideshows.present?
+      end
+
       # show list of images in slideshow
       pretty_value do
         bindings[:view].content_tag(:ul, class: 'list-unstyled') do
