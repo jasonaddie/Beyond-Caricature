@@ -64,4 +64,16 @@ Rails.application.configure do
 
   config.action_mailer.default_url_options = { host: ENV['APP_HOST_URL'] }
 
+  # mailcatcher settings
+  config.action_mailer.delivery_method = :smtp
+  config.action_mailer.smtp_settings = { :address => "127.0.0.1", :port => 1025 }
+
+  Rails.application.config.middleware.use ExceptionNotification::Rack,
+    email: {
+      :email_prefix => "[Beyond Caricature Error] ",
+      :sender_address => ENV['APPLICATION_FEEDBACK_FROM_EMAIL'],
+      :exception_recipients => [ENV['APPLICATION_FEEDBACK_TO_EMAIL']]
+    }
+
+
 end
