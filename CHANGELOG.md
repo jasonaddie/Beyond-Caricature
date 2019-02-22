@@ -4,6 +4,9 @@ The numbers in brackets (i.e., [0.1]), indicate the version number of the app.
 ## [Unreleased]
 These are items that are have been finished, but not released yet.
 
+None yet.
+
+## [0.8] - 2019-02-22
 ### Added
 - Help text for image and file form fields to indicate what file types are allowed and any file size limits
 - Link to view PDFs now include file size
