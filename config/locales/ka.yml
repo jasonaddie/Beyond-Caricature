@@ -7,12 +7,15 @@ ka:
       illustration:
         one: Illustration
         other: Illustrations
+      illustration_annotation:
+        one: Annotation
+        other: Annotations
       illustration_issue:
         one: Illustration Issue
         other: Illustration Issues
       illustration_publication:
-        one: Illustration Publication
-        other: Illustration Publications
+        one: Illustration Source
+        other: Illustration Sources
       illustration_tag:
         one: Illustration Tag
         other: Illustration Tags
@@ -26,14 +29,14 @@ ka:
         one: News Item
         other: News
       publication:
-        one: Publication
-        other: Publications
+        one: Source
+        other: Sources
       publication_editor:
         one: Journal Editor
         other: Journal Editors
       publication_language:
-        one: Publication Language
-        other: Publication Languages
+        one: Language
+        other: Languages
       related_item:
         one: Related Item
         other: Related Items
@@ -70,11 +73,16 @@ ka:
         date_publish: Date Made Public
         title: Title
         context: Context
+        illustration_annotation: Annotation
+        illustration_annotations: Annotations
       illustration/translation:
         is_public: Is Public?
         date_publish: Date Made Public
         title: Title
         context: Context
+      illustration_annotations:
+        sort: Sort
+        annotation: Annotation
       illustration_issue:
         illustration_id: Illustration
         issue_id: Issue
@@ -83,7 +91,7 @@ ka:
         is_public:
       illustration_publication:
         illustration_id: Illustration
-        publication_id: Publication
+        publication_id: Source
         page_number_start: Page Number Start
         page_number_end: Page Number End
         is_public: Is Public?
@@ -102,7 +110,7 @@ ka:
         name: Name
         bio: Biography
       issue:
-        publication_id: Publication
+        publication_id: Journal
         issue_number: Issue Number
         date_publication: Publication Date
         is_public: Is Public?
@@ -121,7 +129,7 @@ ka:
         related_item: Related Item
         related_items: Related Items
         related_item_type: Type
-        publication_id: Publication
+        publication_id: Source
         issue_id: Issue
         illustration_id: Illustration
         illustrator_id: Illustrator
@@ -132,15 +140,15 @@ ka:
         summary: Summary
         text: Text
       publication:
-        publication_type: Publication Type
+        publication_type: Source Type
         publication_types:
           journal: Journal
           book: Book
           original: Original
-        publication_language_id: Publication Language
+        publication_language_id: Language
         is_public: Is Public?
         date_publish: Date Made Public
-        year: Publication Year
+        year: Year
         title: Title
         about: About
         editor: Editor
@@ -170,11 +178,11 @@ ka:
       related_item:
         related_item_type: Type
         related_item_types:
-          publication: Publication
+          publication: Source
           issue: Issue
           illustration: Illustration
           illustrator: Illustrator
-        publication_id: Publication
+        publication_id: Source
         issue_id: Issue
         illustration_id: Illustration
         illustrator_id: Illustrator
@@ -211,18 +219,19 @@ ka:
     translations: Translation Fields
     illustration_count: Illustrations on File
     issue_count: Issues on File
-    combined_publications_count: Publication Illustrations
+    combined_publications_count: Source Illustrations
     is_public_status: Public Status
     required_for_publication: Required fields for making public are missing
     language_error: "%{lang} Error: %{msg}"
     language_switcher: Language Switcher
     view: View
     view_file: View PDF
+    view_file_with_size: View PDF (%{size})
     news: News
     research: Research
     related_items: Releated Items
     slideshow: Slideshow
-    publications: Publications
+    publications: Sources
     illustrations: Illustrations
     illustrators: Illustrators
     issues: Issues
@@ -235,7 +244,7 @@ ka:
       publication_language: Language
       illustration_count: Illustrations
       issue_count: Issues
-      publication_count: Publications
+      publication_count: Sources
       publication_year: Year
       creation_year: Year
       editor: Editor
