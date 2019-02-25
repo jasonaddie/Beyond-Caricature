@@ -259,6 +259,7 @@ en:
       published_in: Published In
       date_birth: Born
       date_death: Died
+      tags: Tags
   messages:
     no_data: There is no data on record at this time.
     no_issues: There are no issues on record at this time.

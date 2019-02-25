@@ -43,6 +43,19 @@
     </li>
   <% end %>
 
+  <% if @illustration.tags.present? %>
+    <strong><%= t('labels.meta.tags') %>:</strong>
+    <li>
+      <ul>
+        <% @illustration.tags.each do |tag| %>
+          <li>
+            <%= link_to tag.name, illustrations_path(tag: tag.id) %>
+          </li>
+        <% end %>
+      </ul>
+    </li>
+  <% end %>
+
   <% if @illustration.related_items.present? %>
     <strong><%= t('labels.meta.in_the_news') %>:</strong>
     <li>
