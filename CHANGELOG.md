@@ -4,7 +4,12 @@ The numbers in brackets (i.e., [0.1]), indicate the version number of the app.
 ## [Unreleased]
 These are items that are have been finished, but not released yet.
 
-None yet.
+### Added
+- Tags to public Illustration page
+
+### Fixed
+- Updated text label from Publication to Source
+- Language switcher now uses the correct locale slug
 
 ## [0.8] - 2019-02-22
 ### Added
