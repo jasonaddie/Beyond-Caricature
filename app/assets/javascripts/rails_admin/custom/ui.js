@@ -7,6 +7,7 @@
 //= require rails_admin/custom/update_sortable_sort_values
 //= require rails_admin/custom/annotate_image
 //= require rails_admin/custom/ra.nested-form-hooks
+//= require rails_admin/custom/globalize_tabs
 
 
 // get ckeditor to work nicely with turbolinks

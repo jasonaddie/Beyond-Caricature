@@ -32,7 +32,7 @@ $(document).on 'nested:fieldAdded', 'form', (content) ->
   # - need to replace in each tab and each tab-pane
   if content.field.find('.nav.globalize-tabs').length > 0
     placeholder = '[temp-id-placeholder]'
-    temp_id = new Date().getTime().toString();
+    temp_id = new Date().getTime().toString()
     content.field.find('.controls .nav li a').each (i, element) ->
       $(element).data('target', $(element).data('target').replace(placeholder, temp_id))
     content.field.find('.tab-content .tab-pane').each (i, element) ->

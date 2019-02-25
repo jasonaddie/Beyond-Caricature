@@ -11,6 +11,7 @@ These are items that are have been finished, but not released yet.
 - Updated text label from Publication to Source
 - Slug generation (unique URL name) is only created if the title is entered for the slug
 - Language switcher now uses the correct locale slug
+- New form with language tabs - changing tabs properly changes the associated language form fields
 
 ## [0.8] - 2019-02-22
 ### Added
