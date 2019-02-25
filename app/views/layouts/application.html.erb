@@ -27,7 +27,14 @@
       <%= link_to t('labels.about'), about_path %>
       &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
       <% I18n.available_locales.each do |locale| %>
-        <%= link_to locale, request.params.merge(locale: locale), title: I18n.t("languages.#{locale}") %>
+        <%= generate_language_switcher_link(
+              locale,
+              @lang_switcher_record,
+              @lang_switcher_has_translations,
+              @lang_switcher_params_key,
+              @lang_switcher_is_public,
+              @lang_switcher_fallback_url
+            ) %>
       <% end %>
     </nav>
 

@@ -1,4 +1,11 @@
 <% pub = Publication %>
+<%
+  @lang_switcher_record = @publication
+  @lang_switcher_has_translations = true
+  @lang_switcher_params_key = :id
+  @lang_switcher_is_public = true
+  @lang_switcher_fallback_url = publications_path
+%>
 
 <h1><%= @publication.title %></h1>
 

@@ -1,3 +1,10 @@
+<%
+  @lang_switcher_record = @research
+  @lang_switcher_has_translations = true
+  @lang_switcher_params_key = :id
+  @lang_switcher_is_public = true
+  @lang_switcher_fallback_url = researches_path
+%>
 <h1><%= @research.title %></h1>
 
 <div>

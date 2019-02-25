@@ -58,26 +58,26 @@ class RelatedItem < ApplicationRecord
   #################
   # return the title of the published item this record is tied to
   def item_title
-    if self.publication?
+    if self.publication.present?
       self.publication.title
-    elsif self.issue?
+    elsif self.issue.present?
       self.issue.full_title
-    elsif self.illustration?
+    elsif self.illustration.present?
       self.illustration.title
-    elsif self.illustrator?
+    elsif self.illustrator.present?
       self.illustrator.name
     end
   end
 
   # return the link to the published item this record is tied to
   def item_link
-    if self.publication?
+    if self.publication.present?
       Rails.application.routes.url_helpers.publication_path(I18n.locale, self.publication)
-    elsif self.issue?
+    elsif self.issue.present?
       Rails.application.routes.url_helpers.issue_path(I18n.locale, self.issue.publication, self.issue)
-    elsif self.illustration?
+    elsif self.illustration.present?
       Rails.application.routes.url_helpers.illustration_path(I18n.locale, self.illustration)
-    elsif self.illustrator?
+    elsif self.illustrator.present?
       Rails.application.routes.url_helpers.illustrator_path(I18n.locale, self.illustrator)
     end
   end

@@ -1,3 +1,10 @@
+<%
+  @lang_switcher_record = @illustration
+  @lang_switcher_has_translations = true
+  @lang_switcher_params_key = :id
+  @lang_switcher_is_public = true
+  @lang_switcher_fallback_url = illustrations_path
+%>
 <h1><%= @illustration.title %></h1>
 
 <div>
