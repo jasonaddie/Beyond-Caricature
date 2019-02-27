@@ -145,6 +145,7 @@ az:
           journal: Journal
           book: Book
           original: Original
+        publication_language: Language
         publication_language_id: Language
         is_public: Is Public?
         date_publish: Date Made Public

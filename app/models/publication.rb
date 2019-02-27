@@ -267,10 +267,10 @@ class Publication < ApplicationRecord
       field :publication_language
       field :title
       field :issue_count do
-        label "Issues on File"
+        label I18n.t('labels.issue_count')
       end
       field :illustration_count do
-        label "Illustrations on File"
+        label I18n.t('labels.illustration_count')
       end
       field :date_publish
     end

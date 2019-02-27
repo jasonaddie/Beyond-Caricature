@@ -6,9 +6,11 @@ These are items that are have been finished, but not released yet.
 
 ### Added
 - Tags to public Illustration page
+- Caption to News/Research slideshow images
 
 ### Fixed
 - Updated text label from Publication to Source
+- Updated public url for /publications to /sources
 - Slug generation (unique URL name) is only created if the title is entered for the slug
 - Language switcher now uses the correct locale slug
 - New form with language tabs - changing tabs properly changes the associated language form fields
