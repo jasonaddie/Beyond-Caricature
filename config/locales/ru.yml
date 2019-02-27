@@ -204,6 +204,9 @@ ru:
       slideshow:
         image: Image
         sort: Sort Order
+        caption: Caption
+      slideshow/translation:
+        caption: Caption
       tag:
         name: Name
       user:

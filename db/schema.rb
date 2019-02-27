@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_01_29_163406) do
+ActiveRecord::Schema.define(version: 2019_02_27_192229) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -189,6 +189,7 @@ ActiveRecord::Schema.define(version: 2019_01_29_163406) do
     t.string "cover_image_uid"
     t.string "scanned_file_uid"
     t.string "slug"
+    t.integer "scanned_file_size"
     t.index ["date_publication"], name: "index_issues_on_date_publication"
     t.index ["date_publish"], name: "index_issues_on_date_publish"
     t.index ["is_public"], name: "index_issues_on_is_public"
@@ -354,6 +355,7 @@ ActiveRecord::Schema.define(version: 2019_01_29_163406) do
     t.string "cover_image_uid"
     t.string "scanned_file_uid"
     t.string "slug"
+    t.integer "scanned_file_size"
     t.index ["publication_language_id"], name: "index_publications_on_publication_language_id"
     t.index ["publication_type"], name: "index_publications_on_publication_type"
     t.index ["slug"], name: "index_publications_on_slug", unique: true
@@ -403,6 +405,16 @@ ActiveRecord::Schema.define(version: 2019_01_29_163406) do
     t.string "cover_image_uid"
     t.string "slug"
     t.index ["slug"], name: "index_researches_on_slug", unique: true
+  end
+
+  create_table "slideshow_translations", force: :cascade do |t|
+    t.integer "slideshow_id", null: false
+    t.string "locale", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.string "caption"
+    t.index ["locale"], name: "index_slideshow_translations_on_locale"
+    t.index ["slideshow_id"], name: "index_slideshow_translations_on_slideshow_id"
   end
 
   create_table "slideshows", force: :cascade do |t|

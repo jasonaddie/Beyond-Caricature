@@ -85,7 +85,7 @@ RailsAdmin.config do |config|
     'PublicationEditor', 'PublicationEditor::Translation',
     'Issue',
     'Highlight', 'Highlight::Translation',
-    'Slideshow',
+    'Slideshow', 'Slideshow::Translation',
     'RelatedItem'
   ]
 
@@ -195,6 +195,14 @@ RailsAdmin.config do |config|
         end
       end
     end
+  end
+
+  config.model 'Slideshow::Translation' do
+    visible false
+    configure :locale, :hidden do
+      help ''
+    end
+    include_fields :locale, :caption
   end
 
   config.model 'Tag::Translation' do

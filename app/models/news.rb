@@ -132,7 +132,8 @@ class News < ApplicationRecord
         bindings[:view].content_tag(:ul, class: 'list-unstyled') do
           bindings[:object].slideshows.sorted.collect do |slideshow_image|
             bindings[:view].content_tag(:li) do
-              bindings[:view].tag(:img, { :src => slideshow_image.image.thumb('400x').url })
+              bindings[:view].tag(:img, { :src => slideshow_image.image.thumb('400x').url }) +
+              bindings[:view].content_tag(:div, slideshow_image.caption, class: 'image-caption')
             end
           end.join.html_safe
         end

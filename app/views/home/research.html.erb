@@ -24,6 +24,9 @@
     <% @research.slideshows.each do |image| %>
       <li>
         <%= image_tag image.image.thumb('300x200#').url if image.image_stored? %>
+        <% if image.caption.present? %>
+          <div class="image-caption"><%= image.caption %></div>
+        <% end %>
       </li>
     <% end %>
   </ul>

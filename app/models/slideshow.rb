@@ -30,6 +30,12 @@ class Slideshow < ApplicationRecord
   belongs_to :imageable, polymorphic: true
 
   #################
+  ## TRANSLATIONS ##
+  #################
+  translates :caption, :versioning => :paper_trail
+  accepts_nested_attributes_for :translations, allow_destroy: true
+
+  #################
   ## VALIDATION ##
   #################
   validates :sort, presence: true
@@ -54,6 +60,8 @@ class Slideshow < ApplicationRecord
     # group with News in navigation
     parent News
 
+    configure :translations, :globalize_tabs
+
     # configuration
     configure :image do
       html_attributes accept: 'image/*'
@@ -67,6 +75,9 @@ class Slideshow < ApplicationRecord
     edit do
       field :image do
         help I18n.t('admin.help.image')
+      end
+      field :translations do
+        label I18n.t('labels.translations')
       end
       # hide the field since the user controls the sort by dragging fields
       field :sort, :hidden do
