@@ -4,11 +4,11 @@ class HomeController < ApplicationController
     @highlights = Highlight.published.sort_published_desc
   end
 
-  def publications
+  def sources
     @publications = Publication.published.sort_published_desc
   end
 
-  def publication
+  def source
     @publication = Publication.friendly.published.find(params[:id])
   end
 

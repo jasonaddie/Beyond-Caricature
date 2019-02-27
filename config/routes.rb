@@ -18,17 +18,17 @@ Rails.application.routes.draw do
     match "/admin", to: redirect("/admin?locale=#{I18n.locale}"), via: :all
 
     # public pages
-    get '/publications', to: 'home#publications', as: 'publications'
-    get '/publications/:id', to: 'home#publication', as: 'publication'
-    get '/publications/:publication_id/issue/:id', to: 'home#issue', as: 'issue'
+    get '/sources', to: 'home#sources', as: 'sources'
+    get '/sources/:id', to: 'home#source', as: 'source'
+    get '/sources/:publication_id/issue/:id', to: 'home#issue', as: 'issue'
     get '/illustrations', to: 'home#illustrations', as: 'illustrations'
     get '/illustrations/:id', to: 'home#illustration', as: 'illustration'
     get '/illustrators', to: 'home#illustrators', as: 'illustrators'
     get '/illustrators/:id', to: 'home#illustrator', as: 'illustrator'
     get '/news', to: 'home#news', as: 'news_index'
     get '/news/:id', to: 'home#news_item', as: 'news'
-    get '/researches', to: 'home#researches', as: 'researches'
-    get '/researches/:id', to: 'home#research', as: 'research'
+    get '/research', to: 'home#researches', as: 'researches'
+    get '/research/:id', to: 'home#research', as: 'research'
     get '/about', to: 'home#about', as: 'about'
 
 

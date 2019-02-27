@@ -7,12 +7,12 @@
     <% @publications.each do |publication| %>
       <li>
         <div>
-          <%= link_to publication_path(publication) do %>
+          <%= link_to source_path(publication) do %>
             <%= image_tag publication.cover_image.thumb('100x100#').url if publication.cover_image_stored? %>
           <% end %>
         </div>
         <div>
-          <%= link_to publication.title, publication_path(publication) %>
+          <%= link_to publication.title, source_path(publication) %>
         </div>
         <ul>
           <li>

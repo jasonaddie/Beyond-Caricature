@@ -72,7 +72,7 @@ class RelatedItem < ApplicationRecord
   # return the link to the published item this record is tied to
   def item_link
     if self.publication.present?
-      Rails.application.routes.url_helpers.publication_path(I18n.locale, self.publication)
+      Rails.application.routes.url_helpers.source_path(I18n.locale, self.publication)
     elsif self.issue.present?
       Rails.application.routes.url_helpers.issue_path(I18n.locale, self.issue.publication, self.issue)
     elsif self.illustration.present?

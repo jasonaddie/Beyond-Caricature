@@ -28,7 +28,7 @@
         <% if @illustration.publications.present? %>
           <% @illustration.publications.each do |publication| %>
             <li>
-              <%= link_to publication.title, publication_path(publication) %>
+              <%= link_to publication.title, source_path(publication) %>
             </li>
           <% end %>
         <% end %>
