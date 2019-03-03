@@ -15,12 +15,14 @@ $(document).on 'nested:fieldAdded', 'form', (content) ->
   one_to_one = controls.data('nestedone') != undefined
   nav = controls.children('.nav')
   tab_content = parent_group.children('.tab-content')
+  tab_footer = parent_group.children('.tab-content-footer')
   toggler = controls.find('.toggler')
   nav.append(new_tab)
   $(window.document).trigger('rails_admin.dom_ready', [field, parent_group]) # fire dom_ready for new player in town
   new_tab.children('a').tab('show') # activate added tab
   nav.select(':hidden').show('slow') unless one_to_one # show nav if hidden
   tab_content.select(':hidden').show('slow') # show tabs content if hidden
+  tab_footer.select(':hidden').show('slow') # show tabs footer if hidden
   # toggler 'on' if inactive
   toggler.addClass('active').removeClass('disabled').children('i').addClass('icon-chevron-down').removeClass('icon-chevron-right')
 

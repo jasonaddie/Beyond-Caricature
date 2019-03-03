@@ -97,6 +97,7 @@ ul.is-public-status li.public{
 @media(min-width: 768px){
   .has_many_association_type .annotation-image{
     width: calc(50% - 30px);
+    float: left;
   }
 }
 
@@ -137,9 +138,22 @@ ul.is-public-status li.public{
 @media(min-width: 768px){
   .has_many_association_type .tab-content.annotations {
     width: calc(50% - 30px);
+    float: left;
+    clear: unset !important;
   }
   .has_many_association_type .tab-content.annotations .fields.tab-pane{
     margin-left: 0;
+  }
+}
+
+.has_many_association_type .tab-content-footer.annotations {
+  display: inline-block;
+  width: 100%;
+}
+@media(min-width: 768px){
+  .has_many_association_type .tab-content-footer.annotations {
+    width: calc(50% - 30px);
+    float: right;
   }
 }
 
@@ -149,7 +163,7 @@ ul.is-public-status li.public{
   margin-bottom: 25px;
 }
 .tab-content.sort-items > .fields.tab-pane{
-  display: block !important;
+  display: block;
   margin-bottom: 10px !important;
 }
 
@@ -170,7 +184,12 @@ body.rails_admin .form-horizontal .tab-content.sort-items .tab-pane:hover > span
   display: inline-block !important;
   margin-left: 20px;
 }
-
+.tab-content-footer.sort-items{
+  display: none;
+  .btn-group{
+    margin-left: 235px;
+  }
+}
 /* nested form with annotations */
 
 form.has-mask{

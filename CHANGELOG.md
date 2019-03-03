@@ -7,6 +7,7 @@ These are items that are have been finished, but not released yet.
 ### Added
 - Tags to public Illustration page
 - Caption to News/Research slideshow images
+- In News/Research slideshows and Illustration annotation, added a new 'add' button to the bottom of the section so user does not have to scroll up to click on add button at the top of the section
 
 ### Fixed
 - Updated text label from Publication to Source
@@ -14,6 +15,7 @@ These are items that are have been finished, but not released yet.
 - Slug generation (unique URL name) is only created if the title is entered for the slug
 - Language switcher now uses the correct locale slug
 - New form with language tabs - changing tabs properly changes the associated language form fields
+- Delete button now works for News/Research slideshows and Illustration annotation
 
 ## [0.8] - 2019-02-22
 ### Added
