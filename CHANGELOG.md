@@ -8,6 +8,7 @@ These are items that are have been finished, but not released yet.
 - Tags to public Illustration page
 - Caption to News/Research slideshow images
 - In News/Research slideshows and Illustration annotation, added a new 'add' button to the bottom of the section so user does not have to scroll up to click on add button at the top of the section
+- Logo to admin header
 
 ### Fixed
 - Updated text label from Publication to Source

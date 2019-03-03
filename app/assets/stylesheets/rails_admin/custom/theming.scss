@@ -9,6 +9,12 @@ body.rails_admin{
   font-family: 'SourceSansPro';
 }
 
+/* logo */
+.navbar-brand img.logo{
+  width: 50px;
+  margin-top: -9px;
+}
+
 
 body.rails_admin .form-horizontal .tab-content .tab-pane{
   border-bottom: 1px solid #ddd;
