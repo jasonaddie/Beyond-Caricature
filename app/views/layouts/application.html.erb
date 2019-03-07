@@ -1,48 +1,28 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>BeyondCaricature</title>
+    <title>Beyond Caricature</title>
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
 
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.7.4/css/bulma.min.css" integrity="sha256-8B1OaG0zT7uYA572S2xOxWACq9NXYPQ+U5kHPV1bJN4=" crossorigin="anonymous" />
     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
   </head>
 
-  <body>
+  <body class="has-navbar-fixed-top">
 
-    <nav style="position: fixed; top: 0; height: 40px;">
-      <%= link_to t('meta.site_name'), root_path %>
-      |
-      <%= link_to t('labels.publications'), sources_path %>
-      |
-      <%= link_to t('labels.illustrations'), illustrations_path %>
-      |
-      <%= link_to t('labels.illustrators'), illustrators_path %>
-      |
-      <%= link_to t('labels.news'), news_index_path %>
-      |
-      <%= link_to t('labels.research'), researches_path %>
-      |
-      <%= link_to t('labels.about'), about_path %>
-      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-      <% I18n.available_locales.each do |locale| %>
-        <%= generate_language_switcher_link(
-              locale,
-              @lang_switcher_record,
-              @lang_switcher_has_translations,
-              @lang_switcher_params_key,
-              @lang_switcher_is_public,
-              @lang_switcher_fallback_url
-            ) %>
-      <% end %>
-    </nav>
+    <%= render partial: 'layouts/application/navbar' %>
 
-    <div style="margin-top: 40px;">
+    <main style="margin-top: 40px;">
       <p class="notice"><%= notice %></p>
       <p class="alert"><%= alert %></p>
 
       <%= yield %>
-    </div>
+    </main>
+
+    <%= render partial: 'layouts/application/footer' %>
+
   </body>
 </html>

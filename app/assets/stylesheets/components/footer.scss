@@ -1,0 +1,19 @@
+@import 'vars';
+
+// this is here to make sticky footer
+html, body {
+  height: 100%;
+}
+body {
+  display: flex;
+  flex-direction: column;
+}
+main {
+  flex: 1 0 auto;
+}
+footer{
+  flex-shrink: 0;
+  color: $footer-color;
+  font-weight: 300;
+  font-size: 18px;
+}

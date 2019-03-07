@@ -5,7 +5,7 @@
   @lang_switcher_is_public = true
   @lang_switcher_fallback_url = illustrators_path
 %>
-<h1><%= @illustrator.name %></h1>
+<h1 class="title is-3"><%= @illustrator.name %></h1>
 
 <div>
   <%= image_tag @illustrator.image.thumb('300x200#').url if @illustrator.image_stored? %>

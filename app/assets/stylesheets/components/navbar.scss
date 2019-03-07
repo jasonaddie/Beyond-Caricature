@@ -1,0 +1,45 @@
+@import 'vars';
+
+.navbar{
+  .navbar-start{
+    .navbar-item{
+      position: relative;
+      font-weight: 600;
+      font-size: 20px;
+      color: $nav-start-color;
+      &.is-active:after, &:hover:after{
+        content:"";
+        position:absolute;
+        left:0;
+        bottom:0;
+        right:0;
+        margin:auto;
+        background:$nav-start-active-color;
+        height:7px;
+      }
+    }
+
+  }
+  .navbar-end{
+    .navbar-item.locales{
+      font-weight: 600;
+      font-size: 18px;
+      text-transform: uppercase;
+      color: $nav-end-color;
+      .navbar-link span{
+        padding: 0 5px;
+      }
+      .navbar-link span, .navbar-item.is-active{
+        background-color: $nav-end-color;
+        color: #fff;
+      }
+      .navbar-item{
+        color: $nav-end-color;
+      }
+    }
+  }
+}
+
+.navbar-link:not(.is-arrowless):after{
+  all: unset !important;
+}

@@ -243,6 +243,9 @@ en:
     all_research: All Research
     about: About
     highlights: Highlights
+    home: Home
+    contact: 'Contact:'
+    followus: 'Follow us on:'
     meta:
       publication_type: Type
       publication_language: Language

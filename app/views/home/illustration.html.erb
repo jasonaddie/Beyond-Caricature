@@ -5,7 +5,7 @@
   @lang_switcher_is_public = true
   @lang_switcher_fallback_url = illustrations_path
 %>
-<h1><%= @illustration.title %></h1>
+<h1 class="title is-3"><%= @illustration.title %></h1>
 
 <div>
   <%= image_tag @illustration.image.thumb('50x50%').url if @illustration.image_stored? %>
@@ -73,7 +73,7 @@
 
 
 <% if @illustration.illustration_annotations.sorted.present? && @illustration.image_stored? %>
-  <h2><%= t('labels.annotations') %></h2>
+  <h2 class="title is-4"><%= t('labels.annotations') %></h2>
 
   <div class='annotation-markers'>
     <%= image_tag @illustration.image.thumb('40x40%').url %>

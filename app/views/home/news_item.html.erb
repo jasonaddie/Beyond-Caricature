@@ -5,7 +5,7 @@
   @lang_switcher_is_public = true
   @lang_switcher_fallback_url = news_index_path
 %>
-<h1><%= @news_item.title %></h1>
+<h1 class="title is-3"><%= @news_item.title %></h1>
 
 <div>
   <%= image_tag @news_item.cover_image.thumb('300x200#').url if @news_item.cover_image_stored? %>
@@ -18,7 +18,7 @@
 </div>
 
 <% if @news_item.slideshows.present? %>
-  <h2><%= t('labels.slideshow') %></h2>
+  <h2 class="title is-4"><%= t('labels.slideshow') %></h2>
 
   <ul>
     <% @news_item.slideshows.each do |image| %>
@@ -34,7 +34,7 @@
 
 
 <% if @news_item.related_items.present? %>
-  <h2><%= t('labels.related_items') %></h2>
+  <h2 class="title is-4"><%= t('labels.related_items') %></h2>
 
   <ul>
     <% @news_item.related_items.each do |related_item| %>

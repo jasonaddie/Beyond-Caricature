@@ -1,0 +1,61 @@
+/*
+ * This is a manifest file that'll be compiled into application.css, which will include all the files
+ * listed below.
+ *
+ * Any CSS and SCSS file within this directory, lib/assets/stylesheets, or any plugin's
+ * vendor/assets/stylesheets directory can be referenced here using a relative path.
+ *
+ * You're free to add application-wide styles to this file and they'll appear at the bottom of the
+ * compiled file so the styles you add here take precedence over styles defined in any other CSS/SCSS
+ * files in this directory. Styles in this file should be added after the last require_* statement.
+ * It is generally better to create a new file per style scope.
+ *
+ *= require_tree .
+ *= stub 'admin'
+ *= require_self
+ */
+
+@font-face {
+  font-family: 'Montserrat';
+  src: font-url('Montserrat-Regular.otf') format("opentype");
+  font-weight: 400;
+  font-style: normal;
+}
+@font-face {
+  font-family: 'Montserrat';
+  src: font-url('Montserrat-Light.otf') format("opentype");
+  font-weight: 300;
+  font-style: normal;
+}
+@font-face {
+  font-family: 'Montserrat';
+  src: font-url('Montserrat-Bold.otf') format("opentype");
+  font-weight: 700;
+  font-style: normal;
+}
+@font-face {
+  font-family: 'Montserrat';
+  src: font-url('Montserrat-SemiBold.otf') format("opentype");
+  font-weight: 600;
+  font-style: normal;
+}
+@font-face {
+  font-family: 'Montserrat';
+  src: font-url('Montserrat-ExtraLight.otf') format("opentype");
+  font-weight: 200;
+  font-style: normal;
+}
+@font-face {
+  font-family: 'MontserratBlack';
+  src: font-url('Montserrat-Black.otf') format("opentype");
+  font-weight: 400;
+  font-style: normal;
+}
+
+
+@import 'vars';
+@import "bulma";
+
+main{
+  padding: 20px;
+}
