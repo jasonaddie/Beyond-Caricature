@@ -1,40 +1,105 @@
 @import 'vars';
 
+// is-active is used on mobile view to determine whether
+// menu is showing
+
 .navbar{
-  .navbar-start{
-    .navbar-item{
-      position: relative;
-      font-weight: 600;
-      font-size: 20px;
-      color: $nav-start-color;
-      &.is-active:after, &:hover:after{
-        content:"";
-        position:absolute;
-        left:0;
-        bottom:0;
-        right:0;
-        margin:auto;
-        background:$nav-start-active-color;
-        height:7px;
+  // override the defaults to make the x bigger
+  .navbar-burger {
+    span{
+      height: 2px;
+      width: 20px;
+    }
+    &.is-active span{
+      background-color: $nav-start-active-color;
+      height: 4px;
+    }
+  }
+  .navbar-item.search{
+    input{
+      border: none;
+      border-bottom: solid 1px $navbar-burger-color;
+      background-color: $body-background-color;
+      padding-right: 20px;
+    }
+    .icon{
+      width: 18px;
+      height: 18px;
+
+      i.search{
+        display: inline-block;
+        width: 18px;
+        height: 18px;
+        vertical-align: middle;
+        background: url(asset_path('search.svg')) no-repeat 0 top;
+        background-size: cover;
       }
     }
-
   }
-  .navbar-end{
-    .navbar-item.locales{
-      font-weight: 600;
-      font-size: 18px;
-      text-transform: uppercase;
-      color: $nav-end-color;
-      .navbar-link span{
-        padding: 0 5px;
-      }
-      .navbar-link span, .navbar-item.is-active{
-        background-color: $nav-end-color;
-        color: #fff;
-      }
+
+  .navbar-menu{
+    .navbar-start{
       .navbar-item{
+        position: relative;
+        font-weight: 600;
+        font-size: 20px;
+        color: $nav-start-color;
+        &.is-active:after, &:hover:after{
+          content:"";
+          position:absolute;
+          left:0;
+          bottom:0;
+          right:0;
+          margin:auto;
+          background:$nav-start-active-color;
+          height:7px;
+        }
+      }
+
+    }
+    .navbar-end{
+      .navbar-item.locales{
+        font-weight: 600;
+        font-size: 18px;
+        text-transform: uppercase;
         color: $nav-end-color;
+        .navbar-link span{
+          padding: 0 5px;
+        }
+        .navbar-link span, .navbar-item.is-active{
+          background-color: $nav-end-color;
+          color: #fff;
+        }
+        .navbar-item{
+          color: $nav-end-color;
+        }
+      }
+    }
+    &.is-active{
+      position: relative;
+      .navbar-start{
+        margin-top: 55px;
+        .navbar-item{
+          text-align: center;
+        }
+      }
+      .navbar-end{
+        position: absolute;
+        top: 0;
+        left: 50%;
+        transform: translateX(-50%);
+        .navbar-item{
+          display: inline-block;
+          white-space: nowrap;
+          &.search{
+            display: none;
+          }
+          &.locales{
+            .navbar-link{
+              display: none;
+            }
+          }
+        }
       }
     }
   }

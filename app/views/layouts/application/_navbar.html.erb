@@ -4,6 +4,9 @@
       <%= image_tag('logo.svg', alt: t('meta.site_name'), class: 'logo') %>
     <% end %>
 
+    <%= render partial: 'layouts/application/navbar_search', locals: {is_desktop_hidden: true, id: 'burger-search'} %>
+
+
     <a role="button" class="navbar-burger burger" aria-label="menu" aria-expanded="false" data-target="navbarItems">
       <span aria-hidden="true"></span>
       <span aria-hidden="true"></span>
@@ -24,9 +27,8 @@
     </div>
 
     <div class="navbar-end">
-      <div class="navbar-item">
-        [search]
-      </div>
+
+      <%= render partial: 'layouts/application/navbar_search' %>
 
       <div class="navbar-item has-dropdown is-hoverable locales">
         <a class="navbar-link" title="<%= I18n.t("languages.#{locale}") %>">
