@@ -278,8 +278,9 @@ en:
     admin: Admin
   meta:
     site_name: Beyond Caricature
-    sub_title:
-    description:
+    sub_title: This can be a slogan for the site
+    description: This is a brief description of the site
+    twitter_site: '@schermling'
   languages:
     en: English
     ru: Russian

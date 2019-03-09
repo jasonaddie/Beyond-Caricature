@@ -4,8 +4,9 @@
   @lang_switcher_params_key = :id
   @lang_switcher_is_public = true
   @lang_switcher_fallback_url = illustrators_path
+  set_meta_tags description: @illustrator.bio
 %>
-<h1 class="title is-3"><%= @illustrator.name %></h1>
+<h1 class="title is-3"><%= title @illustrator.name %></h1>
 
 <div>
   <%= image_tag @illustrator.image.thumb('300x200#').url if @illustrator.image_stored? %>

@@ -1,14 +1,35 @@
 <!DOCTYPE html>
-<html>
+<html lang="<%= I18n.locale %>">
   <head>
-    <title>Beyond Caricature</title>
+    <%= display_meta_tags site: t('meta.site_name'),
+                          description: t('meta.description'),
+                          index: true,
+                          reverse: true,
+                          separator: '|',
+                          og: {
+                            title: :title,
+                            description: :description,
+                            type: 'article',
+                            site_name: :site,
+                            url: request.original_url
+                          },
+                          twitter: {
+                            card: 'summary',
+                            site: t('meta.twitter_site'),
+                            title: :title,
+                            description: :description
+                          }
+    %>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta charset="utf-8">
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
-    <meta name="viewport" content="width=device-width, initial-scale=1">
 
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.7.4/css/bulma.min.css" integrity="sha256-8B1OaG0zT7uYA572S2xOxWACq9NXYPQ+U5kHPV1bJN4=" crossorigin="anonymous" />
     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+
+
   </head>
 
   <body class="has-navbar-fixed-top">

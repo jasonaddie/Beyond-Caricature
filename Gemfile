@@ -105,6 +105,9 @@ gem 'exception_notification', '~> 4.3'
 # css framework
 gem "bulma-rails", "~> 0.7.4"
 
+# manage meta tags
+gem 'meta-tags', '~> 2.11', '>= 2.11.1'
+
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]

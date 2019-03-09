@@ -7,7 +7,7 @@
   @lang_switcher_fallback_url = source_path(@publication)
 %>
 
-<h1 class="title is-3"><%= @issue.full_title %></h1>
+<h1 class="title is-3"><%= title @issue.full_title %></h1>
 
 <div>
   <%= image_tag @issue.cover_image.thumb('300x200#').url if @issue.cover_image_stored? %>

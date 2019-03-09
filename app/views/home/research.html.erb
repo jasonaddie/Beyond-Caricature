@@ -4,8 +4,9 @@
   @lang_switcher_params_key = :id
   @lang_switcher_is_public = true
   @lang_switcher_fallback_url = researches_path
+  set_meta_tags description: @research.summary
 %>
-<h1 class="title is-3"><%= @research.title %></h1>
+<h1 class="title is-3"><%= title @research.title %></h1>
 
 <div>
   <%= image_tag @research.cover_image.thumb('300x200#').url if @research.cover_image_stored? %>

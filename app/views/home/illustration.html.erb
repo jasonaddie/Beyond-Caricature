@@ -4,8 +4,9 @@
   @lang_switcher_params_key = :id
   @lang_switcher_is_public = true
   @lang_switcher_fallback_url = illustrations_path
+  set_meta_tags description: @illustration.context
 %>
-<h1 class="title is-3"><%= @illustration.title %></h1>
+<h1 class="title is-3"><%= title @illustration.title %></h1>
 
 <div>
   <%= image_tag @illustration.image.thumb('50x50%').url if @illustration.image_stored? %>

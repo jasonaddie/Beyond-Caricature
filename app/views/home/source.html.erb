@@ -5,9 +5,10 @@
   @lang_switcher_params_key = :id
   @lang_switcher_is_public = true
   @lang_switcher_fallback_url = sources_path
+  set_meta_tags description: @publication.about
 %>
 
-<h1 class="title is-3"><%= @publication.title %></h1>
+<h1 class="title is-3"><%= title @publication.title %></h1>
 
 <div>
   <%= image_tag @publication.cover_image.thumb('300x200#').url if @publication.cover_image_stored? %>

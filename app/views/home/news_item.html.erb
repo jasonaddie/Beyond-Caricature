@@ -4,8 +4,9 @@
   @lang_switcher_params_key = :id
   @lang_switcher_is_public = true
   @lang_switcher_fallback_url = news_index_path
+  set_meta_tags description: @news_item.summary
 %>
-<h1 class="title is-3"><%= @news_item.title %></h1>
+<h1 class="title is-3"><%= title @news_item.title %></h1>
 
 <div>
   <%= image_tag @news_item.cover_image.thumb('300x200#').url if @news_item.cover_image_stored? %>
