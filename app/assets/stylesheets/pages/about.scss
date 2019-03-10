@@ -1,0 +1,30 @@
+body.home.about{
+
+  ul{
+    list-style: none;
+  }
+
+  .decoration{
+    display: none;
+  }
+}
+
+@media (min-width: 769px){
+  body.home.about{
+
+    .decoration{
+      display: inherit;
+      background: url(asset_path('ink_whip.png')) no-repeat bottom right 10%;
+      background-size: contain;
+    }
+  }
+}
+
+@media (min-width: 800px){
+  body.home.about{
+
+    .decoration{
+      background-size: inherit;
+    }
+  }
+}

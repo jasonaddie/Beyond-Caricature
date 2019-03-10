@@ -1,1 +1,58 @@
-<h1 class="title is-3"><%= title t('label.about') %></h1>
+
+<div class="columns">
+  <div class="column is-6 content">
+    <h1 class="title is-3"><%= title t('labels.about') %></h1>
+
+    <%= simple_format(t('.intro')) %>
+
+
+    <h2 class="title is-4"><%= t('labels.contact') %></h2>
+
+    <ul>
+      <li>
+        example1@gmail.com
+      </li>
+      <li>
+        example2@gmail.com
+      </li>
+      <li>
+        example3@gmail.com
+      </li>
+      <li>
+        example4@gmail.com
+      </li>
+    </ul>
+
+    <div class="columns">
+      <div class="column is-6">
+        <h2 class="title is-4"><%= t('labels.donors') %></h2>
+
+        <ul>
+          <li>
+            donor 1
+          </li>
+          <li>
+            donor 2
+          </li>
+        </ul>
+
+      </div>
+      <div class="column is-6">
+        <h2 class="title is-4"><%= t('labels.partners') %></h2>
+
+        <ul>
+          <li>
+            partner 1
+          </li>
+          <li>
+            partner 2
+          </li>
+        </ul>
+
+      </div>
+    </div>
+
+  </div>
+  <div class="column is-6 decoration">
+  </div>
+</div>
