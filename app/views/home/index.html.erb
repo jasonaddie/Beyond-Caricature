@@ -2,27 +2,108 @@
   set_meta_tags title: t('meta.sub_title')
 %>
 
-<% if @highlights.present? %>
-  <h2 class="title is-4"><%= t('labels.highlights') %></h2>
-  <ul>
-    <% @highlights.each do |highlight| %>
-      <li>
-        <div>
-          <%= link_to highlight.link do %>
-            <%= image_tag highlight.cover_image.thumb('300x200#').url if highlight.cover_image_stored? %>
-          <% end %>
-        </div>
-        <div>
-          <%= link_to highlight.title, highlight.link %>
-        </div>
-        <div>
-          <%= simple_format(highlight.summary) %>
-        </div>
-      </li>
-    <% end %>
-  </ul>
-<% else %>
+<div class="intro">
+  <div class="columns">
+    <div class="column is-6">
+      <h1 class="title is-uppercase"><%= t('meta.site_name') %></h2>
+      <h2 class="subtitle is-capitalized is-size-4"><%= t('meta.sub_title') %></h2>
+      <div class="text is-size-5">
+        <%= simple_format(t('.intro')) %>
+      </div>
+      <%= link_to t('labels.read_more'), about_path, class: 'read-more is-lowercase' %>
+    </div>
+    <div class="column is-6 decoration-oskar">
+    </div>
+  </div>
 
-  <p><%= t('messages.no_data') %></p>
+</div>
+
+<% if @highlights.present? %>
+
+  <div class="highlights">
+    <ul>
+      <% @highlights.each do |highlight| %>
+        <li>
+          <div>
+            <%= link_to highlight.link do %>
+              <%= image_tag highlight.cover_image.thumb('300x200#').url if highlight.cover_image_stored? %>
+            <% end %>
+          </div>
+          <div>
+            <%= link_to highlight.title, highlight.link %>
+          </div>
+          <div>
+            <%= simple_format(highlight.summary) %>
+          </div>
+        </li>
+      <% end %>
+    </ul>
+  </div>
 
 <% end %>
+
+<div class="listings">
+  <% if @news.present? %>
+
+    <div class="listing news">
+      <div class="columns">
+        <div class="column is-3">
+          <h2 class="title is-4"><%= t('labels.news') %></h2>
+        </div>
+        <% @news.each do |news| %>
+          <div class="column is-3">
+            <%= news.title %>
+          </div>
+        <% end %>
+      </div>
+    </div>
+
+  <% end %>
+
+  <% if @illustrations.present? %>
+
+    <div class="listing illustrations">
+      <div class="columns">
+        <div class="column is-3">
+          <h2 class="title is-4"><%= t('labels.illustrations') %></h2>
+        </div>
+        <% @illustrations.each do |illustration| %>
+          <div class="column is-3">
+            <%= illustration.title %>
+          </div>
+        <% end %>
+      </div>
+    </div>
+
+  <% end %>
+
+  <% if @publications.present? %>
+
+    <div class="listing publications">
+      <div class="columns">
+        <div class="column is-3">
+          <h2 class="title is-4"><%= t('labels.publications') %></h2>
+        </div>
+        <% @publications.each do |publication| %>
+          <div class="column is-3">
+            <%= publication.title %>
+          </div>
+        <% end %>
+      </div>
+    </div>
+
+  <% end %>
+</div>
+
+<% if @stats.present? %>
+
+  <div class="stats">
+    <h2 class="title is-4"><%= t('labels.stats') %></h2>
+  </div>
+
+<% end %>
+
+<div class="closing">
+  <%= inline_svg('logo.svg') %>
+  <div class="is-uppercase has-text-weight-bold is-size-4"><%= t('meta.site_name') %></div>
+</div>

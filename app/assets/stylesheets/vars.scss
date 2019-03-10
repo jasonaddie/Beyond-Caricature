@@ -1,13 +1,16 @@
 // bulma variables
+$grey-dark: #292929;
+$grey: #5e5e5e;
 $family-primary: 'Montserrat';
 $body-background-color: #f8f9fa;
-$body-color: #292929;
+$body-color: $grey-dark;
 $body-size: 19px;
 $title-color: $body-color;
 $subtitle-color: $body-color;
 $navbar-background-color: $body-background-color;
 $footer-background-color: #292929;
 $footer-padding: 1rem;
+$home-intro-color: #f2eee1;
 
 // navbar
 $nav-start-color: $body-color;
@@ -17,3 +20,6 @@ $navbar-burger-color: #5e5e5e;
 
 // footer
 $footer-color: #d5d5d5;
+
+// header with line above
+$header-line-color: #282725;

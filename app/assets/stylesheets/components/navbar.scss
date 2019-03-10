@@ -108,3 +108,22 @@
 .navbar-link:not(.is-arrowless):after{
   all: unset !important;
 }
+
+body.home.index {
+  .navbar{
+    background-color: $home-intro-color;
+    .navbar-item.search{
+      input{
+        background-color: $home-intro-color;
+      }
+    }
+
+    .navbar-menu{
+      .navbar-start{
+        .navbar-item:hover{
+          background-color: $home-intro-color;
+        }
+      }
+    }
+  }
+}

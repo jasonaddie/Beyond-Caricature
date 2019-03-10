@@ -1,7 +1,11 @@
 class HomeController < ApplicationController
 
   def index
-    @highlights = Highlight.published.sort_published_desc
+    @publications = Publication.published.sort_published_desc.limit(3)
+    @news = News.published.sort_published_desc.limit(3)
+    @illustrations = Illustration.published.sort_published_desc.limit(3)
+    # @highlights = Highlight.published.sort_published_desc
+    # @stats = {}
   end
 
   def sources
