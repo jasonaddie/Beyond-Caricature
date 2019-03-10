@@ -246,6 +246,8 @@ en:
     home: Home
     contact: 'Contact:'
     followus: 'Follow us on:'
+    facebook: Facebook
+    twitter: Twitter
     meta:
       publication_type: Type
       publication_language: Language

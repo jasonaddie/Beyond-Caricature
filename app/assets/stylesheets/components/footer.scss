@@ -16,4 +16,31 @@ footer{
   color: $footer-color;
   font-weight: 300;
   font-size: 18px;
+  text-align: center;
+
+  .share{
+    opacity: 0.6;
+    margin-left: 9px;
+    vertical-align: middle;
+    &:hover{
+      opacity: 1;
+    }
+    svg{
+      height: 18px;
+      use{
+        fill: $footer-color;
+      }
+    }
+  }
+}
+
+@media (min-width: 769px){
+  footer{
+    .column{
+      text-align: right;
+      &:first-child{
+        text-align: left;
+      }
+    }
+  }
 }
