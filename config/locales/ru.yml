@@ -243,6 +243,23 @@ ru:
     all_research: All Research
     about: About
     highlights: Highlights
+    home: Home
+    contact: 'Contact:'
+    followus: 'Follow us on:'
+    facebook: Facebook
+    twitter: Twitter
+    contact: Contact
+    donors: Donors
+    partners: Partners
+    read_more: Read More
+    stats: Stats
+    journal_issues: Journal Issues
+    journal_issues_illustrations: Journal Issue Illustrations
+    books: Books
+    books_illustrations: Book Illustrations
+    originals: Originals
+    originals_illustrations: Original Illustrations
+    illustrators_illustrations: Illustrator Illustrations
     meta:
       publication_type: Type
       publication_language: Language
@@ -275,8 +292,9 @@ ru:
     admin: Admin
   meta:
     site_name: Beyond Caricature
-    sub_title:
-    description:
+    sub_title: The Oskar Schmerling Digital Archive
+    description: This is a brief description of the site
+    twitter_site: '@schmerling'
   languages:
     en: English
     ru: Russian
@@ -291,3 +309,11 @@ ru:
   devise:
     failure:
       deleted_account: "Your account has been deleted and you can no longer login."
+  home:
+    index:
+      intro: |
+        Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+      oskar_alt: Self portrait of Oskar Schmerling holding a whip and wearing horns
+    about:
+      intro: |
+        Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
