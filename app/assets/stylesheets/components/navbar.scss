@@ -119,6 +119,8 @@ body.home.index {
     }
 
     .navbar-menu{
+      background-color: $home-intro-color;
+      box-shadow: none;
       .navbar-start{
         .navbar-item:hover{
           background-color: $home-intro-color;

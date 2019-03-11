@@ -5,10 +5,15 @@ body.home.index{
     margin: -20px -20px 0;
     padding: 100px;
     background-color: $home-intro-color;
+    .columns{
+      // do this to get the second col to show on top of the first
+      flex-direction: column-reverse;
+      display: flex;
+    }
     h1{
-      font-size: 3.7rem;
+      font-size: 2.5rem;
       font-weight: 700;
-      line-height: 4.3rem;
+      line-height: 2.9rem;
     }
     h2{
       color: $grey;
@@ -23,6 +28,11 @@ body.home.index{
         height:3px;
         width: 293px;
       }
+    }
+    .decoration-oskar{
+      background: url(asset_path('oskar_whip.png')) no-repeat top center;
+      background-size: contain;
+      min-height: 400px;
     }
     .text{
       color: $grey;
@@ -86,11 +96,13 @@ body.home.index{
 @media (min-width: 769px){
   body.home.index{
 
-    .decoration-oskar{
-      display: inherit;
-      background: url(asset_path('oskar_whip.png')) no-repeat top center;
-      background-size: contain;
-      min-height: 650px;
+    .intro{
+      .decoration-oskar{
+        min-height: 650px;
+      }
+      .columns{
+        flex-direction: inherit;
+      }
     }
 
     .listings{
@@ -112,12 +124,36 @@ body.home.index{
 @media (min-width: 800px){
   body.home.index{
 
-    .decoration-oskar{
-      background-size: inherit;
-    }
-
     .listings{
       background-size: inherit;
     }
+  }
+}
+
+@media (min-width: 1000px){
+  body.home.index{
+
+    .intro{
+      h1{
+        font-size: 3rem;
+        line-height: 3.5rem;
+     }
+    }
+  }
+}
+@media (min-width: 1300px){
+  body.home.index{
+
+    .intro{
+      h1{
+        font-size: 3.7rem;
+        line-height: 4.3rem;
+      }
+
+      .decoration-oskar{
+        background-size: inherit;
+      }
+    }
+
   }
 }
