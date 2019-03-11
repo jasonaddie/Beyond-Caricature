@@ -4,7 +4,14 @@ The numbers in brackets (i.e., [0.1]), indicate the version number of the app.
 ## [Unreleased]
 These are items that are have been finished, but not released yet.
 
-Nothing yet.
+### Added
+- Public pages navbar and footer
+- Public pages basic styling
+- Homepage and about page have been styled
+- Added meta tag management for public pages (seo, sharing, etc.)
+
+### Fixed
+- All users can now access the change log page
 
 ## [0.9] - 2019-03-04
 ### Added
