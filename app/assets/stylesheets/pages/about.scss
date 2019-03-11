@@ -12,6 +12,10 @@ body.home.about{
 @media (min-width: 769px){
   body.home.about{
 
+    .content ul.contacts{
+      columns: 2;
+    }
+
     .decoration{
       display: inherit;
       background: url(asset_path('ink_whip.png')) no-repeat bottom right 10%;
