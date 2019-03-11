@@ -30,9 +30,7 @@ body.home.index{
       }
     }
     .decoration-oskar{
-      background: url(asset_path('oskar_whip.png')) no-repeat top center;
-      background-size: contain;
-      min-height: 400px;
+      text-align: center;
     }
     .text{
       color: $grey;
@@ -115,9 +113,6 @@ body.home.index{
   body.home.index{
 
     .intro{
-      .decoration-oskar{
-        min-height: 650px;
-      }
       .columns{
         flex-direction: inherit;
       }
@@ -174,10 +169,6 @@ body.home.index{
       h1{
         font-size: 3.7rem;
         line-height: 4.3rem;
-      }
-
-      .decoration-oskar{
-        background-size: inherit;
       }
     }
 
