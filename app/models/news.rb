@@ -67,7 +67,7 @@ class News < ApplicationRecord
   ## VALIDATION ##
   #################
   validates_size_of :cover_image, maximum: 5.megabytes
-  validates_property :ext, of: :cover_image, in: ['jpg', 'jpeg', 'png']
+  validates_property :ext, of: :cover_image, in: ['jpg', 'jpeg', 'png', 'JPG', 'JPEG', 'PNG']
 
   #################
   ## CALLBACKS ##

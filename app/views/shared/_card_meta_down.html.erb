@@ -1,0 +1,26 @@
+<%
+  # required variables
+  link_path ||= root_path
+  title ||= nil
+  summary ||= nil
+  cover_image_path ||= nil
+%>
+
+<div class="card card-meta-down">
+  <% if cover_image_path %>
+    <div class="card-image">
+      <figure class="image is-4by3">
+        <%= link_to link_path do %>
+          <%= image_tag cover_image_path, alt: title %>
+        <% end %>
+      </figure>
+    </div>
+  <% end %>
+  <div class="card-content">
+    <%= link_to title, link_path, class: 'has-text-weight-semibold card-title' %>
+
+    <div class="content">
+      <%= strip_tags(summary) %>
+    </div>
+  </div>
+</div>

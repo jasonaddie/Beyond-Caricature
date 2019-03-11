@@ -53,7 +53,12 @@
         </div>
         <% @news.each do |news| %>
           <div class="column is-3">
-            <%= news.title %>
+            <%= render partial: 'shared/card_meta_down', locals: {
+                  title: news.title,
+                  summary: news.summary,
+                  link_path: news_path(news),
+                  cover_image_path: (news.cover_image.present? ? news.cover_image.thumb('400x').url : nil)
+              } %>
           </div>
         <% end %>
       </div>
@@ -70,7 +75,11 @@
         </div>
         <% @illustrations.each do |illustration| %>
           <div class="column is-3">
-            <%= illustration.title %>
+            <%= render partial: 'shared/card_meta_hover', locals: {
+                  title: illustration.title,
+                  link_path: illustration_path(illustration),
+                  cover_image_path: (illustration.image.present? ? illustration.image.thumb('400x400#').url : nil)
+              } %>
           </div>
         <% end %>
       </div>
@@ -87,7 +96,12 @@
         </div>
         <% @publications.each do |publication| %>
           <div class="column is-3">
-            <%= publication.title %>
+            <%= render partial: 'shared/card_meta_down', locals: {
+                  title: publication.title,
+                  summary: publication.about,
+                  link_path: source_path(publication),
+                  cover_image_path: (publication.cover_image.present? ? publication.cover_image.thumb('400x').url : nil)
+              } %>
           </div>
         <% end %>
       </div>

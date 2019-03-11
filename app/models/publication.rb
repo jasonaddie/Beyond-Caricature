@@ -128,7 +128,7 @@ class Publication < ApplicationRecord
   validates :year, numericality: { greater_than: 1800, less_than_or_equal_to: Time.now.year }, unless: Proc.new { |x| x.year.blank? }
   validates :publication_editors, presence: true, if: Proc.new{ |x| x.journal? && x.has_public_translation?}
   validates_size_of :cover_image, maximum: 5.megabytes
-  validates_property :ext, of: :cover_image, in: ['jpg', 'jpeg', 'png']
+  validates_property :ext, of: :cover_image, in: ['jpg', 'jpeg', 'png', 'JPG', 'JPEG', 'PNG']
   validates_property :ext, of: :scanned_file, as: 'pdf'
 
   #################

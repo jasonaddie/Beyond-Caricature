@@ -1,0 +1,15 @@
+@import 'vars';
+@import 'bulma';
+
+.card.card-meta-hover{
+  height: 100%;
+  .card-content{
+    .card-title{
+      color: $body-color;
+    }
+
+    .content{
+      color: $text-light;
+    }
+  }
+}

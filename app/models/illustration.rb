@@ -73,7 +73,7 @@ class Illustration < ApplicationRecord
   ## VALIDATION ##
   #################
   validates_size_of :image, maximum: 5.megabytes
-  validates_property :ext, of: :image, in: ['jpg', 'jpeg', 'png']
+  validates_property :ext, of: :image, in: ['jpg', 'jpeg', 'png', 'JPG', 'JPEG', 'PNG']
 
   #################
   ## CALLBACKS ##

@@ -56,10 +56,12 @@ body.home.index{
     padding: 0 25px;
 
     .listing{
+      margin-bottom: 20px;
       // padding: 0 40px;
 
       h2{
         position: relative;
+        margin-top: 20px;
         &:before{
           content:"";
           position:absolute;
@@ -130,6 +132,11 @@ body.home.index{
         bottom right; /* second image */
       background-repeat: no-repeat;
       background-size: contain;
+      .listing{
+        h2{
+          margin-top: 130px;
+        }
+      }
     }
 
     .stats{
@@ -161,6 +168,10 @@ body.home.index{
     .listings{
       padding-left: 50px;
       padding-right: 50px;
+      .listing{
+        margin-bottom: 60px;
+      }
+
     }
     .stats{
       ul{
