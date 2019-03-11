@@ -27,4 +27,17 @@ class IllustrationIssue < ApplicationRecord
   #################
   ## VALIDATION ##
   #################
+
+  #################
+  ## SCOPES ##
+  #################
+  # compute the average number of illustrations per issue
+  # for the provided issue ids
+  def self.average_illustrations_per_issue(issue_ids)
+    if issue_ids.nil? || issue_ids.empty?
+      return nil
+    else
+      return (self.where(issue_id: issue_ids).count / issue_ids.length.to_f).round(1)
+    end
+  end
 end

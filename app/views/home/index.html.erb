@@ -99,6 +99,43 @@
 
   <div class="stats">
     <h2 class="title is-4"><%= t('labels.stats') %></h2>
+    <ul class="has-no-bullets">
+      <li>
+        <div class="stats-heading has-text-weight-bold"><%= t('labels.journal_issues') %></div>
+        <div class="stats-count has-text-weight-bold"><%= @stats[:journal_issues][:count] %></div>
+      </li>
+      <li>
+        <div class="stats-heading has-text-weight-bold"><%= t('labels.journal_issues_illustrations') %></div>
+        <div class="stats-count has-text-weight-bold"><%= @stats[:journal_issues][:illustrations] %></div>
+      </li>
+
+      <li>
+        <div class="stats-heading has-text-weight-bold"><%= t('labels.books') %></div>
+        <div class="stats-count has-text-weight-bold"><%= @stats[:books][:count] %></div>
+      </li>
+      <li>
+        <div class="stats-heading has-text-weight-bold"><%= t('labels.books_illustrations') %></div>
+        <div class="stats-count has-text-weight-bold"><%= @stats[:books][:illustrations] %></div>
+      </li>
+
+      <li>
+        <div class="stats-heading has-text-weight-bold"><%= t('labels.originals') %></div>
+        <div class="stats-count has-text-weight-bold"><%= @stats[:originals][:count] %></div>
+      </li>
+      <li>
+        <div class="stats-heading has-text-weight-bold"><%= t('labels.originals_illustrations') %></div>
+        <div class="stats-count has-text-weight-bold"><%= @stats[:originals][:illustrations] %></div>
+      </li>
+
+      <li>
+        <div class="stats-heading has-text-weight-bold"><%= t('labels.illustrators') %></div>
+        <div class="stats-count has-text-weight-bold"><%= @stats[:illustrators][:count] %></div>
+      </li>
+      <li>
+        <div class="stats-heading has-text-weight-bold"><%= t('labels.illustrators_illustrations') %></div>
+        <div class="stats-count has-text-weight-bold"><%= @stats[:illustrators][:illustrations] %></div>
+      </li>
+    </ul>
   </div>
 
 <% end %>

@@ -4,8 +4,8 @@ class HomeController < ApplicationController
     @publications = Publication.published.sort_published_desc.limit(3)
     @news = News.published.sort_published_desc.limit(3)
     @illustrations = Illustration.published.sort_published_desc.limit(3)
+    @stats = get_stats
     # @highlights = Highlight.published.sort_published_desc
-    # @stats = {}
   end
 
   def sources
@@ -55,5 +55,43 @@ class HomeController < ApplicationController
 
   def about
 
+  end
+
+
+private
+
+  # get counts for the following:
+  # journal issues | issue illustrations
+  # book | book illustrations
+  # original | original illustrations
+  # illustrator | illustrator illustration
+  def get_stats
+    stats = {}
+
+      # issues
+      ids = Issue.published.pluck(:id)
+      stats[:journal_issues] = {}
+      stats[:journal_issues][:count] = ids.count
+      stats[:journal_issues][:illustrations] = IllustrationIssue.where(issue_id: ids).count
+
+      # books
+      ids = Publication.published.book.pluck(:id)
+      stats[:books] = {}
+      stats[:books][:count] = ids.count
+      stats[:books][:illustrations] = IllustrationPublication.where(publication_id: ids).count
+
+      # originals
+      ids = Publication.published.original.pluck(:id)
+      stats[:originals] = {}
+      stats[:originals][:count] = ids.count
+      stats[:originals][:illustrations] = IllustrationPublication.where(publication_id: ids).count
+
+      # illustrators
+      ids = Illustrator.published.pluck(:id)
+      stats[:illustrators] = {}
+      stats[:illustrators][:count] = ids.count
+      stats[:illustrators][:illustrations] = Illustration.published.where(illustrator_id: ids).count
+
+    return stats
   end
 end

@@ -253,6 +253,13 @@ en:
     partners: Partners
     read_more: Read More
     stats: Stats
+    journal_issues: Journal Issues
+    journal_issues_illustrations: Journal Issue Illustrations
+    books: Books
+    books_illustrations: Book Illustrations
+    originals: Originals
+    originals_illustrations: Original Illustrations
+    illustrators_illustrations: Illustrator Illustrations
     meta:
       publication_type: Type
       publication_language: Language

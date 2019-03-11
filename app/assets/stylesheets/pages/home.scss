@@ -76,6 +76,24 @@ body.home.index{
     }
   }
 
+  .stats{
+    text-align: center;
+    margin-bottom: 50px;
+    ul{
+      columns: 2;
+      li{
+        margin-bottom: 44px;
+        .stats-count{
+          margin-top: 27px;
+          padding: 4px;
+          color: #fff;
+          background-color: $nav-start-active-color;
+          font-size: 18px;
+        }
+      }
+    }
+  }
+
   .closing{
     margin: 0 -20px -20px;
     padding: 65px 0 85px;
@@ -116,6 +134,14 @@ body.home.index{
         bottom right; /* second image */
       background-repeat: no-repeat;
       background-size: contain;
+    }
+
+    .stats{
+      margin-bottom: 100px;
+      margin-top: -235px;
+      ul{
+        columns: 4;
+      }
     }
 
   }
