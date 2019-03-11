@@ -4,6 +4,9 @@ The numbers in brackets (i.e., [0.1]), indicate the version number of the app.
 ## [Unreleased]
 These are items that are have been finished, but not released yet.
 
+Nothing yet.
+
+## [0.10] - 2019-03-12
 ### Added
 - Public pages navbar and footer
 - Public pages basic styling
