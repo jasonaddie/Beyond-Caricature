@@ -3,7 +3,7 @@
 body.home.index{
   .intro{
     margin: -20px -20px 0;
-    padding: 100px;
+    padding: 25px;
     background-color: $home-intro-color;
     .columns{
       // do this to get the second col to show on top of the first
@@ -53,10 +53,10 @@ body.home.index{
 
   .listings{
     background: none;
-    padding: 0 100px;
+    padding: 0 25px;
 
     .listing{
-      padding: 0 40px;
+      // padding: 0 40px;
 
       h2{
         position: relative;
@@ -76,7 +76,8 @@ body.home.index{
 
   .stats{
     text-align: center;
-    margin-bottom: 50px;
+    margin: 0 auto 50px;
+    max-width: 1068px;
     ul{
       columns: 2;
       li{
@@ -132,11 +133,7 @@ body.home.index{
     }
 
     .stats{
-      margin-bottom: 100px;
-      margin-top: -235px;
-      ul{
-        columns: 4;
-      }
+      margin: -235px auto 100px;
     }
 
   }
@@ -155,10 +152,20 @@ body.home.index{
   body.home.index{
 
     .intro{
+      padding: 50px;
       h1{
         font-size: 3rem;
         line-height: 3.5rem;
-     }
+      }
+    }
+    .listings{
+      padding-left: 50px;
+      padding-right: 50px;
+    }
+    .stats{
+      ul{
+        columns: 4;
+      }
     }
   }
 }
@@ -166,11 +173,15 @@ body.home.index{
   body.home.index{
 
     .intro{
+      padding: 100px;
       h1{
         font-size: 3.7rem;
         line-height: 4.3rem;
       }
     }
-
+    .listings{
+      padding-left: 100px;
+      padding-right: 100px;
+    }
   }
 }
