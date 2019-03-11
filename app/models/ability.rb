@@ -45,6 +45,7 @@ class Ability
     can :access, :rails_admin
     can :access, :ckeditor
     can :read, :dashboard
+    can :read, :changelog
     # cannot :history, :all
 
     can :manage, shared_resources
