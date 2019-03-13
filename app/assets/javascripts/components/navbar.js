@@ -1,5 +1,6 @@
 // when click on burger icon, show/hide the content
-document.addEventListener('DOMContentLoaded', () => {
+// document.addEventListener('DOMContentLoaded', () => {
+document.addEventListener("turbolinks:load", function() {
 
   // Get all "navbar-burger" elements
   const $navbarBurgers = Array.prototype.slice.call(document.querySelectorAll('.navbar-burger'), 0);
