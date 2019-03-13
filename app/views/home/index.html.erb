@@ -57,7 +57,7 @@
                   title: news.title,
                   summary: news.summary,
                   link_path: news_path(news),
-                  cover_image_path: (news.cover_image.present? ? news.cover_image.thumb('400x').url : nil)
+                  cover_image_path: (news.cover_image.present? ? news.cover_image.thumb('400x204#').url : nil)
               } %>
           </div>
         <% end %>
@@ -100,7 +100,7 @@
                   title: publication.title,
                   summary: publication.about,
                   link_path: source_path(publication),
-                  cover_image_path: (publication.cover_image.present? ? publication.cover_image.thumb('400x').url : nil)
+                  cover_image_path: (publication.cover_image.present? ? publication.cover_image.thumb('400x204#').url : nil)
               } %>
           </div>
         <% end %>
