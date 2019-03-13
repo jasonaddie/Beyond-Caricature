@@ -4,6 +4,9 @@
 // menu is showing
 
 .navbar{
+  .navbar-container{
+    width: 100%;
+  }
   // override the defaults to make the x bigger
   .navbar-burger {
     span{
@@ -111,6 +114,9 @@
 
 @media(min-width: 1088px){
   .navbar{
+    .navbar-container{
+      display: flex;
+    }
     .navbar-menu{
       background-color: inherit;
       .navbar-start{
@@ -124,6 +130,14 @@
   }
 }
 
+@media (min-width: 1364px){
+  .navbar{
+    .navbar-container{
+      width: 1364px;
+      margin: 0 auto;
+    }
+  }
+}
 .navbar-link:not(.is-arrowless):after{
   all: unset !important;
 }

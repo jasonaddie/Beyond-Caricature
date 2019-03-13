@@ -18,6 +18,9 @@ footer{
   font-size: 18px;
   text-align: center;
 
+  .columns{
+    width: 100%;
+  }
   .share{
     opacity: 0.6;
     margin-left: 9px;
@@ -41,6 +44,15 @@ footer{
       &:first-child{
         text-align: left;
       }
+    }
+  }
+}
+
+@media (min-width: 1364px){
+  footer{
+    .columns{
+      width: 1364px;
+      margin: 0 auto;
     }
   }
 }

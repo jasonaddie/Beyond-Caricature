@@ -1,51 +1,53 @@
 <nav class="navbar" role="navigation" aria-label="main navigation">
-  <div class="navbar-brand">
-    <%= link_to root_path, class: 'navbar-item', title: t('meta.site_name') do %>
-      <%= image_tag('logo.svg', alt: t('meta.site_name'), class: 'logo') %>
-    <% end %>
+  <div class="navbar-container">
+    <div class="navbar-brand">
+      <%= link_to root_path, class: 'navbar-item', title: t('meta.site_name') do %>
+        <%= image_tag('logo.svg', alt: t('meta.site_name'), class: 'logo') %>
+      <% end %>
 
-    <%= render partial: 'layouts/application/navbar_search', locals: {is_desktop_hidden: true, id: 'burger-search'} %>
+      <%= render partial: 'layouts/application/navbar_search', locals: {is_desktop_hidden: true, id: 'burger-search'} %>
 
 
-    <a role="button" class="navbar-burger burger" aria-label="menu" aria-expanded="false" data-target="navbarItems">
-      <span aria-hidden="true"></span>
-      <span aria-hidden="true"></span>
-      <span aria-hidden="true"></span>
-    </a>
-  </div>
-
-  <div id="navbarItems" class="navbar-menu">
-    <div class="navbar-start">
-      <%= link_to t('labels.home'), root_path, class: "navbar-item #{controller_name=="home" && action_name=="index" ? "current-page" : ""}" %>
-      <%= link_to t('labels.publications'), sources_path, class: "navbar-item #{controller_name=="home" && action_name=="sources" ? "current-page" : ""}" %>
-      <%= link_to t('labels.illustrations'), illustrations_path, class: "navbar-item #{controller_name=="home" && action_name=="illustrations" ? "current-page" : ""}" %>
-      <%= link_to t('labels.illustrators'), illustrators_path, class: "navbar-item #{controller_name=="home" && action_name=="illustrators" ? "current-page" : ""}" %>
-      <%= link_to t('labels.news'), news_index_path, class: "navbar-item #{controller_name=="home" && action_name=="news" ? "current-page" : ""}" %>
-      <%= link_to t('labels.research'), researches_path, class: "navbar-item #{controller_name=="home" && action_name=="researches" ? "current-page" : ""}" %>
-      <%= link_to t('labels.about'), about_path, class: "navbar-item #{controller_name=="home" && action_name=="about" ? "current-page" : ""}" %>
-
+      <a role="button" class="navbar-burger burger" aria-label="menu" aria-expanded="false" data-target="navbarItems">
+        <span aria-hidden="true"></span>
+        <span aria-hidden="true"></span>
+        <span aria-hidden="true"></span>
+      </a>
     </div>
 
-    <div class="navbar-end">
+    <div id="navbarItems" class="navbar-menu">
+      <div class="navbar-start">
+        <%= link_to t('labels.home'), root_path, class: "navbar-item #{controller_name=="home" && action_name=="index" ? "current-page" : ""}" %>
+        <%= link_to t('labels.publications'), sources_path, class: "navbar-item #{controller_name=="home" && action_name=="sources" ? "current-page" : ""}" %>
+        <%= link_to t('labels.illustrations'), illustrations_path, class: "navbar-item #{controller_name=="home" && action_name=="illustrations" ? "current-page" : ""}" %>
+        <%= link_to t('labels.illustrators'), illustrators_path, class: "navbar-item #{controller_name=="home" && action_name=="illustrators" ? "current-page" : ""}" %>
+        <%= link_to t('labels.news'), news_index_path, class: "navbar-item #{controller_name=="home" && action_name=="news" ? "current-page" : ""}" %>
+        <%= link_to t('labels.research'), researches_path, class: "navbar-item #{controller_name=="home" && action_name=="researches" ? "current-page" : ""}" %>
+        <%= link_to t('labels.about'), about_path, class: "navbar-item #{controller_name=="home" && action_name=="about" ? "current-page" : ""}" %>
 
-      <%= render partial: 'layouts/application/navbar_search' %>
+      </div>
 
-      <div class="navbar-item has-dropdown is-hoverable locales">
-        <a class="navbar-link" title="<%= I18n.t("languages.#{locale}") %>">
-          <span><%= I18n.locale %></span>
-        </a>
+      <div class="navbar-end">
 
-        <div class="navbar-dropdown">
-          <% I18n.available_locales.each do |locale| %>
-            <%= generate_language_switcher_link(
-                  locale,
-                  @lang_switcher_record,
-                  @lang_switcher_has_translations,
-                  @lang_switcher_params_key,
-                  @lang_switcher_is_public,
-                  @lang_switcher_fallback_url
-                ) %>
-          <% end %>
+        <%= render partial: 'layouts/application/navbar_search' %>
+
+        <div class="navbar-item has-dropdown is-hoverable locales">
+          <a class="navbar-link" title="<%= I18n.t("languages.#{locale}") %>">
+            <span><%= I18n.locale %></span>
+          </a>
+
+          <div class="navbar-dropdown">
+            <% I18n.available_locales.each do |locale| %>
+              <%= generate_language_switcher_link(
+                    locale,
+                    @lang_switcher_record,
+                    @lang_switcher_has_translations,
+                    @lang_switcher_params_key,
+                    @lang_switcher_is_public,
+                    @lang_switcher_fallback_url
+                  ) %>
+            <% end %>
+          </div>
         </div>
       </div>
     </div>
