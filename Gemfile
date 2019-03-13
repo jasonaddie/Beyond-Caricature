@@ -128,6 +128,9 @@ group :development do
 
   # add comments at top of model files of which fields are in the model
   gem 'annotate', '~> 2.7', '>= 2.7.4'
+
+  # load favicons built at https://realfavicongenerator.net/
+  gem 'rails_real_favicon'
 end
 
 group :test do
