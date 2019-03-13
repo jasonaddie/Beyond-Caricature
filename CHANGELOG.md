@@ -4,7 +4,16 @@ The numbers in brackets (i.e., [0.1]), indicate the version number of the app.
 ## [Unreleased]
 These are items that are have been finished, but not released yet.
 
-Nothing yet.
+### Added
+- Default image to be used when a record does not have one (i.e., cover image)
+- Implmeneted a max-width for the content (1364px)
+- Favicons (i.e., the icon that appears in the browser tab)
+
+### Fixed
+- On mobile, popup menu does not open after going to a new page
+- Image size in cards (i.e., images in listings)
+- Navbar is no longer fixed to the top of the window
+
 
 ## [0.10] - 2019-03-12
 ### Added
