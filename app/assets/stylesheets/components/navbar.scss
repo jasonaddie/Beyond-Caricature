@@ -38,12 +38,16 @@
   }
 
   .navbar-menu{
+    background-color: $home-intro-color;
     .navbar-start{
       .navbar-item{
         position: relative;
         font-weight: 600;
         font-size: 20px;
         color: $nav-start-color;
+        &:hover{
+          background-color: $home-intro-color;
+        }
         &.current-page:after, &:hover:after{
           content:"";
           position:absolute;
@@ -66,7 +70,7 @@
         .navbar-link span{
           padding: 0 5px;
         }
-        .navbar-link span, .navbar-item.is-active{
+        .navbar-link span, .navbar-item.is-active, .navbar-item:hover{
           background-color: $nav-end-color;
           color: #fff;
         }
@@ -98,6 +102,21 @@
             .navbar-link{
               display: none;
             }
+          }
+        }
+      }
+    }
+  }
+}
+
+@media(min-width: 1088px){
+  .navbar{
+    .navbar-menu{
+      background-color: inherit;
+      .navbar-start{
+        .navbar-item{
+          &:hover{
+            background-color: inherit;
           }
         }
       }
