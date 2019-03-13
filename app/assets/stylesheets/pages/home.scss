@@ -191,3 +191,13 @@ body.home.index{
     }
   }
 }
+
+@media (min-width: 1364px){
+  body.home.index{
+    .intro, .closing{
+      // stretch the background color out to the window sides
+      margin-left: calc(-100vw / 2 + (1364px - 40px) / 2);
+      margin-right: calc(-100vw / 2 + (1364px - 40px) / 2);
+    }
+  }
+}
