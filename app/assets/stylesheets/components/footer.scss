@@ -11,15 +11,19 @@ body {
 main {
   flex: 1 0 auto;
 }
-footer{
+.footer{
   flex-shrink: 0;
   color: $footer-color;
   font-weight: 300;
   font-size: 18px;
   text-align: center;
+  padding: 0 !important;
 
   .columns{
     width: 100%;
+    &:last-child{
+      margin-bottom: 0 !important;
+    }
   }
   .share{
     opacity: 0.6;
@@ -38,7 +42,7 @@ footer{
 }
 
 @media (min-width: 769px){
-  footer{
+  .footer{
     .column{
       text-align: right;
       &:first-child{
@@ -49,7 +53,7 @@ footer{
 }
 
 @media (min-width: 1364px){
-  footer{
+  .footer{
     .columns{
       width: 1364px;
       margin: 0 auto;
