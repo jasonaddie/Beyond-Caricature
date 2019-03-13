@@ -24,7 +24,9 @@ class Issue < ApplicationRecord
   ## ATTACHED FILES ##
   #################
   dragonfly_accessor :scanned_file
-  dragonfly_accessor :cover_image
+  dragonfly_accessor :cover_image do
+    default Rails.root.join('public','images','default-wide.png')
+  end
 
 
   #################

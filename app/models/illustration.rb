@@ -18,7 +18,9 @@ class Illustration < ApplicationRecord
   #################
   ## ATTACHED FILES ##
   #################
-  dragonfly_accessor :image
+  dragonfly_accessor :image do
+    default Rails.root.join('public','images','default-square.png')
+  end
 
   #################
   ## ASSOCIATIONS ##

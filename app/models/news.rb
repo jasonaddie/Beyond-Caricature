@@ -17,7 +17,9 @@ class News < ApplicationRecord
   #################
   ## ATTACHED FILES ##
   #################
-  dragonfly_accessor :cover_image
+  dragonfly_accessor :cover_image do
+    default Rails.root.join('public','images','default-wide.png')
+  end
 
   #################
   ## ASSOCIATIONS ##
