@@ -1,0 +1,40 @@
+<h1 class="title is-3"><%= title t('labels.people') %></h1>
+
+<% if @people.present? %>
+  <ul>
+    <% @people.each do |person| %>
+      <li>
+        <div>
+          <%= link_to person_path(person) do %>
+            <%= image_tag person.image.thumb('100x100#').url if person.image_stored? %>
+          <% end %>
+        </div>
+        <div>
+          <%= link_to person.name, person_path(person) %>
+        </div>
+        <ul>
+          <li>
+            <strong><%= t('labels.meta.roles') %>:</strong>
+            <%= person.roles_formatted %>
+          </li>
+          <li>
+            <strong><%= t('labels.meta.birth_date') %>:</strong>
+            <%= person.date_birth %>
+          </li>
+          <li>
+            <strong><%= t('labels.meta.death_date') %>:</strong>
+            <%= person.date_death %>
+          </li>
+          <li>
+            <strong><%= t('labels.meta.illustration_count') %>:</strong>
+            <%= number_with_delimiter(person.illustration_count) %>
+          </li>
+        </ul>
+      </li>
+    <% end %>
+  </ul>
+<% else %>
+
+  <p><%= t('messages.no_data') %></p>
+
+<% end %>

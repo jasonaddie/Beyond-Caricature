@@ -1,0 +1,16 @@
+:ruby
+  js_data = {
+    xhr: false,
+    sortable: false,
+    removable: true,
+    cacheAll: false,
+    regional: {
+      chooseAll: t("admin.misc.chose_all"),
+      clearAll: t("admin.misc.clear_all"),
+      search: t("admin.misc.search"),
+      up: t("admin.misc.up"),
+      down: t("admin.misc.down")
+    }
+  }
+/ # using field.formatted_keys instead of field.formatted_value so can get the correct values for person roles to work
+= form.select field.name, options_for_select(field.options_for_select, field.formatted_keys), { selected: field.formatted_keys, object: form.object }, field.html_attributes.reverse_merge({data: { filteringmultiselect: true, options: js_data.to_json }, multiple: true})

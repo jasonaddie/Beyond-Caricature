@@ -12,6 +12,7 @@
 #  issue_id           :bigint(8)
 #  created_at         :datetime         not null
 #  updated_at         :datetime         not null
+#  person_id          :bigint(8)
 #
 
 require 'test_helper'

@@ -25,6 +25,8 @@ Rails.application.routes.draw do
     get '/illustrations/:id', to: 'home#illustration', as: 'illustration'
     get '/illustrators', to: 'home#illustrators', as: 'illustrators'
     get '/illustrators/:id', to: 'home#illustrator', as: 'illustrator'
+    get '/people', to: 'home#people', as: 'people'
+    get '/people/:id', to: 'home#person', as: 'person'
     get '/news', to: 'home#news', as: 'news_index'
     get '/news/:id', to: 'home#news_item', as: 'news'
     get '/research', to: 'home#researches', as: 'researches'

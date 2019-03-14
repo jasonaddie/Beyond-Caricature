@@ -172,6 +172,15 @@ en:
         add: Place marker on image
       image: Only jpg, jpeg or png files are allowed. Image must be less than 5MB.
       file: Only PDF files are allowed. There is no size limit.
+      person:
+        illustrator: Only published People with a role of Illustrator are shown here.
+        editor: Only published People with a role of Editor are shown here.
+        publisher: Only published People with a role of Publisher are shown here.
+        writer: Only published People with a role of Writer are shown here.
+        printer: Only published People with a role of Printer are shown here.
+        financier: Only published People with a role of Financer are shown here.
+        official: Only published People with a role of Official are shown here.
+        subject: Only published People with a role of Subject are shown here.
     errors:
       required_for_publication: is required for making the language public
       required_related_item: is required

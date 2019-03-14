@@ -7,6 +7,7 @@
 #  created_at     :datetime         not null
 #  updated_at     :datetime         not null
 #  image_uid      :string
+#  person_id      :bigint(8)
 #
 
 class Illustration < ApplicationRecord
@@ -25,7 +26,7 @@ class Illustration < ApplicationRecord
   #################
   ## ASSOCIATIONS ##
   #################
-  belongs_to :illustrator, -> { published }
+  belongs_to :person, -> { published.with_roles('illustrator') }
   has_many :illustration_tags, dependent: :destroy
   has_many :tags, through: :illustration_tags
   has_many :illustration_publications, dependent: :destroy
@@ -176,10 +177,10 @@ class Illustration < ApplicationRecord
     configure :image do
       html_attributes required: required? && !value.present?, accept: 'image/*'
     end
-    configure :illustrator do
+    configure :person do
       # limit to only published issues
       associated_collection_scope do
-        resource_scope = bindings[:object].class.reflect_on_association(:illustrator).source_reflection.scope
+        resource_scope = bindings[:object].class.reflect_on_association(:person).source_reflection.scope
 
         proc do |scope|
           resource_scope ? scope.merge(resource_scope) : scope
@@ -207,7 +208,7 @@ class Illustration < ApplicationRecord
       field :is_public
       field :image
       field :title
-      field :illustrator
+      field :person
       field :combined_publications_count do
         label I18n.t('labels.combined_publications_count')
       end
@@ -220,7 +221,7 @@ class Illustration < ApplicationRecord
       field :image
       field :title
       field :context
-      field :illustrator
+      field :person
       field :illustration_annotations
       field :combined_publications_count do
         label I18n.t('labels.combined_publications_count')
@@ -236,7 +237,9 @@ class Illustration < ApplicationRecord
       field :image do
         help I18n.t('admin.help.image')
       end
-      field :illustrator
+      field :person do
+        help I18n.t('admin.help.person.illustrator')
+      end
       field :translations do
         label I18n.t('labels.translations')
       end

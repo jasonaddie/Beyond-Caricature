@@ -58,6 +58,8 @@ GEM
     archive-zip (0.11.0)
       io-like (~> 0.3.0)
     arel (9.0.0)
+    array_enum (1.0.1)
+      activemodel
     ast (2.4.0)
     bcrypt (3.1.12)
     bindex (0.5.0)
@@ -379,6 +381,7 @@ PLATFORMS
 
 DEPENDENCIES
   annotate (~> 2.7, >= 2.7.4)
+  array_enum (~> 1.0, >= 1.0.1)
   bootsnap (>= 1.1.0)
   bulma-rails (~> 0.7.4)
   byebug

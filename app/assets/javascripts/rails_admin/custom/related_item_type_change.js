@@ -8,7 +8,7 @@ function related_item_type_change(){
     'publication': '0',
     'issue': '1',
     'illustration': '2',
-    'illustrator': '3'
+    'person': '3'
   }
   var suffix = '_field'
 

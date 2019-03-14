@@ -37,6 +37,14 @@ class HomeController < ApplicationController
     @illustrator = Illustrator.friendly.published.find(params[:id])
   end
 
+  def people
+    @people = Person.published.sort_published_desc
+  end
+
+  def person
+    @person = Person.friendly.published.find(params[:id])
+  end
+
   def news
     @news = News.published.sort_published_desc
   end

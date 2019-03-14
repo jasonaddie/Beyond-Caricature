@@ -111,6 +111,9 @@ gem 'meta-tags', '~> 2.11', '>= 2.11.1'
 # render svg as inline image
 gem 'inline_svg', '~> 1.3', '>= 1.3.1'
 
+# save enums into an array field
+gem 'array_enum', '~> 1.0', '>= 1.0.1'
+
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]

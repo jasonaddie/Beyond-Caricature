@@ -12,6 +12,7 @@
 #  issue_id           :bigint(8)
 #  created_at         :datetime         not null
 #  updated_at         :datetime         not null
+#  person_id          :bigint(8)
 #
 
 class RelatedItem < ApplicationRecord
@@ -26,14 +27,14 @@ class RelatedItem < ApplicationRecord
   #################
   belongs_to :news_itemable, polymorphic: true
   belongs_to :publication, -> { published }, optional: true
-  belongs_to :illustrator, -> { published }, optional: true
+  belongs_to :person, -> { published }, optional: true
   belongs_to :illustration, -> { published }, optional: true
   belongs_to :issue, -> { published }, optional: true
 
   #################
   ## ENUMS ##
   #################
-  enum related_item_type: [:publication, :issue, :illustration, :illustrator]
+  enum related_item_type: [:publication, :issue, :illustration, :person]
 
   #################
   ## VALIDATION ##
@@ -64,8 +65,8 @@ class RelatedItem < ApplicationRecord
       self.issue.full_title
     elsif self.illustration.present?
       self.illustration.title
-    elsif self.illustrator.present?
-      self.illustrator.name
+    elsif self.person.present?
+      self.person.name
     end
   end
 
@@ -77,8 +78,8 @@ class RelatedItem < ApplicationRecord
       Rails.application.routes.url_helpers.issue_path(I18n.locale, self.issue.publication, self.issue)
     elsif self.illustration.present?
       Rails.application.routes.url_helpers.illustration_path(I18n.locale, self.illustration)
-    elsif self.illustrator.present?
-      Rails.application.routes.url_helpers.illustrator_path(I18n.locale, self.illustrator)
+    elsif self.person.present?
+      Rails.application.routes.url_helpers.person_path(I18n.locale, self.person)
     end
   end
 
@@ -131,10 +132,10 @@ class RelatedItem < ApplicationRecord
       end
     end
 
-    configure :illustrator do
+    configure :person do
       # limit to only published issues
       associated_collection_scope do
-        resource_scope = bindings[:object].class.reflect_on_association(:illustrator).source_reflection.scope
+        resource_scope = bindings[:object].class.reflect_on_association(:person).source_reflection.scope
 
         proc do |scope|
           resource_scope ? scope.merge(resource_scope) : scope
@@ -177,8 +178,8 @@ class RelatedItem < ApplicationRecord
         inline_edit false
         help I18n.t('admin.help.only_public_items')
       end
-      field :illustrator do
-        html_attributes class: 'related-item illustrator'
+      field :person do
+        html_attributes class: 'related-item person'
         inline_add false
         inline_edit false
         help I18n.t('admin.help.only_public_items')
@@ -205,8 +206,8 @@ class RelatedItem < ApplicationRecord
     elsif self.illustration? && self.illustration_id.nil?
       self.errors.add :illustration_id, I18n.t('admin.errors.required_related_item')
 
-    elsif self.illustrator? && self.illustrator_id.nil?
-      self.errors.add :illustrator_id, I18n.t('admin.errors.required_related_item')
+    elsif self.person? && self.person_id.nil?
+      self.errors.add :person_id, I18n.t('admin.errors.required_related_item')
     end
   end
 end

@@ -10,6 +10,7 @@
 #  year                    :integer
 #  cover_image_uid         :string
 #  scanned_file_uid        :string
+#  scanned_file_size       :integer
 #
 
 require 'test_helper'

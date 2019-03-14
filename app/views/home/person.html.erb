@@ -1,0 +1,52 @@
+<%
+  @lang_switcher_record = @person
+  @lang_switcher_has_translations = true
+  @lang_switcher_params_key = :id
+  @lang_switcher_is_public = true
+  @lang_switcher_fallback_url = people_path
+  set_meta_tags description: @person.bio
+%>
+<h1 class="title is-3"><%= title @person.name %></h1>
+
+<div>
+  <%= image_tag @person.image.thumb('300x200#').url if @person.image_stored? %>
+</div>
+<div>
+  <%= simple_format(@person.bio) %>
+</div>
+
+
+<ul>
+  <li>
+    <strong><%= t('labels.meta.roles') %>:</strong>
+    <%= @person.roles_formatted %>
+  </li>
+  <li>
+    <strong><%= t('labels.meta.birth_date') %>:</strong>
+    <%= @person.date_birth %>
+  </li>
+  <li>
+    <strong><%= t('labels.meta.death_date') %>:</strong>
+    <%= @person.date_death %>
+  </li>
+  <li>
+    <strong><%= t('labels.meta.illustration_count') %>:</strong>
+    <%= number_with_delimiter(@person.illustration_count) %>
+  </li>
+
+  <% if @person.related_items.present? %>
+    <strong><%= t('labels.meta.in_the_news') %>:</strong>
+    <li>
+      <ul>
+        <% @person.related_items.each do |related_item| %>
+          <li>
+            <%= link_to related_item.news_itemable.title, polymorphic_path(related_item.news_itemable) %>
+          </li>
+        <% end %>
+      </ul>
+    </li>
+  <% end %>
+
+</ul>
+
+<%= render partial: "illustrations", locals: {illustrations: @person.illustrations.published.sort_published_desc} %>

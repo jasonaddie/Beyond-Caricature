@@ -8,6 +8,7 @@ These are items that are have been finished, but not released yet.
 - Default image to be used when a record does not have one (i.e., cover image)
 - Implmeneted a max-width for the content (1364px)
 - Favicons (i.e., the icon that appears in the browser tab)
+- New Person data model that replaces the Illustrator data model
 
 ### Fixed
 - On mobile, popup menu does not open after going to a new page

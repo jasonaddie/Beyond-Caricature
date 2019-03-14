@@ -28,6 +28,9 @@ en:
       news:
         one: News Item
         other: News
+      person:
+        one: Person
+        other: People
       publication:
         one: Source
         other: Sources
@@ -67,7 +70,7 @@ en:
         summary: Summary
         link: Link To
       illustration:
-        illustrator_id: Illustrator
+        person_id: Person
         image: Image
         is_public: Is Public?
         date_publish: Date Made Public
@@ -139,6 +142,27 @@ en:
         title: Title
         summary: Summary
         text: Text
+      person:
+        roles: Roles
+        role_types:
+          illustrator: Illustrator
+          editor: Editor
+          publisher: Publisher
+          writer: Writer
+          printer: Printer
+          financier: Financier
+          official: Official
+          subject: Subject
+        date_birth: Birth Date
+        date_death: Death Date
+        is_public: Is Public?
+        name: Name
+        bio: Biography
+        image: Image
+      person/translation:
+        is_public: Is Public?
+        name: Name
+        bio: Biography
       publication:
         publication_type: Source Type
         publication_types:
@@ -182,11 +206,11 @@ en:
           publication: Source
           issue: Issue
           illustration: Illustration
-          illustrator: Illustrator
+          person: Person
         publication_id: Source
         issue_id: Issue
         illustration_id: Illustration
-        illustrator_id: Illustrator
+        person_id: Person
       research:
         is_public: Is Public?
         date_publish: Date Made Public
@@ -238,6 +262,7 @@ en:
     publications: Sources
     illustrations: Illustrations
     illustrators: Illustrators
+    people: People
     issues: Issues
     all_news: All News
     all_research: All Research
@@ -281,6 +306,7 @@ en:
       date_birth: Born
       date_death: Died
       tags: Tags
+      roles: Roles
   messages:
     no_data: There is no data on record at this time.
     no_issues: There are no issues on record at this time.

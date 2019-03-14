@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_02_27_192229) do
+ActiveRecord::Schema.define(version: 2019_03_13_232753) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -144,7 +144,9 @@ ActiveRecord::Schema.define(version: 2019_02_27_192229) do
     t.datetime "updated_at", null: false
     t.string "image_uid"
     t.string "slug"
+    t.bigint "person_id"
     t.index ["illustrator_id"], name: "index_illustrations_on_illustrator_id"
+    t.index ["person_id"], name: "index_illustrations_on_person_id"
     t.index ["slug"], name: "index_illustrations_on_slug", unique: true
   end
 
@@ -288,6 +290,40 @@ ActiveRecord::Schema.define(version: 2019_02_27_192229) do
     t.index ["title"], name: "index_news_translations_on_title"
   end
 
+  create_table "people", force: :cascade do |t|
+    t.integer "roles", default: [], null: false, array: true
+    t.date "date_birth"
+    t.date "date_death"
+    t.boolean "is_public", default: false
+    t.string "image_uid"
+    t.string "slug"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["date_birth"], name: "index_people_on_date_birth"
+    t.index ["date_death"], name: "index_people_on_date_death"
+    t.index ["is_public"], name: "index_people_on_is_public"
+    t.index ["roles"], name: "index_people_on_roles"
+    t.index ["slug"], name: "index_people_on_slug", unique: true
+  end
+
+  create_table "person_translations", force: :cascade do |t|
+    t.integer "person_id", null: false
+    t.string "locale", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.string "name"
+    t.text "bio"
+    t.boolean "is_public", default: false
+    t.date "date_publish"
+    t.string "slug"
+    t.index ["date_publish"], name: "index_person_translations_on_date_publish"
+    t.index ["is_public"], name: "index_person_translations_on_is_public"
+    t.index ["locale"], name: "index_person_translations_on_locale"
+    t.index ["name"], name: "index_person_translations_on_name"
+    t.index ["person_id"], name: "index_person_translations_on_person_id"
+    t.index ["slug"], name: "index_person_translations_on_slug"
+  end
+
   create_table "publication_editor_translations", force: :cascade do |t|
     t.integer "publication_editor_id", null: false
     t.string "locale", null: false
@@ -372,10 +408,12 @@ ActiveRecord::Schema.define(version: 2019_02_27_192229) do
     t.bigint "issue_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.bigint "person_id"
     t.index ["illustration_id"], name: "index_related_items_on_illustration_id"
     t.index ["illustrator_id"], name: "index_related_items_on_illustrator_id"
     t.index ["issue_id"], name: "index_related_items_on_issue_id"
     t.index ["news_itemable_id", "news_itemable_type"], name: "idx_related_items_news"
+    t.index ["person_id"], name: "index_related_items_on_person_id"
     t.index ["publication_id"], name: "index_related_items_on_publication_id"
     t.index ["related_item_type"], name: "index_related_items_on_related_item_type"
   end
