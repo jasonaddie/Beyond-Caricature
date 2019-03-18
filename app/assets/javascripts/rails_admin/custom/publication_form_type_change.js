@@ -7,9 +7,9 @@ function publication_form_type_change(){
   var $pub_type = $('form select.publication-type')
   var fields = [
     'publication-publication-editors',
-    'publication-editor',
-    'publication-publisher',
-    'publication-writer',
+    'publication-editors',
+    'publication-publishers',
+    'publication-writers',
     'publication-year',
     'publication-file'
   ]
@@ -21,9 +21,9 @@ function publication_form_type_change(){
 
     // book
     '1': [
-      'publication-editor',
-      'publication-publisher',
-      'publication-writer',
+      'publication-editors',
+      'publication-publishers',
+      'publication-writers',
       'publication-year',
       'publication-file'
     ],

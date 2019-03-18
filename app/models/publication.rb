@@ -431,13 +431,19 @@ class Publication < ApplicationRecord
         css_class 'publication-year'
       end
 
+      field :publication_editors do
+        css_class 'publication-publication-editors'
+      end
       field :editors do
+        css_class 'publication-editors'
         help I18n.t('admin.help.person.editor')
       end
       field :publishers do
+        css_class 'publication-publishers'
         help I18n.t('admin.help.person.publisher')
       end
       field :writers do
+        css_class 'publication-writers'
         help I18n.t('admin.help.person.writer')
       end
       field :printers do
@@ -453,9 +459,6 @@ class Publication < ApplicationRecord
         help I18n.t('admin.help.person.subject')
       end
 
-      field :publication_editors do
-        css_class 'publication-publication-editors'
-      end
     end
   end
 
