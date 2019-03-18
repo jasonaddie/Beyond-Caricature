@@ -13,8 +13,7 @@ class MoveIllustratorRecords < ActiveRecord::Migration[5.2]
       p.save
 
       Illustration.where(illustrator_id: old.id).each do |illustration|
-        illustration.person_id = p.id
-        illustration.save
+        illustration.illustrator_person.create(person_id: p.id)
       end
       RelatedItem.where(illustrator_id: old.id).each do |item|
         item.person_id = p.id
