@@ -183,6 +183,13 @@ en:
         cover_image: Cover Image
         publication_editor: Journal Editor
         publication_editors: Journal Editors
+        editors: Editors
+        publishers: Publishers
+        writers: Writers
+        printers: Printers
+        financiers: Financiers
+        officials: Officials
+        subjects: Subjects
       publication/translation:
         is_public: Is Public?
         date_publish: Date Made Public

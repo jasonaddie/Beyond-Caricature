@@ -20,12 +20,10 @@ class PublicationEditor < ApplicationRecord
   ## ASSOCIATIONS ##
   #################
   belongs_to :publication
-
-  #################
-  ## TRANSLATIONS ##
-  #################
-  translates :editor, :publisher, :versioning => :paper_trail
-  accepts_nested_attributes_for :translations, allow_destroy: true
+  has_many :editor_people, as: :person_roleable, class_name: 'PersonRole', dependent: :destroy
+  has_many :editors, -> { published.with_roles('editor') }, through: :editor_people, source: :person
+  has_many :publisher_people, as: :person_roleable, class_name: 'PersonRole', dependent: :destroy
+  has_many :publishers, -> { published.with_roles('publisher') }, through: :publisher_people, source: :person
 
   #################
   ## VALIDATION ##
@@ -47,9 +45,23 @@ class PublicationEditor < ApplicationRecord
     # group with publication in navigation
     parent Publication
 
-    configure :translations, :globalize_tabs
-
     # configuration
+    configure :editors do
+      # limit to only published editors
+      associated_collection_scope do
+        Proc.new { |scope|
+          scope = scope.published.with_roles('editor').sort_name
+        }
+      end
+    end
+    configure :publishers do
+      # limit to only published publishers
+      associated_collection_scope do
+        Proc.new { |scope|
+          scope = scope.published.with_roles('publisher').sort_name
+        }
+      end
+    end
 
     # list page
 
@@ -57,10 +69,13 @@ class PublicationEditor < ApplicationRecord
 
     # form
     edit do
-      field :translations do
-        label I18n.t('labels.translations')
-      end
 
+      field :editors do
+        help I18n.t('admin.help.person.editor')
+      end
+      field :publishers do
+        help I18n.t('admin.help.person.publisher')
+      end
       field :year_start
       field :year_end
     end

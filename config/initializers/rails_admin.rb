@@ -86,7 +86,7 @@ RailsAdmin.config do |config|
     'Illustration', 'Illustration::Translation',
     'IllustrationAnnotation', 'IllustrationAnnotation::Translation',
     'Publication', 'Publication::Translation',
-    'PublicationEditor', 'PublicationEditor::Translation',
+    'PublicationEditor',
     'Issue',
     'Highlight', 'Highlight::Translation',
     'Slideshow', 'Slideshow::Translation',
@@ -283,21 +283,12 @@ RailsAdmin.config do |config|
     configure :is_public do
       html_attributes required: required? && !value.present?, class: 'is-public-field'
     end
-    include_fields :locale, :is_public, :title, :editor, :publisher, :writer, :about
+    include_fields :locale, :is_public, :title, :about
 
     edit do
       field :about, :ck_editor
       fields :title do
         help I18n.t('admin.help.required_for_publication')
-      end
-      fields :editor do
-        css_class 'publication-editor'
-      end
-      fields :publisher do
-        css_class 'publication-publisher'
-      end
-      fields :writer do
-        css_class 'publication-writer'
       end
       # uploader's cannot make anything public
       field :is_public do
@@ -308,15 +299,4 @@ RailsAdmin.config do |config|
     end
   end
 
-  config.model 'PublicationEditor::Translation' do
-    visible false
-    configure :locale, :hidden do
-      help ''
-    end
-    include_fields :locale, :editor, :publisher
-
-    fields :editor do
-      help I18n.t('admin.help.required_for_publication')
-    end
-  end
 end

@@ -39,6 +39,22 @@ class Publication < ApplicationRecord
   accepts_nested_attributes_for :publication_editors, allow_destroy: true,
     reject_if: ->(editor){ reject_publication_editors?(editor)}
 
+  has_many :editor_people, as: :person_roleable, class_name: 'PersonRole', dependent: :destroy
+  has_many :editors, -> { published.with_roles('editor') }, through: :editor_people, source: :person
+  has_many :publisher_people, as: :person_roleable, class_name: 'PersonRole', dependent: :destroy
+  has_many :publishers, -> { published.with_roles('publisher') }, through: :publisher_people, source: :person
+  has_many :writer_people, as: :person_roleable, class_name: 'PersonRole', dependent: :destroy
+  has_many :writers, -> { published.with_roles('writer') }, through: :writer_people, source: :person
+  has_many :printer_people, as: :person_roleable, class_name: 'PersonRole', dependent: :destroy
+  has_many :printers, -> { published.with_roles('printer') }, through: :printer_people, source: :person
+  has_many :financier_people, as: :person_roleable, class_name: 'PersonRole', dependent: :destroy
+  has_many :financiers, -> { published.with_roles('financier') }, through: :financier_people, source: :person
+  has_many :official_people, as: :person_roleable, class_name: 'PersonRole', dependent: :destroy
+  has_many :officials, -> { published.with_roles('official') }, through: :official_people, source: :person
+  has_many :subject_people, as: :person_roleable, class_name: 'PersonRole', dependent: :destroy
+  has_many :subjects, -> { published.with_roles('subject') }, through: :subject_people, source: :person
+
+
   #################
   ## TRANSLATIONS ##
   #################
@@ -236,6 +252,63 @@ class Publication < ApplicationRecord
         value.nil? ? nil : value.html_safe
       end
     end
+    configure :editors do
+      # limit to only published editors
+      associated_collection_scope do
+        Proc.new { |scope|
+          scope = scope.published.with_roles('editor').sort_name
+        }
+      end
+    end
+    configure :publishers do
+      # limit to only published publishers
+      associated_collection_scope do
+        Proc.new { |scope|
+          scope = scope.published.with_roles('publisher').sort_name
+        }
+      end
+    end
+    configure :writers do
+      # limit to only published writers
+      associated_collection_scope do
+        Proc.new { |scope|
+          scope = scope.published.with_roles('writer').sort_name
+        }
+      end
+    end
+    configure :printers do
+      # limit to only published printers
+      associated_collection_scope do
+        Proc.new { |scope|
+          scope = scope.published.with_roles('printer').sort_name
+        }
+      end
+    end
+    configure :financiers do
+      # limit to only published financiers
+      associated_collection_scope do
+        Proc.new { |scope|
+          scope = scope.published.with_roles('financier').sort_name
+        }
+      end
+    end
+    configure :officials do
+      # limit to only published officials
+      associated_collection_scope do
+        Proc.new { |scope|
+          scope = scope.published.with_roles('official').sort_name
+        }
+      end
+    end
+    configure :subjects do
+      # limit to only published subjects
+      associated_collection_scope do
+        Proc.new { |scope|
+          scope = scope.published.with_roles('subject').sort_name
+        }
+      end
+    end
+
     configure :publication_editors do
       # build a table listing the editors
       pretty_value do
@@ -292,6 +365,9 @@ class Publication < ApplicationRecord
       field :title
       field :issue_count do
         label I18n.t('labels.issue_count')
+        visible do
+          bindings[:object].journal?
+        end
       end
       field :illustration_count do
         label I18n.t('labels.illustration_count')
@@ -302,21 +378,25 @@ class Publication < ApplicationRecord
           bindings[:object].journal?
         end
       end
-      field :editor do
+      field :editors do
         visible do
           bindings[:object].book?
         end
       end
-      field :publisher do
+      field :publishers do
         visible do
           bindings[:object].book?
         end
       end
-      field :writer do
+      field :writers do
         visible do
           bindings[:object].book?
         end
       end
+      field :printers
+      field :financiers
+      field :officials
+      field :subjects
       field :year do
         visible do
           bindings[:object].book? || bindings[:object].original?
@@ -349,6 +429,28 @@ class Publication < ApplicationRecord
 
       field :year do
         css_class 'publication-year'
+      end
+
+      field :editors do
+        help I18n.t('admin.help.person.editor')
+      end
+      field :publishers do
+        help I18n.t('admin.help.person.publisher')
+      end
+      field :writers do
+        help I18n.t('admin.help.person.writer')
+      end
+      field :printers do
+        help I18n.t('admin.help.person.printer')
+      end
+      field :financiers do
+        help I18n.t('admin.help.person.financier')
+      end
+      field :officials do
+        help I18n.t('admin.help.person.official')
+      end
+      field :subjects do
+        help I18n.t('admin.help.person.subject')
       end
 
       field :publication_editors do

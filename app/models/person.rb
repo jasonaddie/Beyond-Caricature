@@ -29,6 +29,7 @@ class Person < ApplicationRecord
   #################
   ## ASSOCIATIONS ##
   #################
+  has_many :person_roles, as: :person_roleable, dependent: :destroy
   has_many :illustrations, dependent: :nullify
   has_many :related_items, dependent: :nullify
 
@@ -109,6 +110,7 @@ class Person < ApplicationRecord
   #################
   scope :published, -> { with_translations(I18n.locale).where('person_translations.is_public': true) }
   scope :sort_published_desc, -> { order(date_publish: :desc) }
+  scope :sort_name, -> { with_translations(I18n.locale).order('person_translations.name asc') }
 
   #################
   ## METHODS ##

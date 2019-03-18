@@ -26,7 +26,17 @@ class Illustration < ApplicationRecord
   #################
   ## ASSOCIATIONS ##
   #################
-  belongs_to :person, -> { published.with_roles('illustrator') }
+  # belongs_to :person, -> { published.with_roles('illustrator') }
+  has_one :illustrator_person, as: :person_roleable, class_name: 'PersonRole', dependent: :destroy
+  has_one :illustrator, -> { published.with_roles('illustrator') }, through: :illustrator_person, source: :person
+
+  def illustrator_id
+    self.illustrator.try :id
+  end
+  def illustrator_id=(id)
+    self.illustrator = Person.find_by_id(id)
+  end
+
   has_many :illustration_tags, dependent: :destroy
   has_many :tags, through: :illustration_tags
   has_many :illustration_publications, dependent: :destroy
@@ -177,16 +187,24 @@ class Illustration < ApplicationRecord
     configure :image do
       html_attributes required: required? && !value.present?, accept: 'image/*'
     end
-    configure :person do
-      # limit to only published issues
+    configure :illustrator do
+      # limit to only published editors
       associated_collection_scope do
-        resource_scope = bindings[:object].class.reflect_on_association(:person).source_reflection.scope
-
-        proc do |scope|
-          resource_scope ? scope.merge(resource_scope) : scope
-        end
+        Proc.new { |scope|
+          scope = scope.published.with_roles('illustrator').sort_name
+        }
       end
     end
+    # configure :person do
+    #   # limit to only published issues
+    #   associated_collection_scope do
+    #     resource_scope = bindings[:object].class.reflect_on_association(:person).source_reflection.scope
+
+    #     proc do |scope|
+    #       resource_scope ? scope.merge(resource_scope) : scope
+    #     end
+    #   end
+    # end
     configure :illustration_annotations do
       # determine if the has many block should be open when page loads
       active do
@@ -208,7 +226,8 @@ class Illustration < ApplicationRecord
       field :is_public
       field :image
       field :title
-      field :person
+      field :illustrator
+      # field :person
       field :combined_publications_count do
         label I18n.t('labels.combined_publications_count')
       end
@@ -221,7 +240,8 @@ class Illustration < ApplicationRecord
       field :image
       field :title
       field :context
-      field :person
+      field :illustrator
+      # field :person
       field :illustration_annotations
       field :combined_publications_count do
         label I18n.t('labels.combined_publications_count')
@@ -237,9 +257,12 @@ class Illustration < ApplicationRecord
       field :image do
         help I18n.t('admin.help.image')
       end
-      field :person do
+      field :illustrator do
         help I18n.t('admin.help.person.illustrator')
       end
+      # field :person do
+      #   help I18n.t('admin.help.person.illustrator')
+      # end
       field :translations do
         label I18n.t('labels.translations')
       end

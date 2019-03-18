@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_03_13_232753) do
+ActiveRecord::Schema.define(version: 2019_03_18_082403) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -139,13 +139,11 @@ ActiveRecord::Schema.define(version: 2019_03_13_232753) do
   end
 
   create_table "illustrations", force: :cascade do |t|
-    t.bigint "illustrator_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.string "image_uid"
     t.string "slug"
     t.bigint "person_id"
-    t.index ["illustrator_id"], name: "index_illustrations_on_illustrator_id"
     t.index ["person_id"], name: "index_illustrations_on_person_id"
     t.index ["slug"], name: "index_illustrations_on_slug", unique: true
   end
@@ -306,6 +304,16 @@ ActiveRecord::Schema.define(version: 2019_03_13_232753) do
     t.index ["slug"], name: "index_people_on_slug", unique: true
   end
 
+  create_table "person_roles", force: :cascade do |t|
+    t.bigint "person_id"
+    t.string "person_roleable_type"
+    t.bigint "person_roleable_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["person_id"], name: "index_person_roles_on_person_id"
+    t.index ["person_roleable_type", "person_roleable_id"], name: "idx_person_roleable"
+  end
+
   create_table "person_translations", force: :cascade do |t|
     t.integer "person_id", null: false
     t.string "locale", null: false
@@ -329,8 +337,6 @@ ActiveRecord::Schema.define(version: 2019_03_13_232753) do
     t.string "locale", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.string "editor"
-    t.string "publisher"
     t.index ["locale"], name: "index_publication_editor_translations_on_locale"
     t.index ["publication_editor_id"], name: "index_publication_editor_translations_on_publication_editor_id"
   end
@@ -368,9 +374,6 @@ ActiveRecord::Schema.define(version: 2019_03_13_232753) do
     t.datetime "updated_at", null: false
     t.string "title"
     t.text "about"
-    t.string "editor"
-    t.string "publisher"
-    t.string "writer"
     t.boolean "is_public", default: false
     t.date "date_publish"
     t.string "slug"
