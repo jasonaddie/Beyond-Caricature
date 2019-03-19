@@ -58,7 +58,7 @@ class Publication < ApplicationRecord
   #################
   ## TRANSLATIONS ##
   #################
-  translates :title, :about, :editor, :publisher, :writer, :is_public, :date_publish, :slug, :versioning => :paper_trail
+  translates :title, :about, :is_public, :date_publish, :slug, :versioning => :paper_trail
   accepts_nested_attributes_for :translations, allow_destroy: true
 
   #################
@@ -108,8 +108,7 @@ class Publication < ApplicationRecord
 
   # if there are no values in all publication editor translations and years, then reject
   def self.reject_publication_editors?(editor)
-    translation_fields = %w(editor publisher)
-    nontranslation_fields = %w(year_start year_end)
+    nontranslation_fields = %w(editors publishers year_start year_end)
     found_value = false
 
     # check nontranslation fields first
@@ -120,20 +119,20 @@ class Publication < ApplicationRecord
       end
     end
 
-    if !found_value
-      # no nontranslation, value so now check translation value
-      # format is {"translations_attributes"=>{"0"=>{"locale"=>"", "editor"=>"", "publisher"=>""}, "1"=>{"locale"=>"", "editor"=>"", "publisher"=>""}, ... }
-      # so get values of translations_attributes hash and then check the field values
-      editor["translations_attributes"].values.each do |trans_values|
-        translation_fields.each do |field|
-          if !trans_values[field].blank?
-            found_value = true
-            break
-          end
-        end
-        break if found_value
-      end
-    end
+    # if !found_value
+    #   # no nontranslation, value so now check translation value
+    #   # format is {"translations_attributes"=>{"0"=>{"locale"=>"", "editor"=>"", "publisher"=>""}, "1"=>{"locale"=>"", "editor"=>"", "publisher"=>""}, ... }
+    #   # so get values of translations_attributes hash and then check the field values
+    #   editor["translations_attributes"].values.each do |trans_values|
+    #     translation_fields.each do |field|
+    #       if !trans_values[field].blank?
+    #         found_value = true
+    #         break
+    #       end
+    #     end
+    #     break if found_value
+    #   end
+    # end
 
     return !found_value
   end
@@ -315,8 +314,8 @@ class Publication < ApplicationRecord
         bindings[:view].content_tag(:table, class: 'table table-striped publication-editors') do
           bindings[:view].content_tag(:thead) do
             bindings[:view].content_tag(:tr) do
-              bindings[:view].content_tag(:th, PublicationEditor.human_attribute_name(:editor)) +
-              bindings[:view].content_tag(:th, PublicationEditor.human_attribute_name(:publisher)) +
+              bindings[:view].content_tag(:th, PublicationEditor.human_attribute_name(:editors)) +
+              bindings[:view].content_tag(:th, PublicationEditor.human_attribute_name(:publishers)) +
               bindings[:view].content_tag(:th, PublicationEditor.human_attribute_name(:year_start)) +
               bindings[:view].content_tag(:th, PublicationEditor.human_attribute_name(:year_end))
             end
@@ -324,8 +323,8 @@ class Publication < ApplicationRecord
           bindings[:view].content_tag(:tbody) do
             bindings[:object].publication_editors.collect do |publication_editor|
               bindings[:view].content_tag(:tr) do
-                bindings[:view].content_tag(:td, publication_editor.editor) +
-                bindings[:view].content_tag(:td, publication_editor.publisher) +
+                bindings[:view].content_tag(:td, publication_editor.editors) +
+                bindings[:view].content_tag(:td, publication_editor.publishers) +
                 bindings[:view].content_tag(:td, publication_editor.year_start) +
                 bindings[:view].content_tag(:td, publication_editor.year_end)
               end

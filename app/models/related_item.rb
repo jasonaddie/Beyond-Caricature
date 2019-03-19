@@ -26,7 +26,7 @@ class RelatedItem < ApplicationRecord
   ## ASSOCIATIONS ##
   #################
   belongs_to :news_itemable, polymorphic: true
-  belongs_to :publication, -> { published }, optional: true
+  belongs_to :publication, -> { published.not_journals }, optional: true
   belongs_to :person, -> { published }, optional: true
   belongs_to :illustration, -> { published }, optional: true
   belongs_to :issue, -> { published }, optional: true
@@ -99,8 +99,16 @@ class RelatedItem < ApplicationRecord
     parent News
 
     # configuration
+    # configure :publications do
+    #   # limit to only published items that are not journals
+    #   associated_collection_scope do
+    #     Proc.new { |scope|
+    #       scope = scope.published.not_journals
+    #     }
+    #   end
+    # end
     configure :publication do
-      # limit to only published issues
+      # limit to only published publications that are not journals
       associated_collection_scope do
         resource_scope = bindings[:object].class.reflect_on_association(:publication).source_reflection.scope
 
@@ -109,7 +117,6 @@ class RelatedItem < ApplicationRecord
         end
       end
     end
-
     configure :issue do
       # limit to only published issues
       associated_collection_scope do
@@ -120,9 +127,8 @@ class RelatedItem < ApplicationRecord
         end
       end
     end
-
     configure :illustration do
-      # limit to only published issues
+      # limit to only published illustrations
       associated_collection_scope do
         resource_scope = bindings[:object].class.reflect_on_association(:illustration).source_reflection.scope
 
@@ -133,7 +139,7 @@ class RelatedItem < ApplicationRecord
     end
 
     configure :person do
-      # limit to only published issues
+      # limit to only published people
       associated_collection_scope do
         resource_scope = bindings[:object].class.reflect_on_association(:person).source_reflection.scope
 

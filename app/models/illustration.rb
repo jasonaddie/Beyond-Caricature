@@ -175,9 +175,21 @@ class Illustration < ApplicationRecord
         end
       end
     end
-    # publication list should not show journals
     configure :publications do
-      #TODO
+      # limit to only published items that are not journals
+      associated_collection_scope do
+        Proc.new { |scope|
+          scope = scope.published.not_journals
+        }
+      end
+    end
+    configure :issues do
+      # limit to only published issues
+      associated_collection_scope do
+        Proc.new { |scope|
+          scope = scope.published
+        }
+      end
     end
     configure :context do
       pretty_value do

@@ -88,7 +88,7 @@ class PublicationEditor < ApplicationRecord
 
   def check_association_public_required_fields
     # call the methohd in the application record base object
-    super(['editor'], self.publication)
+    # super(['editor'], self.publication)
   end
 
 end

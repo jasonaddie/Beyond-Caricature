@@ -113,6 +113,7 @@ en:
         name: Name
         bio: Biography
       issue:
+        publication: Journal
         publication_id: Journal
         issue_number: Issue Number
         date_publication: Publication Date
@@ -199,8 +200,8 @@ en:
         publisher: Publisher
         writer: Writer
       publication_editor:
-        editor: Editor
-        publisher: Publisher
+        editors: Editors
+        publishers: Publishers
         year_start: Year Start
         year_end: Year End
       publication_language:

@@ -111,14 +111,12 @@ class Issue < ApplicationRecord
       date_format :default
       datepicker_options showTodayButton: false, format: 'YYYY-MM-DD', viewMode: 'years', minDate: '1800-01-01', maxDate: "#{Time.now.year}-12-31"
     end
-    # publication list should only show journals
     configure :publication do
+      # limit to only published items that are journals
       associated_collection_scope do
-        resource_scope = bindings[:object].class.reflect_on_association(:publication).source_reflection.scope
-
-        proc do |scope|
-          resource_scope ? scope.merge(resource_scope) : scope
-        end
+        Proc.new { |scope|
+          scope = scope.published.journals
+        }
       end
     end
     configure :cover_image do
