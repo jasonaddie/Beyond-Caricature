@@ -3,40 +3,21 @@
 <h1 class="title is-3"><%= title t('labels.publications') %></h1>
 
 <% if @publications.present? %>
-  <ul>
+
+  <div class="columns is-multiline">
     <% @publications.each do |publication| %>
-      <li>
-        <div>
-          <%= link_to source_path(publication) do %>
-            <%= image_tag publication.cover_image.thumb('100x100#').url if publication.cover_image_stored? %>
-          <% end %>
-        </div>
-        <div>
-          <%= link_to publication.title, source_path(publication) %>
-        </div>
-        <ul>
-          <li>
-            <strong><%= t('labels.meta.publication_type') %>:</strong>
-            <%= pub.human_enum_name(:publication_type, publication.publication_type) %>
-          </li>
-          <li>
-            <strong><%= t('labels.meta.publication_language') %>:</strong>
-            <%= publication.publication_language.language %>
-          </li>
-          <% if publication.journal? %>
-            <li>
-              <strong><%= t('labels.meta.issue_count') %>:</strong>
-              <%= number_with_delimiter(publication.issue_count) %>
-            </li>
-          <% end %>
-          <li>
-            <strong><%= t('labels.meta.illustration_count') %>:</strong>
-            <%= number_with_delimiter(publication.illustration_count) %>
-          </li>
-        </ul>
-      </li>
+      <div class="column is-3">
+        <%= render partial: 'shared/card_meta_down', locals: {
+              title: publication.title,
+              summary: publication.about,
+              link_path: source_path(publication),
+              cover_image_path: publication.cover_image.thumb('400x204#').url,
+              type: pub.human_enum_name(:publication_type, publication.publication_type)
+          } %>
+      </div>
     <% end %>
-  </ul>
+  </div>
+
 <% else %>
 
   <p><%= t('messages.no_data') %></p>

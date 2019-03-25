@@ -28,6 +28,12 @@ az:
       news:
         one: News Item
         other: News
+      person:
+        one: Person
+        other: People
+      person_role:
+        one: Person
+        other: People
       publication:
         one: Source
         other: Sources
@@ -67,7 +73,7 @@ az:
         summary: Summary
         link: Link To
       illustration:
-        illustrator_id: Illustrator
+        person_id: Person
         image: Image
         is_public: Is Public?
         date_publish: Date Made Public
@@ -75,6 +81,7 @@ az:
         context: Context
         illustration_annotation: Annotation
         illustration_annotations: Annotations
+        person_role: Illustrator
       illustration/translation:
         is_public: Is Public?
         date_publish: Date Made Public
@@ -110,6 +117,7 @@ az:
         name: Name
         bio: Biography
       issue:
+        publication: Journal
         publication_id: Journal
         issue_number: Issue Number
         date_publication: Publication Date
@@ -139,6 +147,28 @@ az:
         title: Title
         summary: Summary
         text: Text
+      person:
+        date_birth: Birth Date
+        date_death: Death Date
+        is_public: Is Public?
+        name: Name
+        bio: Biography
+        image: Image
+      person_role:
+        role: Role
+        role_types:
+          illustrator: Illustrator
+          editor: Editor
+          publisher: Publisher
+          writer: Writer
+          printer: Printer
+          financier: Financier
+          official: Official
+          subject: Subject
+      person/translation:
+        is_public: Is Public?
+        name: Name
+        bio: Biography
       publication:
         publication_type: Source Type
         publication_types:
@@ -159,6 +189,15 @@ az:
         cover_image: Cover Image
         publication_editor: Journal Editor
         publication_editors: Journal Editors
+        editors: Editors
+        publishers: Publishers
+        writers: Writers
+        printers: Printers
+        financiers: Financiers
+        officials: Officials
+        subjects: Subjects
+        person_roles: Related People
+        person_role: Related Person
       publication/translation:
         is_public: Is Public?
         date_publish: Date Made Public
@@ -168,10 +207,12 @@ az:
         publisher: Publisher
         writer: Writer
       publication_editor:
-        editor: Editor
-        publisher: Publisher
+        editors: Editors
+        publishers: Publishers
         year_start: Year Start
         year_end: Year End
+        person_roles: Related People
+        person_role: Related Person
       publication_language:
         is_active: Is Active?
       publication_language/translation:
@@ -182,11 +223,11 @@ az:
           publication: Source
           issue: Issue
           illustration: Illustration
-          illustrator: Illustrator
+          person: Person
         publication_id: Source
         issue_id: Issue
         illustration_id: Illustration
-        illustrator_id: Illustrator
+        person_id: Person
       research:
         is_public: Is Public?
         date_publish: Date Made Public
@@ -238,6 +279,7 @@ az:
     publications: Sources
     illustrations: Illustrations
     illustrators: Illustrators
+    people: People
     issues: Issues
     all_news: All News
     all_research: All Research
@@ -260,6 +302,10 @@ az:
     originals: Originals
     originals_illustrations: Original Illustrations
     illustrators_illustrations: Illustrator Illustrations
+    by: By
+    birth_death_dates: Lived
+    roles: Roles
+    type: Type
     meta:
       publication_type: Type
       publication_language: Language
@@ -281,6 +327,8 @@ az:
       date_birth: Born
       date_death: Died
       tags: Tags
+      roles: Roles
+      people: People
   messages:
     no_data: There is no data on record at this time.
     no_issues: There are no issues on record at this time.

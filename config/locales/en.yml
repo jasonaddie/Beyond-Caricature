@@ -305,6 +305,7 @@ en:
     by: By
     birth_death_dates: Lived
     roles: Roles
+    type: Type
     meta:
       publication_type: Type
       publication_language: Language

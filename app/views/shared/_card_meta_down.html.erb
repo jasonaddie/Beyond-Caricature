@@ -3,6 +3,7 @@
   link_path ||= root_path
   title ||= nil
   summary ||= nil
+  type ||= nil
   cover_image_path ||= nil
 %>
 
@@ -20,7 +21,17 @@
     <%= link_to title, link_path, class: 'has-text-weight-semibold card-title' %>
 
     <div class="content">
-      <%= strip_tags(summary) %>
+      <% if type %>
+        <div>
+          <strong><%= "#{t('labels.type')}:" %></strong>
+          <%= type %>
+        </div>
+      <% end %>
+      <% if summary %>
+        <div>
+          <%= strip_tags(summary) %>
+        </div>
+      <% end %>
     </div>
   </div>
 </div>
