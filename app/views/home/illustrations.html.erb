@@ -8,7 +8,7 @@
         <%= render partial: 'shared/card_meta_hover', locals: {
               title: illustration.title,
               link_path: illustration_path(illustration),
-              cover_image_path: (illustration.image_stored? ? illustration.image.thumb('400x400#').url : nil),
+              cover_image_path: illustration.image.thumb('400x400#').url,
               illustrator: illustration.person_role ? illustration.person_role.name : nil
           } %>
       </div>

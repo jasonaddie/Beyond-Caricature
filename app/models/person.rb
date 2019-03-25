@@ -95,6 +95,10 @@ class Person < ApplicationRecord
     self.person_roles.unique_roles.map{|x| x[:name]}
   end
 
+  def has_dates?
+    self.date_birth.present? || self.date_death.present?
+  end
+
   #################
   ## RAILS ADMIN CONFIGURATION ##
   #################

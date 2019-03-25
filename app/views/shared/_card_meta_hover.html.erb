@@ -3,6 +3,8 @@
   link_path ||= root_path
   title ||= nil
   illustrator ||= nil
+  dates ||= nil
+  roles ||= nil
   # summary ||= nil
   cover_image_path ||= nil
 %>
@@ -23,6 +25,28 @@
       <div>
         <strong><%= "#{t('labels.by')}:" %></strong>
         <%= illustrator %>
+      </div>
+    <% end %>
+    <% if dates %>
+      <div>
+        <strong><%= "#{t('labels.birth_death_dates')}:" %></strong>
+        <%
+          x = ''
+          if dates[0].present?
+            x << dates[0].year.to_s
+          end
+          x << ' - '
+          if dates[1].present?
+            x << dates[1].year.to_s
+          end
+        %>
+        <%= x %>
+      </div>
+    <% end %>
+    <% if roles %>
+      <div>
+        <strong><%= "#{t('labels.roles')}:" %></strong>
+        <%= roles %>
       </div>
     <% end %>
   </div>

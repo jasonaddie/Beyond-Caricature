@@ -1,34 +1,20 @@
 <h1 class="title is-3"><%= title t('labels.illustrators') %></h1>
 
 <% if @illustrators.present? %>
-  <ul>
+
+  <div class="columns is-multiline">
     <% @illustrators.each do |illustrator| %>
-      <li>
-        <div>
-          <%= link_to illustrator_path(illustrator) do %>
-            <%= image_tag illustrator.image.thumb('100x100#').url if illustrator.image_stored? %>
-          <% end %>
-        </div>
-        <div>
-          <%= link_to illustrator.name, illustrator_path(illustrator) %>
-        </div>
-        <ul>
-          <li>
-            <strong><%= t('labels.meta.birth_date') %>:</strong>
-            <%= illustrator.date_birth %>
-          </li>
-          <li>
-            <strong><%= t('labels.meta.death_date') %>:</strong>
-            <%= illustrator.date_death %>
-          </li>
-          <li>
-            <strong><%= t('labels.meta.illustration_count') %>:</strong>
-            <%= number_with_delimiter(illustrator.illustration_count) %>
-          </li>
-        </ul>
-      </li>
+      <div class="column is-3">
+        <%= render partial: 'shared/card_meta_hover', locals: {
+              title: illustrator.name,
+              link_path: illustrator_path(illustrator),
+              cover_image_path: (illustrator.image_stored? ? illustrator.image.thumb('400x400#').url : nil),
+              dates: [illustrator.date_birth, illustrator.date_death]
+          } %>
+      </div>
     <% end %>
-  </ul>
+  </div>
+
 <% else %>
 
   <p><%= t('messages.no_data') %></p>

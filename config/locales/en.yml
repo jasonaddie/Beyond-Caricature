@@ -303,6 +303,8 @@ en:
     originals_illustrations: Original Illustrations
     illustrators_illustrations: Illustrator Illustrations
     by: By
+    birth_death_dates: Lived
+    roles: Roles
     meta:
       publication_type: Type
       publication_language: Language
