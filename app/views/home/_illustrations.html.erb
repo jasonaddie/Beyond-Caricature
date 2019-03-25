@@ -12,7 +12,7 @@
           <ul>
             <li>
               <strong><%= t('labels.meta.illustrator') %>:</strong>
-              <%= illustration.illustrator.name %>
+              <%= illustration.person_role.name if illustration.person_role %>
             </li>
           </ul>
         </li>

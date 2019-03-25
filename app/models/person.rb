@@ -3,7 +3,6 @@
 # Table name: people
 #
 #  id         :bigint(8)        not null, primary key
-#  roles      :integer          default([]), not null, is an Array
 #  date_birth :date
 #  date_death :date
 #  image_uid  :string
@@ -12,7 +11,6 @@
 #
 
 class Person < ApplicationRecord
-  extend ArrayEnum
 
   #################
   ## HISTORY TRACKING ##
@@ -29,7 +27,7 @@ class Person < ApplicationRecord
   #################
   ## ASSOCIATIONS ##
   #################
-  has_many :person_roles, as: :person_roleable, dependent: :destroy
+  has_many :person_roles, dependent: :destroy
   has_many :illustrations, dependent: :nullify
   has_many :related_items, dependent: :nullify
 
@@ -67,22 +65,10 @@ class Person < ApplicationRecord
   end
 
   #################
-  ## SCOPES ##
-  #################
-  def self.roles_for_select
-    options = {}
-    ROLES.each do |key, value|
-      options[I18n.t("activerecord.attributes.#{model_name.i18n_key}.role_types.#{key}")] = key
-    end
-    return options
-  end
-
-  #################
   ## VALIDATION ##
   #################
   validates_size_of :image, maximum: 5.megabytes
   validates_property :ext, of: :image, in: ['jpg', 'jpeg', 'png', 'JPG', 'JPEG', 'PNG']
-  validates :roles, presence: true, subset: %w(illustrator editor publisher writer printer financier official subject)
 
   #################
   ## CALLBACKS ##
@@ -90,20 +76,6 @@ class Person < ApplicationRecord
   before_save :set_translation_publish_dates
   validate :check_self_public_required_fields
   # before_validation :remove_blanks
-
-  # def remove_blanks
-  #   Rails.logger.debug "===================="
-  #   Rails.logger.debug "roles was #{roles.inspect}"
-  #   roles.reject!(&:blank?)
-  #   Rails.logger.debug "roles now #{roles.inspect}"
-  #   Rails.logger.debug "===================="
-  # end
-
-  #################
-  ## ENUMS ##
-  #################
-  ROLES = {'illustrator' => 1, 'editor' => 2, 'publisher' => 3, 'writer' => 4, 'printer' => 5, 'financier' => 6, 'official' => 7, 'subject' => 8}
-  array_enum roles: ROLES
 
   #################
   ## SCOPES ##
@@ -119,24 +91,9 @@ class Person < ApplicationRecord
     self.illustrations.count
   end
 
-  # show the translated name of the enum value
-  def roles_formatted
-    x = []
-    if self.roles.present?
-      self.roles.each do |role|
-        x << I18n.t("activerecord.attributes.#{model_name.i18n_key}.role_types.#{role}")
-      end
-    end
-
-    return x.present? ? x.join(', ') : nil
+  def unique_role_names
+    self.person_roles.unique_roles.map{|x| x[:name]}
   end
-
-  # this is used when loading the person form so the correct existing roles
-  # are selected
-  def roles_keys
-    self.roles
-  end
-
 
   #################
   ## RAILS ADMIN CONFIGURATION ##
@@ -181,18 +138,12 @@ class Person < ApplicationRecord
         end
       end
     end
-    configure :roles do
-      pretty_value do
-        bindings[:object].roles_formatted
-      end
-    end
 
     # list page
     list do
       field :is_public
       field :image
       field :name
-      field :roles
       field :date_birth
       field :date_death
       field :illustration_count do
@@ -206,7 +157,6 @@ class Person < ApplicationRecord
       field :is_public
       field :image
       field :name
-      field :roles
       field :bio
       field :date_birth
       field :date_death
@@ -225,9 +175,6 @@ class Person < ApplicationRecord
       end
       field :image do
         help I18n.t('admin.help.image')
-      end
-      field :roles, :array_field do
-        options_for_select Person.roles_for_select
       end
       field :date_birth
       field :date_death

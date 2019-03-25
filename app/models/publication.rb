@@ -39,20 +39,9 @@ class Publication < ApplicationRecord
   accepts_nested_attributes_for :publication_editors, allow_destroy: true,
     reject_if: ->(editor){ reject_publication_editors?(editor)}
 
-  has_many :editor_people, as: :person_roleable, class_name: 'PersonRole', dependent: :destroy
-  has_many :editors, -> { published.with_roles('editor') }, through: :editor_people, source: :person
-  has_many :publisher_people, as: :person_roleable, class_name: 'PersonRole', dependent: :destroy
-  has_many :publishers, -> { published.with_roles('publisher') }, through: :publisher_people, source: :person
-  has_many :writer_people, as: :person_roleable, class_name: 'PersonRole', dependent: :destroy
-  has_many :writers, -> { published.with_roles('writer') }, through: :writer_people, source: :person
-  has_many :printer_people, as: :person_roleable, class_name: 'PersonRole', dependent: :destroy
-  has_many :printers, -> { published.with_roles('printer') }, through: :printer_people, source: :person
-  has_many :financier_people, as: :person_roleable, class_name: 'PersonRole', dependent: :destroy
-  has_many :financiers, -> { published.with_roles('financier') }, through: :financier_people, source: :person
-  has_many :official_people, as: :person_roleable, class_name: 'PersonRole', dependent: :destroy
-  has_many :officials, -> { published.with_roles('official') }, through: :official_people, source: :person
-  has_many :subject_people, as: :person_roleable, class_name: 'PersonRole', dependent: :destroy
-  has_many :subjects, -> { published.with_roles('subject') }, through: :subject_people, source: :person
+  has_many :person_roles, as: :person_roleable, dependent: :destroy
+  accepts_nested_attributes_for :person_roles, allow_destroy: true,
+    reject_if: ->(role){ reject_person_roles?(role)}
 
 
   #################
@@ -93,8 +82,27 @@ class Publication < ApplicationRecord
   enum publication_type: [:journal, :book, :original]
 
   #################
+  ## VALIDATION ##
+  #################
+  validates :publication_type, presence: true
+  validates :publication_language, presence: true
+  validates :year, numericality: { greater_than: 1800, less_than_or_equal_to: Time.now.year }, unless: Proc.new { |x| x.year.blank? }
+  validates :publication_editors, presence: true, if: Proc.new{ |x| x.journal? && x.has_public_translation?}
+  validates_size_of :cover_image, maximum: 5.megabytes
+  validates_property :ext, of: :cover_image, in: ['jpg', 'jpeg', 'png', 'JPG', 'JPEG', 'PNG']
+  validates_property :ext, of: :scanned_file, as: 'pdf'
+
+  #################
+  ## CALLBACKS ##
+  #################
+  before_save :set_translation_publish_dates
+  validate :check_self_public_required_fields
+
+  #################
   ## SCOPES ##
   #################
+  scope :journals, -> { where(publication_type: :journal) }
+  scope :not_journals, -> { where.not(publication_type: :journal) }
   scope :published, -> { with_translations(I18n.locale).where('publication_translations.is_public': true) }
   scope :sort_published_desc, -> { order(date_publish: :desc) }
 
@@ -104,6 +112,21 @@ class Publication < ApplicationRecord
       options[I18n.t("activerecord.attributes.#{model_name.i18n_key}.publication_types.#{key}")] = value
     end
     return options
+  end
+
+  # if there are no values, then reject
+  def self.reject_person_roles?(person)
+    nontranslation_fields = %w(role person)
+    found_value = false
+
+    # check nontranslation fields first
+    nontranslation_fields.each do |field|
+      if !person[field].blank?
+        found_value = true
+        break
+      end
+    end
+    return !found_value
   end
 
   # if there are no values in all publication editor translations and years, then reject
@@ -136,30 +159,6 @@ class Publication < ApplicationRecord
 
     return !found_value
   end
-
-
-  #################
-  ## VALIDATION ##
-  #################
-  validates :publication_type, presence: true
-  validates :publication_language, presence: true
-  validates :year, numericality: { greater_than: 1800, less_than_or_equal_to: Time.now.year }, unless: Proc.new { |x| x.year.blank? }
-  validates :publication_editors, presence: true, if: Proc.new{ |x| x.journal? && x.has_public_translation?}
-  validates_size_of :cover_image, maximum: 5.megabytes
-  validates_property :ext, of: :cover_image, in: ['jpg', 'jpeg', 'png', 'JPG', 'JPEG', 'PNG']
-  validates_property :ext, of: :scanned_file, as: 'pdf'
-
-  #################
-  ## CALLBACKS ##
-  #################
-  before_save :set_translation_publish_dates
-  validate :check_self_public_required_fields
-
-  #################
-  ## SCOPES ##
-  #################
-  scope :journals, -> { where(publication_type: :journal) }
-  scope :not_journals, -> { where.not(publication_type: :journal) }
 
   #################
   ## METHODS ##
@@ -251,62 +250,6 @@ class Publication < ApplicationRecord
         value.nil? ? nil : value.html_safe
       end
     end
-    configure :editors do
-      # limit to only published editors
-      associated_collection_scope do
-        Proc.new { |scope|
-          scope = scope.published.with_roles('editor').sort_name
-        }
-      end
-    end
-    configure :publishers do
-      # limit to only published publishers
-      associated_collection_scope do
-        Proc.new { |scope|
-          scope = scope.published.with_roles('publisher').sort_name
-        }
-      end
-    end
-    configure :writers do
-      # limit to only published writers
-      associated_collection_scope do
-        Proc.new { |scope|
-          scope = scope.published.with_roles('writer').sort_name
-        }
-      end
-    end
-    configure :printers do
-      # limit to only published printers
-      associated_collection_scope do
-        Proc.new { |scope|
-          scope = scope.published.with_roles('printer').sort_name
-        }
-      end
-    end
-    configure :financiers do
-      # limit to only published financiers
-      associated_collection_scope do
-        Proc.new { |scope|
-          scope = scope.published.with_roles('financier').sort_name
-        }
-      end
-    end
-    configure :officials do
-      # limit to only published officials
-      associated_collection_scope do
-        Proc.new { |scope|
-          scope = scope.published.with_roles('official').sort_name
-        }
-      end
-    end
-    configure :subjects do
-      # limit to only published subjects
-      associated_collection_scope do
-        Proc.new { |scope|
-          scope = scope.published.with_roles('subject').sort_name
-        }
-      end
-    end
 
     configure :publication_editors do
       # build a table listing the editors
@@ -314,22 +257,55 @@ class Publication < ApplicationRecord
         bindings[:view].content_tag(:table, class: 'table table-striped publication-editors') do
           bindings[:view].content_tag(:thead) do
             bindings[:view].content_tag(:tr) do
-              bindings[:view].content_tag(:th, PublicationEditor.human_attribute_name(:editors)) +
-              bindings[:view].content_tag(:th, PublicationEditor.human_attribute_name(:publishers)) +
               bindings[:view].content_tag(:th, PublicationEditor.human_attribute_name(:year_start)) +
-              bindings[:view].content_tag(:th, PublicationEditor.human_attribute_name(:year_end))
+              bindings[:view].content_tag(:th, PublicationEditor.human_attribute_name(:year_end)) +
+              bindings[:view].content_tag(:th, PublicationEditor.human_attribute_name(:person_role))
             end
           end +
           bindings[:view].content_tag(:tbody) do
             bindings[:object].publication_editors.collect do |publication_editor|
               bindings[:view].content_tag(:tr) do
-                bindings[:view].content_tag(:td, publication_editor.editors) +
-                bindings[:view].content_tag(:td, publication_editor.publishers) +
                 bindings[:view].content_tag(:td, publication_editor.year_start) +
-                bindings[:view].content_tag(:td, publication_editor.year_end)
+                bindings[:view].content_tag(:td, publication_editor.year_end) +
+                bindings[:view].content_tag(:td) do
+                  bindings[:view].content_tag(:ul) do
+                    publication_editor.person_roles.group_records_by_role.collect do |role, people|
+                      bindings[:view].content_tag(:li) do
+                        bindings[:view].content_tag(:span, role) +
+                        bindings[:view].content_tag(:ul) do
+                          people.collect do |person|
+                            bindings[:view].content_tag(:li) do
+                              bindings[:view].link_to(person.name, bindings[:view].url_for(action: 'show', model_name: 'Person', id: person.person_id), class: 'pjax')
+                            end
+                          end.join.html_safe
+                        end
+                      end
+                    end.join.html_safe
+                  end
+                end
               end
             end.join.html_safe
           end
+        end
+      end
+    end
+
+    configure :person_roles do
+      # build simple list of name and role
+      pretty_value do
+        bindings[:view].content_tag(:ul) do
+          bindings[:object].person_roles.group_records_by_role.collect do |role, people|
+            bindings[:view].content_tag(:li) do
+              bindings[:view].content_tag(:span, role) +
+              bindings[:view].content_tag(:ul) do
+                people.collect do |person|
+                  bindings[:view].content_tag(:li) do
+                    bindings[:view].link_to(person.name, bindings[:view].url_for(action: 'show', model_name: 'Person', id: person.person_id), class: 'pjax')
+                  end
+                end.join.html_safe
+              end
+            end
+          end.join.html_safe
         end
       end
     end
@@ -377,25 +353,7 @@ class Publication < ApplicationRecord
           bindings[:object].journal?
         end
       end
-      field :editors do
-        visible do
-          bindings[:object].book?
-        end
-      end
-      field :publishers do
-        visible do
-          bindings[:object].book?
-        end
-      end
-      field :writers do
-        visible do
-          bindings[:object].book?
-        end
-      end
-      field :printers
-      field :financiers
-      field :officials
-      field :subjects
+      field :person_roles
       field :year do
         visible do
           bindings[:object].book? || bindings[:object].original?
@@ -433,29 +391,8 @@ class Publication < ApplicationRecord
       field :publication_editors do
         css_class 'publication-publication-editors'
       end
-      field :editors do
-        css_class 'publication-editors'
-        help I18n.t('admin.help.person.editor')
-      end
-      field :publishers do
-        css_class 'publication-publishers'
-        help I18n.t('admin.help.person.publisher')
-      end
-      field :writers do
-        css_class 'publication-writers'
-        help I18n.t('admin.help.person.writer')
-      end
-      field :printers do
-        help I18n.t('admin.help.person.printer')
-      end
-      field :financiers do
-        help I18n.t('admin.help.person.financier')
-      end
-      field :officials do
-        help I18n.t('admin.help.person.official')
-      end
-      field :subjects do
-        help I18n.t('admin.help.person.subject')
+      field :person_roles do
+        css_class 'publication-person-roles'
       end
 
     end

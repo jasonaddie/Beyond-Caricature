@@ -31,6 +31,9 @@ en:
       person:
         one: Person
         other: People
+      person_role:
+        one: Person
+        other: People
       publication:
         one: Source
         other: Sources
@@ -78,6 +81,7 @@ en:
         context: Context
         illustration_annotation: Annotation
         illustration_annotations: Annotations
+        person_role: Illustrator
       illustration/translation:
         is_public: Is Public?
         date_publish: Date Made Public
@@ -144,7 +148,14 @@ en:
         summary: Summary
         text: Text
       person:
-        roles: Roles
+        date_birth: Birth Date
+        date_death: Death Date
+        is_public: Is Public?
+        name: Name
+        bio: Biography
+        image: Image
+      person_role:
+        role: Role
         role_types:
           illustrator: Illustrator
           editor: Editor
@@ -154,12 +165,6 @@ en:
           financier: Financier
           official: Official
           subject: Subject
-        date_birth: Birth Date
-        date_death: Death Date
-        is_public: Is Public?
-        name: Name
-        bio: Biography
-        image: Image
       person/translation:
         is_public: Is Public?
         name: Name
@@ -191,6 +196,8 @@ en:
         financiers: Financiers
         officials: Officials
         subjects: Subjects
+        person_roles: Related People
+        person_role: Related Person
       publication/translation:
         is_public: Is Public?
         date_publish: Date Made Public
@@ -204,6 +211,8 @@ en:
         publishers: Publishers
         year_start: Year Start
         year_end: Year End
+        person_roles: Related People
+        person_role: Related Person
       publication_language:
         is_active: Is Active?
       publication_language/translation:
@@ -315,6 +324,7 @@ en:
       date_death: Died
       tags: Tags
       roles: Roles
+      people: People
   messages:
     no_data: There is no data on record at this time.
     no_issues: There are no issues on record at this time.

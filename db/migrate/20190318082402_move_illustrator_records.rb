@@ -4,7 +4,7 @@ class MoveIllustratorRecords < ActiveRecord::Migration[5.2]
     # andupdate illustration and related item references
 
     Illustrator.all.each do |old|
-      p = Person.new(roles: ['illustrator'], date_birth: old.date_birth, date_death: old.date_death, slug: old.slug)
+      p = Person.new(date_birth: old.date_birth, date_death: old.date_death, slug: old.slug)
       p.name_translations = old.name_translations
       p.bio_translations = old.bio_translations
       p.is_public_translations = old.is_public_translations
@@ -13,7 +13,7 @@ class MoveIllustratorRecords < ActiveRecord::Migration[5.2]
       p.save
 
       Illustration.where(illustrator_id: old.id).each do |illustration|
-        illustration.illustrator_person.create(person_id: p.id)
+        illustration.person_role.create(person_id: p.id, role: :illustrator)
       end
       RelatedItem.where(illustrator_id: old.id).each do |item|
         item.person_id = p.id

@@ -19,7 +19,7 @@
 <ul>
   <li>
     <strong><%= t('labels.meta.illustrator') %>:</strong>
-    <%= link_to @illustration.illustrator.name, illustrator_path(@illustration.illustrator) %>
+    <%= link_to @illustration.person_role.name, person_path(@illustration.person_role.person) %>
   </li>
 
   <% if @illustration.publications.present? || @illustration.issues.present? %>

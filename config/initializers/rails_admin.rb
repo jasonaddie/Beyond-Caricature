@@ -7,8 +7,6 @@ RailsAdmin.config do |config|
   RailsAdmin::Config::Actions.register(RailsAdmin::Config::Actions::Changelog)
 
   ## Custom Fields
-  require Rails.root.join('lib', 'rails_admin', 'config', 'fields', 'types', 'array_field.rb')
-  RailsAdmin::Config::Fields::Types::register(:array_field, RailsAdmin::Config::Fields::Types::ArrayField)
 
   ### Popular gems integration
 
@@ -80,6 +78,7 @@ RailsAdmin.config do |config|
     'PublicationLanguage','PublicationLanguage::Translation',
     # 'Illustrator', 'Illustrator::Translation',
     'Person', 'Person::Translation',
+    'PersonRole',
     'News', 'News::Translation',
     'Research', 'Research::Translation',
     'Tag', 'Tag::Translation',

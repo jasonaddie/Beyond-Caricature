@@ -95,10 +95,10 @@ private
       stats[:originals][:illustrations] = IllustrationPublication.where(publication_id: ids).count
 
       # illustrators
-      ids = Illustrator.published.pluck(:id)
+      ids = PersonRole.illustrator
       stats[:illustrators] = {}
-      stats[:illustrators][:count] = ids.count
-      stats[:illustrators][:illustrations] = Illustration.published.where(illustrator_id: ids).count
+      stats[:illustrators][:count] = ids.map{|x| x.person_id}.uniq.length
+      stats[:illustrators][:illustrations] = Illustration.published.where(id: ids.map{|x| x.person_roleable_id}.uniq).count
 
     return stats
   end

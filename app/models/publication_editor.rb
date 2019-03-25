@@ -20,16 +20,33 @@ class PublicationEditor < ApplicationRecord
   ## ASSOCIATIONS ##
   #################
   belongs_to :publication
-  has_many :editor_people, as: :person_roleable, class_name: 'PersonRole', dependent: :destroy
-  has_many :editors, -> { published.with_roles('editor') }, through: :editor_people, source: :person
-  has_many :publisher_people, as: :person_roleable, class_name: 'PersonRole', dependent: :destroy
-  has_many :publishers, -> { published.with_roles('publisher') }, through: :publisher_people, source: :person
+  has_many :person_roles, as: :person_roleable, dependent: :destroy
+  accepts_nested_attributes_for :person_roles, allow_destroy: true,
+    reject_if: ->(role){ reject_person_roles?(role)}
 
   #################
   ## VALIDATION ##
   #################
   validates :year_start, numericality: { greater_than: 1800, less_than_or_equal_to: Time.now.year }, unless: Proc.new { |x| x.year_start.blank? }
   validates :year_end, numericality: { greater_than_or_equal_to: :year_start, less_than_or_equal_to: Time.now.year }, unless: Proc.new { |x| x.year_end.blank? }
+
+  #################
+  ## SCOPES ##
+  #################
+  # if there are no values, then reject
+  def self.reject_person_roles?(person)
+    nontranslation_fields = %w(role person)
+    found_value = false
+
+    # check nontranslation fields first
+    nontranslation_fields.each do |field|
+      if !person[field].blank?
+        found_value = true
+        break
+      end
+    end
+    return !found_value
+  end
 
   #################
   ## CALLBACKS ##
@@ -43,25 +60,9 @@ class PublicationEditor < ApplicationRecord
     visible false
 
     # group with publication in navigation
-    parent Publication
+    # parent Publication
 
     # configuration
-    configure :editors do
-      # limit to only published editors
-      associated_collection_scope do
-        Proc.new { |scope|
-          scope = scope.published.with_roles('editor').sort_name
-        }
-      end
-    end
-    configure :publishers do
-      # limit to only published publishers
-      associated_collection_scope do
-        Proc.new { |scope|
-          scope = scope.published.with_roles('publisher').sort_name
-        }
-      end
-    end
 
     # list page
 
@@ -69,15 +70,9 @@ class PublicationEditor < ApplicationRecord
 
     # form
     edit do
-
-      field :editors do
-        help I18n.t('admin.help.person.editor')
-      end
-      field :publishers do
-        help I18n.t('admin.help.person.publisher')
-      end
       field :year_start
       field :year_end
+      field :person_roles
     end
   end
 
@@ -88,7 +83,7 @@ class PublicationEditor < ApplicationRecord
 
   def check_association_public_required_fields
     # call the methohd in the application record base object
-    # super(['editor'], self.publication)
+    # super(['person_roles'], self.publication)
   end
 
 end

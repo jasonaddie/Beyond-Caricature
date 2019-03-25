@@ -2,12 +2,11 @@
 #
 # Table name: illustrations
 #
-#  id             :bigint(8)        not null, primary key
-#  illustrator_id :bigint(8)
-#  created_at     :datetime         not null
-#  updated_at     :datetime         not null
-#  image_uid      :string
-#  person_id      :bigint(8)
+#  id         :bigint(8)        not null, primary key
+#  created_at :datetime         not null
+#  updated_at :datetime         not null
+#  image_uid  :string
+#  person_id  :bigint(8)
 #
 
 class Illustration < ApplicationRecord
@@ -26,16 +25,9 @@ class Illustration < ApplicationRecord
   #################
   ## ASSOCIATIONS ##
   #################
-  # belongs_to :person, -> { published.with_roles('illustrator') }
-  has_one :illustrator_person, as: :person_roleable, class_name: 'PersonRole', dependent: :destroy
-  has_one :illustrator, -> { published.with_roles('illustrator') }, through: :illustrator_person, source: :person
-
-  def illustrator_id
-    self.illustrator.try :id
-  end
-  def illustrator_id=(id)
-    self.illustrator = Person.find_by_id(id)
-  end
+  has_one :person_role, as: :person_roleable, dependent: :destroy
+  accepts_nested_attributes_for :person_role, allow_destroy: true,
+    reject_if: ->(role){ reject_person_role?(role)}
 
   has_many :illustration_tags, dependent: :destroy
   has_many :tags, through: :illustration_tags
@@ -85,6 +77,7 @@ class Illustration < ApplicationRecord
   #################
   ## VALIDATION ##
   #################
+  validates :person_role, presence: true
   validates_size_of :image, maximum: 5.megabytes
   validates_property :ext, of: :image, in: ['jpg', 'jpeg', 'png', 'JPG', 'JPEG', 'PNG']
 
@@ -131,6 +124,22 @@ class Illustration < ApplicationRecord
 
     return !found_value
   end
+
+  # if there are no values, then reject
+  def self.reject_person_role?(person)
+    nontranslation_fields = %w(role person)
+    found_value = false
+
+    # check nontranslation fields first
+    nontranslation_fields.each do |field|
+      if !person[field].blank?
+        found_value = true
+        break
+      end
+    end
+    return !found_value
+  end
+
 
 
   #################
@@ -199,24 +208,12 @@ class Illustration < ApplicationRecord
     configure :image do
       html_attributes required: required? && !value.present?, accept: 'image/*'
     end
-    configure :illustrator do
-      # limit to only published editors
-      associated_collection_scope do
-        Proc.new { |scope|
-          scope = scope.published.with_roles('illustrator').sort_name
-        }
+    configure :person_role do
+      # build simple list of name and role
+      pretty_value do
+        value.nil? ? nil : bindings[:view].link_to(value.name, bindings[:view].url_for(action: 'show', model_name: 'Person', id: value.person_id), class: 'pjax')
       end
     end
-    # configure :person do
-    #   # limit to only published issues
-    #   associated_collection_scope do
-    #     resource_scope = bindings[:object].class.reflect_on_association(:person).source_reflection.scope
-
-    #     proc do |scope|
-    #       resource_scope ? scope.merge(resource_scope) : scope
-    #     end
-    #   end
-    # end
     configure :illustration_annotations do
       # determine if the has many block should be open when page loads
       active do
@@ -238,8 +235,7 @@ class Illustration < ApplicationRecord
       field :is_public
       field :image
       field :title
-      field :illustrator
-      # field :person
+      field :person_role
       field :combined_publications_count do
         label I18n.t('labels.combined_publications_count')
       end
@@ -252,8 +248,7 @@ class Illustration < ApplicationRecord
       field :image
       field :title
       field :context
-      field :illustrator
-      # field :person
+      field :person_role
       field :illustration_annotations
       field :combined_publications_count do
         label I18n.t('labels.combined_publications_count')
@@ -269,12 +264,9 @@ class Illustration < ApplicationRecord
       field :image do
         help I18n.t('admin.help.image')
       end
-      field :illustrator do
-        help I18n.t('admin.help.person.illustrator')
+      field :person_role do
+        help I18n.t('admin.help.person')
       end
-      # field :person do
-      #   help I18n.t('admin.help.person.illustrator')
-      # end
       field :translations do
         label I18n.t('labels.translations')
       end

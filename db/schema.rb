@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_03_18_082403) do
+ActiveRecord::Schema.define(version: 2019_03_19_213645) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -289,7 +289,6 @@ ActiveRecord::Schema.define(version: 2019_03_18_082403) do
   end
 
   create_table "people", force: :cascade do |t|
-    t.integer "roles", default: [], null: false, array: true
     t.date "date_birth"
     t.date "date_death"
     t.boolean "is_public", default: false
@@ -300,7 +299,6 @@ ActiveRecord::Schema.define(version: 2019_03_18_082403) do
     t.index ["date_birth"], name: "index_people_on_date_birth"
     t.index ["date_death"], name: "index_people_on_date_death"
     t.index ["is_public"], name: "index_people_on_is_public"
-    t.index ["roles"], name: "index_people_on_roles"
     t.index ["slug"], name: "index_people_on_slug", unique: true
   end
 
@@ -310,8 +308,10 @@ ActiveRecord::Schema.define(version: 2019_03_18_082403) do
     t.bigint "person_roleable_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer "role"
     t.index ["person_id"], name: "index_person_roles_on_person_id"
     t.index ["person_roleable_type", "person_roleable_id"], name: "idx_person_roleable"
+    t.index ["role"], name: "index_person_roles_on_role"
   end
 
   create_table "person_translations", force: :cascade do |t|

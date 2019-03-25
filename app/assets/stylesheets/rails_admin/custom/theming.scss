@@ -21,7 +21,9 @@ body.rails_admin .form-horizontal .tab-content .tab-pane{
   border-bottom: 1px solid #ddd;
   margin-bottom: 25px;
 }
-
+body.rails_admin .form-horizontal .tab-content .tab-content .tab-pane{
+  border-color: #ddd;
+}
 .nav-tabs.disabled{
   display: none !important;
 }

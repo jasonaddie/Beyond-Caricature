@@ -44,38 +44,43 @@
       <%= number_with_delimiter(@publication.issue_count) %>
     </li>
   <% end %>
-  <% if @publication.book? %>
-    <li>
-      <strong><%= t('labels.meta.editor') %>:</strong>
-      <%= @publication.editor %>
-    </li>
-    <li>
-      <strong><%= t('labels.meta.publisher') %>:</strong>
-      <%= @publication.publisher %>
-    </li>
-    <li>
-      <strong><%= t('labels.meta.writer') %>:</strong>
-      <%= @publication.writer %>
-    </li>
+  <% roles = @publication.person_roles.group_records_by_role %>
+  <% if roles.present? %>
+    <% roles.each do |role, people| %>
+      <li>
+        <strong><%= role %>:</strong>
+        <%= people.map{|person| link_to(person.name, person_path(person.person))}.join(', ').html_safe %>
+      </li>
+    <% end %>
   <% end %>
   <% if @publication.journal? %>
     <li>
       <table>
         <thead>
           <tr>
-            <th><%= t('labels.meta.editor') %></th>
-            <th><%= t('labels.meta.publisher') %></th>
             <th><%= t('labels.meta.year_start') %></th>
             <th><%= t('labels.meta.year_end') %></th>
+            <th><%= t('labels.meta.people') %></th>
           </tr>
         </thead>
         <tbody>
           <% @publication.publication_editors.each do |publication_editor| %>
             <tr>
-              <td><%= publication_editor.editor %></td>
-              <td><%= publication_editor.publisher %></td>
               <td><%= publication_editor.year_start %></td>
               <td><%= publication_editor.year_end %></td>
+              <td>
+                <% roles = publication_editor.person_roles.group_records_by_role %>
+                <% if roles.present? %>
+                  <ul>
+                    <% roles.each do |role, people| %>
+                      <li>
+                        <strong><%= role %>:</strong>
+                        <%= people.map{|person| link_to(person.name, person_path(person.person))}.join(', ').html_safe %>
+                      </li>
+                    <% end %>
+                  </ul>
+                <% end %>
+              </td>
             </tr>
           <% end %>
         </tbody>
