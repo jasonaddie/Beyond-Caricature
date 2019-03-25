@@ -2,6 +2,7 @@
   # required variables
   link_path ||= root_path
   title ||= nil
+  illustrator ||= nil
   # summary ||= nil
   cover_image_path ||= nil
 %>
@@ -18,5 +19,11 @@
   <% end %>
   <div class="card-content">
     <%= link_to title, link_path, class: 'has-text-weight-semibold card-title' %>
+    <% if illustrator %>
+      <div>
+        <strong><%= "#{t('labels.by')}:" %></strong>
+        <%= illustrator %>
+      </div>
+    <% end %>
   </div>
 </div>

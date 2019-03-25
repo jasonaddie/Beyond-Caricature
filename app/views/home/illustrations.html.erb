@@ -1,32 +1,23 @@
 <h1 class="title is-3"><%= title t('labels.illustrations') %></h1>
 
 <% if @illustrations.present? %>
-  <ul>
+
+  <div class="columns is-multiline">
     <% @illustrations.each do |illustration| %>
-      <li>
-        <div>
-          <%= link_to illustration_path(illustration) do %>
-            <%= image_tag illustration.image.thumb('100x100#').url if illustration.image_stored? %>
-          <% end %>
-        </div>
-        <div>
-          <%= link_to illustration.title, illustration_path(illustration) %>
-        </div>
-        <ul>
-          <li>
-            <strong><%= t('labels.meta.illustrator') %>:</strong>
-            <%= illustration.person_role.name if illustration.person_role %>
-          </li>
-          <li>
-            <strong><%= t('labels.meta.publication_count') %>:</strong>
-            <%= number_with_delimiter(illustration.combined_publications_count) %>
-          </li>
-        </ul>
-      </li>
+      <div class="column is-3">
+        <%= render partial: 'shared/card_meta_hover', locals: {
+              title: illustration.title,
+              link_path: illustration_path(illustration),
+              cover_image_path: (illustration.image_stored? ? illustration.image.thumb('400x400#').url : nil),
+              illustrator: illustration.person_role ? illustration.person_role.name : nil
+          } %>
+      </div>
     <% end %>
-  </ul>
+  </div>
+
 <% else %>
 
   <p><%= t('messages.no_data') %></p>
 
 <% end %>
+

@@ -57,7 +57,7 @@
                   title: news.title,
                   summary: news.summary,
                   link_path: news_path(news),
-                  cover_image_path: (news.cover_image.present? ? news.cover_image.thumb('400x204#').url : nil)
+                  cover_image_path: (news.cover_image_stored? ? news.cover_image.thumb('400x204#').url : nil)
               } %>
           </div>
         <% end %>
@@ -78,7 +78,8 @@
             <%= render partial: 'shared/card_meta_hover', locals: {
                   title: illustration.title,
                   link_path: illustration_path(illustration),
-                  cover_image_path: (illustration.image.present? ? illustration.image.thumb('400x400#').url : nil)
+                  cover_image_path: (illustration.image_stored? ? illustration.image.thumb('400x400#').url : nil),
+                  illustrator: illustration.person_role ? illustration.person_role.name : nil
               } %>
           </div>
         <% end %>
@@ -100,7 +101,7 @@
                   title: publication.title,
                   summary: publication.about,
                   link_path: source_path(publication),
-                  cover_image_path: (publication.cover_image.present? ? publication.cover_image.thumb('400x204#').url : nil)
+                  cover_image_path: (publication.cover_image_stored? ? publication.cover_image.thumb('400x204#').url : nil)
               } %>
           </div>
         <% end %>
