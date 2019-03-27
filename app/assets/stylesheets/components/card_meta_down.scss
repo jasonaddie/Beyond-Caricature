@@ -4,12 +4,15 @@
 .card.card-meta-down{
   height: 100%;
   .card-content{
+    padding: 0.8rem;
+
     .card-title{
       color: $body-color;
     }
 
     .content{
       color: $text-light;
+      font-size: 0.8rem;
     }
   }
 }
