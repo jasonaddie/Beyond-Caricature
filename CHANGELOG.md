@@ -4,17 +4,24 @@ The numbers in brackets (i.e., [0.1]), indicate the version number of the app.
 ## [Unreleased]
 These are items that are have been finished, but not released yet.
 
+None at this time.
+
+## [0.11] - 2019-03-27
 ### Added
-- Default image to be used when a record does not have one (i.e., cover image)
+- Default image to be used when a record does not have an image (i.e., cover image)
 - Implmeneted a max-width for the content (1364px)
 - Favicons (i.e., the icon that appears in the browser tab)
-- New Person data model that replaces the Illustrator data model
+- Basic styling for the Source, People, and Illustration listing pages
+- Styled the News and Research pages
+- New generic Person data model that replaces the Illustrator data model
+    - Updated Source form so admin can select an existing person and assign a role to them (i.e., illustrator, publisher, editor, etc)
+    - Change name of public pages from Illustrators to People
+    - Public page now shows all people (not just illustrators) and indicates what roles they have
 
 ### Fixed
 - On mobile, popup menu does not open after going to a new page
 - Image size in cards (i.e., images in listings)
 - Navbar is no longer fixed to the top of the window
-
 
 ## [0.10] - 2019-03-12
 ### Added
