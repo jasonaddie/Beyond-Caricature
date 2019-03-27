@@ -1,0 +1,39 @@
+<%
+  items ||= nil
+  item_path ||= nil
+%>
+
+<% if items.present? %>
+  <div class="listings-meta-right">
+    <% items.each do |item| %>
+      <div class="listing-meta-right">
+        <div class="listing-date">
+          <div class="listing-date-month">
+            <%= item.date_publish.strftime("%b") %>
+          </div>
+          <div class="listing-date-day-year">
+            <%= item.date_publish.strftime("%d %Y") %>
+          </div>
+        </div>
+        <div class="listing-cover-image">
+          <%= link_to send(item_path, item) do %>
+            <%= image_tag item.cover_image.thumb('438x326#').url %>
+          <% end %>
+        </div>
+        <h3>
+          <%= link_to item.title, send(item_path, item) %>
+        </h3>
+        <div class="listing-summary">
+          <%= item.summary.html_safe %>
+        </div>
+        <div class="listing-more">
+          <%= link_to t('labels.read_more'), send(item_path, item), class: 'read-more is-lowercase' %>
+        </div>
+      </div>
+    <% end %>
+  </div>
+<% else %>
+
+  <p><%= t('messages.no_data') %></p>
+
+<% end %>
