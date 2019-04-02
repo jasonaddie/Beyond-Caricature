@@ -71,6 +71,32 @@ class Person < ApplicationRecord
   scope :sort_published_desc, -> { order(date_publish: :desc) }
   scope :sort_name_asc, -> { with_translations(I18n.locale).order('person_translations.last_name asc, person_translations.first_name asc') }
 
+  # filter people by the following:
+  # - role
+  # - lived dates (start and/or end)
+  # - search
+  def self.filter(options={})
+    x = self
+    if options[:role].present?
+      x = x.joins(:person_roles).where(person_roles: {role: options[:role]})
+    end
+
+    if options[:lived].present?
+      if options[:lived][:start].present?
+        x = x.where('date_birth >= ?', options[:lived][:start])
+      end
+      if options[:lived][:end].present?
+        x = x.where('date_death <= ?', options[:lived][:end])
+      end
+    end
+
+    if options[:search].present?
+
+    end
+
+    return x
+  end
+
   #################
   ## METHODS ##
   #################
