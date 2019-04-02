@@ -11,6 +11,8 @@
 #
 
 class Person < ApplicationRecord
+  include FullTextSearch
+
   #################
   ## HISTORY TRACKING ##
   #################
@@ -72,9 +74,9 @@ class Person < ApplicationRecord
   scope :sort_name_asc, -> { with_translations(I18n.locale).order('person_translations.last_name asc, person_translations.first_name asc') }
 
   # filter people by the following:
-  # - role
-  # - lived dates (start and/or end)
-  # - search
+  # - role - ROLES key from person role model
+  # - lived dates - start and/or end date
+  # - search - string
   def self.filter(options={})
     x = self
     if options[:role].present?
@@ -91,7 +93,10 @@ class Person < ApplicationRecord
     end
 
     if options[:search].present?
-
+      x = x.with_translations(I18n.locale)
+            .where(build_full_text_search_sql(%w(person_translations.name person_translations.bio)),
+              options[:search]
+            )
     end
 
     return x
