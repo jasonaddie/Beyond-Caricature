@@ -82,6 +82,16 @@ class Illustration < ApplicationRecord
   scope :published, -> { with_translations(I18n.locale).where('illustration_translations.is_public': true) }
   scope :sort_published_desc, -> { order(date_publish: :desc) }
 
+  # filter illustrations by the following:
+  # - publication type - publication type key from publication table
+  # - illustrator name
+  # - search - string (title, context, tags, source name?, illustrator name?)
+  def self.filter(options={})
+    x = self
+
+    return x
+  end
+
   # if there are no values in all translations, then reject
   def self.reject_annotation?(annotation)
     translation_fields = %w(annotation)
