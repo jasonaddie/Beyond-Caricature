@@ -6,44 +6,10 @@
   @lang_switcher_fallback_url = news_index_path
   set_meta_tags description: @news_item.summary
 %>
-<h1 class="title is-3"><%= title @news_item.title %></h1>
 
-<div>
-  <%= image_tag @news_item.cover_image.thumb('300x200#').url if @news_item.cover_image_stored? %>
-</div>
-<div>
-  <%= @news_item.date_publish %>
-</div>
-<div>
-  <%= simple_format(@news_item.text) %>
-</div>
+<%= render partial: 'shared/news_item', locals: {
+    item: @news_item,
+    items_path: news_path,
+    items_link_label: t('labels.all_news')
+} %>
 
-<% if @news_item.slideshows.present? %>
-  <h2 class="title is-4"><%= t('labels.slideshow') %></h2>
-
-  <ul>
-    <% @news_item.slideshows.each do |image| %>
-      <li>
-        <%= image_tag image.image.thumb('300x200#').url if image.image_stored? %>
-        <% if image.caption.present? %>
-          <div class="image-caption"><%= image.caption %></div>
-        <% end %>
-      </li>
-    <% end %>
-  </ul>
-<% end %>
-
-
-<% if @news_item.related_items.present? %>
-  <h2 class="title is-4"><%= t('labels.related_items') %></h2>
-
-  <ul>
-    <% @news_item.related_items.each do |related_item| %>
-      <li>
-        <%= link_to related_item.item_title, related_item.item_link %>
-      </li>
-    <% end %>
-  </ul>
-<% end %>
-
-<%= link_to t('labels.all_news'), news_index_path %>

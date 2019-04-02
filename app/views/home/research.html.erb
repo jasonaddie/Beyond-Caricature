@@ -6,44 +6,9 @@
   @lang_switcher_fallback_url = researches_path
   set_meta_tags description: @research.summary
 %>
-<h1 class="title is-3"><%= title @research.title %></h1>
 
-<div>
-  <%= image_tag @research.cover_image.thumb('300x200#').url if @research.cover_image_stored? %>
-</div>
-<div>
-  <%= @research.date_publish %>
-</div>
-<div>
-  <%= simple_format(@research.text) %>
-</div>
-
-<% if @research.slideshows.present? %>
-  <h2 class="title is-4"><%= t('labels.slideshow') %></h2>
-
-  <ul>
-    <% @research.slideshows.each do |image| %>
-      <li>
-        <%= image_tag image.image.thumb('300x200#').url if image.image_stored? %>
-        <% if image.caption.present? %>
-          <div class="image-caption"><%= image.caption %></div>
-        <% end %>
-      </li>
-    <% end %>
-  </ul>
-<% end %>
-
-
-<% if @research.related_items.present? %>
-  <h2 class="title is-4"><%= t('labels.related_items') %></h2>
-
-  <ul>
-    <% @research.related_items.each do |related_item| %>
-      <li>
-        <%= link_to related_item.item_title, related_item.item_link %>
-      </li>
-    <% end %>
-  </ul>
-<% end %>
-
-<%= link_to t('labels.all_research'), researches_path %>
+<%= render partial: 'shared/news_item', locals: {
+    item: @research,
+    items_path: researches_path,
+    items_link_label: t('labels.all_research')
+} %>
