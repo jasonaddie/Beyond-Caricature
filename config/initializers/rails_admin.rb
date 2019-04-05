@@ -165,8 +165,11 @@ RailsAdmin.config do |config|
     edit do
       field :summary, :ck_editor
       field :text, :ck_editor
-      fields :title, :summary, :text do
+      fields :title, :summary do
         help I18n.t('admin.help.required_for_publication')
+      end
+      fields :text do
+        help "#{I18n.t('admin.help.required_for_publication')} #{I18n.t('admin.help.slideshow_placeholder')}"
       end
       # uploader's cannot make anything public
       field :is_public do
@@ -190,8 +193,11 @@ RailsAdmin.config do |config|
     edit do
       field :summary, :ck_editor
       field :text, :ck_editor
-      fields :title, :summary, :text do
+      fields :title, :summary do
         help I18n.t('admin.help.required_for_publication')
+      end
+      fields :text do
+        help "#{I18n.t('admin.help.required_for_publication')} #{I18n.t('admin.help.slideshow_placeholder')}"
       end
       # uploader's cannot make anything public
       field :is_public do

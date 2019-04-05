@@ -173,6 +173,7 @@ en:
       image: Only jpg, jpeg or png files are allowed. Image must be less than 5MB.
       file: Only PDF files are allowed. There is no size limit.
       person: Only published People are shown.
+      slideshow_placeholder: By default the slideshow will appear at the end of this text. If you want it to appear in the text, add the text [slideshow] into the text where you want it to appear.
     errors:
       required_for_publication: is required for making the language public
       required_related_item: is required

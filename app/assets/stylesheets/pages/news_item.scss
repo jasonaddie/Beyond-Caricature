@@ -38,14 +38,15 @@ body.home.news_item, body.home.research{
       padding: 1rem 0;
     }
     .news-item-content{
-      bottom-border: solid 1px $header-line-color;
       margin-bottom: 36px;
       img{
         margin: 17px;
       }
     }
     .news-item-view-all{
-      margin-top: 86px;
+      border-top: solid 1px $header-line-color;
+      margin-top: 36px;
+      padding-top: 49px;
       margin-bottom: 132px;
       text-align: center;
       a{

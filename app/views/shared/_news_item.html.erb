@@ -20,18 +20,29 @@
   </div>
 
   <% if item.slideshows.present? %>
-    <h2 class="title is-4"><%= t('labels.slideshow') %></h2>
-
-    <ul>
-      <% item.slideshows.each do |image| %>
-        <li>
-          <%= image_tag image.image.thumb('300x200#').url if image.image_stored? %>
-          <% if image.caption.present? %>
-            <div class="image-caption"><%= image.caption %></div>
-          <% end %>
-        </li>
-      <% end %>
-    </ul>
+    <div id="news-item-slideshow" class="slideshow-news-item" style="">
+      <div class="slideshow-slides" data-u="slides" style="">
+        <% item.slideshows.sorted.each do |image| %>
+          <div>
+            <%= image_tag image.image.thumb('844x').url, 'data-u': 'image' if image.image_stored? %>
+            <% if image.caption.present? %>
+              <div class="image-caption"><%= image.caption %></div>
+            <% end %>
+          </div>
+        <% end %>
+      </div>
+      <!-- Arrow Navigator -->
+      <div data-u="arrowleft" class="jssora051 arrow left" style="" data-autocenter="2" data-scale="0.75" data-scale-left="0.75">
+          <svg viewBox="0 0 16000 16000" style="">
+              <polyline class="a" points="11040,1920 4960,8000 11040,14080 "></polyline>
+          </svg>
+      </div>
+      <div data-u="arrowright" class="jssora051 arrow right" style="  " data-autocenter="2" data-scale="0.75" data-scale-right="0.75">
+          <svg viewBox="0 0 16000 16000" style="">
+              <polyline class="a" points="4960,1920 11040,8000 4960,14080 "></polyline>
+          </svg>
+      </div>
+    </div>
   <% end %>
 
 
