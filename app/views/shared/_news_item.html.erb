@@ -16,6 +16,20 @@
   </div>
 
   <div class="news-item-content">
+    <% if item.related_items.present? %>
+      <div class="news-item-related">
+        <h2 class="title is-6"><%= t('.related_item_explanation') %></h2>
+        <ul>
+          <% item.related_items.each do |related_item| %>
+            <li>
+              <b><%= related_item.related_item_type_formatted %>:</b>
+              <%= link_to related_item.item_title, related_item.item_link %>
+            </li>
+          <% end %>
+        </ul>
+      </div>
+    <% end %>
+
     <%= item.text.html_safe %>
   </div>
 
@@ -43,19 +57,6 @@
           </svg>
       </div>
     </div>
-  <% end %>
-
-
-  <% if item.related_items.present? %>
-    <h2 class="title is-4"><%= t('labels.related_items') %></h2>
-
-    <ul>
-      <% item.related_items.each do |related_item| %>
-        <li>
-          <%= link_to related_item.item_title, related_item.item_link %>
-        </li>
-      <% end %>
-    </ul>
   <% end %>
 
   <div class="news-item-view-all">

@@ -281,8 +281,8 @@ ka:
     illustrators: Illustrators
     people: People
     issues: Issues
-    all_news: All News
-    all_research: All Research
+    all_news: View All News
+    all_research: View All Research
     about: About
     highlights: Highlights
     home: Home
@@ -365,3 +365,6 @@ ka:
     about:
       intro: |
         Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+  shared:
+    news_item:
+      related_item_explanation: Links to items mentioned in this article

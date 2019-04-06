@@ -39,8 +39,26 @@ body.home.news_item, body.home.research{
     }
     .news-item-content{
       margin-bottom: 36px;
+      clear: both;
       img{
         margin: 17px;
+      }
+
+      .news-item-related{
+        float: right;
+        border: solid 1px $header-line-color;
+        padding: 0.75rem 0.5rem;
+        margin-left: 0.5rem;
+        margin-bottom: 0.5rem;
+        max-width: 375px;
+
+        h2{
+          margin-bottom: 0.5rem;
+          font-style: italic;
+        }
+        p, li{
+          font-size:  0.8rem;
+        }
       }
     }
     .news-item-view-all{

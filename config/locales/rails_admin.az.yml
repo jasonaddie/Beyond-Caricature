@@ -163,10 +163,17 @@ az:
     help:
       required_for_publication: Required for making public
       soft_delete: To re-activate a user, delete the date
-      sort: Lower number will be shown before a higher number (i.e., 0 shows before 1)
+      sort: Drag and drop the items to put them in the order you want them to appear
+      move: Drag this item up or down to change the order you want them to appear
       only_public_items: Only published items are shown in the list
       only_active_languages: Only active languages are shown in the list
       missing_annotation_image: After you load an illustration, the image will appear here.
+      annotation:
+        add: Place marker on image
+      image: Only jpg, jpeg or png files are allowed. Image must be less than 5MB.
+      file: Only PDF files are allowed. There is no size limit.
+      person: Only published People are shown.
+      slideshow_placeholder: By default the slideshow will appear at the end of this text. If you want it to appear in the text, add the text [slideshow] into the text where you want it to appear.
     errors:
       required_for_publication: is required for making the language public
       required_related_item: is required
