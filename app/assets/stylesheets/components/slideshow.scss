@@ -4,6 +4,136 @@
 $slideshow-width: 844px;
 $slideshow-height: 581px;
 
+.slideshow-highlights-slick{
+  background: transparent;
+  margin-top: 64px;
+  position: relative;
+
+  .slideshow-slide{
+    width: 1324px !important;
+    height: 632px !important;
+    position: relative;
+
+    .slideshow-slide-image{
+      position: absolute;
+      top: 0;
+      right: 0;
+      width: 66%;
+      vertical-align: top;
+    }
+    .slideshow-slide-text{
+      position: absolute;
+      top: 50%;
+      left: 0;
+      width: 50%;
+      .slideshow-slide-title {
+        width: 66%;
+        a{
+          color: $grey-dark;
+          font-size: 1.57rem;
+          font-weight: 600;
+          line-height: 1.57rem;
+        }
+      }
+      .slideshow-slide-summary{
+        margin-top: 22px;
+        width: 100%;
+        background-color: $nav-start-active-color;
+        color: #fff;
+        font-size: 1.21rem;
+        font-weight: 300;
+        line-height: 1.42rem;
+        padding: 28px 23px 23px;
+        p{
+          margin-bottom: 0;
+        }
+      }
+    }
+  }
+
+  .slick-dots
+  {
+    position: absolute;
+    bottom: -20px;
+
+    display: block;
+
+    width: 100%;
+    padding: 0;
+    margin: 0;
+
+    list-style: none;
+
+    text-align: right;
+  }
+  .slick-dots li
+  {
+    position: relative;
+
+    display: inline-block;
+
+    width: 20px;
+    height: 20px;
+    margin: 0 5px;
+    padding: 0;
+
+    cursor: pointer;
+  }
+  .slick-dots li button
+  {
+    font-size: 0;
+    line-height: 0;
+
+    display: block;
+
+    width: 20px;
+    height: 20px;
+    // padding: 5px;
+
+    cursor: pointer;
+
+    color: transparent;
+    border: 0;
+    outline: none;
+    background: transparent;
+  }
+  .slick-dots li button:hover,
+  .slick-dots li button:focus
+  {
+    outline: none;
+  }
+  .slick-dots li button:hover:before,
+  .slick-dots li button:focus:before
+  {
+    opacity: 1;
+  }
+  .slick-dots li button:before
+  {
+    font-size: 40px;
+    line-height: 20px;
+
+    position: absolute;
+    top: 0;
+    left: 0;
+
+    width: 20px;
+    height: 20px;
+
+    content: '•';
+    text-align: center;
+
+    color: #444444;
+
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+  .slick-dots li.slick-active button:before
+  {
+    color: $nav-start-active-color;
+  }
+
+}
+
 .slideshow-news-item-slick{
   position: relative;
   width:100vw;
@@ -15,6 +145,7 @@ $slideshow-height: 581px;
   .slideshow-slide{
     margin: 0 63px;
     width: 812px !important;
+
     img{
       opacity: 0.5;
       transition: opacity 0.5s ease;

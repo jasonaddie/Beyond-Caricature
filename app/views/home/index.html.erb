@@ -21,24 +21,26 @@
 
 <% if @highlights.present? %>
 
-  <div class="highlights">
-    <ul>
+  <div class="slideshow-highlights-slick">
+    <div class="slideshow-slides">
       <% @highlights.each do |highlight| %>
-        <li>
-          <div>
+        <div class="slideshow-slide">
+          <div class="slideshow-slide-image">
             <%= link_to highlight.link do %>
-              <%= image_tag highlight.cover_image.thumb('300x200#').url if highlight.cover_image_stored? %>
+              <%= image_tag highlight.cover_image.thumb('900x632#').url if highlight.cover_image_stored? %>
             <% end %>
           </div>
-          <div>
-            <%= link_to highlight.title, highlight.link %>
+          <div class="slideshow-slide-text">
+            <div class="slideshow-slide-title">
+              <%= link_to highlight.title, highlight.link %>
+            </div>
+            <div class="slideshow-slide-summary">
+              <%= highlight.summary.html_safe %>
+            </div>
           </div>
-          <div>
-            <%= simple_format(highlight.summary) %>
-          </div>
-        </li>
+        </div>
       <% end %>
-    </ul>
+    </div>
   </div>
 
 <% end %>

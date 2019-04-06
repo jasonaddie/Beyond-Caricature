@@ -5,7 +5,7 @@ class HomeController < ApplicationController
     @news = News.published.sort_published_desc.limit(3)
     @illustrations = Illustration.published.sort_published_desc.limit(3)
     @stats = get_stats
-    # @highlights = Highlight.published.sort_published_desc
+    @highlights = Highlight.published.sort_published_desc
   end
 
   def sources

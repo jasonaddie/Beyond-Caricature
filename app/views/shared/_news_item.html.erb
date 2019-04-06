@@ -39,7 +39,7 @@
       <div class="slideshow-slides">
         <% item.slideshows.sorted.each do |image| %>
           <div class="slideshow-slide">
-            <%= image_tag image.image.thumb('844x').url, 'data-u': 'image' if image.image_stored? %>
+            <%= image_tag image.image.thumb('844x').url if image.image_stored? %>
             <% if image.caption.present? %>
               <div class="image-caption"><%= image.caption %></div>
             <% end %>
