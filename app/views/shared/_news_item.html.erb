@@ -34,10 +34,11 @@
   </div>
 
   <% if item.slideshows.present? %>
-    <div id="news-item-slideshow" class="slideshow-news-item" style="">
-      <div class="slideshow-slides" data-u="slides" style="">
+
+    <div class="slideshow-news-item-slick">
+      <div class="slideshow-slides">
         <% item.slideshows.sorted.each do |image| %>
-          <div>
+          <div class="slideshow-slide">
             <%= image_tag image.image.thumb('844x').url, 'data-u': 'image' if image.image_stored? %>
             <% if image.caption.present? %>
               <div class="image-caption"><%= image.caption %></div>
@@ -45,17 +46,8 @@
           </div>
         <% end %>
       </div>
-      <!-- Arrow Navigator -->
-      <div data-u="arrowleft" class="jssora051 arrow left" style="" data-autocenter="2" data-scale="0.75" data-scale-left="0.75">
-          <svg viewBox="0 0 16000 16000" style="">
-              <polyline class="a" points="11040,1920 4960,8000 11040,14080 "></polyline>
-          </svg>
-      </div>
-      <div data-u="arrowright" class="jssora051 arrow right" style="  " data-autocenter="2" data-scale="0.75" data-scale-right="0.75">
-          <svg viewBox="0 0 16000 16000" style="">
-              <polyline class="a" points="4960,1920 11040,8000 4960,14080 "></polyline>
-          </svg>
-      </div>
+      <button type="button" class="slick-next" title="<%= t('labels.next') %>"><%= image_tag('arrow.png', alt: t('labels.next')) %></button>
+      <button type="button" class="slick-prev" title="<%= t('labels.previous') %>"><%= image_tag('arrow.png', alt: t('labels.previous')) %></button>
     </div>
   <% end %>
 

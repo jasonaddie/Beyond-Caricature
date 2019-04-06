@@ -306,6 +306,8 @@ en:
     birth_death_dates: Lived
     roles: Roles
     type: Type
+    next: Next
+    previous: Previous
     meta:
       publication_type: Type
       publication_language: Language
