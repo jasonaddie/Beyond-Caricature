@@ -1,6 +1,9 @@
 @import 'vars';
 
 body.home.index{
+  main{
+    padding-top: 0;
+  }
   .intro{
     margin: -20px -20px 0;
     padding: 25px;
@@ -105,7 +108,7 @@ body.home.index{
     }
 
     .listings{
-      margin-top: -115px;
+      margin-top: 0;
       padding-top: 500px;
       padding-bottom: 566px;
       background-image:

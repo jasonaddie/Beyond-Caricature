@@ -202,3 +202,12 @@ $slideshow-height: 581px;
   }
 }
 
+@media (min-width: 769px){
+  body.home.index{
+
+    .slideshow-highlights-slick + .listings{
+      margin-top: -115px;
+    }
+  }
+}
+
