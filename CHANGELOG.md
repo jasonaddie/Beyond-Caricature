@@ -6,13 +6,19 @@ These are items that are have been finished, but not released yet.
 
 None at this time.
 
+## [0.12] - 2019-04-09
+### Added
+- Style the News and Research detail pages
+- Slideshow to News and Research detail pages
+- Highlight slideshow to home page
+
 ## [0.11] - 2019-03-27
 ### Added
 - Default image to be used when a record does not have an image (i.e., cover image)
 - Implmeneted a max-width for the content (1364px)
 - Favicons (i.e., the icon that appears in the browser tab)
 - Basic styling for the Source, People, and Illustration listing pages
-- Styled the News and Research pages
+- Styled the News and Research listing pages
 - New generic Person data model that replaces the Illustrator data model
     - Updated Source form so admin can select an existing person and assign a role to them (i.e., illustrator, publisher, editor, etc)
     - Change name of public pages from Illustrators to People
