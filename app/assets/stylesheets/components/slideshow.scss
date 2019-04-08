@@ -134,6 +134,24 @@ $slideshow-height: 581px;
 
 }
 
+@media (min-width: 769px){
+  body.home.index{
+
+    .slideshow-highlights-slick + .listings{
+      margin-top: -115px;
+    }
+  }
+}
+
+// calculations to make the news slideshow scale with the screen
+$slideshow-base-width: 1200px;
+$slideshow-img-margin-percent: 47px / $slideshow-base-width;
+$slideshow-img-width-percent: 612px / $slideshow-base-width;
+$slideshow-arrow-width-percent: 31px / $slideshow-base-width;
+$slideshow-arrow-height-percent: 47px / $slideshow-base-width;
+$slideshow-half-img-width: #{100vw * $slideshow-img-width-percent / 2};
+$slideshow-double-img-margin: #{100vw * $slideshow-img-margin-percent * 2};
+$slideshow-arrow_width: #{100vw * $slideshow-arrow-width-percent};
 .slideshow-news-item-slick{
   position: relative;
   width:100vw;
@@ -143,8 +161,9 @@ $slideshow-height: 581px;
   background-color: $header-line-color;
 
   .slideshow-slide{
-    margin: 0 63px;
-    width: 812px !important;
+    margin: 0 calc(100vw * #{$slideshow-img-margin-percent} );
+    width: calc(100vw * #{$slideshow-img-width-percent} ) !important;
+    // max-width: $slideshow-img-max-width !important;
 
     img{
       opacity: 0.5;
@@ -172,8 +191,8 @@ $slideshow-height: 581px;
     position: absolute;
     top: 50%;
     display: block;
-    width: 42px;
-    height: 64px;
+    width: calc(100vw * #{$slideshow-arrow-width-percent});
+    height: calc(100vw * #{$slideshow-arrow-height-percent});
     padding: 0;
     transform: translate(0, -50%);
     cursor: pointer;
@@ -191,23 +210,13 @@ $slideshow-height: 581px;
   }
   .slick-prev
   {
-    left: calc(50vw - 406px - 126px + 42px);
+    left: calc(50vw - #{$slideshow-half-img-width} - #{$slideshow-double-img-margin} + #{$slideshow-arrow_width});
   }
   .slick-next
   {
-    left: calc(50vw + 406px + 42px);
+    left: calc(50vw + #{$slideshow-half-img-width} + #{$slideshow-arrow_width});
     img{
       transform: rotate(180deg);
     }
   }
 }
-
-@media (min-width: 769px){
-  body.home.index{
-
-    .slideshow-highlights-slick + .listings{
-      margin-top: -115px;
-    }
-  }
-}
-
