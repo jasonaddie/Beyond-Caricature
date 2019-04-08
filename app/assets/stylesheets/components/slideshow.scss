@@ -1,33 +1,40 @@
 @import "vars";
 @import "slick";
 
-$slideshow-width: 844px;
-$slideshow-height: 581px;
+
+$slideshow-base-width: 1324px;
+$slideshow-base-height: 632px;
+$slideshow-base-ratio: #{$slideshow-base-height / $slideshow-base-width};
+$slideshow-slide-width: #{calc(100vw - 40px)};
 
 .slideshow-highlights-slick{
   background: transparent;
-  margin-top: 64px;
+  margin-top: 51px;
+  margin-bottom: 68px;
   position: relative;
 
   .slideshow-slide{
-    width: 1324px !important;
-    height: 632px !important;
+    width: 100%;
+    height: inherit;
+    max-width: inherit;
+    max-height: inherit;
     position: relative;
 
     .slideshow-slide-image{
-      position: absolute;
+      position: relative;
       top: 0;
       right: 0;
-      width: 66%;
+      width: 100%;
       vertical-align: top;
     }
     .slideshow-slide-text{
-      position: absolute;
-      top: 50%;
+      position: relative;
+      top: 0;
       left: 0;
-      width: 50%;
+      width: 100%;
       .slideshow-slide-title {
-        width: 66%;
+        margin: 29px 0 0px;
+        width: 100%;
         a{
           color: $grey-dark;
           font-size: 1.57rem;
@@ -43,7 +50,7 @@ $slideshow-height: 581px;
         font-size: 1.21rem;
         font-weight: 300;
         line-height: 1.42rem;
-        padding: 28px 23px 23px;
+        padding: 15px 20px;
         p{
           margin-bottom: 0;
         }
@@ -139,6 +146,45 @@ $slideshow-height: 581px;
 
     .slideshow-highlights-slick + .listings{
       margin-top: -115px;
+    }
+  }
+}
+
+@media (min-width: 900px){
+  body.home.index{
+
+    .slideshow-highlights-slick{
+      margin-top: 64px;
+      margin-bottom: 0;
+
+      .slideshow-slide{
+        width: $slideshow-slide-width !important;
+        height: calc(#{$slideshow-slide-width} * #{$slideshow-base-ratio}) !important;
+        max-width: $slideshow-base-width;
+        max-height: $slideshow-base-height;
+
+        .slideshow-slide-image{
+          position: absolute;
+          top: 0;
+          right: 0;
+          width: 66%;
+        }
+        .slideshow-slide-text{
+          position: absolute;
+          top: calc(50% - 16px);
+          left: 0;
+          width: 50%;
+          .slideshow-slide-title {
+            width: 66%;
+            margin: 0;
+          }
+          .slideshow-slide-summary{
+            margin-top: 22px;
+            width: 100%;
+            padding: 28px 23px 23px;
+          }
+        }
+      }
     }
   }
 }

@@ -8,7 +8,7 @@ document.addEventListener("turbolinks:load", function() {
     $('.slideshow-highlights-slick .slideshow-slides').slick({
       autoplay: true,
       autoplaySpeed: 4000,
-      variableWidth: true,
+      variableWidth: false,
       arrows: false,
       dots: true
     });
