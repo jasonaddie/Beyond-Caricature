@@ -19,7 +19,9 @@
 
 <div class="person-details <%= detail_orientation_class %>">
   <div class="person-image">
-    <%= image_tag @person.image.thumb(image_size).url if @person.image_stored? %>
+    <%= link_to 'javascript:void(0)', class: 'modal-button', 'data-target': 'modal-person-image', title: t('labels.view_bigger_image') do %>
+      <%= image_tag @person.image.thumb(image_size).url, alt: @person.name if @person.image_stored? %>
+    <% end %>
   </div>
   <div class="person-meta">
     <h1 class="title is-3"><%= title @person.name %></h1>
@@ -59,7 +61,7 @@
         <%= @person.bio.html_safe %>
       </div>
       <div class='person-bio-more'>
-        <%= link_to t('labels.read_more'), '#', class: 'read-more modal-button', 'data-target': 'modal-person-bio' %>
+        <%= link_to t('labels.read_more'), 'javascript:void(0)', class: 'read-more modal-button', 'data-target': 'modal-person-bio' %>
       </div>
     </div>
   </div>
@@ -99,3 +101,10 @@
   </div>
   <button class="modal-close is-large" aria-label="close"></button>
 </div>
+
+<% if @person.image_stored? %>
+  <%= render partial: 'shared/image_modal', locals: {
+        image_url: @person.image.url,
+        alt: @person.name
+    } %>
+<% end %>

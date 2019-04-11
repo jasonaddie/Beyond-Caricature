@@ -308,6 +308,7 @@ en:
     type: Type
     next: Next
     previous: Previous
+    view_bigger_image: Click to view the original image
     meta:
       publication_type: Type
       publication_language: Language

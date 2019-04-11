@@ -5,7 +5,21 @@ body.home.person{
 
     .person-image{
       margin-bottom: 22px;
-
+      a{
+        position: relative;
+        outline: none;
+        &:after{
+          position: absolute;
+          bottom: 21px;
+          right: 15px;
+          width: 41px;
+          height: 41px;
+          background: url(asset_path('view_bigger_img.svg')) center center no-repeat #fff;
+          border-radius: 50%;
+          opacity: 0.8;
+          content: '';
+        }
+      }
     }
     .person-meta{
       .title{

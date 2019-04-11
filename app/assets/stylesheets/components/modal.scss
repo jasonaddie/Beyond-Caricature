@@ -3,5 +3,12 @@
     padding: 1.5rem;
     margin: 2rem 0;
     background: #fff;
+    &.image{
+      background: transparent;
+      text-align: center;
+      width: auto;
+      max-width: inherit;
+      max-height: inherit;
+    }
   }
 }
