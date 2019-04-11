@@ -303,7 +303,7 @@ en:
     originals_illustrations: Original Illustrations
     illustrators_illustrations: Illustrator Illustrations
     by: By
-    birth_death_dates: Lived
+    lived: Lived
     roles: Roles
     type: Type
     next: Next
@@ -331,6 +331,7 @@ en:
       tags: Tags
       roles: Roles
       people: People
+      lived: Lived
   messages:
     no_data: There is no data on record at this time.
     no_issues: There are no issues on record at this time.

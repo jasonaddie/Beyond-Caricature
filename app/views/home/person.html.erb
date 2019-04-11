@@ -5,48 +5,76 @@
   @lang_switcher_is_public = true
   @lang_switcher_fallback_url = people_path
   set_meta_tags description: @person.bio
+
+  detail_orientation_class = 'landscape'
+  image_size = 'x500'
+  if @person.image.portrait?
+    detail_orientation_class = 'portrait'
+    image_size = '550x'
+  end
 %>
-<h1 class="title is-3"><%= title @person.name %></h1>
-
-<div>
-  <%= image_tag @person.image.thumb('300x200#').url if @person.image_stored? %>
-</div>
-<div>
-  <%= simple_format(@person.bio) %>
-</div>
 
 
-<ul>
-  <li>
-    <strong><%= t('labels.meta.roles') %>:</strong>
-    <%= @person.unique_role_names.join(', ') %>
-  </li>
-  <li>
-    <strong><%= t('labels.meta.birth_date') %>:</strong>
-    <%= @person.date_birth %>
-  </li>
-  <li>
-    <strong><%= t('labels.meta.death_date') %>:</strong>
-    <%= @person.date_death %>
-  </li>
-  <li>
-    <strong><%= t('labels.meta.illustration_count') %>:</strong>
-    <%= number_with_delimiter(@person.illustration_count) %>
-  </li>
-
-  <% if @person.related_items.present? %>
-    <strong><%= t('labels.meta.in_the_news') %>:</strong>
-    <li>
+<div class="person-details <%= detail_orientation_class %>">
+  <div class="person-image">
+    <%= image_tag @person.image.thumb(image_size).url if @person.image_stored? %>
+  </div>
+  <div class="person-meta">
+    <h1 class="title is-3"><%= title @person.name %></h1>
+    <div class="person-meta-details">
       <ul>
-        <% @person.related_items.each do |related_item| %>
+        <li>
+          <strong><%= t('labels.meta.date_birth') %>:</strong>
+          <%= I18n.l @person.date_birth if @person.date_birth %>
+        </li>
+        <li>
+          <strong><%= t('labels.meta.date_death') %>:</strong>
+          <%= I18n.l @person.date_death if @person.date_death %>
+        </li>
+        <li>
+          <strong><%= t('labels.meta.roles') %>:</strong>
+          <%= @person.unique_role_names.join(', ') %>
+        </li>
+
+        <% if @person.related_items.present? %>
+          <strong><%= t('labels.meta.in_the_news') %>:</strong>
           <li>
-            <%= link_to related_item.news_itemable.title, polymorphic_path(related_item.news_itemable) %>
+            <ul>
+              <% @person.related_items.each do |related_item| %>
+                <li>
+                  <%= link_to related_item.news_itemable.title, polymorphic_path(related_item.news_itemable) %>
+                </li>
+              <% end %>
+            </ul>
           </li>
         <% end %>
-      </ul>
-    </li>
-  <% end %>
 
-</ul>
+      </ul>
+
+      <div class="person-bio">
+        <%= @person.bio.html_safe %>
+      </div>
+      <div class='person-bio-more'>
+        <%= link_to t('labels.read_more'), '#', class: 'read-more modal-button', 'data-target': 'modal-person-bio' %>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+
+
 
 <%= render partial: "illustrations", locals: {illustrations: @person.illustrations.published.sort_published_desc} %>
+
+
+<div class="modal modal-person-bio">
+  <div class="modal-background"></div>
+  <div class="modal-content">
+    <h1 class="title is-3"><%= @person.name %></h1>
+
+    <%= @person.bio.html_safe %>
+  </div>
+  <button class="modal-close is-large" aria-label="close"></button>
+</div>

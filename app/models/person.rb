@@ -99,6 +99,18 @@ class Person < ApplicationRecord
     self.date_birth.present? || self.date_death.present?
   end
 
+  def lived
+    x = ''
+
+    if self.has_dates?
+      x << (self.date_birth.nil? ? '?' : I18n.l(self.date_birth))
+      x << ' - '
+      x << (self.date_death.nil? ? '?' : I18n.l(self.date_death))
+    end
+
+    return x
+  end
+
   #################
   ## RAILS ADMIN CONFIGURATION ##
   #################

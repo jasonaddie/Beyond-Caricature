@@ -3,7 +3,8 @@
   link_path ||= root_path
   title ||= nil
   illustrator ||= nil
-  dates ||= nil
+  date_birth ||= nil
+  date_death ||= nil
   roles ||= nil
   # summary ||= nil
   cover_image_path ||= nil
@@ -27,20 +28,16 @@
         <%= illustrator %>
       </div>
     <% end %>
-    <% if dates %>
+    <% if date_birth %>
       <div>
-        <strong><%= "#{t('labels.birth_death_dates')}:" %></strong>
-        <%
-          x = ''
-          if dates[0].present?
-            x << dates[0].year.to_s
-          end
-          x << ' - '
-          if dates[1].present?
-            x << dates[1].year.to_s
-          end
-        %>
-        <%= x %>
+        <strong><%= t('labels.meta.date_birth') %>:</strong>
+        <%= I18n.l date_birth %>
+      </div>
+    <% end %>
+    <% if date_death %>
+      <div>
+        <strong><%= t('labels.meta.date_death') %>:</strong>
+        <%= I18n.l date_death if date_death %>
       </div>
     <% end %>
     <% if roles %>

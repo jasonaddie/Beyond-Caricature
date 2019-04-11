@@ -9,7 +9,8 @@
               title: person.name,
               link_path: person_path(person),
               cover_image_path: person.image.thumb('400x400#').url,
-              dates: person.has_dates? ? [person.date_birth, person.date_death] : nil,
+              date_birth: person.date_birth,
+              date_death: person.date_death,
               roles: person.unique_role_names.join(', ')
           } %>
       </div>
