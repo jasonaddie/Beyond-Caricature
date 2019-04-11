@@ -269,7 +269,7 @@ class Publication < ApplicationRecord
                 bindings[:view].content_tag(:td, publication_editor.year_end) +
                 bindings[:view].content_tag(:td) do
                   bindings[:view].content_tag(:ul) do
-                    publication_editor.person_roles.group_records_by_role.collect do |role, people|
+                    publication_editor.person_roles.group_person_records_by_role.collect do |role, people|
                       bindings[:view].content_tag(:li) do
                         bindings[:view].content_tag(:span, role) +
                         bindings[:view].content_tag(:ul) do
@@ -294,7 +294,7 @@ class Publication < ApplicationRecord
       # build simple list of name and role
       pretty_value do
         bindings[:view].content_tag(:ul) do
-          bindings[:object].person_roles.group_records_by_role.collect do |role, people|
+          bindings[:object].person_roles.group_person_records_by_role.collect do |role, people|
             bindings[:view].content_tag(:li) do
               bindings[:view].content_tag(:span, role) +
               bindings[:view].content_tag(:ul) do

@@ -56,4 +56,10 @@
 
 </ul>
 
-<%= render partial: "illustrations", locals: {illustrations: @issue.illustrations.published.sort_published_desc} %>
+<%= render partial: 'shared/listing', locals: {
+      title: t('labels.illustrations'),
+      records: @issue.illustrations.published.sort_published_desc,
+      partial: 'card_meta_hover',
+      link_path: :illustration_path
+  } %>
+]

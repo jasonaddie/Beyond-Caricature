@@ -92,7 +92,7 @@ class Person < ApplicationRecord
   end
 
   def unique_role_names
-    self.person_roles.unique_roles.map{|x| x[:name]}
+    self.person_roles.unique_roles.map{|x| x[:name]}.sort
   end
 
   def has_dates?

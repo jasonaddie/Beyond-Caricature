@@ -47,13 +47,61 @@ class PersonRole < ApplicationRecord
   end
 
   # group the person records by the role
-  def self.group_records_by_role
+  def self.group_person_records_by_role
     groups = {}
     roles = self.pluck(:role).uniq.sort
 
     if roles.present?
       roles.each do |role|
         groups[I18n.t("activerecord.attributes.#{model_name.i18n_key}.role_types.#{role}")] = self.where(role: role).includes(:person).order('person_translations.name asc')
+      end
+    end
+
+    return groups
+  end
+
+  # return a hash where the key is the role and the values are:
+  #  - total - total number of published records for this role
+  #  - latest_records - the latest records limited by the limit argument
+  def self.group_published_record_by_role(limit=6)
+    groups = {}
+    roles = self.pluck(:role).uniq.sort
+
+    if roles.present?
+      # if role
+      # - illustrator - then get all published illustrations
+      # - else, get all published publications
+      #   - role can be assigned to publication or publication editors
+      #     so if publication editor, go up a level and get publication
+      roles.each do |role|
+        if role == 'illustrator'
+          record_ids = Illustration.published.where(id: self.where(role: role).pluck(:person_roleable_id)).pluck(:id)
+          if record_ids.length > 0
+            groups[role] = {total: record_ids.length,
+                            latest_records: Illustration.where(id: record_ids).sort_published_desc.limit(6)}
+          end
+        else
+          roles = self.where(role: role)
+          publication_ids = []
+          role_ids = {
+            publication: roles.select{|x| x.person_roleable_type == 'Publication'}.map{|x| x.person_roleable_id}.uniq,
+            pub_editor: roles.select{|x| x.person_roleable_type == 'PublicationEditor'}.map{|x| x.person_roleable_id}.uniq,
+          }
+
+          if role_ids[:pub_editor].present?
+            # get publication ids
+            publication_ids << PublicationEditor.where(id: role_ids[:pub_editor]).pluck(:publication_id).uniq
+          end
+          publication_ids << role_ids[:publication]
+          publication_ids = publication_ids.flatten.uniq
+
+          record_ids = Publication.published.where(id: publication_ids).pluck(:id)
+
+          if record_ids.length > 0
+            groups[role] = {total: record_ids.length,
+                            latest_records: Publication.where(id: record_ids).sort_published_desc.limit(6)}
+          end
+        end
       end
     end
 

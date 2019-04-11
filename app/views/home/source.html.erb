@@ -44,7 +44,7 @@
       <%= number_with_delimiter(@publication.issue_count) %>
     </li>
   <% end %>
-  <% roles = @publication.person_roles.group_records_by_role %>
+  <% roles = @publication.person_roles.group_person_records_by_role %>
   <% if roles.present? %>
     <% roles.each do |role, people| %>
       <li>
@@ -69,7 +69,7 @@
               <td><%= publication_editor.year_start %></td>
               <td><%= publication_editor.year_end %></td>
               <td>
-                <% roles = publication_editor.person_roles.group_records_by_role %>
+                <% roles = publication_editor.person_roles.group_person_records_by_role %>
                 <% if roles.present? %>
                   <ul>
                     <% roles.each do |role, people| %>
@@ -118,6 +118,11 @@
   <%= render partial: "issues", locals: {publication: @publication, issues: @publication.issues.published.sort_publication_desc} %>
 
 <% elsif @publication.book? || @publication.original? %>
-  <%= render partial: "illustrations", locals: {illustrations: @publication.illustrations.published.sort_published_desc} %>
+    <%= render partial: 'shared/listing', locals: {
+          title: t('labels.illustrations'),
+          records: @publication.illustrations.published.sort_published_desc,
+          partial: 'card_meta_hover',
+          link_path: :illustration_path
+      } %>
 
 <% end %>

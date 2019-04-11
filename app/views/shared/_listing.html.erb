@@ -1,0 +1,34 @@
+<%
+  title ||= nil
+  records ||= nil
+  partial ||= nil
+  summary_method ||= 'about'
+  link_path ||= nil
+%>
+
+<div class="listing">
+  <div class="columns is-multiline">
+    <div class="column is-3">
+      <h2 class="title is-4"><%= title %></h2>
+    </div>
+    <% records.each do |record| %>
+      <div class="column is-3">
+        <% if partial == 'card_meta_down' %>
+          <%= render partial: 'shared/card_meta_down', locals: {
+                title: record.title,
+                summary: record.send(summary_method),
+                link_path: send(link_path, record),
+                cover_image_path: record.cover_image.thumb('400x204#').url
+            } %>
+          <% elsif partial == 'card_meta_hover' %>
+            <%= render partial: 'shared/card_meta_hover', locals: {
+                  title: record.title,
+                  link_path: send(link_path, record),
+                  cover_image_path: record.image.thumb('400x400#').url,
+                  illustrator: record.person_role ? record.person_role.name : nil
+              } %>
+          <% end %>
+      </div>
+    <% end %>
+  </div>
+</div>

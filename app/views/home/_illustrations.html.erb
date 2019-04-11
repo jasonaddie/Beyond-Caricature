@@ -1,4 +1,9 @@
-  <h2 class="title is-4"><%= t('labels.illustrations') %></h2>
+<%
+  title ||= t('labels.illustrations')
+  illustrations ||= nil
+  total ||= nil
+%>
+  <h2 class="title is-4"><%= title %></h2>
 
   <% if illustrations.present? %>
     <ul>

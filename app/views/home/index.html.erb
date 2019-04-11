@@ -48,67 +48,36 @@
 <div class="listings">
   <% if @news.present? %>
 
-    <div class="listing news">
-      <div class="columns">
-        <div class="column is-3">
-          <h2 class="title is-4"><%= t('labels.news') %></h2>
-        </div>
-        <% @news.each do |news| %>
-          <div class="column is-3">
-            <%= render partial: 'shared/card_meta_down', locals: {
-                  title: news.title,
-                  summary: news.summary,
-                  link_path: news_path(news),
-                  cover_image_path: news.cover_image.thumb('400x204#').url
-              } %>
-          </div>
-        <% end %>
-      </div>
-    </div>
+    <%= render partial: 'shared/listing', locals: {
+          title: t('labels.news'),
+          records: @news,
+          partial: 'card_meta_down',
+          summary_method: 'summary',
+          link_path: :news_path
+      } %>
 
   <% end %>
 
   <% if @illustrations.present? %>
 
-    <div class="listing illustrations">
-      <div class="columns">
-        <div class="column is-3">
-          <h2 class="title is-4"><%= t('labels.illustrations') %></h2>
-        </div>
-        <% @illustrations.each do |illustration| %>
-          <div class="column is-3">
-            <%= render partial: 'shared/card_meta_hover', locals: {
-                  title: illustration.title,
-                  link_path: illustration_path(illustration),
-                  cover_image_path: illustration.image.thumb('400x400#').url,
-                  illustrator: illustration.person_role ? illustration.person_role.name : nil
-              } %>
-          </div>
-        <% end %>
-      </div>
-    </div>
+    <%= render partial: 'shared/listing', locals: {
+          title: t('labels.illustrations'),
+          records: @illustrations,
+          partial: 'card_meta_hover',
+          link_path: :illustration_path
+      } %>
 
   <% end %>
 
   <% if @publications.present? %>
 
-    <div class="listing publications">
-      <div class="columns">
-        <div class="column is-3">
-          <h2 class="title is-4"><%= t('labels.publications') %></h2>
-        </div>
-        <% @publications.each do |publication| %>
-          <div class="column is-3">
-            <%= render partial: 'shared/card_meta_down', locals: {
-                  title: publication.title,
-                  summary: publication.about,
-                  link_path: source_path(publication),
-                  cover_image_path: publication.cover_image.thumb('400x204#').url
-              } %>
-          </div>
-        <% end %>
-      </div>
-    </div>
+    <%= render partial: 'shared/listing', locals: {
+          title: t('labels.publications'),
+          records: @publications,
+          partial: 'card_meta_down',
+          summary_method: 'about',
+          link_path: :source_path
+      } %>
 
   <% end %>
 </div>

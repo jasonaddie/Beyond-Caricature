@@ -12,6 +12,8 @@
     detail_orientation_class = 'portrait'
     image_size = '550x'
   end
+
+  role_records = @person.person_roles.group_published_record_by_role
 %>
 
 
@@ -33,7 +35,9 @@
         </li>
         <li>
           <strong><%= t('labels.meta.roles') %>:</strong>
-          <%= @person.unique_role_names.join(', ') %>
+          <% if role_records.present? %>
+            <%= role_records.map{|key, value| I18n.t("activerecord.attributes.person_role.role_types.#{key}") }.join(', ') %>
+          <% end %>
         </li>
 
         <% if @person.related_items.present? %>
@@ -61,12 +65,29 @@
   </div>
 </div>
 
+<% if role_records.present? %>
+  <% role_records.each do |key, value| %>
+    <% if key == 'illustrator' %>
+      <%= render partial: 'shared/listing', locals: {
+            title: I18n.t("activerecord.attributes.person_role.role_types.#{key}"),
+            total: value[:total],
+            records: value[:latest_records],
+            partial: 'card_meta_hover',
+            link_path: :illustration_path
+        } %>
+    <% else %>
+      <%= render partial: 'shared/listing', locals: {
+            title: I18n.t("activerecord.attributes.person_role.role_types.#{key}"),
+            total: value[:total],
+            records: value[:latest_records],
+            partial: 'card_meta_down',
+            summary_method: 'about',
+            link_path: :source_path
+        } %>
+    <% end %>
+  <% end %>
+<% end %>
 
-
-
-
-
-<%= render partial: "illustrations", locals: {illustrations: @person.illustrations.published.sort_published_desc} %>
 
 
 <div class="modal modal-person-bio">
