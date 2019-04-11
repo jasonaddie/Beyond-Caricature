@@ -6,6 +6,11 @@ These are items that are have been finished, but not released yet.
 
 None at this time.
 
+## [0.13] - 2019-04-11
+### Fixed
+- Update role permissions for admin navigation menu
+- Update public menu so current page is properly highlighted
+
 ## [0.12] - 2019-04-09
 ### Added
 - Style the News and Research detail pages
