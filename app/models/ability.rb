@@ -30,11 +30,11 @@ class Ability
     # https://github.com/CanCanCommunity/cancancan/wiki/Defining-Abilities
 
     shared_resources = [
-        Illustration, IllustrationIssue, IllustrationPublication, IllustrationTag, Illustrator,
-        Issue, Publication, PublicationEditor, PublicationLanguage, Tag
+        Illustration, IllustrationAnnotation, IllustrationIssue, IllustrationPublication, IllustrationTag,
+        Issue, Person, PersonRole, Publication, PublicationEditor, PublicationLanguage, Tag
     ]
     news_resources = [
-        Highlight, News, Research
+        Highlight, News, Research, RelatedItem, Slideshow
     ]
 
     # abilities are written from least restrictive access to most restrictive access
