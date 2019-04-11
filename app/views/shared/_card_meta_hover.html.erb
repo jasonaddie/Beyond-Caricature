@@ -20,31 +20,35 @@
       </figure>
     </div>
   <% end %>
-  <div class="card-content">
-    <%= link_to title, link_path, class: 'has-text-weight-semibold card-title' %>
-    <% if illustrator %>
-      <div>
-        <strong><%= "#{t('labels.by')}:" %></strong>
-        <%= illustrator %>
+  <%= link_to link_path do %>
+    <div class="card-content">
+      <div class='has-text-weight-semibold card-title'>
+        <%= title %>
       </div>
-    <% end %>
-    <% if date_birth %>
-      <div>
-        <strong><%= t('labels.meta.date_birth') %>:</strong>
-        <%= I18n.l date_birth %>
-      </div>
-    <% end %>
-    <% if date_death %>
-      <div>
-        <strong><%= t('labels.meta.date_death') %>:</strong>
-        <%= I18n.l date_death if date_death %>
-      </div>
-    <% end %>
-    <% if roles %>
-      <div>
-        <strong><%= "#{t('labels.roles')}:" %></strong>
-        <%= roles %>
-      </div>
-    <% end %>
-  </div>
+      <% if illustrator %>
+        <div>
+          <strong><%= "#{t('labels.by')}:" %></strong>
+          <%= illustrator %>
+        </div>
+      <% end %>
+      <% if date_birth %>
+        <div>
+          <strong><%= t('labels.meta.date_birth') %>:</strong>
+          <%= I18n.l date_birth %>
+        </div>
+      <% end %>
+      <% if date_death %>
+        <div>
+          <strong><%= t('labels.meta.date_death') %>:</strong>
+          <%= I18n.l date_death if date_death %>
+        </div>
+      <% end %>
+      <% if roles %>
+        <div>
+          <strong><%= "#{t('labels.roles')}:" %></strong>
+          <%= roles %>
+        </div>
+      <% end %>
+    </div>
+  <% end %>
 </div>
