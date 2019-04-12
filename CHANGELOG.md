@@ -6,6 +6,10 @@ These are items that are have been finished, but not released yet.
 
 None at this time.
 
+## [0.16] - 2019-04-13
+### Added
+- Flag to Person Role data model to know if person is an illustrator
+
 ## [0.15] - 2019-04-13
 ### Added
 - Popup to view full image on Person detail page
