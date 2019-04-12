@@ -6,6 +6,11 @@ These are items that are have been finished, but not released yet.
 
 None at this time.
 
+## [0.15] - 2019-04-13
+### Added
+- Popup to view full image on Person detail page
+- Person Role data model with admin form to manage the records
+
 ## [0.14] - 2019-04-11
 ### Added
 - Style the Person detail page

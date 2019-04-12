@@ -8,7 +8,7 @@ services:
 
   app:
     restart: unless-stopped
-    image: schmerling/app:0.14
+    image: schmerling/app:0.15
     env_file:
       - ./.env.production
     environment:
