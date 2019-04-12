@@ -69,7 +69,7 @@
 
 <% if role_records.present? %>
   <% role_records.each do |key, value| %>
-    <% if key == 'Illustrator' %>
+    <% if value[:is_illustrator] %>
       <%= render partial: 'shared/listing', locals: {
             title: key,
             total: value[:total],

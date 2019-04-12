@@ -32,6 +32,7 @@ class Role < ApplicationRecord
   ## SCOPES ##
   #################
   scope :sort_name, -> { with_translations(I18n.locale).order('role_translations.name asc') }
+  scope :illustrators, -> { where(is_illustrator: true) }
 
   #################
   ## RAILS ADMIN CONFIGURATION ##
@@ -47,11 +48,13 @@ class Role < ApplicationRecord
     # list page
     list do
       field :name
+      field :is_illustrator
     end
 
     # show page
     show do
       field :name
+      field :is_illustrator
       field :created_at
       field :updated_at
     end
@@ -60,6 +63,9 @@ class Role < ApplicationRecord
     edit do
       field :translations do
         label I18n.t('labels.translations')
+      end
+      field :is_illustrator do
+        help I18n.t('admin.help.is_illustrator')
       end
     end
   end

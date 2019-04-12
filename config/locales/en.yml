@@ -248,6 +248,7 @@ en:
         text: Text
       role:
         name: Name
+        is_illustrator: Is Illustrator?
       slideshow:
         image: Image
         sort: Sort Order

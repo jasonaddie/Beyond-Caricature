@@ -32,6 +32,11 @@ class PersonRole < ApplicationRecord
   #################
   ## SCOPES ##
   #################
+  # get all records that are for illustrators
+  def self.illustrators
+    where(role_id: Role.illustrators.pluck(:id))
+  end
+
   # group the person records by the role
   def self.group_people_by_role
     groups = {}
@@ -50,6 +55,7 @@ class PersonRole < ApplicationRecord
   # return a hash where the key is the role and the values are:
   #  - total - total number of published records for this role
   #  - latest_records - the latest records limited by the limit argument
+  #  - is_illustrator
   def self.group_published_record_by_role(limit=6)
     groups = {}
     roles = Role.where(id: self.pluck(:role_id).uniq).sort_name
@@ -61,11 +67,12 @@ class PersonRole < ApplicationRecord
       #   - role can be assigned to publication or publication editors
       #     so if publication editor, go up a level and get publication
       roles.each do |role|
-        if role.name == 'Illustrator'
+        if role.is_illustrator?
           record_ids = Illustration.published.where(id: self.where(role_id: role.id).pluck(:person_roleable_id)).pluck(:id)
           if record_ids.length > 0
             groups[role.name] = {total: record_ids.length,
-                                  latest_records: Illustration.where(id: record_ids).sort_published_desc.limit(6)}
+                                  latest_records: Illustration.where(id: record_ids).sort_published_desc.limit(6),
+                                  is_illustrator: role.is_illustrator}
           end
         else
           person_roles = self.where(role_id: role.id)
@@ -86,7 +93,8 @@ class PersonRole < ApplicationRecord
 
           if record_ids.length > 0
             groups[role.name] = {total: record_ids.length,
-                                  latest_records: Publication.where(id: record_ids).sort_published_desc.limit(6)}
+                                  latest_records: Publication.where(id: record_ids).sort_published_desc.limit(6),
+                                  is_illustrator: role.is_illustrator}
           end
         end
       end

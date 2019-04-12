@@ -95,7 +95,7 @@ private
       stats[:originals][:illustrations] = IllustrationPublication.where(publication_id: ids).count
 
       # illustrators
-      ids = PersonRole.illustrator
+      ids = PersonRole.illustrators
       stats[:illustrators] = {}
       stats[:illustrators][:count] = ids.map{|x| x.person_id}.uniq.length
       stats[:illustrators][:illustrations] = Illustration.published.where(id: ids.map{|x| x.person_roleable_id}.uniq).count
