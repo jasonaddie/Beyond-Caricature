@@ -10,13 +10,14 @@ document.addEventListener("turbolinks:load", function() {
 
     if (container !== null){
       var img = container.querySelector('.person-image img')
-      var meta = container.querySelector('.person-meta')
+      var title = container.querySelector('h1.title')
+      var meta_internal = container.querySelector('.person-meta-details')
       var bio = container.querySelector('.person-bio')
       var more = container.querySelector('.person-bio-more')
       var more_modal = document.querySelector('body.home.person .modal-person-bio')
 
 
-      if (meta.scrollHeight > img.scrollHeight){
+      if (meta_internal.scrollHeight > img.scrollHeight){
         // set bio height to match img height
         // console.log('- need to adjust')
         // console.log(bio.style.height)
@@ -25,7 +26,7 @@ document.addEventListener("turbolinks:load", function() {
         // console.log(bio.scrollHeight)
         // console.log(img.scrollHeight - (meta.scrollHeight - bio.scrollHeight))
         // console.log('==')
-        bio.style.height = (img.scrollHeight - (meta.scrollHeight - bio.scrollHeight) - 50) + 'px'
+        bio.style.height = (img.scrollHeight - (meta_internal.scrollHeight - bio.scrollHeight) - title.scrollHeight - 50 - 30) + 'px'
         // console.log('-')
         // console.log(bio.style.height)
 
