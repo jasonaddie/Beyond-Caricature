@@ -5,3 +5,12 @@
 #
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
+
+
+#########################
+## ROLES
+#########################
+Role.destroy_all
+%w(Illustrator Editor Publisher Writer Printer Financier Official Subject).each do |role|
+  Role.create(name: role)
+end

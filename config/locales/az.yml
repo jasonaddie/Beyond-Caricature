@@ -49,6 +49,9 @@ az:
       research:
         one: Research
         other: Research
+      role:
+        one: Person Role
+        other: Person Roles
       slideshow:
         one: Slideshow Image
         other: Slideshow Images
@@ -243,6 +246,8 @@ az:
         title: Title
         summary: Summary
         text: Text
+      role:
+        name: Name
       slideshow:
         image: Image
         sort: Sort Order
@@ -303,9 +308,12 @@ az:
     originals_illustrations: Original Illustrations
     illustrators_illustrations: Illustrator Illustrations
     by: By
-    birth_death_dates: Lived
+    lived: Lived
     roles: Roles
     type: Type
+    next: Next
+    previous: Previous
+    view_bigger_image: Click to view the original image
     meta:
       publication_type: Type
       publication_language: Language
@@ -329,6 +337,7 @@ az:
       tags: Tags
       roles: Roles
       people: People
+      lived: Lived
   messages:
     no_data: There is no data on record at this time.
     no_issues: There are no issues on record at this time.

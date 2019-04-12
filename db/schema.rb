@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_03_19_213645) do
+ActiveRecord::Schema.define(version: 2019_04_12_122129) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -308,10 +308,12 @@ ActiveRecord::Schema.define(version: 2019_03_19_213645) do
     t.bigint "person_roleable_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.integer "role"
+    t.integer "role_old"
+    t.bigint "role_id"
     t.index ["person_id"], name: "index_person_roles_on_person_id"
     t.index ["person_roleable_type", "person_roleable_id"], name: "idx_person_roleable"
-    t.index ["role"], name: "index_person_roles_on_role"
+    t.index ["role_id"], name: "index_person_roles_on_role_id"
+    t.index ["role_old"], name: "index_person_roles_on_role_old"
   end
 
   create_table "person_translations", force: :cascade do |t|
@@ -324,6 +326,7 @@ ActiveRecord::Schema.define(version: 2019_03_19_213645) do
     t.boolean "is_public", default: false
     t.date "date_publish"
     t.string "slug"
+    t.index "to_tsvector('simple'::regconfig, (((name)::text || ' '::text) || bio))", name: "idx_person_search", using: :gin
     t.index ["date_publish"], name: "index_person_translations_on_date_publish"
     t.index ["is_public"], name: "index_person_translations_on_is_public"
     t.index ["locale"], name: "index_person_translations_on_locale"
@@ -446,6 +449,22 @@ ActiveRecord::Schema.define(version: 2019_03_19_213645) do
     t.string "cover_image_uid"
     t.string "slug"
     t.index ["slug"], name: "index_researches_on_slug", unique: true
+  end
+
+  create_table "role_translations", force: :cascade do |t|
+    t.integer "role_id", null: false
+    t.string "locale", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.string "name"
+    t.index ["locale"], name: "index_role_translations_on_locale"
+    t.index ["name"], name: "index_role_translations_on_name"
+    t.index ["role_id"], name: "index_role_translations_on_role_id"
+  end
+
+  create_table "roles", force: :cascade do |t|
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "slideshow_translations", force: :cascade do |t|

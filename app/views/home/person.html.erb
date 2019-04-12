@@ -38,7 +38,7 @@
         <li>
           <strong><%= t('labels.meta.roles') %>:</strong>
           <% if role_records.present? %>
-            <%= role_records.map{|key, value| I18n.t("activerecord.attributes.person_role.role_types.#{key}") }.join(', ') %>
+            <%= role_records.keys.join(', ') %>
           <% end %>
         </li>
 
@@ -69,9 +69,9 @@
 
 <% if role_records.present? %>
   <% role_records.each do |key, value| %>
-    <% if key == 'illustrator' %>
+    <% if key == 'Illustrator' %>
       <%= render partial: 'shared/listing', locals: {
-            title: I18n.t("activerecord.attributes.person_role.role_types.#{key}"),
+            title: key,
             total: value[:total],
             records: value[:latest_records],
             partial: 'card_meta_hover',
@@ -79,7 +79,7 @@
         } %>
     <% else %>
       <%= render partial: 'shared/listing', locals: {
-            title: I18n.t("activerecord.attributes.person_role.role_types.#{key}"),
+            title: key,
             total: value[:total],
             records: value[:latest_records],
             partial: 'card_meta_down',

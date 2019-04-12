@@ -8,12 +8,11 @@
 #  person_roleable_id   :bigint(8)
 #  created_at           :datetime         not null
 #  updated_at           :datetime         not null
-#  role                 :integer
+#  role_old             :integer
+#  role_id              :bigint(8)
 #
 
 class PersonRole < ApplicationRecord
-  # extend ArrayEnum
-
   #################
   ## HISTORY TRACKING ##
   #################
@@ -24,12 +23,7 @@ class PersonRole < ApplicationRecord
   #################
   belongs_to :person, -> { published }
   belongs_to :person_roleable, :polymorphic => true
-
-  #################
-  ## ENUMS ##
-  #################
-  ROLES = {'illustrator' => 1, 'editor' => 2, 'publisher' => 3, 'writer' => 4, 'printer' => 5, 'financier' => 6, 'official' => 7, 'subject' => 8}
-  enum role: ROLES
+  belongs_to :role
 
   #################
   ## VALIDATION ##
@@ -38,34 +32,27 @@ class PersonRole < ApplicationRecord
   #################
   ## SCOPES ##
   #################
-  def self.roles_for_select
-    options = {}
-    ROLES.each do |key, value|
-      options[I18n.t("activerecord.attributes.#{model_name.i18n_key}.role_types.#{key}")] = key
-    end
-    return options
-  end
-
   # group the person records by the role
-  def self.group_person_records_by_role
+  def self.group_people_by_role
     groups = {}
-    roles = self.pluck(:role).uniq.sort
+    roles = Role.where(id: self.pluck(:role_id).uniq).sort_name
 
     if roles.present?
       roles.each do |role|
-        groups[I18n.t("activerecord.attributes.#{model_name.i18n_key}.role_types.#{role}")] = self.where(role: role).includes(:person).order('person_translations.name asc')
+        groups[role.name] = self.where(role_id: role.id).includes(:person).order('person_translations.name asc')
       end
     end
 
     return groups
   end
 
+
   # return a hash where the key is the role and the values are:
   #  - total - total number of published records for this role
   #  - latest_records - the latest records limited by the limit argument
   def self.group_published_record_by_role(limit=6)
     groups = {}
-    roles = self.pluck(:role).uniq.sort
+    roles = Role.where(id: self.pluck(:role_id).uniq).sort_name
 
     if roles.present?
       # if role
@@ -74,18 +61,18 @@ class PersonRole < ApplicationRecord
       #   - role can be assigned to publication or publication editors
       #     so if publication editor, go up a level and get publication
       roles.each do |role|
-        if role == 'illustrator'
-          record_ids = Illustration.published.where(id: self.where(role: role).pluck(:person_roleable_id)).pluck(:id)
+        if role.name == 'Illustrator'
+          record_ids = Illustration.published.where(id: self.where(role_id: role.id).pluck(:person_roleable_id)).pluck(:id)
           if record_ids.length > 0
-            groups[role] = {total: record_ids.length,
-                            latest_records: Illustration.where(id: record_ids).sort_published_desc.limit(6)}
+            groups[role.name] = {total: record_ids.length,
+                                  latest_records: Illustration.where(id: record_ids).sort_published_desc.limit(6)}
           end
         else
-          roles = self.where(role: role)
+          person_roles = self.where(role_id: role.id)
           publication_ids = []
           role_ids = {
-            publication: roles.select{|x| x.person_roleable_type == 'Publication'}.map{|x| x.person_roleable_id}.uniq,
-            pub_editor: roles.select{|x| x.person_roleable_type == 'PublicationEditor'}.map{|x| x.person_roleable_id}.uniq,
+            publication: person_roles.select{|x| x.person_roleable_type == 'Publication'}.map{|x| x.person_roleable_id}.uniq,
+            pub_editor: person_roles.select{|x| x.person_roleable_type == 'PublicationEditor'}.map{|x| x.person_roleable_id}.uniq,
           }
 
           if role_ids[:pub_editor].present?
@@ -98,8 +85,8 @@ class PersonRole < ApplicationRecord
           record_ids = Publication.published.where(id: publication_ids).pluck(:id)
 
           if record_ids.length > 0
-            groups[role] = {total: record_ids.length,
-                            latest_records: Publication.where(id: record_ids).sort_published_desc.limit(6)}
+            groups[role.name] = {total: record_ids.length,
+                                  latest_records: Publication.where(id: record_ids).sort_published_desc.limit(6)}
           end
         end
       end
@@ -112,14 +99,13 @@ class PersonRole < ApplicationRecord
   def self.unique_roles
     roles = []
     records = self.all
-    uniq_roles = records.map{|x| x.role}.uniq.reject(&:nil?)
+    uniq_roles = Role.where(id: records.map{|x| x.role_id}.uniq.reject(&:nil?)).sort_name
 
     if uniq_roles.present?
       uniq_roles.sort.each do |role|
         roles << {
-          key: role,
-          name: I18n.t("activerecord.attributes.#{model_name.i18n_key}.role_types.#{role}"),
-          count: records.select{|x| x.role == role}.count
+          name: role.name,
+          count: records.select{|x| x.role_id == role.id}.count
         }
       end
     end
@@ -130,15 +116,15 @@ class PersonRole < ApplicationRecord
   #################
   ## METHODS ##
   #################
-  # show the translated name of the enum value
-  def role_formatted
+  # translated name of the role
+  def role_name
     if self.role.present?
-      I18n.t("activerecord.attributes.#{model_name.i18n_key}.role_types.#{role}")
+      self.role.name
     end
   end
 
   def person_role_formatted
-    "#{name} - #{role_formatted}"
+    "#{name} - #{role_name}"
   end
 
   def name
@@ -157,7 +143,14 @@ class PersonRole < ApplicationRecord
     # configuration
     configure :role do
       pretty_value do
-        bindings[:object].role_formatted
+        bindings[:object].role_name
+      end
+
+      # sort the names
+      associated_collection_scope do
+        Proc.new { |scope|
+          scope = scope.sort_name
+        }
       end
     end
     configure :person do
@@ -178,9 +171,7 @@ class PersonRole < ApplicationRecord
       field :person do
         help I18n.t('admin.help.person')
       end
-      field :role do
-        # options_for_select PersonRole.roles_for_select
-      end
+      field :role
     end
   end
 

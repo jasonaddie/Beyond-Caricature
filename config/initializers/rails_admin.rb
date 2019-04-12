@@ -78,6 +78,7 @@ RailsAdmin.config do |config|
     'PublicationLanguage','PublicationLanguage::Translation',
     # 'Illustrator', 'Illustrator::Translation',
     'Person', 'Person::Translation',
+    'Role', 'Role::Translation',
     'PersonRole',
     'News', 'News::Translation',
     'Research', 'Research::Translation',
@@ -150,6 +151,14 @@ RailsAdmin.config do |config|
       end
     end
 
+  end
+
+  config.model 'Role::Translation' do
+    visible false
+    configure :locale, :hidden do
+      help ''
+    end
+    include_fields :locale, :name
   end
 
   config.model 'News::Translation' do

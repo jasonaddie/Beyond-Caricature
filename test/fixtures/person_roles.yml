@@ -8,7 +8,8 @@
 #  person_roleable_id   :bigint(8)
 #  created_at           :datetime         not null
 #  updated_at           :datetime         not null
-#  role                 :integer
+#  role_old             :integer
+#  role_id              :bigint(8)
 #
 
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html

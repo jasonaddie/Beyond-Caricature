@@ -31,7 +31,7 @@ class Ability
 
     shared_resources = [
         Illustration, IllustrationAnnotation, IllustrationIssue, IllustrationPublication, IllustrationTag,
-        Issue, Person, PersonRole, Publication, PublicationEditor, PublicationLanguage, Tag
+        Issue, Person, PersonRole, Publication, PublicationEditor, PublicationLanguage, Role, Tag
     ]
     news_resources = [
         Highlight, News, Research, RelatedItem, Slideshow

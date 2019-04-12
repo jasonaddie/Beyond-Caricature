@@ -1,13 +1,13 @@
 # == Schema Information
 #
-# Table name: tags
+# Table name: roles
 #
 #  id         :bigint(8)        not null, primary key
 #  created_at :datetime         not null
 #  updated_at :datetime         not null
 #
 
-class Tag < ApplicationRecord
+class Role < ApplicationRecord
   #################
   ## HISTORY TRACKING ##
   #################
@@ -16,8 +16,7 @@ class Tag < ApplicationRecord
   #################
   ## ASSOCIATIONS ##
   #################
-  has_many :illustration_tags, dependent: :destroy
-  has_many :illustrations, through: :illustration_tags
+  has_many :person_roles, dependent: :destroy
 
   #################
   ## TRANSLATIONS ##
@@ -28,14 +27,11 @@ class Tag < ApplicationRecord
   #################
   ## VALIDATION ##
   #################
-  # translation_class.validates :name, presence: true
 
   #################
-  ## METHODS ##
+  ## SCOPES ##
   #################
-  def illustration_count
-    self.illustration_tags.count
-  end
+  scope :sort_name, -> { with_translations(I18n.locale).order('role_translations.name asc') }
 
   #################
   ## RAILS ADMIN CONFIGURATION ##
@@ -46,22 +42,16 @@ class Tag < ApplicationRecord
 
     configure :translations, :globalize_tabs
     # control the order in the admin nav menu
-    weight 160
+    weight 150
 
     # list page
     list do
       field :name
-      field :illustration_count do
-        label I18n.t('labels.illustration_count')
-      end
     end
 
     # show page
     show do
       field :name
-      field :illustration_count do
-        label I18n.t('labels.illustration_count')
-      end
       field :created_at
       field :updated_at
     end
@@ -73,4 +63,5 @@ class Tag < ApplicationRecord
       end
     end
   end
+
 end
