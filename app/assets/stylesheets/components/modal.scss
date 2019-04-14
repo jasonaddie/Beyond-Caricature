@@ -1,3 +1,5 @@
+@import 'vars';
+
 .modal{
   .modal-content{
     padding: 1.5rem;
@@ -9,6 +11,46 @@
       width: auto;
       max-width: inherit;
       max-height: inherit;
+    }
+  }
+
+  &.modal-annotations{
+    .modal-content{
+      width: 100%;
+      color: $grey;
+
+      .annotation-markers{
+        .annotation_help{
+          font-size: 1.05rem;
+          color: $grey;
+          margin-bottom:0;
+        }
+        .annotation-marker{
+          cursor: pointer;
+        }
+      }
+
+      .annotation-list{
+        li{
+          line-height: 1.42rem;
+          margin-top: 0.8rem;
+          .annotation-text{
+            &.is-active{
+              background-color: #ffe0d9;
+            }
+          }
+        }
+      }
+    }
+  }
+}
+
+@media (min-width: 1364px){
+  .modal{
+    &.modal-annotations{
+      .modal-content{
+        width: 1364px;
+      }
     }
   }
 }

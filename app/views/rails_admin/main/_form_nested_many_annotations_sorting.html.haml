@@ -10,7 +10,7 @@
 
 .annotation-image{style: (field.active? ? 'display:inline-block' : 'display:none')}
   - if @object.image.present?
-    = image_tag @object.image.url
+    = image_tag @object.image.thumb('550x').url
   - else
     %span{class: 'help-block'}
       = I18n.t('admin.help.missing_annotation_image')

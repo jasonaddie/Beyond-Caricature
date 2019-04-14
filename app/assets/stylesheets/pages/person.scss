@@ -1,6 +1,6 @@
 @import "bulma";
 
-body.home.person{
+body.home.person, body.home.illustration{
   $column-gap: .4211rem;
 
   .person-details{
@@ -9,7 +9,7 @@ body.home.person{
 
     .person-image{
       // margin-bottom: 22px;
-      a{
+      & > a{
         position: relative;
         outline: none;
         &:after{
@@ -23,6 +23,9 @@ body.home.person{
           opacity: 0.8;
           content: '';
         }
+      }
+      .annotations-more{
+        margin-top: 1.26rem;
       }
     }
     .person-meta{
@@ -52,7 +55,7 @@ body.home.person{
 }
 
 @media (min-width: 615px){
-  body.home.person{
+  body.home.person, body.home.illustration{
     .person-details{
       margin-bottom: 119px;
 
@@ -121,14 +124,3 @@ body.home.person{
 
 }
 
-@media (min-width: 768px){
-  body.home.person{
-    .person-details{
-      &.portrait{
-        .person-meta{
-          // padding-left: 68px;
-        }
-      }
-    }
-  }
-}

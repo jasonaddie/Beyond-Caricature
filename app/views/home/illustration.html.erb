@@ -5,97 +5,167 @@
   @lang_switcher_is_public = true
   @lang_switcher_fallback_url = illustrations_path
   set_meta_tags description: @illustration.context
+
+  detail_orientation_class = 'landscape'
+  image_size = 'x500'
+  img_col_size = 8
+  img_offset_size=2
+  meta_col_size = 8
+  meta_offset_size=2
+  if @illustration.image.portrait?
+    detail_orientation_class = 'portrait'
+    image_size = '550x'
+    img_col_size = 4
+    meta_col_size = 5
+    img_offset_size=1
+    meta_offset_size=0
+  end
+  annotation_image_size = '550x'
 %>
-<h1 class="title is-3"><%= title @illustration.title %></h1>
-
-<div>
-  <%= image_tag @illustration.image.thumb('50x50%').url if @illustration.image_stored? %>
-</div>
-<div>
-  <%= simple_format(@illustration.context) %>
-</div>
 
 
-<ul>
-  <li>
-    <strong><%= t('labels.meta.illustrator') %>:</strong>
-    <%= link_to @illustration.person_role.name, person_path(@illustration.person_role.person) %>
-  </li>
-
-  <% if @illustration.publications.present? || @illustration.issues.present? %>
-    <li>
-      <strong><%= t('labels.meta.published_in') %>:</strong>
-      <ul>
-        <% if @illustration.publications.present? %>
-          <% @illustration.publications.each do |publication| %>
-            <li>
-              <%= link_to publication.title, source_path(publication) %>
-            </li>
-          <% end %>
-        <% end %>
-        <% if @illustration.issues.present? %>
-          <% @illustration.issues.each do |issue| %>
-            <li>
-              <%= link_to issue.full_title, issue_path(issue.publication, issue) %>
-            </li>
-          <% end %>
-        <% end %>
-      </ul>
-    </li>
-  <% end %>
-
-  <% if @illustration.tags.present? %>
-    <strong><%= t('labels.meta.tags') %>:</strong>
-    <li>
-      <ul>
-        <% @illustration.tags.each do |tag| %>
-          <li>
-            <%= link_to tag.name, illustrations_path(tag: tag.id) %>
-          </li>
-        <% end %>
-      </ul>
-    </li>
-  <% end %>
-
-  <% if @illustration.related_items.present? %>
-    <strong><%= t('labels.meta.in_the_news') %>:</strong>
-    <li>
-      <ul>
-        <% @illustration.related_items.each do |related_item| %>
-          <li>
-            <%= link_to related_item.news_itemable.title, polymorphic_path(related_item.news_itemable) %>
-          </li>
-        <% end %>
-      </ul>
-    </li>
-  <% end %>
-
-</ul>
-
-
-<% if @illustration.illustration_annotations.sorted.present? && @illustration.image_stored? %>
-  <h2 class="title is-4"><%= t('labels.annotations') %></h2>
-
-  <div class='annotation-markers'>
-    <%= image_tag @illustration.image.thumb('40x40%').url %>
-    <%
-      img_width = @illustration.image.thumb('40x40%').width
-      img_height = @illustration.image.thumb('40x40%').height
-    %>
-    <% @illustration.illustration_annotations.sorted.each_with_index do |annotation, index| %>
-
-      <div class="annotation-marker" style="left: <%= (annotation.x*img_width).round(2)%>px; top: <%= (annotation.y*img_height).round(2)%>px">
-        <div class="marker-number"><%= index+1 %></div>
+<div class="columns person-details <%= detail_orientation_class %>">
+  <div class="column is-offset-<%= img_offset_size %> is-<%= img_col_size %> person-image">
+    <%= link_to 'javascript:void(0)', class: 'modal-button', 'data-target': 'modal-person-image', title: t('labels.view_bigger_image') do %>
+      <%= image_tag @illustration.image.thumb(image_size).url, alt: @illustration.title if @illustration.image_stored? %>
+    <% end %>
+    <% if @illustration.illustration_annotations.sorted.present? && @illustration.image_stored? %>
+      <div class='annotations-more'>
+        <%= link_to t('labels.view_annotations'), 'javascript:void(0)', class: 'read-more modal-button', 'data-target': 'modal-annotations' %>
       </div>
     <% end %>
   </div>
+  <div class="column is-offset-<%= meta_offset_size %> is-<%= meta_col_size %> person-meta">
+    <h1 class="title is-3"><%= title @illustration.title %></h1>
+    <div class="person-meta-details">
+      <ul>
+        <% if @illustration.person_role %>
+          <li>
+            <strong><%= t('labels.meta.illustrator') %>:</strong>
+            <%= link_to @illustration.person_role.name, person_path(@illustration.person_role.person) %>
+          </li>
+        <% end %>
 
-  <ul class='annotation-list'>
-    <% @illustration.illustration_annotations.sorted.each_with_index do |annotation, index| %>
-      <li>
-        <div class="annotation-marker"><div class="marker-number"><%= index+1 %></div></div>
-        <%= annotation.annotation %>
-      </li>
-    <% end %>
-  </ul>
+        <% if @illustration.publications.present? || @illustration.issues.present? %>
+          <li>
+            <strong><%= t('labels.meta.published_in') %>:</strong>
+            <ul>
+              <% if @illustration.publications.present? %>
+                <% @illustration.publications.each do |publication| %>
+                  <li>
+                    <%= link_to publication.title, source_path(publication) %>
+                  </li>
+                <% end %>
+              <% end %>
+              <% if @illustration.issues.present? %>
+                <% @illustration.issues.each do |issue| %>
+                  <li>
+                    <%= link_to issue.full_title, issue_path(issue.publication, issue) %>
+                  </li>
+                <% end %>
+              <% end %>
+            </ul>
+          </li>
+        <% end %>
+
+        <% if @illustration.tags.present? %>
+          <strong><%= t('labels.meta.tags') %>:</strong>
+          <li>
+            <ul>
+              <% @illustration.tags.each do |tag| %>
+                <li>
+                  <%= link_to tag.name, illustrations_path(tag: tag.id) %>
+                </li>
+              <% end %>
+            </ul>
+          </li>
+        <% end %>
+
+        <% if @illustration.related_items.present? %>
+          <strong><%= t('labels.meta.in_the_news') %>:</strong>
+          <li>
+            <ul>
+              <% @illustration.related_items.each do |related_item| %>
+                <li>
+                  <%= link_to related_item.news_itemable.title, polymorphic_path(related_item.news_itemable) %>
+                </li>
+              <% end %>
+            </ul>
+          </li>
+        <% end %>
+
+      </ul>
+
+      <div class="person-bio">
+        <%= @illustration.context.html_safe %>
+      </div>
+      <div class='person-bio-more'>
+        <%= link_to t('labels.read_more'), 'javascript:void(0)', class: 'read-more modal-button', 'data-target': 'modal-person-bio' %>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+
+
+
+<div class="modal modal-person-bio">
+  <div class="modal-background"></div>
+  <div class="modal-content">
+    <h1 class="title is-3"><%= @illustration.title %></h1>
+
+    <%= @illustration.context.html_safe %>
+  </div>
+  <button class="modal-close is-large" aria-label="close"></button>
+</div>
+
+<% if @illustration.image_stored? %>
+  <%= render partial: 'shared/image_modal', locals: {
+        image_url: @illustration.image.url,
+        alt: @illustration.title
+    } %>
+<% end %>
+
+<% if @illustration.illustration_annotations.sorted.present? && @illustration.image_stored? %>
+  <div class="modal modal-annotations">
+    <div class="modal-background"></div>
+    <div class="modal-content">
+      <h1 class="title is-3"><%= t('labels.annotations_for', name: @illustration.title) %></h1>
+
+      <div class="columns">
+        <div class='column is-offset-1 is-5 annotation-markers'>
+          <p class='annotation_help'>
+            <%= t('labels.annotation_help') %>
+          </p>
+          <%= image_tag @illustration.image.thumb(annotation_image_size).url %>
+          <%
+            img_width = @illustration.image.thumb(annotation_image_size).width
+            img_height = @illustration.image.thumb(annotation_image_size).height
+          %>
+          <% @illustration.illustration_annotations.sorted.each_with_index do |annotation, index| %>
+
+            <div class="annotation-marker" data-number="<%= index+1 %>" style="left: <%= (annotation.x*img_width).round(2)%>px; top: <%= (annotation.y*img_height).round(2)%>px">
+              <div class="marker-number"><%= index+1 %></div>
+            </div>
+          <% end %>
+        </div>
+
+        <ul class='annotation-list column is-4 '>
+          <% @illustration.illustration_annotations.sorted.each_with_index do |annotation, index| %>
+            <li class="columns" data-number="<%= index+1 %>">
+              <div class="column is-narrow">
+                <div class="annotation-marker"><div class="marker-number"><%= index+1 %></div></div>
+              </div>
+              <div class="column annotation-text">
+                <%= annotation.annotation %>
+              </div>
+            </li>
+          <% end %>
+        </ul>
+      </div>
+    </div>
+    <button class="modal-close is-large" aria-label="close"></button>
+  </div>
 <% end %>

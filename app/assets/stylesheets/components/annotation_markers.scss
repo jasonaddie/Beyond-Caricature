@@ -1,13 +1,9 @@
-// Place all the styles related to the Home controller here.
-// They will automatically be included in application.css.
-// You can use Sass (SCSS) here: http://sass-lang.com/
-
 @import 'rails_admin/custom/variables';
 
 // annotation markers
 .annotation-marker{
-  width: 24px;
-  height: 24px;
+  width: 30px;
+  height: 31px;
   border-radius: 50%;
   background: $brand-info;
   -webkit-transition: display .15s ease;
@@ -18,6 +14,9 @@
   color: #fff;
   text-align: center;
   margin-top: 2px;
+  font-size: 1.16rem;
+  font-weight: 600;
+  line-height: 1.31rem;
 }
 
 .annotation-markers{

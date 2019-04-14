@@ -315,6 +315,9 @@ en:
     next: Next
     previous: Previous
     view_bigger_image: Click to view the original image
+    view_annotations: View Annotations
+    annotations_for: 'Annotations For: %{name}'
+    annotation_help: 'Click on numbers to view the annotation text'
     meta:
       publication_type: Type
       publication_language: Language
