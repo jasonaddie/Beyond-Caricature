@@ -8,22 +8,30 @@
 
   detail_orientation_class = 'landscape'
   image_size = 'x500'
+  img_col_size = 8
+  img_offset_size=2
+  meta_col_size = 8
+  meta_offset_size=2
   if @person.image.portrait?
     detail_orientation_class = 'portrait'
     image_size = '550x'
+    img_col_size = 4
+    meta_col_size = 5
+    img_offset_size=1
+    meta_offset_size=0
   end
 
   role_records = @person.person_roles.group_published_record_by_role
 %>
 
 
-<div class="person-details <%= detail_orientation_class %>">
-  <div class="person-image">
+<div class="columns person-details <%= detail_orientation_class %>">
+  <div class="column is-offset-<%= img_offset_size %> is-<%= img_col_size %> person-image">
     <%= link_to 'javascript:void(0)', class: 'modal-button', 'data-target': 'modal-person-image', title: t('labels.view_bigger_image') do %>
       <%= image_tag @person.image.thumb(image_size).url, alt: @person.name if @person.image_stored? %>
     <% end %>
   </div>
-  <div class="person-meta">
+  <div class="column is-offset-<%= meta_offset_size %> is-<%= meta_col_size %> person-meta">
     <h1 class="title is-3"><%= title @person.name %></h1>
     <div class="person-meta-details">
       <ul>

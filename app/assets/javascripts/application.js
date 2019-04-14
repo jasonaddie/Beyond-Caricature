@@ -40,7 +40,6 @@ function isVerticalOverflown(element) {
 // };
 
 const debounce = (func, delay) => {
-  console.log('debounce....')
   let inDebounce
   return function() {
     const context = this
