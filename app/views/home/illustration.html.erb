@@ -138,7 +138,7 @@
 
       <div class="columns">
         <div class='column is-offset-1 is-5 annotation-markers'>
-          <p class='annotation_help'>
+          <p class='annotation_help is-hidden-mobile'>
             <%= t('labels.annotation_help') %>
           </p>
           <%= image_tag @illustration.image.thumb(annotation_image_size).url %>
@@ -156,7 +156,7 @@
 
         <ul class='annotation-list column is-4 '>
           <% @illustration.illustration_annotations.sorted.each_with_index do |annotation, index| %>
-            <li class="columns" data-number="<%= index+1 %>">
+            <li class="columns is-mobile" data-number="<%= index+1 %>">
               <div class="column is-narrow">
                 <div class="annotation-marker"><div class="marker-number"><%= index+1 %></div></div>
               </div>
