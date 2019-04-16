@@ -127,7 +127,7 @@ class Illustration < ApplicationRecord
 
   # if there are no values, then reject
   def self.reject_person_role?(person)
-    nontranslation_fields = %w(role person)
+    nontranslation_fields = %w(role_id person)
     found_value = false
 
     # check nontranslation fields first

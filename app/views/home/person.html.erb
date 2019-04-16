@@ -34,7 +34,7 @@
   <div class="column is-offset-<%= meta_offset_size %> is-<%= meta_col_size %> person-meta">
     <h1 class="title is-3"><%= title @person.name %></h1>
     <div class="person-meta-details">
-      <ul>
+      <ul class="person-meta-list">
         <li>
           <strong><%= t('labels.meta.date_birth') %>:</strong>
           <%= I18n.l @person.date_birth if @person.date_birth %>
@@ -51,12 +51,12 @@
         </li>
 
         <% if @person.related_items.present? %>
-          <strong><%= t('labels.meta.in_the_news') %>:</strong>
           <li>
+            <strong><%= t('labels.meta.in_the_news') %>:</strong>
             <ul>
               <% @person.related_items.each do |related_item| %>
                 <li>
-                  <%= link_to related_item.news_itemable.title, polymorphic_path(related_item.news_itemable) %>
+                  <%= link_to related_item.news_itemable.title, polymorphic_path(related_item.news_itemable), class: 'meta-link' %>
                 </li>
               <% end %>
             </ul>
@@ -65,11 +65,13 @@
 
       </ul>
 
-      <div class="person-bio">
-        <%= @person.bio.html_safe %>
-      </div>
-      <div class='person-bio-more'>
-        <%= link_to t('labels.read_more'), 'javascript:void(0)', class: 'read-more modal-button', 'data-target': 'modal-person-bio' %>
+      <div class="person-bio-container">
+        <div class="person-bio">
+          <%= @person.bio.html_safe %>
+        </div>
+        <div class='person-bio-more'>
+          <%= link_to t('labels.read_more'), 'javascript:void(0)', class: 'read-more modal-button', 'data-target': 'modal-person-bio' %>
+        </div>
       </div>
     </div>
   </div>

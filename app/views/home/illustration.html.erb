@@ -38,11 +38,11 @@
   <div class="column is-offset-<%= meta_offset_size %> is-<%= meta_col_size %> person-meta">
     <h1 class="title is-3"><%= title @illustration.title %></h1>
     <div class="person-meta-details">
-      <ul>
+      <ul class="person-meta-list">
         <% if @illustration.person_role %>
           <li>
             <strong><%= t('labels.meta.illustrator') %>:</strong>
-            <%= link_to @illustration.person_role.name, person_path(@illustration.person_role.person) %>
+            <%= link_to @illustration.person_role.name, person_path(@illustration.person_role.person), class: 'meta-link' %>
           </li>
         <% end %>
 
@@ -53,14 +53,14 @@
               <% if @illustration.publications.present? %>
                 <% @illustration.publications.each do |publication| %>
                   <li>
-                    <%= link_to publication.title, source_path(publication) %>
+                    <%= link_to publication.title, source_path(publication), class: 'meta-link' %>
                   </li>
                 <% end %>
               <% end %>
               <% if @illustration.issues.present? %>
                 <% @illustration.issues.each do |issue| %>
                   <li>
-                    <%= link_to issue.full_title, issue_path(issue.publication, issue) %>
+                    <%= link_to issue.full_title, issue_path(issue.publication, issue), class: 'meta-link' %>
                   </li>
                 <% end %>
               <% end %>
@@ -69,12 +69,12 @@
         <% end %>
 
         <% if @illustration.tags.present? %>
-          <strong><%= t('labels.meta.tags') %>:</strong>
           <li>
+            <strong><%= t('labels.meta.tags') %>:</strong>
             <ul>
               <% @illustration.tags.each do |tag| %>
                 <li>
-                  <%= link_to tag.name, illustrations_path(tag: tag.id) %>
+                  <%= link_to tag.name, illustrations_path(tag: tag.id), class: 'meta-link' %>
                 </li>
               <% end %>
             </ul>
@@ -82,12 +82,12 @@
         <% end %>
 
         <% if @illustration.related_items.present? %>
-          <strong><%= t('labels.meta.in_the_news') %>:</strong>
           <li>
+            <strong><%= t('labels.meta.in_the_news') %>:</strong>
             <ul>
               <% @illustration.related_items.each do |related_item| %>
                 <li>
-                  <%= link_to related_item.news_itemable.title, polymorphic_path(related_item.news_itemable) %>
+                  <%= link_to related_item.news_itemable.title, polymorphic_path(related_item.news_itemable), class: 'meta-link' %>
                 </li>
               <% end %>
             </ul>
@@ -96,11 +96,13 @@
 
       </ul>
 
-      <div class="person-bio">
-        <%= @illustration.context.html_safe %>
-      </div>
-      <div class='person-bio-more'>
-        <%= link_to t('labels.read_more'), 'javascript:void(0)', class: 'read-more modal-button', 'data-target': 'modal-person-bio' %>
+      <div class="person-bio-container">
+        <div class="person-bio">
+          <%= @illustration.context.html_safe %>
+        </div>
+        <div class='person-bio-more'>
+          <%= link_to t('labels.read_more'), 'javascript:void(0)', class: 'read-more modal-button', 'data-target': 'modal-person-bio' %>
+        </div>
       </div>
     </div>
   </div>

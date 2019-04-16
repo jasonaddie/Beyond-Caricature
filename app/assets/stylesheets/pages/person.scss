@@ -1,7 +1,20 @@
 @import "bulma";
+@import "vars";
 
 body.home.person, body.home.illustration{
   $column-gap: .4211rem;
+
+  .meta-link{
+    opacity: 0.7;
+    background-color: #dcdcdc;
+    border-radius: 3px;
+    padding: 5px 9px;
+    font-weight: 600;
+    color: $grey;
+    &:hover{
+      opacity: 1;
+    }
+  }
 
   .person-details{
     margin-bottom: 46px;
@@ -33,14 +46,18 @@ body.home.person, body.home.illustration{
 
       }
       .person-meta-details{
-        ul{
+        ul.person-meta-list{
           margin-bottom: 22px;
           li{
-
+            > ul li{
+              display: inline-block;
+              margin-bottom: 10px;
+              margin-right: 3px;
+            }
           }
         }
         .person-bio{
-
+          overflow-y: hidden;
         }
         .person-bio-more{
           margin-top: 1rem;
@@ -51,6 +68,17 @@ body.home.person, body.home.illustration{
         }
       }
     }
+
+    &.landscape{
+        .person-meta{
+          .person-meta-details{
+            .person-bio{
+              min-height: 200px;
+            }
+          }
+        }
+      }
+
   }
 }
 
@@ -74,13 +102,13 @@ body.home.person, body.home.illustration{
             display: flex;
             flex-direction: row;
             align-items: stretch;
-            ul{
+            ul.person-meta-list{
               flex: 1;
               li{
 
               }
             }
-            .person-bio{
+            .person-bio-container{
               flex: 2;
 
             }
@@ -106,14 +134,13 @@ body.home.person, body.home.illustration{
           }
           .person-meta-details{
             display: block;
-            ul{
+            ul.person-meta-list{
               margin-bottom: 37px;
               li{
 
               }
             }
-            .person-bio{
-              overflow-y: hidden;
+            .person-bio-container{
             }
           }
         }
