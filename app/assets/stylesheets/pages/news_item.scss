@@ -1,7 +1,6 @@
 @import "vars";
 
 body.home.news_item, body.home.research{
-
   .news-item-cover-image{
     width: 100%;
     text-align: center;
@@ -11,9 +10,6 @@ body.home.news_item, body.home.research{
   }
 
   .news-item-container{
-    max-width: 844px;
-    width: 100%;
-    margin: 0 auto;
     line-height: 27px;
 
     h1{

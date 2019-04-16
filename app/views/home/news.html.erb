@@ -1,6 +1,12 @@
-<h1 class="title is-3"><%= title t('labels.news') %></h1>
+<div class="columns">
+  <div class="column is-10 is-offset-1">
 
-<%= render partial: 'shared/listings_meta_right', locals: {
-    items: @news,
-    item_path: :news_path
-} %>
+    <h1 class="title is-3"><%= title t('labels.news') %></h1>
+
+    <%= render partial: 'shared/listings_meta_right', locals: {
+        items: @news,
+        item_path: :news_path
+    } %>
+
+  </div>
+</div>

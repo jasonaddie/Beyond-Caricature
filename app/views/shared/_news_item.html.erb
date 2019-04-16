@@ -8,50 +8,52 @@
   <%= image_tag item.cover_image.url if item.cover_image_stored? %>
 </div>
 
-<div class="news-item-container">
-  <h1 class="title is-3"><%= title item.title %></h1>
+<div class="columns is-centered">
+  <div class="news-item-container column is-half">
+    <h1 class="title is-3"><%= title item.title %></h1>
 
-  <div class="news-item-date">
-    <%= item.date_publish %>
-  </div>
+    <div class="news-item-date">
+      <%= item.date_publish %>
+    </div>
 
-  <div class="news-item-content">
-    <% if item.related_items.present? %>
-      <div class="news-item-related">
-        <h2 class="title is-6"><%= t('.related_item_explanation') %></h2>
-        <ul>
-          <% item.related_items.each do |related_item| %>
-            <li>
-              <b><%= related_item.related_item_type_formatted %>:</b>
-              <%= link_to related_item.item_title, related_item.item_link %>
-            </li>
+    <div class="news-item-content">
+      <% if item.related_items.present? %>
+        <div class="news-item-related">
+          <h2 class="title is-6"><%= t('.related_item_explanation') %></h2>
+          <ul>
+            <% item.related_items.each do |related_item| %>
+              <li>
+                <b><%= related_item.related_item_type_formatted %>:</b>
+                <%= link_to related_item.item_title, related_item.item_link %>
+              </li>
+            <% end %>
+          </ul>
+        </div>
+      <% end %>
+
+      <%= item.text.html_safe %>
+    </div>
+
+    <% if item.slideshows.present? %>
+
+      <div class="slideshow-news-item-slick">
+        <div class="slideshow-slides">
+          <% item.slideshows.sorted.each do |image| %>
+            <div class="slideshow-slide">
+              <%= image_tag image.image.thumb('844x').url if image.image_stored? %>
+              <% if image.caption.present? %>
+                <div class="image-caption"><%= image.caption %></div>
+              <% end %>
+            </div>
           <% end %>
-        </ul>
+        </div>
+        <button type="button" class="slick-next" title="<%= t('labels.next') %>"><%= image_tag('arrow.png', alt: t('labels.next')) %></button>
+        <button type="button" class="slick-prev" title="<%= t('labels.previous') %>"><%= image_tag('arrow.png', alt: t('labels.previous')) %></button>
       </div>
     <% end %>
 
-    <%= item.text.html_safe %>
-  </div>
-
-  <% if item.slideshows.present? %>
-
-    <div class="slideshow-news-item-slick">
-      <div class="slideshow-slides">
-        <% item.slideshows.sorted.each do |image| %>
-          <div class="slideshow-slide">
-            <%= image_tag image.image.thumb('844x').url if image.image_stored? %>
-            <% if image.caption.present? %>
-              <div class="image-caption"><%= image.caption %></div>
-            <% end %>
-          </div>
-        <% end %>
-      </div>
-      <button type="button" class="slick-next" title="<%= t('labels.next') %>"><%= image_tag('arrow.png', alt: t('labels.next')) %></button>
-      <button type="button" class="slick-prev" title="<%= t('labels.previous') %>"><%= image_tag('arrow.png', alt: t('labels.previous')) %></button>
+    <div class="news-item-view-all">
+      <%= link_to items_link_label, items_path, class: 'read-more' %>
     </div>
-  <% end %>
-
-  <div class="news-item-view-all">
-    <%= link_to items_link_label, items_path, class: 'read-more' %>
   </div>
 </div>
