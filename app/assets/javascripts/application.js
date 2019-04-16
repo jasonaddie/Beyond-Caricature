@@ -48,3 +48,8 @@ const debounce = (func, delay) => {
     inDebounce = setTimeout(() => func.apply(context, args), delay)
   }
 }
+
+
+function convertRemToPixels(rem) {
+  return rem * parseFloat(getComputedStyle(document.documentElement).fontSize);
+}

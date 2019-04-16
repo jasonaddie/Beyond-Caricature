@@ -154,12 +154,12 @@ function annotate_image(){
     var marker_number = $(this).data('marker-number')
     var unique_id = $(this).data('unique-id')
     var $tab_pane = $('#' + unique_id)
+    // - marker is 24x24 so to center marker on where the
+    //   mouse was clicked, subtract 12 from the offset
     var x = e.offsetX - 12
     var y = e.offsetY - 12
 
     // add marker
-    // - marker is 24x24 so to center marker on where the
-    //   mouse was clicked, subtract 12 from the offset
     $img_container.append(
       create_marker(x, y, unique_id, marker_number)
     );

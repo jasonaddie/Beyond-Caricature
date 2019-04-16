@@ -38,6 +38,7 @@ document.addEventListener("turbolinks:load", function() {
     var $target = document.querySelector('.' + target);
     rootEl.classList.add('is-clipped');
     $target.classList.add('is-active');
+    $($target).trigger('opening-modal')
   }
 
   function closeModals() {

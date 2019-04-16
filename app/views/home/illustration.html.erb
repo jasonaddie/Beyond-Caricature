@@ -142,13 +142,8 @@
             <%= t('labels.annotation_help') %>
           </p>
           <%= image_tag @illustration.image.thumb(annotation_image_size).url %>
-          <%
-            img_width = @illustration.image.thumb(annotation_image_size).width
-            img_height = @illustration.image.thumb(annotation_image_size).height
-          %>
           <% @illustration.illustration_annotations.sorted.each_with_index do |annotation, index| %>
-
-            <div class="annotation-marker" data-number="<%= index+1 %>" style="left: <%= (annotation.x*img_width).round(2)%>px; top: <%= (annotation.y*img_height).round(2)%>px">
+            <div class="annotation-marker" data-number="<%= index+1 %>" data-x="<%= annotation.x %>" data-y="<%= annotation.y %>">
               <div class="marker-number"><%= index+1 %></div>
             </div>
           <% end %>

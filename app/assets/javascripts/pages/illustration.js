@@ -1,7 +1,22 @@
+// place annotation markers
 document.addEventListener("turbolinks:load", function() {
 
-  // register click events for annotation modal
   if (document.querySelector('body.home.illustration .modal-annotations') !== null){
+
+    // compute the correct top/left positioning for each marker based on the actuall image size being shown
+    function setMarkerPositions(){
+      var img = document.querySelector('body.home.illustration .modal-annotations .annotation-markers img')
+      var markers = img.parentElement.querySelectorAll('.annotation-marker')
+      var help = img.parentElement.querySelector('.annotation_help')
+      markers.forEach(function(marker){
+        marker.style.left = ((marker.dataset.x * $(img).width()) + convertRemToPixels(0.75)).toFixed(2) + 'px'
+        marker.style.top = ((marker.dataset.y * $(img).height()) + convertRemToPixels(0.75) + $(help).height()).toFixed(2) + 'px'
+      })
+    }
+
+    $('body.home.illustration .modal-annotations').on('opening-modal', setMarkerPositions)
+    $(window).on('resize', setMarkerPositions)
+
 
     // when click on markers on image, highlight the annotaiton text in the list of text
     document.querySelectorAll('body.home.illustration .modal-annotations .annotation-markers .annotation-marker').forEach( el => {
