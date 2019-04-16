@@ -3,8 +3,8 @@
 document.addEventListener("turbolinks:load", function() {
 
   function checkPortraitMetaTextOverflow() {
-    console.log('=======')
-    console.log('checkPortraitMetaTextOverflow')
+    // console.log('=======')
+    // console.log('checkPortraitMetaTextOverflow')
 
     var container = document.querySelector('body.home.person .person-details.portrait, body.home.illustration .person-details.portrait')
 
@@ -49,8 +49,8 @@ document.addEventListener("turbolinks:load", function() {
 
 
   function checkLandscapeMetaTextOverflow() {
-    console.log('=======')
-    console.log('checkLandscapeMetaTextOverflow')
+    // console.log('=======')
+    // console.log('checkLandscapeMetaTextOverflow')
 
     var container = document.querySelector('body.home.person .person-details.landscape, body.home.illustration .person-details.landscape')
 

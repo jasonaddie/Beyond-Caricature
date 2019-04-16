@@ -19,19 +19,50 @@
       width: 100%;
       color: $grey;
 
+      .annotation-marker{
+        width: 30px;
+        height: 31px;
+        border-radius: 50%;
+        background: $nav-start-active-color;
+        -webkit-transition: display .15s ease;
+        transition: display .15s ease;
+        display: inherit;
+      }
+      .annotation-marker .marker-number{
+        color: #fff;
+        text-align: center;
+        margin-top: 2px;
+        font-size: 1.16rem;
+        font-weight: 600;
+        line-height: 1.31rem;
+      }
+
       .annotation-markers{
-        // margin: 0;
+        vertical-align: top;
+        margin: 0 15px 25px;
+        position: relative;
+        z-index: 200;
         .annotation_help{
           font-size: 1.05rem;
           color: $grey;
           margin-bottom:0;
         }
+        img{
+          margin: 0;
+          max-width: 100%;
+        }
         .annotation-marker{
+          position: absolute;
+          top: 0;
+          left: 0;
           cursor: pointer;
         }
       }
 
       .annotation-list{
+        list-style-type:none;
+        margin-top: 0.75rem;
+        overflow-y: auto;
         li{
           line-height: 1.42rem;
           margin-top: 0.8rem;
@@ -42,6 +73,9 @@
           & > div{
             padding-top: 0;
             padding-bottom: 0;
+          }
+          .annotation-marker{
+            display: inline-block;
           }
           .annotation-text{
             &.is-active{
@@ -54,7 +88,7 @@
   }
 }
 
-@media (min-width: 769px){
+@media (min-width: 768px){
   .modal{
     &.modal-annotations{
       .modal-content{
