@@ -39,4 +39,8 @@ module ApplicationHelper
     end
   end
 
+
+  def add_br_tags(text)
+    text.gsub("\n", "</br>").html_safe
+  end
 end

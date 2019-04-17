@@ -248,6 +248,7 @@ hy:
         text: Text
       role:
         name: Name
+        is_illustrator: Is Illustrator?
       slideshow:
         image: Image
         sort: Sort Order
@@ -301,12 +302,20 @@ hy:
     read_more: Read More
     stats: Stats
     journal_issues: Journal Issues
-    journal_issues_illustrations: Journal Issue Illustrations
+    journal_issues_illustrations: |
+      Journal Issue
+      Illustrations
     books: Books
-    books_illustrations: Book Illustrations
+    books_illustrations: |
+      Book
+      Illustrations
     originals: Originals
-    originals_illustrations: Original Illustrations
-    illustrators_illustrations: Illustrator Illustrations
+    originals_illustrations: |
+      Original
+      Illustrations
+    illustrators_illustrations: |
+      Illustrator
+      Illustrations
     by: By
     lived: Lived
     roles: Roles
@@ -314,6 +323,9 @@ hy:
     next: Next
     previous: Previous
     view_bigger_image: Click to view the original image
+    view_annotations: View Annotations
+    annotations_for: 'Annotations For: %{name}'
+    annotation_help: 'Click on numbers to view the annotation text'
     meta:
       publication_type: Type
       publication_language: Language

@@ -4,7 +4,7 @@
 
 <div class="intro">
   <div class="columns">
-    <div class="column is-6">
+    <div class="column is-5 is-offset-1">
       <h1 class="title is-uppercase"><%= t('meta.site_name') %></h2>
       <h2 class="subtitle is-capitalized is-size-4"><%= t('meta.sub_title') %></h2>
       <div class="text is-size-5">
@@ -12,7 +12,7 @@
       </div>
       <%= link_to t('labels.read_more'), about_path, class: 'read-more is-lowercase' %>
     </div>
-    <div class="column is-6 decoration-oskar">
+    <div class="column is-5 decoration-oskar">
       <%= image_tag 'oskar_whip.png', alt: t('.oskar_alt') %>
     </div>
   </div>
@@ -21,108 +21,114 @@
 
 <% if @highlights.present? %>
 
-  <div class="slideshow-highlights-slick">
-    <div class="slideshow-slides">
-      <% @highlights.each do |highlight| %>
-        <div class="slideshow-slide">
-          <div class="slideshow-slide-image">
-            <%= link_to highlight.link do %>
-              <%= image_tag highlight.cover_image.thumb('900x632#').url if highlight.cover_image_stored? %>
-            <% end %>
-          </div>
-          <div class="slideshow-slide-text">
-            <div class="slideshow-slide-title">
-              <%= link_to highlight.title, highlight.link %>
+  <div class="slideshow-highlights-container columns is-centered">
+    <div class="slideshow-highlights-slick column is-10">
+      <div class="slideshow-slides">
+        <% @highlights.each do |highlight| %>
+          <div class="slideshow-slide">
+            <div class="slideshow-slide-image">
+              <%= link_to highlight.link do %>
+                <%= image_tag highlight.cover_image.thumb('900x632#').url if highlight.cover_image_stored? %>
+              <% end %>
             </div>
-            <div class="slideshow-slide-summary">
-              <%= highlight.summary.html_safe %>
+            <div class="slideshow-slide-text">
+              <div class="slideshow-slide-title">
+                <%= link_to highlight.title, highlight.link %>
+              </div>
+              <div class="slideshow-slide-summary">
+                <%= highlight.summary.html_safe %>
+              </div>
             </div>
           </div>
-        </div>
-      <% end %>
+        <% end %>
+      </div>
     </div>
   </div>
 
 <% end %>
 
-<div class="listings">
-  <% if @news.present? %>
+<div class="listings columns is-centered">
+  <div class="column is-10">
+    <% if @news.present? %>
 
-    <%= render partial: 'shared/listing', locals: {
-          title: t('labels.news'),
-          records: @news,
-          partial: 'card_meta_down',
-          summary_method: 'summary',
-          link_path: :news_path
-      } %>
+      <%= render partial: 'shared/listing', locals: {
+            title: t('labels.news'),
+            records: @news,
+            partial: 'card_meta_down',
+            summary_method: 'summary',
+            link_path: :news_path
+        } %>
 
-  <% end %>
+    <% end %>
 
-  <% if @illustrations.present? %>
+    <% if @illustrations.present? %>
 
-    <%= render partial: 'shared/listing', locals: {
-          title: t('labels.illustrations'),
-          records: @illustrations,
-          partial: 'card_meta_hover',
-          link_path: :illustration_path
-      } %>
+      <%= render partial: 'shared/listing', locals: {
+            title: t('labels.illustrations'),
+            records: @illustrations,
+            partial: 'card_meta_hover',
+            link_path: :illustration_path
+        } %>
 
-  <% end %>
+    <% end %>
 
-  <% if @publications.present? %>
+    <% if @publications.present? %>
 
-    <%= render partial: 'shared/listing', locals: {
-          title: t('labels.publications'),
-          records: @publications,
-          partial: 'card_meta_down',
-          summary_method: 'about',
-          link_path: :source_path
-      } %>
+      <%= render partial: 'shared/listing', locals: {
+            title: t('labels.publications'),
+            records: @publications,
+            partial: 'card_meta_down',
+            summary_method: 'about',
+            link_path: :source_path
+        } %>
 
-  <% end %>
+    <% end %>
+  </div>
 </div>
 
 <% if @stats.present? %>
 
-  <div class="stats">
-    <h2 class="title is-4"><%= t('labels.stats') %></h2>
-    <ul class="has-no-bullets">
-      <li>
-        <div class="stats-heading has-text-weight-bold"><%= t('labels.journal_issues') %></div>
-        <div class="stats-count has-text-weight-bold"><%= @stats[:journal_issues][:count] %></div>
-      </li>
-      <li>
-        <div class="stats-heading has-text-weight-bold"><%= t('labels.journal_issues_illustrations') %></div>
-        <div class="stats-count has-text-weight-bold"><%= @stats[:journal_issues][:illustrations] %></div>
-      </li>
+  <div class="stats columns is-centered">
+    <div class="column is-8">
+      <h2 class="title is-4"><%= t('labels.stats') %></h2>
+      <ul class="has-no-bullets">
+        <li>
+          <div class="stats-heading has-text-weight-bold"><%= t('labels.journal_issues') %></div>
+          <div class="stats-count has-text-weight-bold"><%= @stats[:journal_issues][:count] %></div>
+        </li>
+        <li>
+          <div class="stats-heading has-text-weight-bold"><%= add_br_tags(t('labels.journal_issues_illustrations')) %></div>
+          <div class="stats-count has-text-weight-bold"><%= @stats[:journal_issues][:illustrations] %></div>
+        </li>
 
-      <li>
-        <div class="stats-heading has-text-weight-bold"><%= t('labels.books') %></div>
-        <div class="stats-count has-text-weight-bold"><%= @stats[:books][:count] %></div>
-      </li>
-      <li>
-        <div class="stats-heading has-text-weight-bold"><%= t('labels.books_illustrations') %></div>
-        <div class="stats-count has-text-weight-bold"><%= @stats[:books][:illustrations] %></div>
-      </li>
+        <li>
+          <div class="stats-heading has-text-weight-bold"><%= t('labels.books') %></div>
+          <div class="stats-count has-text-weight-bold"><%= @stats[:books][:count] %></div>
+        </li>
+        <li>
+          <div class="stats-heading has-text-weight-bold"><%= add_br_tags(t('labels.books_illustrations')) %></div>
+          <div class="stats-count has-text-weight-bold"><%= @stats[:books][:illustrations] %></div>
+        </li>
 
-      <li>
-        <div class="stats-heading has-text-weight-bold"><%= t('labels.originals') %></div>
-        <div class="stats-count has-text-weight-bold"><%= @stats[:originals][:count] %></div>
-      </li>
-      <li>
-        <div class="stats-heading has-text-weight-bold"><%= t('labels.originals_illustrations') %></div>
-        <div class="stats-count has-text-weight-bold"><%= @stats[:originals][:illustrations] %></div>
-      </li>
+        <li>
+          <div class="stats-heading has-text-weight-bold"><%= t('labels.originals') %></div>
+          <div class="stats-count has-text-weight-bold"><%= @stats[:originals][:count] %></div>
+        </li>
+        <li>
+          <div class="stats-heading has-text-weight-bold"><%= add_br_tags(t('labels.originals_illustrations')) %></div>
+          <div class="stats-count has-text-weight-bold"><%= @stats[:originals][:illustrations] %></div>
+        </li>
 
-      <li>
-        <div class="stats-heading has-text-weight-bold"><%= t('labels.illustrators') %></div>
-        <div class="stats-count has-text-weight-bold"><%= @stats[:illustrators][:count] %></div>
-      </li>
-      <li>
-        <div class="stats-heading has-text-weight-bold"><%= t('labels.illustrators_illustrations') %></div>
-        <div class="stats-count has-text-weight-bold"><%= @stats[:illustrators][:illustrations] %></div>
-      </li>
-    </ul>
+        <li>
+          <div class="stats-heading has-text-weight-bold"><%= t('labels.illustrators') %></div>
+          <div class="stats-count has-text-weight-bold"><%= @stats[:illustrators][:count] %></div>
+        </li>
+        <li>
+          <div class="stats-heading has-text-weight-bold"><%= add_br_tags(t('labels.illustrators_illustrations')) %></div>
+          <div class="stats-count has-text-weight-bold"><%= @stats[:illustrators][:illustrations] %></div>
+        </li>
+      </ul>
+    </div>
   </div>
 
 <% end %>

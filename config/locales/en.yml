@@ -302,12 +302,20 @@ en:
     read_more: Read More
     stats: Stats
     journal_issues: Journal Issues
-    journal_issues_illustrations: Journal Issue Illustrations
+    journal_issues_illustrations: |
+      Journal Issue
+      Illustrations
     books: Books
-    books_illustrations: Book Illustrations
+    books_illustrations: |
+      Book
+      Illustrations
     originals: Originals
-    originals_illustrations: Original Illustrations
-    illustrators_illustrations: Illustrator Illustrations
+    originals_illustrations: |
+      Original
+      Illustrations
+    illustrators_illustrations: |
+      Illustrator
+      Illustrations
     by: By
     lived: Lived
     roles: Roles
