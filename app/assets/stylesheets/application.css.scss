@@ -69,9 +69,6 @@ html{
 }
 
 body{
-  background-image: url(asset_path('background_dashed_line.png'));
-  background-repeat: repeat;
-  background-position-x: 18%;
   background-color: $body-background-color;
 }
 
@@ -94,6 +91,14 @@ a.read-more{
   &:hover{
     opacity: 1;
     color: #fff;
+  }
+}
+
+@media (min-width: 769px){
+  body{
+    background-image: url(asset_path('background_dashed_line.png'));
+    background-repeat: repeat;
+    background-position-x: 18%;
   }
 }
 
