@@ -164,14 +164,14 @@ class Publication < ApplicationRecord
   ## METHODS ##
   #################
   def issue_count
-    self.issues.count if self.journal?
+    self.issues.published.count if self.journal?
   end
 
   def illustration_count
     if self.journal?
-      IllustrationIssue.where(issue_id: self.issue_ids).count
+      self.issues.published.map{|x| x.illustrations.published.count}.inject(0, :+)
     else
-      self.illustration_publications.count
+      self.illustrations.published.count
     end
   end
 

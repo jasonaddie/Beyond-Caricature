@@ -1,116 +1,137 @@
-<% pub = Publication %>
 <%
+  pub = Publication
   @lang_switcher_record = @publication
   @lang_switcher_has_translations = true
   @lang_switcher_params_key = :id
   @lang_switcher_is_public = true
   @lang_switcher_fallback_url = sources_path
   set_meta_tags description: @publication.about
+
+  detail_orientation_class = 'landscape'
+  image_size = 'x500'
+  img_col_size = 10
+  img_offset_size=1
+  meta_col_size = 10
+  meta_offset_size=1
+  if @publication.cover_image.portrait?
+    detail_orientation_class = 'portrait'
+    image_size = '550x'
+    img_col_size = 4
+    meta_col_size = 5
+    img_offset_size=1
+    meta_offset_size=0
+  end
+
+  @body_class = 'meta-details-container'
+
+  illustration_ids = @publication.illustrations.published.pluck(:id)
 %>
 
-<h1 class="title is-3"><%= title @publication.title %></h1>
-
-<div>
-  <%= image_tag @publication.cover_image.thumb('300x200#').url if @publication.cover_image_stored? %>
-</div>
-<div>
-  <%= simple_format(@publication.about) %>
-</div>
 
 
-<ul>
-  <li>
-    <strong><%= t('labels.meta.publication_type') %>:</strong>
-    <%= pub.human_enum_name(:publication_type, @publication.publication_type) %>
-  </li>
-  <li>
-    <strong><%= t('labels.meta.publication_language') %>:</strong>
-    <%= @publication.publication_language.language %>
-  </li>
-  <% if @publication.book?  %>
-    <li>
-      <strong><%= t('labels.meta.publication_year') %>:</strong>
-      <%= @publication.year %>
-    </li>
-  <% elsif @publication.original?  %>
-    <li>
-      <strong><%= t('labels.meta.creation_year') %>:</strong>
-      <%= @publication.year %>
-    </li>
-  <% end %>
-  <% if @publication.journal? %>
-    <li>
-      <strong><%= t('labels.meta.issue_count') %>:</strong>
-      <%= number_with_delimiter(@publication.issue_count) %>
-    </li>
-  <% end %>
-  <% roles = @publication.person_roles.group_people_by_role %>
-  <% if roles.present? %>
-    <% roles.each do |role, people| %>
-      <li>
-        <strong><%= role %>:</strong>
-        <%= people.map{|person| link_to(person.name, person_path(person.person))}.join(', ').html_safe %>
-      </li>
+<div class="columns meta-details <%= detail_orientation_class %>">
+  <div class="column is-offset-<%= img_offset_size %> is-<%= img_col_size %> meta-image">
+    <%= link_to 'javascript:void(0)', class: 'modal-button', 'data-target': 'modal-meta-image', title: t('labels.view_bigger_image') do %>
+      <%= image_tag @publication.cover_image.thumb(image_size).url, alt: @publication.title if @publication.cover_image_stored? %>
     <% end %>
-  <% end %>
-  <% if @publication.journal? %>
-    <li>
-      <table>
-        <thead>
-          <tr>
-            <th><%= t('labels.meta.year_start') %></th>
-            <th><%= t('labels.meta.year_end') %></th>
-            <th><%= t('labels.meta.people') %></th>
-          </tr>
-        </thead>
-        <tbody>
-          <% @publication.publication_editors.each do |publication_editor| %>
-            <tr>
-              <td><%= publication_editor.year_start %></td>
-              <td><%= publication_editor.year_end %></td>
-              <td>
-                <% roles = publication_editor.person_roles.group_people_by_role %>
-                <% if roles.present? %>
-                  <ul>
-                    <% roles.each do |role, people| %>
-                      <li>
-                        <strong><%= role %>:</strong>
-                        <%= people.map{|person| link_to(person.name, person_path(person.person))}.join(', ').html_safe %>
-                      </li>
-                    <% end %>
-                  </ul>
-                <% end %>
-              </td>
-            </tr>
-          <% end %>
-        </tbody>
-      </table>
-    </li>
-  <% end %>
-  <li>
-    <strong><%= t('labels.meta.illustration_count') %>:</strong>
-    <%= number_with_delimiter(@publication.illustration_count) %>
-  </li>
-  <% if (@publication.book? || @publication.original?) && @publication.scanned_file.present? %>
-    <li>
-      <%= link_to t('labels.view_file_with_size', size: number_to_human_size(@publication.scanned_file_size)), @publication.scanned_file.url, target: :blank %>
-    </li>
-  <% end %>
-
-  <% if @publication.related_items.present? %>
-    <strong><%= t('labels.meta.in_the_news') %>:</strong>
-    <li>
-      <ul>
-        <% @publication.related_items.each do |related_item| %>
+  </div>
+  <div class="column is-offset-<%= meta_offset_size %> is-<%= meta_col_size %> meta-items">
+    <h1 class="title is-3"><%= title @publication.title %></h1>
+    <div class="meta-items-details">
+      <ul class="meta-items-list">
+        <li>
+          <strong><%= t('labels.meta.publication_type') %>:</strong>
+          <%= pub.human_enum_name(:publication_type, @publication.publication_type) %>
+        </li>
+        <li>
+          <strong><%= t('labels.meta.publication_language') %>:</strong>
+          <%= @publication.publication_language.language %>
+        </li>
+        <% if @publication.book?  %>
           <li>
-            <%= link_to related_item.news_itemable.title, polymorphic_path(related_item.news_itemable) %>
+            <strong><%= t('labels.meta.publication_year') %>:</strong>
+            <%= @publication.year %>
+          </li>
+        <% elsif @publication.original?  %>
+          <li>
+            <strong><%= t('labels.meta.creation_year') %>:</strong>
+            <%= @publication.year %>
+          </li>
+        <% end %>
+        <% if @publication.journal? %>
+          <li>
+            <strong><%= t('labels.meta.issue_count') %>:</strong>
+            <%= number_with_delimiter(@publication.issue_count) %>
+          </li>
+        <% end %>
+        <% roles = @publication.person_roles.group_people_by_role %>
+        <% if roles.present? %>
+          <% roles.each do |role, people| %>
+            <li>
+              <strong><%= role %>:</strong>
+              <%= people.map{|person| link_to(person.name, person_path(person.person), class: 'meta-link')}.join(' ').html_safe %>
+            </li>
+          <% end %>
+        <% end %>
+        <% if @publication.journal? && @publication.publication_editors.present? %>
+          <% @publication.publication_editors.each do |publication_editor| %>
+            <% roles = publication_editor.person_roles.group_people_by_role %>
+            <% if roles.present? %>
+              <li>
+                <strong>
+                  <%= publication_editor.year_start ? publication_editor.year_start : '?' %>
+                  -
+                  <%= publication_editor.year_end ? publication_editor.year_end : '?' %>
+                </strong>
+                <ul class="indent-list">
+                  <% roles.each do |role, people| %>
+                    <li>
+                      <strong><%= role %>:</strong>
+                      <%= people.map{|person| link_to(person.name, person_path(person.person), class: 'meta-link')}.join(' ').html_safe %>
+                    </li>
+                  <% end %>
+                </ul>
+              </li>
+            <% end %>
+          <% end %>
+        <% end %>
+
+        <li>
+          <strong><%= t('labels.meta.illustration_count') %>:</strong>
+          <%= number_with_delimiter(@publication.illustration_count) %>
+        </li>
+        <% if (@publication.book? || @publication.original?) && @publication.scanned_file.present? %>
+          <li>
+            <%= link_to t('labels.view_file_with_size', size: number_to_human_size(@publication.scanned_file_size)), @publication.scanned_file.url, target: :blank, class: 'meta-link' %>
+          </li>
+        <% end %>
+
+        <% if @publication.related_items.present? %>
+          <li>
+            <strong><%= t('labels.meta.in_the_news') %>:</strong>
+            <ul>
+              <% @publication.related_items.each do |related_item| %>
+                <li>
+                  <%= link_to related_item.news_itemable.title, polymorphic_path(related_item.news_itemable), class: 'meta-link' %>
+                </li>
+              <% end %>
+            </ul>
           </li>
         <% end %>
       </ul>
-    </li>
-  <% end %>
 
-</ul>
+      <div class="meta-text-container">
+        <div class="meta-text">
+          <%= @publication.about.html_safe %>
+        </div>
+        <div class='meta-text-more'>
+          <%= link_to t('labels.read_more'), 'javascript:void(0)', class: 'read-more modal-button', 'data-target': 'modal-meta-text' %>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
 
 
 
@@ -120,9 +141,33 @@
 <% elsif @publication.book? || @publication.original? %>
     <%= render partial: 'shared/listing', locals: {
           title: t('labels.illustrations'),
-          records: @publication.illustrations.published.sort_published_desc,
+          total: illustration_ids.length,
+          records: Illustration.where(id: illustration_ids).sort_published_desc.limit(6),
           partial: 'card_meta_hover',
           link_path: :illustration_path
       } %>
 
 <% end %>
+
+
+<div class="modal modal-meta-text">
+  <div class="modal-background"></div>
+  <div class="modal-content">
+    <h1 class="title is-3"><%= @publication.title %></h1>
+
+    <%= @publication.about.html_safe %>
+  </div>
+  <button class="modal-close is-large" aria-label="close"></button>
+</div>
+
+<% if @publication.cover_image_stored? %>
+  <%= render partial: 'shared/image_modal', locals: {
+        image_url: @publication.cover_image.url,
+        alt: @publication.title
+    } %>
+<% end %>
+
+
+
+
+

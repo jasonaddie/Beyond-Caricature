@@ -31,6 +31,7 @@ class IllustrationIssue < ApplicationRecord
   #################
   ## SCOPES ##
   #################
+  scope :published, -> { where(is_public: true) }
   # compute the average number of illustrations per issue
   # for the provided issue ids
   def self.average_illustrations_per_issue(issue_ids)

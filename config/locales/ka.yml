@@ -326,6 +326,7 @@ ka:
     view_annotations: View Annotations
     annotations_for: 'Annotations For: %{name}'
     annotation_help: 'Click on numbers to view the annotation text'
+    publication_date: Published
     meta:
       publication_type: Type
       publication_language: Language

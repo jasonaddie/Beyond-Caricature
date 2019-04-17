@@ -5,6 +5,7 @@
   summary ||= nil
   type ||= nil
   cover_image_path ||= nil
+  publish_date ||= nil
 %>
 
 <div class="card card-meta-down">
@@ -27,9 +28,15 @@
           <%= type %>
         </div>
       <% end %>
+      <% if publish_date %>
+        <div>
+          <strong><%= "#{t('labels.publication_date')}:" %></strong>
+          <%= I18n.l publish_date %>
+        </div>
+      <% end %>
       <% if summary %>
         <div>
-          <%= strip_tags(summary) %>
+          <%= truncate(strip_tags(summary), length: 100) %>
         </div>
       <% end %>
     </div>
