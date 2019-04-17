@@ -22,19 +22,20 @@
   end
 
   role_records = @person.person_roles.group_published_record_by_role
+  @body_class = 'meta-details-container'
 %>
 
 
-<div class="columns person-details <%= detail_orientation_class %>">
-  <div class="column is-offset-<%= img_offset_size %> is-<%= img_col_size %> person-image">
-    <%= link_to 'javascript:void(0)', class: 'modal-button', 'data-target': 'modal-person-image', title: t('labels.view_bigger_image') do %>
+<div class="columns meta-details <%= detail_orientation_class %>">
+  <div class="column is-offset-<%= img_offset_size %> is-<%= img_col_size %> meta-image">
+    <%= link_to 'javascript:void(0)', class: 'modal-button', 'data-target': 'modal-meta-image', title: t('labels.view_bigger_image') do %>
       <%= image_tag @person.image.thumb(image_size).url, alt: @person.name if @person.image_stored? %>
     <% end %>
   </div>
-  <div class="column is-offset-<%= meta_offset_size %> is-<%= meta_col_size %> person-meta">
+  <div class="column is-offset-<%= meta_offset_size %> is-<%= meta_col_size %> meta-items">
     <h1 class="title is-3"><%= title @person.name %></h1>
-    <div class="person-meta-details">
-      <ul class="person-meta-list">
+    <div class="meta-items-details">
+      <ul class="meta-items-list">
         <li>
           <strong><%= t('labels.meta.date_birth') %>:</strong>
           <%= I18n.l @person.date_birth if @person.date_birth %>
@@ -65,12 +66,12 @@
 
       </ul>
 
-      <div class="person-bio-container">
-        <div class="person-bio">
+      <div class="meta-text-container">
+        <div class="meta-text">
           <%= @person.bio.html_safe %>
         </div>
-        <div class='person-bio-more'>
-          <%= link_to t('labels.read_more'), 'javascript:void(0)', class: 'read-more modal-button', 'data-target': 'modal-person-bio' %>
+        <div class='meta-text-more'>
+          <%= link_to t('labels.read_more'), 'javascript:void(0)', class: 'read-more modal-button', 'data-target': 'modal-meta-text' %>
         </div>
       </div>
     </div>
@@ -102,7 +103,7 @@
 
 
 
-<div class="modal modal-person-bio">
+<div class="modal modal-meta-text">
   <div class="modal-background"></div>
   <div class="modal-content">
     <h1 class="title is-3"><%= @person.name %></h1>

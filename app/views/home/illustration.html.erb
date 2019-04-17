@@ -21,12 +21,14 @@
     meta_offset_size=0
   end
   annotation_image_size = '550x'
+
+  @body_class = 'meta-details-container'
 %>
 
 
-<div class="columns person-details <%= detail_orientation_class %>">
-  <div class="column is-offset-<%= img_offset_size %> is-<%= img_col_size %> person-image">
-    <%= link_to 'javascript:void(0)', class: 'modal-button', 'data-target': 'modal-person-image', title: t('labels.view_bigger_image') do %>
+<div class="columns meta-details <%= detail_orientation_class %>">
+  <div class="column is-offset-<%= img_offset_size %> is-<%= img_col_size %> meta-image">
+    <%= link_to 'javascript:void(0)', class: 'modal-button', 'data-target': 'modal-meta-image', title: t('labels.view_bigger_image') do %>
       <%= image_tag @illustration.image.thumb(image_size).url, alt: @illustration.title if @illustration.image_stored? %>
     <% end %>
     <% if @illustration.illustration_annotations.sorted.present? && @illustration.image_stored? %>
@@ -35,10 +37,10 @@
       </div>
     <% end %>
   </div>
-  <div class="column is-offset-<%= meta_offset_size %> is-<%= meta_col_size %> person-meta">
+  <div class="column is-offset-<%= meta_offset_size %> is-<%= meta_col_size %> meta-items">
     <h1 class="title is-3"><%= title @illustration.title %></h1>
-    <div class="person-meta-details">
-      <ul class="person-meta-list">
+    <div class="meta-items-details">
+      <ul class="meta-items-list">
         <% if @illustration.person_role %>
           <li>
             <strong><%= t('labels.meta.illustrator') %>:</strong>
@@ -96,12 +98,12 @@
 
       </ul>
 
-      <div class="person-bio-container">
-        <div class="person-bio">
+      <div class="meta-text-container">
+        <div class="meta-text">
           <%= @illustration.context.html_safe %>
         </div>
-        <div class='person-bio-more'>
-          <%= link_to t('labels.read_more'), 'javascript:void(0)', class: 'read-more modal-button', 'data-target': 'modal-person-bio' %>
+        <div class='meta-text-more'>
+          <%= link_to t('labels.read_more'), 'javascript:void(0)', class: 'read-more modal-button', 'data-target': 'modal-meta-text' %>
         </div>
       </div>
     </div>
@@ -113,7 +115,7 @@
 
 
 
-<div class="modal modal-person-bio">
+<div class="modal modal-meta-text">
   <div class="modal-background"></div>
   <div class="modal-content">
     <h1 class="title is-3"><%= @illustration.title %></h1>

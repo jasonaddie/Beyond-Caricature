@@ -1,7 +1,7 @@
 @import "bulma";
 @import "vars";
 
-body.home.person, body.home.illustration{
+body.meta-details-container{
   $column-gap: .4211rem;
 
   .meta-link{
@@ -16,12 +16,10 @@ body.home.person, body.home.illustration{
     }
   }
 
-  .person-details{
+  .meta-details{
     margin-bottom: 46px;
-    // display: block;
 
-    .person-image{
-      // margin-bottom: 22px;
+    .meta-image{
       & > a{
         position: relative;
         outline: none;
@@ -41,12 +39,12 @@ body.home.person, body.home.illustration{
         margin-top: 1.26rem;
       }
     }
-    .person-meta{
+    .meta-items{
       .title{
 
       }
-      .person-meta-details{
-        ul.person-meta-list{
+      .meta-items-details{
+        ul.meta-items-list{
           margin-bottom: 22px;
           li{
             > ul li{
@@ -56,10 +54,10 @@ body.home.person, body.home.illustration{
             }
           }
         }
-        .person-bio{
+        .meta-text{
           overflow-y: hidden;
         }
-        .person-bio-more{
+        .meta-text-more{
           margin-top: 1rem;
           display:none;
           &.is-active{
@@ -70,45 +68,43 @@ body.home.person, body.home.illustration{
     }
 
     &.landscape{
-        .person-meta{
-          .person-meta-details{
-            .person-bio{
-              min-height: 200px;
-            }
+      .meta-items{
+        .meta-items-details{
+          .meta-text{
+            min-height: 200px;
           }
         }
       }
-
+    }
   }
 }
 
 @media (min-width: 615px){
-  body.home.person, body.home.illustration{
-    .person-details{
+  body.meta-details-container{
+    .meta-details{
       margin-bottom: 119px;
 
       &.landscape{
         display: block;
 
-        .person-image{
-          // margin-bottom: 37px;
+        .meta-image{
           text-align: center;
         }
-        .person-meta{
+        .meta-items{
           .title{
 
           }
-          .person-meta-details{
+          .meta-items-details{
             display: flex;
             flex-direction: row;
             align-items: stretch;
-            ul.person-meta-list{
+            ul.meta-items-list{
               flex: 1;
               li{
 
               }
             }
-            .person-bio-container{
+            .meta-text-container{
               flex: 2;
 
             }
@@ -118,29 +114,21 @@ body.home.person, body.home.illustration{
 
 
       &.portrait{
-        // display: flex;
-        // flex-direction: row;
-        // align-items: stretch;
-
-        .person-image{
-          // flex: 1;
-          // max-width: 550px;
+        .meta-image{
         }
-        .person-meta{
-          // flex: 1;
-          // padding-left: 34px;
+        .meta-items{
           .title{
 
           }
-          .person-meta-details{
+          .meta-items-details{
             display: block;
-            ul.person-meta-list{
+            ul.meta-items-list{
               margin-bottom: 37px;
               li{
 
               }
             }
-            .person-bio-container{
+            .meta-text-container{
             }
           }
         }
