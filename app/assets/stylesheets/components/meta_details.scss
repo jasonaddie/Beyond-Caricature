@@ -17,7 +17,7 @@ body.meta-details-container{
   }
 
   .meta-details{
-    margin-bottom: 46px;
+    margin-bottom: 1.5rem;
 
     .meta-image{
       & > a{
@@ -82,7 +82,7 @@ body.meta-details-container{
 @media (min-width: 615px){
   body.meta-details-container{
     .meta-details{
-      margin-bottom: 119px;
+      margin-bottom: 3rem;
 
       &.landscape{
         display: block;

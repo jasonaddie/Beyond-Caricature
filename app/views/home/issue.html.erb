@@ -1,65 +1,111 @@
-<% pub = Publication %>
 <%
+  pub = Publication
+
   @lang_switcher_record = @issue
   @lang_switcher_has_translations = false
   @lang_switcher_params_key = :id
   @lang_switcher_is_public = false
   @lang_switcher_fallback_url = source_path(@publication)
+
+  detail_orientation_class = 'landscape'
+  image_size = 'x500'
+  img_col_size = 10
+  img_offset_size=1
+  meta_col_size = 10
+  meta_offset_size=1
+  if @issue.cover_image.portrait?
+    detail_orientation_class = 'portrait'
+    image_size = '550x'
+    img_col_size = 4
+    meta_col_size = 5
+    img_offset_size=1
+    meta_offset_size=0
+  end
+
+  @body_class = 'meta-details-container'
+
+  illustration_ids = @issue.illustrations.published.pluck(:id)
+
 %>
 
-<h1 class="title is-3"><%= title @issue.full_title %></h1>
-
-<div>
-  <%= image_tag @issue.cover_image.thumb('300x200#').url if @issue.cover_image_stored? %>
-</div>
-
-
-<ul>
-  <li>
-    <strong><%= t('labels.meta.journal') %>:</strong>
-    <%= link_to @publication.title, source_path(@publication) %>
-  </li>
-  <li>
-    <strong><%= t('labels.meta.issue_number') %>:</strong>
-    <%= @issue.issue_number %>
-  </li>
-  <li>
-    <strong><%= t('labels.meta.publication_date') %>:</strong>
-    <%= @issue.date_publication %>
-  </li>
-  <li>
-    <strong><%= t('labels.meta.publication_language') %>:</strong>
-    <%= @publication.publication_language.language %>
-  </li>
-  <li>
-    <strong><%= t('labels.meta.illustration_count') %>:</strong>
-    <%= number_with_delimiter(@issue.illustration_count) %>
-  </li>
-  <% if @issue.scanned_file.present? %>
-    <li>
-      <%= link_to t('labels.view_file_with_size', size: number_to_human_size(@issue.scanned_file_size)), @issue.scanned_file.url, target: :blank %>
-    </li>
-  <% end %>
-
-  <% if @issue.related_items.present? %>
-    <strong><%= t('labels.meta.in_the_news') %>:</strong>
-    <li>
-      <ul>
-        <% @issue.related_items.each do |related_item| %>
+<div class="columns meta-details <%= detail_orientation_class %>">
+  <div class="column is-offset-<%= img_offset_size %> is-<%= img_col_size %> meta-image">
+    <%= link_to 'javascript:void(0)', class: 'modal-button', 'data-target': 'modal-meta-image', title: t('labels.view_bigger_image') do %>
+      <%= image_tag @issue.cover_image.thumb(image_size).url, alt: @issue.full_title if @issue.cover_image_stored? %>
+    <% end %>
+  </div>
+  <div class="column is-offset-<%= meta_offset_size %> is-<%= meta_col_size %> meta-items">
+    <h1 class="title is-3"><%= title @issue.full_title %></h1>
+    <div class="meta-items-details">
+      <ul class="meta-items-list">
+        <li>
+          <strong><%= t('labels.meta.journal') %>:</strong>
+          <%= link_to @publication.title, source_path(@publication), class: 'meta-link' %>
+        </li>
+        <li>
+          <strong><%= t('labels.meta.issue_number') %>:</strong>
+          <%= @issue.issue_number %>
+        </li>
+        <li>
+          <strong><%= t('labels.meta.publication_date') %>:</strong>
+          <%= I18n.l @issue.date_publication if @issue.date_publication %>
+        </li>
+        <li>
+          <strong><%= t('labels.meta.publication_language') %>:</strong>
+          <%= @publication.publication_language.language %>
+        </li>
+        <li>
+          <strong><%= t('labels.meta.illustration_count') %>:</strong>
+          <%= number_with_delimiter(illustration_ids.length) %>
+        </li>
+        <% if @issue.scanned_file.present? %>
           <li>
-            <%= link_to related_item.news_itemable.title, polymorphic_path(related_item.news_itemable) %>
+            <%= link_to t('labels.view_file_with_size', size: number_to_human_size(@issue.scanned_file_size)), @issue.scanned_file.url, target: :blank, class: 'meta-link' %>
+          </li>
+        <% end %>
+
+        <% if @issue.related_items.present? %>
+          <li>
+            <strong><%= t('labels.meta.in_the_news') %>:</strong>
+            <ul>
+              <% @issue.related_items.each do |related_item| %>
+                <li>
+                  <%= link_to related_item.news_itemable.title, polymorphic_path(related_item.news_itemable), class: 'meta-link' %>
+                </li>
+              <% end %>
+            </ul>
           </li>
         <% end %>
       </ul>
-    </li>
-  <% end %>
+<% if false %>
+      <div class="meta-text-container">
+        <div class="meta-text">
+        </div>
+        <div class='meta-text-more'>
+          <%= link_to t('labels.read_more'), 'javascript:void(0)', class: 'read-more modal-button', 'data-target': 'modal-meta-text' %>
+        </div>
+      </div>
+<% end %>
+    </div>
+  </div>
+</div>
 
-</ul>
 
 <%= render partial: 'shared/listing', locals: {
       title: t('labels.illustrations'),
-      records: @issue.illustrations.published.sort_published_desc,
+      total: illustration_ids.length,
+      records: Illustration.where(id: illustration_ids).sort_published_desc.limit(6),
       partial: 'card_meta_hover',
       link_path: :illustration_path
   } %>
-]
+
+
+
+<% if @issue.cover_image_stored? %>
+  <%= render partial: 'shared/image_modal', locals: {
+        image_url: @issue.cover_image.url,
+        alt: @issue.full_title
+    } %>
+<% end %>
+
+

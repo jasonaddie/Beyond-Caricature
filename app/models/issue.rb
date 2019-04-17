@@ -73,7 +73,7 @@ class Issue < ApplicationRecord
   ## METHODS ##
   #################
   def illustration_count
-    self.illustration_issues.count
+    self.illustrations.published.count
   end
 
   # journal name and issue number
