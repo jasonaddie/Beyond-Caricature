@@ -6,6 +6,13 @@ These are items that are have been finished, but not released yet.
 
 None at this time.
 
+## [0.17] - 2019-04-17
+### Added
+- Style to the Illustration page and annotations
+
+### Fixed
+- Updated layout of pages to use columns
+
 ## [0.16] - 2019-04-13
 ### Added
 - Flag to Person Role data model to know if person is an illustrator
@@ -17,7 +24,7 @@ None at this time.
 
 ## [0.14] - 2019-04-11
 ### Added
-- Style the Person detail page
+- Style to the Person detail page
 
 ## [0.13] - 2019-04-11
 ### Fixed
@@ -26,7 +33,7 @@ None at this time.
 
 ## [0.12] - 2019-04-09
 ### Added
-- Style the News and Research detail pages
+- Style ro the News and Research detail pages
 - Slideshow to News and Research detail pages
 - Highlight slideshow to home page
 
@@ -36,7 +43,7 @@ None at this time.
 - Implmeneted a max-width for the content (1364px)
 - Favicons (i.e., the icon that appears in the browser tab)
 - Basic styling for the Source, People, and Illustration listing pages
-- Styled the News and Research listing pages
+- Style to the News and Research listing pages
 - New generic Person data model that replaces the Illustrator data model
     - Updated Source form so admin can select an existing person and assign a role to them (i.e., illustrator, publisher, editor, etc)
     - Change name of public pages from Illustrators to People
