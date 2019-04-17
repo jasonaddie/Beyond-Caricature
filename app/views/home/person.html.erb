@@ -86,7 +86,8 @@
             total: value[:total],
             records: value[:latest_records],
             partial: 'card_meta_hover',
-            link_path: :illustration_path
+            link_path: :illustration_path,
+            more_path: illustrations_path
         } %>
     <% else %>
       <%= render partial: 'shared/listing', locals: {
@@ -95,7 +96,8 @@
             records: value[:latest_records],
             partial: 'card_meta_down',
             summary_method: 'about',
-            link_path: :source_path
+            link_path: :source_path,
+            more_path: sources_path
         } %>
     <% end %>
   <% end %>
