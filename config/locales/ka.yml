@@ -277,7 +277,7 @@ ka:
     language_switcher: Language Switcher
     view: View
     view_file: View PDF
-    view_file_with_size: View PDF (%{size})
+    view_file_with_size: View %{name} PDF (%{size})
     news: News
     research: Research
     related_items: Releated Items

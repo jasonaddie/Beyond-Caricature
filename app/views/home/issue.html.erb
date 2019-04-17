@@ -58,11 +58,6 @@
           <strong><%= t('labels.meta.illustration_count') %>:</strong>
           <%= number_with_delimiter(illustration_ids.length) %>
         </li>
-        <% if @issue.scanned_file.present? %>
-          <li>
-            <%= link_to t('labels.view_file_with_size', size: number_to_human_size(@issue.scanned_file_size)), @issue.scanned_file.url, target: :blank, class: 'meta-link' %>
-          </li>
-        <% end %>
 
         <% if @issue.related_items.present? %>
           <li>
@@ -74,6 +69,15 @@
                 </li>
               <% end %>
             </ul>
+          </li>
+        <% end %>
+
+        <% if @issue.scanned_file.present? %>
+          <li class="meta-file">
+            <%= link_to t('labels.view_file_with_size',
+                            size: number_to_human_size(@issue.scanned_file_size),
+                            name: t('labels.meta.issue_number')),
+                        @issue.scanned_file.url, target: :blank, class: 'meta-link-file' %>
           </li>
         <% end %>
       </ul>

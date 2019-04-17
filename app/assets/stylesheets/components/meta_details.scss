@@ -16,6 +16,22 @@ body.meta-details-container{
     }
   }
 
+  .meta-file{
+    margin-top: 31px;
+    .meta-link-file{
+      opacity: 0.7;
+      background-color: #ffffff;
+      border-radius: 19px;
+      border: solid 1px $footer-color;
+      padding: 6px 27px;
+      font-weight: 500;
+      color: $nav-start-active-color;
+      &:hover{
+        opacity: 1;
+      }
+    }
+  }
+
   ul.indent-list{
     margin-left: 1rem;
   }
