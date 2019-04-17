@@ -15,6 +15,8 @@
  *= require_self
  */
 
+@import "vars";
+
 @font-face {
   font-family: 'Montserrat';
   src: font-url('Montserrat-Light.otf') format("opentype");
@@ -64,6 +66,13 @@
 
 html{
   overflow-y: auto;
+}
+
+body{
+  background-image: url(asset_path('background_dashed_line.png'));
+  background-repeat: repeat;
+  background-position-x: 18%;
+  background-color: $body-background-color;
 }
 
 p{
