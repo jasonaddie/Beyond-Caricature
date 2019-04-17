@@ -6,9 +6,14 @@ These are items that are have been finished, but not released yet.
 
 None at this time.
 
+## [0.18] - 2019-04-17
+### Added
+- Style to the Issue detail page
+- Style to the Source detail page
+
 ## [0.17] - 2019-04-17
 ### Added
-- Style to the Illustration page and annotations
+- Style to the Illustration detail page and annotations
 
 ### Fixed
 - Updated layout of pages to use columns
