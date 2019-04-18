@@ -10,6 +10,8 @@
 #
 
 class Illustration < ApplicationRecord
+  include FullTextSearch
+
   #################
   ## HISTORY TRACKING ##
   #################
@@ -84,13 +86,44 @@ class Illustration < ApplicationRecord
 
   # filter illustrations by the following:
   # - publication type - publication type key from publication table
-  # - illustrator name
+  # - illustrator name - name of person with illustrator role
+  # - publication year - publication start and/or end year
   # - search - string (title, context, tags, source name?, illustrator name?)
   def self.filter(options={})
     x = self
+    if options[:type].present?
+      if options[:type] == 'journal'
+        x = x.joins(:issues)
+      else
+        x = x.joins(:publications).where(publications: {publication_type: options[:type]})
+      end
+    end
+
+    if options[:illustrator].present?
+      x = x.joins(:person_role).where(person_roles: {person_id: Person.published.where(slug: options[:illustrator])})
+    end
+
+    if options[:year].present?
+      if options[:year][:start].present?
+        x = x.joins(:publications).where('publications.year >= ?', options[:year][:start])
+      end
+      if options[:year][:end].present?
+        x = x.joins(:publications).where('publications.year <= ?', options[:year][:end])
+      end
+    end
+
+    if options[:search].present?
+      x = x.with_translations(I18n.locale)
+            .joins(tags: :translations)
+            .where(build_full_text_search_sql(%w(illustration_translations.title illustration_translations.context tag_translations.name)),
+              options[:search]
+            )
+    end
 
     return x
   end
+
+
 
   # if there are no values in all translations, then reject
   def self.reject_annotation?(annotation)

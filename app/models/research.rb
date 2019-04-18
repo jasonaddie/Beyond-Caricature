@@ -9,6 +9,8 @@
 #
 
 class Research < ApplicationRecord
+  include FullTextSearch
+
   #################
   ## HISTORY TRACKING ##
   #################
@@ -70,6 +72,21 @@ class Research < ApplicationRecord
   #################
   scope :published, -> { where(is_public: true) }
   scope :sort_published_desc, -> { order(date_publish: :desc) }
+
+  # filter news by the following:
+  # - search - string
+  def self.filter(options={})
+    x = self
+    if options[:search].present?
+      x = x.with_translations(I18n.locale)
+            .where(build_full_text_search_sql(%w(research_translations.title research_translations.summary research_translations.text)),
+              options[:search]
+            )
+    end
+
+    return x
+  end
+
 
   #################
   ## RAILS ADMIN CONFIGURATION ##

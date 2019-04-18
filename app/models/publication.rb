@@ -14,6 +14,8 @@
 #
 
 class Publication < ApplicationRecord
+  include FullTextSearch
+
   #################
   ## HISTORY TRACKING ##
   #################
@@ -96,6 +98,40 @@ class Publication < ApplicationRecord
   scope :published, -> { with_translations(I18n.locale).where('publication_translations.is_public': true) }
   scope :sort_published_desc, -> { order(date_publish: :desc) }
   scope :sort_name_asc, -> { with_translations(I18n.locale).order('publication_translations.title asc, publication_translations.date_publish asc') }
+
+  # filter people by the following:
+  # - publication type - publication_type enum
+  # - publication language - language id
+  # - publication year - start and/or end year
+  # - search - string
+  def self.filter(options={})
+    x = self
+    if options[:type].present?
+      x = x.where(publication_type: options[:type])
+    end
+
+    if options[:language].present?
+      x = x.where(publication_language_id: options[:language])
+    end
+
+    if options[:year].present?
+      if options[:year][:start].present?
+        x = x.where('year >= ?', options[:year][:start])
+      end
+      if options[:year][:end].present?
+        x = x.where('year <= ?', options[:year][:end])
+      end
+    end
+
+    if options[:search].present?
+      x = x.with_translations(I18n.locale)
+            .where(build_full_text_search_sql(%w(publication_translations.title publication_translations.about)),
+              options[:search]
+            )
+    end
+
+    return x
+  end
 
   def self.publication_types_for_select
     options = {}
@@ -325,12 +361,7 @@ class Publication < ApplicationRecord
       field :publication_type
       field :publication_language
       field :title
-      field :issue_count do
-        label I18n.t('labels.issue_count')
-      end
-      field :illustration_count do
-        label I18n.t('labels.illustration_count')
-      end
+      field :year
       field :date_publish
     end
 
