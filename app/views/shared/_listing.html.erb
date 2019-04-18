@@ -38,7 +38,7 @@
     <% if total && total > records.length && more_path %>
       <div class="columns listing-more">
         <div class="column is-3 is-offset-6 has-text-centered">
-          <%= link_to t('labels.view_all'), more_path, class: 'read-more is-lowercase' %>
+          <%= link_to t('labels.view_all_with_count', number: total, title: title), more_path, class: 'read-more is-lowercase' %>
         </div>
       </div>
     <% end %>

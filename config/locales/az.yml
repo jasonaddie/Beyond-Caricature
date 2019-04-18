@@ -301,6 +301,7 @@ az:
     partners: Partners
     read_more: Read More
     view_all: View All
+    view_all_with_count: View All %{number} %{title}
     stats: Stats
     journal_issues: Journal Issues
     journal_issues_illustrations: |
