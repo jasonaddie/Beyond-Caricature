@@ -74,7 +74,7 @@ class Slideshow < ApplicationRecord
     # form
     edit do
       field :image do
-        help I18n.t('admin.help.image')
+        help "#{I18n.t('admin.help.image_size.slideshow')} #{I18n.t('admin.help.image')}"
       end
       field :translations do
         label I18n.t('labels.translations')

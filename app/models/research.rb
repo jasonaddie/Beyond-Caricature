@@ -166,7 +166,7 @@ class Research < ApplicationRecord
     # form
     edit do
       field :cover_image do
-        help I18n.t('admin.help.image')
+        help "#{I18n.t('admin.help.image_size.research')} #{I18n.t('admin.help.image')}"
       end
       field :translations do
         label I18n.t('labels.translations')

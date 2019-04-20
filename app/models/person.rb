@@ -190,7 +190,7 @@ class Person < ApplicationRecord
         label I18n.t('labels.translations')
       end
       field :image do
-        help I18n.t('admin.help.image')
+        help "#{I18n.t('admin.help.image_size.person')} #{I18n.t('admin.help.image')}"
       end
       field :date_birth
       field :date_death

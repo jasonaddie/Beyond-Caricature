@@ -373,7 +373,7 @@ class Publication < ApplicationRecord
         help I18n.t('admin.help.only_active_languages')
       end
       field :cover_image do
-        help I18n.t('admin.help.image')
+        help "#{I18n.t('admin.help.image_size.publication')} #{I18n.t('admin.help.image')}"
       end
       field :scanned_file do
         css_class 'publication-file'
