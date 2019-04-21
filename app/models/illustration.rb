@@ -52,26 +52,15 @@ class Illustration < ApplicationRecord
   ## SLUG
   #################
   extend FriendlyId
-  friendly_id :title, use: [:globalize, :history, :slugged]
+  include GlobalizeFriendlyId # overriden and extra methods for friendly id located in concern folder
+  friendly_id :slug_candidates, use: [:globalize, :history, :slugged]
 
-  # override to use all locales and not the locales that exist in the
-  # translation record
-  # from: https://github.com/norman/friendly_id-globalize/blob/master/lib/friendly_id/globalize.rb
-  def set_slug(normalized_slug = nil)
-    (I18n.available_locales.presence || [::Globalize.locale]).each do |locale|
-      ::Globalize.with_locale(locale) { super_set_slug(normalized_slug) }
-    end
-  end
-
-  # override to test if the base value (i.e., title) is present and if so, generate slug
-  # from: https://github.com/norman/friendly_id-globalize/blob/master/lib/friendly_id/globalize.rb
-  def should_generate_new_friendly_id?
-    send("#{friendly_id_config.base}_translations")[::Globalize.locale.to_s].present? && translation_for(::Globalize.locale).send(friendly_id_config.slug_column).nil?
-  end
-
-  # for locale sensitive transliteration with friendly_id
-  def normalize_friendly_id(input)
-    input.to_s.to_url
+  # give options of what to use when the slug is already in use by another record
+  def slug_candidates
+    [
+      :title,
+      [:title, :date_publish]
+    ]
   end
 
   #################

@@ -43,16 +43,15 @@ class Issue < ApplicationRecord
   ## SLUG
   #################
   extend FriendlyId
-  friendly_id :issue_number, use: [:slugged]
+  include GlobalizeFriendlyId # overriden and extra methods for friendly id located in concern folder
+  friendly_id :slug_candidates, use: [:slugged]
 
-  # for genereate friendly_id
-  def should_generate_new_friendly_id?
-    super
-  end
-
-  # for locale sensitive transliteration with friendly_id
-  def normalize_friendly_id(input)
-    input.to_s.to_url
+  # give options of what to use when the slug is already in use by another record
+  def slug_candidates
+    [
+      :issue_number,
+      [:issue_number, :date_publication]
+    ]
   end
 
   #################
