@@ -6,6 +6,17 @@ These are items that are have been finished, but not released yet.
 
 None at this time.
 
+## [0.19] - 2019-04-22
+### Added
+- Total illustrations into the view all button in the Source, Issue, and Person detail pages
+- Image size into the help text that appears for image fields in the forms
+- Page Text data model to allow admin to manage the content on the homepage and about page
+- Missing Aremenian date and time format setting
+
+### Fixed
+- Email notification settings
+- All URL slugs (i.e., the url of the record like /person/oskar-schmerling) are unique and get updated when the data is updated
+
 ## [0.18] - 2019-04-17
 ### Added
 - Style to the Issue detail page
