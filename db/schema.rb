@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_04_12_203148) do
+ActiveRecord::Schema.define(version: 2019_04_22_133324) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -130,6 +130,7 @@ ActiveRecord::Schema.define(version: 2019_04_12_203148) do
     t.boolean "is_public", default: false
     t.date "date_publish"
     t.string "slug"
+    t.index "to_tsvector('simple'::regconfig, (((title)::text || ' '::text) || context))", name: "idx_illustration_search", using: :gin
     t.index ["date_publish"], name: "index_illustration_translations_on_date_publish"
     t.index ["illustration_id"], name: "index_illustration_translations_on_illustration_id"
     t.index ["is_public"], name: "index_illustration_translations_on_is_public"
@@ -280,12 +281,30 @@ ActiveRecord::Schema.define(version: 2019_04_12_203148) do
     t.boolean "is_public", default: false
     t.date "date_publish"
     t.string "slug"
+    t.index "to_tsvector('simple'::regconfig, (((((title)::text || ' '::text) || summary) || ' '::text) || text))", name: "idx_news_search", using: :gin
     t.index ["date_publish"], name: "index_news_translations_on_date_publish"
     t.index ["is_public"], name: "index_news_translations_on_is_public"
     t.index ["locale"], name: "index_news_translations_on_locale"
     t.index ["news_id"], name: "index_news_translations_on_news_id"
     t.index ["slug"], name: "index_news_translations_on_slug"
     t.index ["title"], name: "index_news_translations_on_title"
+  end
+
+  create_table "page_content_translations", force: :cascade do |t|
+    t.integer "page_content_id", null: false
+    t.string "locale", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.text "content"
+    t.index ["locale"], name: "index_page_content_translations_on_locale"
+    t.index ["page_content_id"], name: "index_page_content_translations_on_page_content_id"
+  end
+
+  create_table "page_contents", force: :cascade do |t|
+    t.string "name"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["name"], name: "index_page_contents_on_name"
   end
 
   create_table "people", force: :cascade do |t|
@@ -380,6 +399,7 @@ ActiveRecord::Schema.define(version: 2019_04_12_203148) do
     t.boolean "is_public", default: false
     t.date "date_publish"
     t.string "slug"
+    t.index "to_tsvector('simple'::regconfig, (((title)::text || ' '::text) || about))", name: "idx_publication_search", using: :gin
     t.index ["date_publish"], name: "index_publication_translations_on_date_publish"
     t.index ["is_public"], name: "index_publication_translations_on_is_public"
     t.index ["locale"], name: "index_publication_translations_on_locale"
@@ -435,6 +455,7 @@ ActiveRecord::Schema.define(version: 2019_04_12_203148) do
     t.boolean "is_public", default: false
     t.date "date_publish"
     t.string "slug"
+    t.index "to_tsvector('simple'::regconfig, (((((title)::text || ' '::text) || summary) || ' '::text) || text))", name: "idx_research_search", using: :gin
     t.index ["date_publish"], name: "index_research_translations_on_date_publish"
     t.index ["is_public"], name: "index_research_translations_on_is_public"
     t.index ["locale"], name: "index_research_translations_on_locale"
@@ -496,6 +517,7 @@ ActiveRecord::Schema.define(version: 2019_04_12_203148) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.string "name"
+    t.index "to_tsvector('simple'::regconfig, (name)::text)", name: "idx_tag_search", using: :gin
     t.index ["locale"], name: "index_tag_translations_on_locale"
     t.index ["name"], name: "index_tag_translations_on_name"
     t.index ["tag_id"], name: "index_tag_translations_on_tag_id"

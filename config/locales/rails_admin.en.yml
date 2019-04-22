@@ -183,6 +183,8 @@ en:
       person: Only published People are shown.
       slideshow_placeholder: By default the slideshow will appear at the end of this text. If you want it to appear in the text, add the text [slideshow] into the text where you want it to appear.
       is_illustrator: Illustrators are a special role that requires additional processing and this flag is used to know if the role is an illustrator.
+      page_content_name: This is just a unique value that can be used to find and show the correct content on a page.
+      required: Required
     errors:
       required_for_publication: is required for making the language public
       required_related_item: is required

@@ -28,6 +28,9 @@ en:
       news:
         one: News Item
         other: News
+      page_content:
+        one: Page Text
+        other: Page Text
       person:
         one: Person
         other: People
@@ -150,6 +153,11 @@ en:
         title: Title
         summary: Summary
         text: Text
+      page_content:
+        name: Name
+        content: Text
+      page_content/translation:
+        content: Text
       person:
         date_birth: Birth Date
         date_death: Death Date
@@ -383,12 +391,7 @@ en:
       deleted_account: "Your account has been deleted and you can no longer login."
   home:
     index:
-      intro: |
-        Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
       oskar_alt: Self portrait of Oskar Schmerling holding a whip and wearing horns
-    about:
-      intro: |
-        Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
   shared:
     news_item:
       related_item_explanation: Links to items mentioned in this article

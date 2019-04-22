@@ -171,10 +171,20 @@ ru:
       annotation:
         add: Place marker on image
       image: Only jpg, jpeg or png files are allowed. Image must be less than 5MB.
+      image_size:
+          highlight: Image should be at least 900x632px.
+          illustration: On listing pages, this image will have a size of 400x400px.
+          person: On listing pages, this image will have a size of 400x400px.
+          news: One listing pages, this image will have a size of 438x326px and 400x204px.
+          research: One listing pages, this image will have a size of 438x326px.
+          publication: One listing pages, this image will have a size of 400x204px.
+          slideshow: Image should have a width of at least 844px.
       file: Only PDF files are allowed. There is no size limit.
       person: Only published People are shown.
       slideshow_placeholder: By default the slideshow will appear at the end of this text. If you want it to appear in the text, add the text [slideshow] into the text where you want it to appear.
       is_illustrator: Illustrators are a special role that requires additional processing and this flag is used to know if the role is an illustrator.
+      page_content_name: This is just a unique value that can be used to find and show the correct content on a page.
+      required: Required
     errors:
       required_for_publication: is required for making the language public
       required_related_item: is required
