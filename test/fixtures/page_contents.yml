@@ -1,0 +1,17 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  name: MyString
+  content: MyString
+  is_about: false
+  contacts: MyString
+  donors: MyString
+  partners: MyString
+
+two:
+  name: MyString
+  content: MyString
+  is_about: false
+  contacts: MyString
+  donors: MyString
+  partners: MyString

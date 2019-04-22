@@ -43,7 +43,7 @@ RailsAdmin.config do |config|
     show
     edit
     delete do
-      except ['User']
+      except ['User', 'PageContent']
     end
     show_in_app
 
@@ -90,7 +90,8 @@ RailsAdmin.config do |config|
     'Issue',
     'Highlight', 'Highlight::Translation',
     'Slideshow', 'Slideshow::Translation',
-    'RelatedItem'
+    'RelatedItem',
+    'PageContent', 'PageContent::Translation',
   ]
 
   config.model 'PublicationLanguage::Translation' do
@@ -99,6 +100,20 @@ RailsAdmin.config do |config|
       help ''
     end
     include_fields :locale, :language
+  end
+
+  config.model 'PageContent::Translation' do
+    visible false
+    configure :locale, :hidden do
+      help ''
+    end
+    include_fields :locale, :content
+
+    edit do
+      field :content, :ck_editor do
+        help I18n.t('admin.help.required')
+      end
+    end
   end
 
   config.model 'Illustrator::Translation' do

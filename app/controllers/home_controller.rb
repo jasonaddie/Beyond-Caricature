@@ -6,6 +6,8 @@ class HomeController < ApplicationController
     @illustrations = Illustration.published.sort_published_desc.limit(3)
     @stats = get_stats
     @highlights = Highlight.published.sort_published_desc
+
+    @page = PageContent.with_translations(I18n.locale).find_by_name('homepage_intro')
   end
 
   def sources
@@ -62,7 +64,7 @@ class HomeController < ApplicationController
   end
 
   def about
-
+    @page = PageContent.with_translations(I18n.locale).find_by_name('about')
   end
 
 
