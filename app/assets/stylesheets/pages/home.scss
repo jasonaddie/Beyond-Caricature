@@ -102,8 +102,8 @@ body.home.index{
 
     .listings{
       margin-top: 0;
-      padding-top: 500px;
-      padding-bottom: 566px;
+      padding-top: 350px;
+      padding-bottom: 300px;
       background-image:
         url(asset_path('violin.png')),
         url(asset_path('mask_whip.png'));
@@ -126,7 +126,10 @@ body.home.index{
   body.home.index{
 
     .listings{
-      background-size: inherit;
+      // background-size: inherit;
+      background-size:
+        350px,
+        300px;
     }
   }
 }
