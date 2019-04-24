@@ -6,6 +6,11 @@ These are items that are have been finished, but not released yet.
 
 None at this time.
 
+## [0.20] - 2019-04-24
+### Fixed
+- Fonts were not properlly being loaded
+- Reduced size of background illustrations on homepage
+
 ## [0.19] - 2019-04-22
 ### Added
 - Total illustrations into the view all button in the Source, Issue, and Person detail pages
