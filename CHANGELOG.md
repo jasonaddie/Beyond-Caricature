@@ -6,6 +6,14 @@ These are items that are have been finished, but not released yet.
 
 None at this time.
 
+## [0.21] - 2019-04-25
+### Fixed
+- Reset size of background illustrations on homepage to original size
+- View PDF links fixed
+- Generating Issue slugs
+- Gave admin's access to new Page Text section
+- Turn off home link in navbar
+
 ## [0.20] - 2019-04-24
 ### Fixed
 - Fonts were not properlly being loaded
