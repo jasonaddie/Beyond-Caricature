@@ -58,6 +58,7 @@ class Ability
     return if user.editor?
 
     can :manage, User
+    can :manage, PageContent
     return if user.admin?
 
     can :manage, :all
