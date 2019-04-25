@@ -17,7 +17,7 @@
 
     <div id="navbarItems" class="navbar-menu">
       <div class="navbar-start">
-        <%= link_to t('labels.home'), root_path, class: "navbar-item #{controller_name=="home" && action_name=="index" ? "current-page" : ""}" %>
+        <%#= link_to t('labels.home'), root_path, class: "navbar-item #{controller_name=="home" && action_name=="index" ? "current-page" : ""}" %>
         <%= link_to t('labels.publications'), sources_path, class: "navbar-item #{controller_name=="home" && ['sources', 'source', 'issue'].include?(action_name) ? "current-page" : ""}" %>
         <%= link_to t('labels.illustrations'), illustrations_path, class: "navbar-item #{controller_name=="home" && ['illustrations', 'illustration'].include?(action_name) ? "current-page" : ""}" %>
         <%= link_to t('labels.people'), people_path, class: "navbar-item #{controller_name=="home" && ['people', 'person'].include?(action_name) ? "current-page" : ""}" %>
