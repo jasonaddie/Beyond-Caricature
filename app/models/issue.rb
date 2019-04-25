@@ -43,7 +43,7 @@ class Issue < ApplicationRecord
   ## SLUG
   #################
   extend FriendlyId
-  include GlobalizeFriendlyId # overriden and extra methods for friendly id located in concern folder
+
   friendly_id :slug_candidates, use: [:slugged]
 
   # give options of what to use when the slug is already in use by another record
@@ -53,6 +53,38 @@ class Issue < ApplicationRecord
       [:issue_number, :date_publication]
     ]
   end
+
+  # override to create new slug if there is text and the existing value is nil or does not match
+  # from: https://github.com/norman/friendly_id-globalize/blob/master/lib/friendly_id/globalize.rb
+  def should_generate_new_friendly_id?
+    send(slug_candidates.first).present? && !slug_candidate_values.include?(send(friendly_id_config.slug_column))
+  end
+
+  # use the current model values to generate all possible slugs from the slug candidates
+  def slug_candidate_values
+    values = []
+
+    slug_candidates.each do |candidate|
+      slug = ''
+      if candidate.class == Array
+        candidate.each do |candidate_field|
+          slug << send(candidate_field).to_s
+          slug << ' '
+        end
+      else
+        slug << send(candidate).to_s
+      end
+
+      values << normalize_friendly_id(slug.strip)
+    end
+
+    return values
+  end
+
+  # for locale sensitive transliteration with friendly_id
+  def normalize_friendly_id(input)
+    input.to_s.to_url
+end
 
   #################
   ## VALIDATION ##
