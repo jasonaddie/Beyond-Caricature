@@ -1,3 +1,7 @@
+function flattenDeep(arr1) {
+   return arr1.reduce((acc, val) => Array.isArray(val) ? acc.concat(flattenDeep(val)) : acc.concat(val), []);
+}
+
 function check_form_public_fields(){
   // for forms with globalize tabs and is_public field
   // update validation status of each language for making public
@@ -133,7 +137,7 @@ function check_form_public_fields(){
         });
 
         // indicate whether or not the has many tab is valid
-        if (Object.values(is_fields_provided_has_many[has_many_current_pane_id]).flat().indexOf(false) === -1){
+        if (flattenDeep(Object.values(is_fields_provided_has_many[has_many_current_pane_id])).indexOf(false) === -1){
           $($has_many_li).find('a span.required-for-public-validation-indicator').remove();
           $(has_many_current_pane).removeClass('invalid');
         }
