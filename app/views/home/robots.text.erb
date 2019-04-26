@@ -1,0 +1,6 @@
+<% if ENV['ALLOW_ROBOTS'] == 'true' %>
+# Purposely left empty
+<% else %>
+User-Agent: *
+Disallow: /
+<% end %>

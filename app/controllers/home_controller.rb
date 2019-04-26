@@ -67,6 +67,9 @@ class HomeController < ApplicationController
     @page = PageContent.with_translations(I18n.locale).find_by_name('about')
   end
 
+  def robots
+    # load the robots.text file
+  end
 
 private
 

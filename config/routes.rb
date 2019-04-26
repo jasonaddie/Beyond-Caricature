@@ -8,6 +8,8 @@ Rails.application.routes.draw do
   # ckeditor image upload routes
   mount Ckeditor::Engine => '/ckeditor'
 
+  get '/robots.txt' => 'home#robots'
+
   ####################
   # have locale in url
   scope ":locale", locale: /#{I18n.available_locales.join("|")}/ do
@@ -32,7 +34,6 @@ Rails.application.routes.draw do
     get '/research', to: 'home#researches', as: 'researches'
     get '/research/:id', to: 'home#research', as: 'research'
     get '/about', to: 'home#about', as: 'about'
-
 
     # default homepage
     root to: "home#index"
