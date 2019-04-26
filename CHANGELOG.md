@@ -6,6 +6,11 @@ These are items that are have been finished, but not released yet.
 
 None at this time.
 
+## [0.22] - 2019-04-26
+### Fixed
+- The drop down to add related people to a record was not opening
+- Updated Russian to Latin conversion for record URLs
+
 ## [0.21] - 2019-04-25
 ### Fixed
 - Reset size of background illustrations on homepage to original size
