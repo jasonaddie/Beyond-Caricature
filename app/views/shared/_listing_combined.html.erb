@@ -3,7 +3,7 @@
   total ||= nil
   records ||= nil
   partial ||= nil
-  summary_method ||= 'about'
+  summary_method ||= nil
   link_path ||= nil
   more_path ||= nil
 %>
@@ -16,17 +16,18 @@
       </div>
       <% records.each_with_index do |record, i| %>
         <div class="column is-3 <%= i > 2 && i%3 == 0 ? 'is-offset-3': '' %>">
-          <% if partial == 'card_meta_down' %>
+          <% model_class = record.class.to_s.downcase.to_sym %>
+          <% if partial[model_class] == 'card_meta_down' %>
             <%= render partial: 'shared/card_meta_down', locals: {
                   title: record.title,
-                  summary: record.send(summary_method),
-                  link_path: send(link_path, record),
+                  summary: summary_method[model_class].present? ? record.send(summary_method[model_class]) : nil,
+                  link_path: send(link_path[model_class], record),
                   cover_image_path: record.cover_image.thumb('400x204#').url
               } %>
-            <% elsif partial == 'card_meta_hover' %>
+            <% elsif partial[model_class] == 'card_meta_hover' %>
               <%= render partial: 'shared/card_meta_hover', locals: {
                     title: record.title,
-                    link_path: send(link_path, record),
+                    link_path: send(link_path[model_class], record),
                     cover_image_path: record.image.thumb('400x400#').url,
                     illustrator: record.person_role ? record.person_role.name : nil
                 } %>
@@ -35,12 +36,18 @@
       <% end %>
     </div>
 
-    <% if total && total > records.length && more_path %>
+    <% if total %>
       <div class="columns listing-more">
         <div class="column is-9 is-offset-3 has-text-centered">
-          <%= link_to t('labels.view_all_with_count', number: total, title: title), more_path, class: 'read-more is-lowercase' %>
+          <% if total[:illustration] > 0 && more_path[:illustration] %>
+            <%= link_to t('labels.view_all_with_count', number: total[:illustration], title: t('labels.illustration')), more_path[:illustration], class: 'read-more is-lowercase' %>
+          <% end %>
+          <% if total[:publication] > 0 && more_path[:publication] %>
+            <%= link_to t('labels.view_all_with_count', number: total[:publication], title: t('labels.publication')), more_path[:publication], class: 'read-more is-lowercase' %>
+          <% end %>
         </div>
       </div>
     <% end %>
+
   </div>
 <% end %>

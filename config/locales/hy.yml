@@ -291,7 +291,9 @@ hy:
     related_items: Releated Items
     slideshow: Slideshow
     publications: Sources
+    publication: Source
     illustrations: Illustrations
+    illustration: Illustration
     illustrators: Illustrators
     people: People
     issues: Issues
@@ -309,7 +311,7 @@ hy:
     partners: Partners
     read_more: Read More
     view_all: View All
-    view_all_with_count: View All %{number} %{title}
+    view_all_with_count: View All %{number} %{title} Records
     stats: Stats
     journal_issues: Journal Issues
     journal_issues_illustrations: |

@@ -62,24 +62,40 @@ class PersonRole < ApplicationRecord
 
     if roles.present?
       # if role
-      # - illustrator - then get all published illustrations
+      # - illustrator - then get all published illustrations and published illustrations
       # - else, get all published publications
       #   - role can be assigned to publication or publication editors
       #     so if publication editor, go up a level and get publication
       roles.each do |role|
         if role.is_illustrator?
-          record_ids = Illustration.published.where(id: self.where(role_id: role.id).pluck(:person_roleable_id)).pluck(:id)
-          if record_ids.length > 0
-            groups[role.name] = {total: record_ids.length,
-                                  latest_records: Illustration.where(id: record_ids).sort_published_desc.limit(6),
+          person_roles = self.where(role_id: role.id)
+          role_ids = {
+            publication_ids: person_roles.where(person_roleable_type: 'Publication', role_id: role.id).pluck(:person_roleable_id).uniq,
+            illustration_ids: Illustration.published.where(id: self.where(role_id: role.id).pluck(:person_roleable_id)).pluck(:id).uniq
+          }
+          if role_ids[:publication_ids].length > 0
+            # update publication ids to only have published ids
+            role_ids[:publication_ids] = Publication.published.where(id: role_ids[:publication_ids]).pluck(:id).uniq
+          end
+
+          if role_ids[:publication_ids].length > 0 || role_ids[:illustration_ids].length > 0
+            # update publication ids to only have published ids
+            role_ids[:publication_ids] = Publication.published.where(id: role_ids[:publication_ids]).pluck(:id).uniq
+            records = [
+              Publication.published.where(id: role_ids[:publication_ids]).sort_published_desc.limit(6),
+              Illustration.where(id: role_ids[:illustration_ids]).sort_published_desc.limit(6)
+            ].flatten.compact
+
+            groups[role.name] = {total: {publication: role_ids[:publication_ids].length, illustration: role_ids[:illustration_ids].length},
+                                  latest_records: records.sort_by{|x| x.date_publish}.reverse[0..5],
                                   is_illustrator: role.is_illustrator}
           end
         else
           person_roles = self.where(role_id: role.id)
           publication_ids = []
           role_ids = {
-            publication: person_roles.select{|x| x.person_roleable_type == 'Publication'}.map{|x| x.person_roleable_id}.uniq,
-            pub_editor: person_roles.select{|x| x.person_roleable_type == 'PublicationEditor'}.map{|x| x.person_roleable_id}.uniq,
+            publication: person_roles.where(person_roleable_type: 'Publication').pluck(:person_roleable_id).uniq,
+            pub_editor: person_roles.where(person_roleable_type: 'PublicationEditor').pluck(:person_roleable_id).uniq
           }
 
           if role_ids[:pub_editor].present?
