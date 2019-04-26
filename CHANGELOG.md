@@ -6,6 +6,14 @@ These are items that are have been finished, but not released yet.
 
 None at this time.
 
+## [0.23] - 2019-04-27
+### Added
+- Combined listing of illustrations and sources for illustrator role on person page
+- Logic to determine if allow or block search engine scraping (not want on test site)
+
+### Fixed
+- Bug on Research data model due to mis-spelling
+
 ## [0.22] - 2019-04-26
 ### Fixed
 - The drop down to add related people to a record was not opening
