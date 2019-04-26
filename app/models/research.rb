@@ -48,7 +48,7 @@ class Research < ApplicationRecord
   # give options of what to use when the slug is already in use by another record
   def slug_candidates
     [
-      :tile,
+      :title,
       [:title, :date_publish]
     ]
   end
