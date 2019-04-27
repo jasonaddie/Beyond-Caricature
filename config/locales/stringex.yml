@@ -1,7 +1,8 @@
 # override the default transliterations that are used when generating slug with to_url method
 
 transliterations: &default_trans
-  Ё: Yo
+  # russian
+  Ё: E
   Ѓ: G
   Є: Ye
   Ї: Yi
@@ -31,15 +32,15 @@ transliterations: &default_trans
   Т: T
   У: U
   Ф: F
-  Х: H
+  Х: Kh
   Ц: Ts
   Ч: Ch
   Ш: Sh
-  Щ: Sch
+  Щ: Shch
   Ы: Y
   Э: E
   Ю: U
-  Я: Ya
+  Я: Ia
   а: a
   б: b
   в: v
@@ -61,16 +62,16 @@ transliterations: &default_trans
   т: t
   у: u
   ф: f
-  х: h
+  х: kh
   ц: ts
   ч: ch
   ш: sh
-  щ: sch
+  щ: shch
   ы: y
   э: e
   ю: u
-  я: ya
-  ё: yo
+  я: ia
+  ё: e
   ѓ: g
   є: ye
   ї: yi
@@ -90,6 +91,46 @@ transliterations: &default_trans
   Ґ: G
   ґ: g
 
+  # azeri
+  Ç: Ch
+  ç: ch
+  Ə: A
+  ə: a
+  Ğ: Gh
+  ğ: gh
+  Ş: Sh
+  ş: sh
+
+  # armenian
+  Ա: a
+  Բ: b
+  Գ: g
+  Դ: d
+  Ե: e
+  Զ: z
+  Է: e
+  Ը: e
+  Թ: t
+  Ժ: zh
+  Ի: i
+  Լ: l
+  Խ: kh
+  Ծ: ts
+  Կ: k
+  Հ: h
+  Ձ: dz
+  Ղ: gh
+  Ճ: ch
+  Մ: m
+  Յ: y
+  Ն: n
+  Շ: sh
+  Ո: o
+  Չ: ch
+  Պ: p
+  Ջ: j
+  Ռ: rh
+  Ս: s
 az:
   stringex:
     transliterations:
