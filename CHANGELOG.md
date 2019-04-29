@@ -6,6 +6,14 @@ These are items that are have been finished, but not released yet.
 
 None at this time.
 
+## [0.24] - 2019-04-29
+### Fixed
+- Updated language to Latin conversion for record URLs
+- Update slideshows:
+    - in form, slideshow entries are properly sorted when editing an existing record
+    - in form, update sort values when add new slideshow item
+    - in News and Research pages, updated slideshow height so it adjusts based on image height
+
 ## [0.23] - 2019-04-27
 ### Added
 - Combined listing of illustrations and sources for illustrator role on person page
