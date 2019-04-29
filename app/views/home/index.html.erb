@@ -16,7 +16,14 @@
       <%= image_tag 'oskar_whip.png', alt: t('.oskar_alt') %>
     </div>
   </div>
-
+  <div class="columns is-hidden-mobile">
+    <div class="column is-10 is-offset-1">
+      <div class="intro-mouse ">
+        <%= image_tag "mouse.svg" %>
+        <div class="mouse-text"><%= t('.scroll') %></div>
+      </div>
+    </div>
+  </div>
 </div>
 
 <% if @highlights.present? %>
