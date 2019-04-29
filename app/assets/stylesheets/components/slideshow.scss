@@ -191,8 +191,10 @@ $slideshow-slide-width: #{calc(100vw - 40px)};
 
 // calculations to make the news slideshow scale with the screen
 $slideshow-base-width: 1200px;
+$slideshow-base-height: 900px;
 $slideshow-img-margin-percent: 47px / $slideshow-base-width;
 $slideshow-img-width-percent: 612px / $slideshow-base-width;
+$slideshow-img-height-percent: 431px / $slideshow-base-height;
 $slideshow-arrow-width-percent: 31px / $slideshow-base-width;
 $slideshow-arrow-height-percent: 47px / $slideshow-base-width;
 $slideshow-half-img-width: #{100vw * $slideshow-img-width-percent / 2};
@@ -209,6 +211,7 @@ $slideshow-arrow_width: #{100vw * $slideshow-arrow-width-percent};
   .slideshow-slide{
     margin: 0 calc(100vw * #{$slideshow-img-margin-percent} );
     width: calc(100vw * #{$slideshow-img-width-percent} ) !important;
+    // max-height: calc(100vh * #{$slideshow-img-height-percent});
     // max-width: $slideshow-img-max-width !important;
 
     img{

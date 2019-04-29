@@ -21,6 +21,7 @@ document.addEventListener("turbolinks:load", function() {
       autoplay: true,
       autoplaySpeed: 4000,
       variableWidth: true,
+      adaptiveHeight: true,
       arrows: true,
       nextArrow: $('.slick-next'),
       prevArrow: $('.slick-prev')

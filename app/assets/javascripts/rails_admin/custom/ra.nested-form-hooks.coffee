@@ -56,6 +56,12 @@ $(document).on 'nested:fieldAdded', 'form', (content) ->
     annotate_imgs = new annotate_image()
     annotate_imgs.show_image_section()
 
+  if content.field.closest('.tab-content.sort-items').length > 0
+    # when an item with sorting is added
+    # update all of the sort values
+    update_sortable_sort_values(content.field.closest('.tab-content.sort-items'))
+
+
 
 $(document).on 'nested:fieldRemoved', 'form', (content) ->
   field = content.field
