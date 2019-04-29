@@ -108,14 +108,14 @@ body.home.index{
         url(asset_path('violin.png')),
         url(asset_path('mask_whip.png'));
       background-position:
-        top left, /* first image */
-        bottom right; /* second image */
+        -52px 58px, /* first image */
+        calc(100% + 10px) calc(100% - 100px); /* second image */
       background-repeat: no-repeat;
       background-size: contain;
     }
 
     .stats{
-      margin-top: -235px;
+      margin-top: -335px;
       margin-bottom: 100px
     }
 

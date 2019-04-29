@@ -2,8 +2,8 @@
 @import "slick";
 
 
-$slideshow-base-width: 1324px;
-$slideshow-base-height: 601px;
+$slideshow-base-width: 1099px;
+$slideshow-base-height: 483px;
 $slideshow-base-ratio: #{$slideshow-base-height / $slideshow-base-width};
 $slideshow-slide-width: #{calc(100vw - 40px)};
 
@@ -145,7 +145,7 @@ $slideshow-slide-width: #{calc(100vw - 40px)};
   body.home.index{
 
     .slideshow-highlights-container + .listings{
-      margin-top: -150px;
+      margin-top: -155px;
     }
   }
 }
@@ -171,7 +171,7 @@ $slideshow-slide-width: #{calc(100vw - 40px)};
         }
         .slideshow-slide-text{
           position: absolute;
-          top: calc(50% - 16px);
+          top: calc(50% - 40px);
           left: 0;
           width: 50%;
           .slideshow-slide-title {
@@ -181,7 +181,7 @@ $slideshow-slide-width: #{calc(100vw - 40px)};
           .slideshow-slide-summary{
             margin-top: 22px;
             width: 100%;
-            padding: 28px 23px 23px;
+            padding: 28px 23px;
           }
         }
       }
