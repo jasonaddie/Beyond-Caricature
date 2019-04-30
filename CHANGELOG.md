@@ -6,6 +6,16 @@ These are items that are have been finished, but not released yet.
 
 None at this time.
 
+## [0.25] - 2019-05-01
+### Added
+- Mouse scroll icon to homepage
+- Share links to the right side of the window
+
+### Fixed
+- Font sizes in the list cards where text appears below the image
+- Homepage illustration background positioning
+- Homepage slideshow title positioning
+
 ## [0.24] - 2019-04-29
 ### Fixed
 - Updated language to Latin conversion for record URLs
