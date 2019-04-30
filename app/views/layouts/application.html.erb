@@ -45,6 +45,8 @@
       <%= yield %>
     </main>
 
+    <%= render partial: 'layouts/application/share_links', locals: {css_class: 'side'} %>
+
     <%= render partial: 'layouts/application/footer' %>
 
   </body>

@@ -1,0 +1,62 @@
+@import 'vars';
+
+.share-links{
+  .share{
+    opacity: 0.6;
+    &:hover{
+      opacity: 1;
+    }
+    svg{
+      height: 20px;
+      use{
+        fill: $nav-start-active-color;
+      }
+    }
+    &.facebook{
+      svg{
+        height: 24px;
+      }
+    }
+  }
+
+  &.side{
+    position: fixed;
+    right: 55px;
+    top: calc(50% - 25px - 17px);
+    background: transparent;
+    text-align: center;
+    display: none;
+
+    .share{
+      display: block;
+      &:first-of-type{
+        margin-bottom: 24px;
+      }
+    }
+  }
+  &.nav{
+    display: inherit;
+    text-align: center;
+    margin: 55px 0;
+
+    .share{
+      display: inline-block;
+      vertical-align: middle;
+
+      &:first-of-type{
+        margin-right: 40px;
+      }
+    }
+  }
+}
+
+@media (min-width: 769px){
+  .share-links{
+    &.side{
+      display: block;
+    }
+    &.nav{
+      display: none;
+    }
+  }
+}

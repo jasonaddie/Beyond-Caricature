@@ -25,6 +25,8 @@
         <%= link_to t('labels.research'), researches_path, class: "navbar-item #{controller_name=="home" && ['researches', 'research'].include?(action_name) ? "current-page" : ""}" %>
         <%= link_to t('labels.about'), about_path, class: "navbar-item #{controller_name=="home" && action_name=="about" ? "current-page" : ""}" %>
 
+        <%= render partial: 'layouts/application/share_links', locals: {css_class: 'nav'} %>
+
       </div>
 
       <div class="navbar-end">

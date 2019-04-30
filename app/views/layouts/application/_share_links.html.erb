@@ -1,0 +1,11 @@
+<%
+  css_class ||= nil
+%>
+<div class="share-links <%= css_class %>">
+  <%= link_to "https://www.facebook.com/sharer/sharer.php?u=#{request.original_url}", target: :blank, class: 'share facebook' do %>
+    <%= inline_svg('facebook.svg', alt: t('labels.facebook')) %>
+  <% end %>
+  <%= link_to 'https://twitter.com/share', target: :blank, class: 'share twitter' do %>
+    <%= inline_svg('twitter.svg', alt: t('labels.twitter')) %>
+  <% end %>
+</div>
