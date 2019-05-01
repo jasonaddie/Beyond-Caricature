@@ -141,6 +141,14 @@ $slideshow-slide-width: #{calc(100vw - 40px)};
 
 }
 
+.slick-slide {
+  text-align: center;
+  img{
+    display: inline-block;
+  }
+}
+
+
 @media (min-width: 769px){
   body.home.index{
 
