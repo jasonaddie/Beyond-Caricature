@@ -140,7 +140,7 @@
 
 
 <% if @publication.journal? %>
-  <%= render partial: "issues", locals: {publication: @publication, issues: @publication.issues.published.sort_publication_desc} %>
+  <%= render partial: "issues", locals: {publication: @publication, issues: @publication.issues.published.sort_publication_desc.page(params[:page]).per(@pagination_per_large)} %>
 
 <% elsif @publication.book? || @publication.original? %>
     <%= render partial: 'shared/listing', locals: {

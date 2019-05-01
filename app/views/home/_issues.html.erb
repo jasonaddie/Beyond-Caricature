@@ -2,6 +2,10 @@
 
   <% if issues.present? %>
 
+    <div class="page-entries-info">
+      <%= page_entries_info issues %>
+    </div>
+
     <div class="columns is-multiline">
       <% issues.each do |issue| %>
         <div class="column is-3">
@@ -14,6 +18,13 @@
         </div>
       <% end %>
     </div>
+
+    <div class="columns is-centered">
+      <duv class="column is-8">
+        <%= paginate issues, window: 2 %>
+      </duv>
+    </div>
+
   <% else %>
     <p><%= t('messages.no_issues') %></p>
   <% end %>
