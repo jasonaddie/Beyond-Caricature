@@ -32,6 +32,9 @@
       </div>
     <% end %>
   </div>
+
+  <%= paginate items, window: 2 %>
+
 <% else %>
 
   <p><%= t('messages.no_data') %></p>

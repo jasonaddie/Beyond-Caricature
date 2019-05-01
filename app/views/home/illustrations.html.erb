@@ -2,6 +2,10 @@
 
 <% if @illustrations.present? %>
 
+  <div class="page-entries-info">
+    <%= page_entries_info @illustrations %>
+  </div>
+
   <div class="columns is-multiline">
     <% @illustrations.each do |illustration| %>
       <div class="column is-3">
@@ -13,6 +17,12 @@
           } %>
       </div>
     <% end %>
+  </div>
+
+  <div class="columns is-centered">
+    <duv class="column is-8">
+      <%= paginate @illustrations, window: 2 %>
+    </duv>
   </div>
 
 <% else %>

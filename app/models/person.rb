@@ -11,7 +11,6 @@
 #
 
 class Person < ApplicationRecord
-
   #################
   ## HISTORY TRACKING ##
   #################

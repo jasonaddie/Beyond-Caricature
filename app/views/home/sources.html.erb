@@ -4,6 +4,10 @@
 
 <% if @publications.present? %>
 
+  <div class="page-entries-info">
+    <%= page_entries_info @publications %>
+  </div>
+
   <div class="columns is-multiline">
     <% @publications.each do |publication| %>
       <div class="column is-3">
@@ -16,6 +20,12 @@
           } %>
       </div>
     <% end %>
+  </div>
+
+  <div class="columns is-centered">
+    <duv class="column is-8">
+      <%= paginate @publications, window: 2 %>
+    </duv>
   </div>
 
 <% else %>

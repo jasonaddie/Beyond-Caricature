@@ -1,4 +1,16 @@
-@import "bulma";
+// pagination
+$pagination-color: #54514c;
+$pagination-border-color: transparent;
+$pagination-hover-color: #ed714f;
+$pagination-hover-border-color: transparent;
+$pagination-focus-color: $pagination-hover-color;
+$pagination-focus-border-color : transparent;
+$pagination-active-color: $pagination-hover-color;
+$pagination-active-border-color: transparent;
+$pagination-current-color: $pagination-hover-color;
+$pagination-current-background-color: transparent;
+$pagination-current-border-color: transparent;
+$pagination-ellipsis-color: $pagination-color;
 
 // bulma variables
 $grey-dark: #292929;
@@ -32,3 +44,6 @@ $header-line-color: #282725;
 // cards
 $card-color: $body-color;
 $card-background-color: #eeeeee;
+
+@import "bulma";
+

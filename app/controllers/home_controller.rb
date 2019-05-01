@@ -1,5 +1,8 @@
 class HomeController < ApplicationController
 
+  before_action :set_pagination_values
+
+
   def index
     @publications = Publication.published.sort_published_desc.limit(3)
     @news = News.published.sort_published_desc.limit(3)
@@ -11,7 +14,7 @@ class HomeController < ApplicationController
   end
 
   def sources
-    @publications = Publication.published.sort_published_desc
+    @publications = Publication.published.sort_published_desc.page(params[:page]).per(@pagination_per_large)
   end
 
   def source
@@ -24,23 +27,23 @@ class HomeController < ApplicationController
   end
 
   def illustrations
-    @illustrations = Illustration.published.sort_published_desc
+    @illustrations = Illustration.published.sort_published_desc.page(params[:page]).per(@pagination_per_large)
   end
 
   def illustration
     @illustration = Illustration.friendly.published.find(params[:id])
   end
 
-  def illustrators
-    @illustrators = Illustrator.published.sort_published_desc
-  end
+  # def illustrators
+  #   @illustrators = Illustrator.published.sort_published_desc
+  # end
 
-  def illustrator
-    @illustrator = Illustrator.friendly.published.find(params[:id])
-  end
+  # def illustrator
+  #   @illustrator = Illustrator.friendly.published.find(params[:id])
+  # end
 
   def people
-    @people = Person.published.sort_published_desc
+    @people = Person.published.sort_published_desc.page(params[:page]).per(@pagination_per_large)
   end
 
   def person
@@ -48,7 +51,7 @@ class HomeController < ApplicationController
   end
 
   def news
-    @news = News.published.sort_published_desc
+    @news = News.published.sort_published_desc.page(params[:page]).per(@pagination_per_small)
   end
 
   def news_item
@@ -56,7 +59,7 @@ class HomeController < ApplicationController
   end
 
   def researches
-    @researches = Research.published.sort_published_desc
+    @researches = Research.published.sort_published_desc.page(params[:page]).per(@pagination_per_small)
   end
 
   def research
@@ -106,5 +109,15 @@ private
       stats[:illustrators][:illustrations] = Illustration.published.where(id: ids.map{|x| x.person_roleable_id}.uniq).count
 
     return stats
+  end
+
+
+  def set_pagination_values
+    if params[:page].nil? || params[:page].to_i == 0
+      params[:page] = 1
+    end
+
+    @pagination_per_large = 12
+    @pagination_per_small = 4
   end
 end
