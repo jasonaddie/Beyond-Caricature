@@ -9,35 +9,40 @@
   end
 %>
 
-<h1 class="title is-3"><%= title t('labels.illustrations') %></h1>
+<div class="columns is-centered">
+  <div class="column is-10">
 
-<% if @illustrations.present? %>
+    <h1 class="title is-3"><%= title t('labels.illustrations') %></h1>
 
-  <%= render partial: 'shared/list_switcher', locals: {records: @illustrations} %>
+    <% if @illustrations.present? %>
 
-  <div class="columns is-multiline <%= hacked_class %>">
-    <% @illustrations.each do |illustration| %>
-      <div class="column <%= column_size %>">
-        <%= render partial: card_partial, locals: {
-              title: illustration.title,
-              link_path: illustration_path(illustration),
-              cover_image_path: illustration.image.thumb('400x400#').url,
-              summary: illustration.context,
-              illustrator: illustration.person_role ? illustration.person_role.name : nil
-          } %>
+      <%= render partial: 'shared/list_switcher', locals: {records: @illustrations} %>
+
+      <div class="columns is-multiline <%= hacked_class %>">
+        <% @illustrations.each do |illustration| %>
+          <div class="column <%= column_size %>">
+            <%= render partial: card_partial, locals: {
+                  title: illustration.title,
+                  link_path: illustration_path(illustration),
+                  cover_image_path: illustration.image.thumb('400x400#').url,
+                  summary: illustration.context,
+                  illustrator: illustration.person_role ? illustration.person_role.name : nil
+              } %>
+          </div>
+        <% end %>
       </div>
+
+      <div class="columns is-centered">
+        <duv class="column is-8">
+          <%= paginate @illustrations, window: 2 %>
+        </duv>
+      </div>
+
+    <% else %>
+
+      <p><%= t('messages.no_data') %></p>
+
     <% end %>
+
   </div>
-
-  <div class="columns is-centered">
-    <duv class="column is-8">
-      <%= paginate @illustrations, window: 2 %>
-    </duv>
-  </div>
-
-<% else %>
-
-  <p><%= t('messages.no_data') %></p>
-
-<% end %>
-
+</div>

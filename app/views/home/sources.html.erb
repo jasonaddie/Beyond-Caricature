@@ -12,37 +12,43 @@
   end
 %>
 
-<h1 class="title is-3"><%= title t('labels.publications') %></h1>
+<div class="columns is-centered">
+  <div class="column is-10">
 
-<% if @publications.present? %>
+    <h1 class="title is-3"><%= title t('labels.publications') %></h1>
 
-  <%= render partial: 'shared/list_switcher', locals: {records: @publications} %>
+    <% if @publications.present? %>
 
-  <div class="columns is-multiline <%= hacked_class %>">
-    <% @publications.each do |publication| %>
-      <div class="column <%= column_size %>">
-        <%= render partial: card_partial, locals: {
-              title: publication.title,
-              summary: card_partial == 'shared/card_meta_right' ? publication.about : nil,
-              link_path: source_path(publication),
-              cover_image_path: publication.cover_image.thumb(image_size).url,
-              type: pub.human_enum_name(:publication_type, publication.publication_type),
-              language: publication.language,
-              date_label: I18n.t("labels.publication_dates.#{publication.publication_type}"),
-              date: publication.date
-          } %>
+      <%= render partial: 'shared/list_switcher', locals: {records: @publications} %>
+
+      <div class="columns is-multiline <%= hacked_class %>">
+        <% @publications.each do |publication| %>
+          <div class="column <%= column_size %>">
+            <%= render partial: card_partial, locals: {
+                  title: publication.title,
+                  summary: card_partial == 'shared/card_meta_right' ? publication.about : nil,
+                  link_path: source_path(publication),
+                  cover_image_path: publication.cover_image.thumb(image_size).url,
+                  type: pub.human_enum_name(:publication_type, publication.publication_type),
+                  language: publication.language,
+                  date_label: I18n.t("labels.publication_dates.#{publication.publication_type}"),
+                  date: publication.date
+              } %>
+          </div>
+        <% end %>
       </div>
+
+      <div class="columns is-centered">
+        <duv class="column is-8">
+          <%= paginate @publications, window: 2 %>
+        </duv>
+      </div>
+
+    <% else %>
+
+      <p><%= t('messages.no_data') %></p>
+
     <% end %>
+
   </div>
-
-  <div class="columns is-centered">
-    <duv class="column is-8">
-      <%= paginate @publications, window: 2 %>
-    </duv>
-  </div>
-
-<% else %>
-
-  <p><%= t('messages.no_data') %></p>
-
-<% end %>
+</div>
