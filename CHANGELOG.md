@@ -6,6 +6,15 @@ These are items that are have been finished, but not released yet.
 
 None at this time.
 
+## [0.26] - 2019-05-02
+### Added
+- Pagination to the list pages: Sources, Issues, Illustrations, People, News and Research
+- Grid and list view to list pages: Sources, Illustrations and People
+
+### Fixed
+- Images in slideshow are now centered
+- Better responsiveness for grid displays on Sources, Illustrations and People
+
 ## [0.25] - 2019-05-01
 ### Added
 - Mouse scroll icon to homepage
