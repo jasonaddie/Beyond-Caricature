@@ -1,0 +1,25 @@
+<%
+  records ||= nil
+%>
+
+<% if records.present? %>
+
+  <div class="columns is-mobile">
+    <div class="page-entries-info column">
+      <%= page_entries_info records %>
+    </div>
+    <div class="grid-list-view column is-narrow has-text-right">
+      <div class="list-view <%= params[:view].present? && params[:view].downcase == 'list' ? 'active' : '' %>">
+        <%= link_to params.permit(:view).merge(view: 'list'), title: t('labels.list') do %>
+          <%= inline_svg('list.svg', alt: t('labels.list')) %>
+        <% end %>
+      </div>
+      <div class="grid-view <%= params[:view] != 'list' ? 'active' : '' %>">
+        <%= link_to params.permit(:view).merge(view: 'grid'), title: t('labels.grid') do %>
+          <%= inline_svg('grid.svg', alt: t('labels.grid')) %>
+        <% end %>
+      </div>
+    </div>
+  </div>
+
+<% end %>

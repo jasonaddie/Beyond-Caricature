@@ -1,22 +1,35 @@
 <% pub = Publication %>
+<%
+  column_size = 'is-6-mobile is-4-tablet is-3-desktop is-3'
+  card_partial = 'shared/card_meta_down'
+  image_size = '400x204#'
+  hacked_class = 'hacked-mobile'
+  if params[:view].present? && params[:view].downcase == 'list'
+    column_size = 'is-12'
+    card_partial = 'shared/card_meta_right'
+    image_size = '400x400#'
+    hacked_class = ''
+  end
+%>
 
 <h1 class="title is-3"><%= title t('labels.publications') %></h1>
 
 <% if @publications.present? %>
 
-  <div class="page-entries-info">
-    <%= page_entries_info @publications %>
-  </div>
+  <%= render partial: 'shared/list_switcher', locals: {records: @publications} %>
 
-  <div class="columns is-multiline">
+  <div class="columns is-multiline <%= hacked_class %>">
     <% @publications.each do |publication| %>
-      <div class="column is-3">
-        <%= render partial: 'shared/card_meta_down', locals: {
+      <div class="column <%= column_size %>">
+        <%= render partial: card_partial, locals: {
               title: publication.title,
-              summary: publication.about,
+              summary: card_partial == 'shared/card_meta_right' ? publication.about : nil,
               link_path: source_path(publication),
-              cover_image_path: publication.cover_image.thumb('400x204#').url,
-              type: pub.human_enum_name(:publication_type, publication.publication_type)
+              cover_image_path: publication.cover_image.thumb(image_size).url,
+              type: pub.human_enum_name(:publication_type, publication.publication_type),
+              language: publication.language,
+              date_label: I18n.t("labels.publication_dates.#{publication.publication_type}"),
+              date: publication.date
           } %>
       </div>
     <% end %>

@@ -6,6 +6,9 @@
   type ||= nil
   cover_image_path ||= nil
   publish_date ||= nil
+  language ||= nil
+  date ||= nil
+  date_label ||= nil
 %>
 
 <div class="card card-meta-down">
@@ -22,10 +25,22 @@
     <%= link_to title, link_path, class: 'has-text-weight-semibold card-title' %>
 
     <div class="content">
-      <% if type %>
+      <% if type.present? %>
         <div>
           <strong><%= "#{t('labels.type')}:" %></strong>
           <%= type %>
+        </div>
+      <% end %>
+      <% if date.present? && date_label.present? %>
+        <div>
+          <strong><%= "#{date_label}:" %></strong>
+          <%= date %>
+        </div>
+      <% end %>
+      <% if language.present? %>
+        <div>
+          <strong><%= "#{t('labels.meta.publication_language')}:" %></strong>
+          <%= language %>
         </div>
       <% end %>
       <% if publish_date %>
@@ -34,7 +49,7 @@
           <%= I18n.l publish_date %>
         </div>
       <% end %>
-      <% if summary %>
+      <% if summary.present? %>
         <div>
           <%= truncate(strip_tags(summary), length: 100) %>
         </div>

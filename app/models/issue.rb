@@ -123,6 +123,23 @@ end
   scope :sort_published_desc, -> { order(date_publish: :desc) }
   scope :sort_publication_desc, -> { order(date_publication: :desc) }
 
+  # get the min and max dates on record
+  # and return in format: start - end
+  def self.start_end_dates
+    string = nil
+    dates = self.all.pluck(:date_publication).sort
+
+    if dates.present?
+      string = I18n.l(dates.first)
+      if dates.length > 1
+        string << ' - '
+        string << I18n.l(dates.last)
+      end
+    end
+
+    return string
+  end
+
   #################
   ## RAILS ADMIN CONFIGURATION ##
   #################

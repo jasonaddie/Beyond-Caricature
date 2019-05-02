@@ -1,18 +1,28 @@
+<%
+  column_size = 'is-6-mobile is-4-tablet is-3-desktop is-3'
+  card_partial = 'shared/card_meta_hover'
+  hacked_class = 'hacked-mobile'
+  if params[:view].present? && params[:view].downcase == 'list'
+    column_size = 'is-12'
+    card_partial = 'shared/card_meta_right'
+    hacked_class = ''
+  end
+%>
+
 <h1 class="title is-3"><%= title t('labels.illustrations') %></h1>
 
 <% if @illustrations.present? %>
 
-  <div class="page-entries-info">
-    <%= page_entries_info @illustrations %>
-  </div>
+  <%= render partial: 'shared/list_switcher', locals: {records: @illustrations} %>
 
-  <div class="columns is-multiline">
+  <div class="columns is-multiline <%= hacked_class %>">
     <% @illustrations.each do |illustration| %>
-      <div class="column is-3">
-        <%= render partial: 'shared/card_meta_hover', locals: {
+      <div class="column <%= column_size %>">
+        <%= render partial: card_partial, locals: {
               title: illustration.title,
               link_path: illustration_path(illustration),
               cover_image_path: illustration.image.thumb('400x400#').url,
+              summary: illustration.context,
               illustrator: illustration.person_role ? illustration.person_role.name : nil
           } %>
       </div>

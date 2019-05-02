@@ -43,7 +43,7 @@
           <%= I18n.l date_death if date_death %>
         </div>
       <% end %>
-      <% if roles %>
+      <% if roles.present? %>
         <div>
           <strong><%= "#{t('labels.roles')}:" %></strong>
           <%= roles %>

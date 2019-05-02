@@ -1,0 +1,73 @@
+@import 'vars';
+
+.card-meta-right{
+  margin-bottom: 0.816rem;
+  display: grid;
+  grid-gap: 10px;
+  grid-template-columns: 162px auto;
+  .card-cover-image{
+    grid-column: 1 / 2;
+  }
+  .card-meta-content{
+    grid-column: 2 / 3;
+    margin-top: 0.86rem;
+    .meta-title{
+      margin-bottom: 0.6315rem;
+      a, a:hover{
+        color: $grey-dark;
+      }
+    }
+    .meta-summary{
+      display: none;
+    }
+  }
+}
+
+@media (min-width: 600px){
+  .card-meta-right{
+    grid-gap: 18px;
+    grid-template-columns: 250px auto;
+    .card-meta-content{
+      margin-top: 0;
+      .meta-summary{
+        display: block;
+        width: 90%;
+        margin-top: 11px;
+        padding: 11px 0;
+        border-top: solid 1px $grey-dark;
+      }
+    }
+  }
+}
+
+@media (min-width: 800px){
+  .card-meta-right{
+    .card-meta-content{
+      .meta-summary{
+        width: 75%;
+        margin-top: 22px;
+        padding: 22px 0;
+      }
+    }
+  }
+}
+
+@media (min-width: 850px){
+  .card-meta-right{
+    grid-gap: 28px;
+    grid-template-columns: 317px auto;
+    .card-meta-content{
+      margin-top: 1.631rem;
+    }
+  }
+}
+
+@media (min-width: 1250px){
+  .card-meta-right{
+    .card-meta-content{
+      .meta-summary{
+        width: 50%;
+      }
+    }
+  }
+}

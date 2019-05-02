@@ -339,6 +339,12 @@ ru:
     annotations_for: 'Annotations For: %{name}'
     annotation_help: 'Click on numbers to view the annotation text'
     publication_date: Published
+    list: View the records in a list view
+    grid: View the records in a grid view
+    publication_dates:
+      journal: Issue Dates
+      book: Year
+      original: Year
     meta:
       publication_type: Type
       publication_language: Language

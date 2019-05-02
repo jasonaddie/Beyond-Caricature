@@ -1,0 +1,21 @@
+@media (max-width: 400px){
+  .columns.hacked-mobile{
+    .column.is-6-mobile{
+      width: 100%;
+    }
+  }
+}
+
+@media (min-width: 400px) and (max-width: 580px){
+  .columns.hacked-mobile{
+    .column.is-6-mobile{
+      width: 75%;
+    }
+  }
+}
+
+@media (min-width: 580px) and (max-width: 768px){
+  .columns.hacked-mobile{
+    display: flex;
+  }
+}

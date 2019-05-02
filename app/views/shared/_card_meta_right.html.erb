@@ -1,0 +1,81 @@
+<%
+  # required variables
+  link_path ||= root_path
+  title ||= nil
+  illustrator ||= nil
+  date_birth ||= nil
+  date_death ||= nil
+  roles ||= nil
+  summary ||= nil
+  cover_image_path ||= nil
+  type ||= nil
+  language ||= nil
+  date ||= nil
+  date_label ||= nil
+  summary_length ||= 190
+%>
+
+<div class="card-meta-right">
+
+  <% if cover_image_path %>
+    <div class="card-cover-image">
+      <figure class="image is-square">
+        <%= link_to link_path do %>
+          <%= image_tag cover_image_path, alt: title %>
+        <% end %>
+      </figure>
+    </div>
+  <% end %>
+  <div class="card-meta-content">
+    <div class='has-text-weight-semibold meta-title'>
+      <%= link_to title, link_path %>
+    </div>
+    <% if type.present? %>
+      <div>
+        <strong><%= "#{t('labels.type')}:" %></strong>
+        <%= type %>
+      </div>
+    <% end %>
+    <% if date.present? && date_label.present? %>
+      <div>
+        <strong><%= "#{date_label}:" %></strong>
+        <%= date %>
+      </div>
+    <% end %>
+    <% if language.present? %>
+      <div>
+        <strong><%= "#{t('labels.meta.publication_language')}:" %></strong>
+        <%= language %>
+      </div>
+    <% end %>
+    <% if illustrator.present? %>
+      <div>
+        <strong><%= "#{t('labels.by')}:" %></strong>
+        <%= illustrator %>
+      </div>
+    <% end %>
+    <% if date_birth %>
+      <div>
+        <strong><%= t('labels.meta.date_birth') %>:</strong>
+        <%= I18n.l date_birth %>
+      </div>
+    <% end %>
+    <% if date_death %>
+      <div>
+        <strong><%= t('labels.meta.date_death') %>:</strong>
+        <%= I18n.l date_death if date_death %>
+      </div>
+    <% end %>
+    <% if roles.present? %>
+      <div>
+        <strong><%= "#{t('labels.roles')}:" %></strong>
+        <%= roles %>
+      </div>
+    <% end %>
+    <% if summary.present? %>
+      <div class="meta-summary">
+        <%= truncate(strip_tags(summary), length: summary_length) %>
+      </div>
+    <% end %>
+  </div>
+</div>

@@ -174,6 +174,21 @@ class Publication < ApplicationRecord
     self.publication_type? ? I18n.t("activerecord.attributes.#{model_name.i18n_key}.publication_types.#{publication_type}") : nil
   end
 
+  def language
+    self.publication_language.present? ? self.publication_language.language : nil
+  end
+
+  # get the date of the record
+  # - for journals, this is based on the issue dates
+  # - for book and originals, this is the year
+  def date
+    if self.journal?
+      self.issues.start_end_dates
+    else
+      self.year.to_s
+    end
+  end
+
   #################
   ## RAILS ADMIN CONFIGURATION ##
   #################
