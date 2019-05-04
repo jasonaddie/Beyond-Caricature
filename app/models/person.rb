@@ -73,6 +73,11 @@ class Person < ApplicationRecord
   scope :sort_published_desc, -> { order(date_publish: :desc) }
   scope :sort_name_asc, -> { with_translations(I18n.locale).order('person_translations.last_name asc, person_translations.first_name asc') }
 
+  def self.illustrator
+    person_id = PersonRole.illustrators.pluck(:person_id).uniq
+    self.where(id: person_id)
+  end
+
   # filter people by the following:
   # - role - ROLES key from person role model
   # - lived dates - start and/or end date

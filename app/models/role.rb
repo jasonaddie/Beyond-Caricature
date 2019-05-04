@@ -17,6 +17,7 @@ class Role < ApplicationRecord
   ## ASSOCIATIONS ##
   #################
   has_many :person_roles, dependent: :destroy
+  has_many :people, through: :person_roles
 
   #################
   ## TRANSLATIONS ##
@@ -33,6 +34,7 @@ class Role < ApplicationRecord
   #################
   scope :sort_name, -> { with_translations(I18n.locale).order('role_translations.name asc') }
   scope :illustrators, -> { where(is_illustrator: true) }
+  scope :roles_assigned_to_published_people, -> { joins(:people) }
 
   #################
   ## RAILS ADMIN CONFIGURATION ##

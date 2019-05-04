@@ -15,6 +15,8 @@ class HomeController < ApplicationController
 
   def sources
     @publications = Publication.published.sort_name_asc.page(params[:page]).per(@pagination_per_large)
+    @filter_source_types = Publication.publication_types_for_select
+    @filter_languages = PublicationLanguage.active.sort_language.with_published_publications
   end
 
   def source
@@ -36,6 +38,8 @@ class HomeController < ApplicationController
 
   def images
     @illustrations = Illustration.published.sort_published_desc.page(params[:page]).per(@pagination_per_large)
+    @filter_source_types = Publication.publication_types_for_select
+    @filter_illustrators = Person.illustrator.published.sort_name
   end
 
   def image
@@ -52,6 +56,7 @@ class HomeController < ApplicationController
 
   def people
     @people = Person.published.sort_name_asc.page(params[:page]).per(@pagination_per_large)
+    @filter_roles = Role.roles_assigned_to_published_people.sort_name.uniq
   end
 
   def person
