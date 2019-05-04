@@ -79,13 +79,13 @@ class Person < ApplicationRecord
   end
 
   # filter people by the following:
-  # - role - ROLES key from person role model
+  # - role - role id from person role model
   # - lived dates - start and/or end date
   # - search - string
   def self.filter(options={})
     x = self
     if options[:role].present?
-      x = x.joins(:person_roles).where(person_roles: {role: options[:role]})
+      x = x.joins(:person_roles).where(person_roles: {role_id: options[:role]})
     end
 
     if options[:lived].present?
@@ -104,7 +104,7 @@ class Person < ApplicationRecord
             )
     end
 
-    return x
+    return x.distinct
   end
 
   #################

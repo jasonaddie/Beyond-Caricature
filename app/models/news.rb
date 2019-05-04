@@ -84,7 +84,7 @@ class News < ApplicationRecord
             )
     end
 
-    return x
+    return x.distinct
   end
 
   #################

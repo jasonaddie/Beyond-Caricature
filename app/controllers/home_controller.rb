@@ -55,7 +55,7 @@ class HomeController < ApplicationController
   # end
 
   def people
-    @people = Person.published.sort_name_asc.page(params[:page]).per(@pagination_per_large)
+    @people = Person.published.filter({role: params[:role]}).sort_name_asc.page(params[:page]).per(@pagination_per_large)
     @filter_roles = Role.roles_assigned_to_published_people.sort_name.uniq
   end
 

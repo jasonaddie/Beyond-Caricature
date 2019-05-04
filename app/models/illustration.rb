@@ -120,7 +120,7 @@ class Illustration < ApplicationRecord
             )
     end
 
-    return x
+    return x.distinct
   end
 
 

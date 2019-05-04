@@ -130,7 +130,7 @@ class Publication < ApplicationRecord
             )
     end
 
-    return x
+    return x.distinct
   end
 
   def self.publication_types_for_select
