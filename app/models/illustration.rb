@@ -92,7 +92,7 @@ class Illustration < ApplicationRecord
   def self.filter(options={})
     x = self
     if options[:type].present?
-      if options[:type] == 'journal'
+      if options[:type].downcase == 'journal'
         x = x.joins(:issues)
       else
         x = x.joins(:publications).where(publications: {publication_type: options[:type]})

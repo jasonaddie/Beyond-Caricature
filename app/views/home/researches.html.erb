@@ -3,6 +3,21 @@
 
     <h1 class="title is-3"><%= title t('labels.research') %></h1>
 
+    <div class="filters people">
+      <div class="columns">
+        <div class="column is-3">
+          <div class="filter-label">
+            <label for="filter_search"><%= t('labels.filter.search') %></label>
+          </div>
+          <div class="filter-search">
+            <%= text_field :filter, :search, value: params[:search], 'data-key': 'search' %>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <%= render partial: 'shared/list_switcher', locals: {records: @researches} %>
+
     <%= render partial: 'shared/listings_meta_right', locals: {
         items: @researches,
         item_path: :research_path

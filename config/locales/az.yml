@@ -349,6 +349,12 @@ az:
       journal: Issue Dates
       book: Year
       original: Year
+    filter:
+      search: Search
+      source_type: Source Type
+      language: Language
+      illustrator: Illustrator
+      role: Role
     meta:
       publication_type: Type
       publication_language: Language

@@ -14,50 +14,50 @@
 
     <h1 class="title is-3"><%= title t('labels.people') %></h1>
 
-    <% if @people.present? %>
-
-      <div class="filters people">
-        <div class="columns">
-          <div class="column is-3">
-            <div class="filter-label">
-              <label for="filter_role"><%= t('labels.filter.role') %></label>
-            </div>
-            <div class="filter-select">
-              <%= collection_select(:filter, :role, @filter_roles, :id, :name, {selected: params[:role], prompt: ''}, {style: 'width: 100%', 'data-key': 'role'}) %>
-            </div>
+    <div class="filters people">
+      <div class="columns">
+        <div class="column is-3">
+          <div class="filter-label">
+            <label for="filter_search"><%= t('labels.filter.search') %></label>
+          </div>
+          <div class="filter-search">
+            <%= text_field :filter, :search, value: params[:search], 'data-key': 'search' %>
+          </div>
+        </div>
+        <div class="column is-3">
+          <div class="filter-label">
+            <label for="filter_role"><%= t('labels.filter.role') %></label>
+          </div>
+          <div class="filter-select">
+            <%= collection_select(:filter, :role, @filter_roles, :id, :name, {selected: params[:role], prompt: ''}, {style: 'width: 100%', 'data-key': 'role'}) %>
           </div>
         </div>
       </div>
+    </div>
 
-      <%= render partial: 'shared/list_switcher', locals: {records: @people} %>
+    <%= render partial: 'shared/list_switcher', locals: {records: @people} %>
 
-      <div class="columns is-multiline <%= hacked_class %>">
-        <% @people.each do |person| %>
-          <div class="column <%= column_size %>">
-            <%= render partial: card_partial, locals: {
-                  title: person.name,
-                  link_path: person_path(person),
-                  cover_image_path: person.image.thumb('400x400#').url,
-                  date_birth: person.date_birth,
-                  date_death: person.date_death,
-                  summary: person.bio,
-                  roles: person.unique_role_names.join(', ')
-              } %>
-          </div>
-        <% end %>
-      </div>
+    <div class="columns is-multiline <%= hacked_class %>">
+      <% @people.each do |person| %>
+        <div class="column <%= column_size %>">
+          <%= render partial: card_partial, locals: {
+                title: person.name,
+                link_path: person_path(person),
+                cover_image_path: person.image.thumb('400x400#').url,
+                date_birth: person.date_birth,
+                date_death: person.date_death,
+                summary: person.bio,
+                roles: person.unique_role_names.join(', ')
+            } %>
+        </div>
+      <% end %>
+    </div>
 
-      <div class="columns is-centered">
-        <duv class="column is-8">
-          <%= paginate @people, window: 2 %>
-        </duv>
-      </div>
-
-    <% else %>
-
-      <p><%= t('messages.no_data') %></p>
-
-    <% end %>
+    <div class="columns is-centered">
+      <duv class="column is-8">
+        <%= paginate @people, window: 2 %>
+      </duv>
+    </div>
 
   </div>
 </div>

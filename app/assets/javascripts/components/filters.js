@@ -1,5 +1,6 @@
 document.addEventListener("turbolinks:load", function() {
   var $filter_selects = $('.filters .filter-select')
+  var $filter_searches = $('.filters .filter-search')
   var base_url = [location.protocol, '//', location.host, location.pathname].join('')
 
   // register all filter selects with select2
@@ -11,9 +12,22 @@ document.addEventListener("turbolinks:load", function() {
 
 
   // when select filter changes,
+  // reload the page
   $filter_selects.on('change', 'select', function(){
-    var key = $(this).data('key')
-    var val = $(this).val()
+    process_filter_request(this)
+  })
+
+  // when search changes
+  // reload the page
+  $filter_searches.on('keyup', 'input', function (e) {
+    if (e.keyCode == 13) {
+      process_filter_request(this)
+    }
+  })
+
+  var process_filter_request = function(ths){
+    var key = $(ths).data('key')
+    var val = $(ths).val()
 
     var new_search = updateQueryStringParam(document.location.search, key, val)
     // since filter is changing, reset the pagination page number
@@ -21,10 +35,9 @@ document.addEventListener("turbolinks:load", function() {
       new_search = updateQueryStringParam(new_search, 'page', null)
     }
 
-    // load the oage with the updated filters
+    // load the page with the updated filters
     window.location = base_url + new_search
-
-  })
+  }
 })
 
 // taken from: https://gist.github.com/excalq/2961415

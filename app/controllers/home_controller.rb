@@ -1,6 +1,7 @@
 class HomeController < ApplicationController
 
   before_action :set_pagination_values
+  before_action :clean_search_query
 
 
   def index
@@ -14,8 +15,8 @@ class HomeController < ApplicationController
   end
 
   def sources
-    @publications = Publication.published.sort_name_asc.page(params[:page]).per(@pagination_per_large)
-    @filter_source_types = Publication.publication_types_for_select
+    @publications = Publication.published.filter({search: params[:search], type: params[:type], language: params[:language]}).sort_name_asc.page(params[:page]).per(@pagination_per_large)
+    @filter_source_types = Publication.publication_types_for_select2
     @filter_languages = PublicationLanguage.active.sort_language.with_published_publications
   end
 
@@ -29,7 +30,9 @@ class HomeController < ApplicationController
   end
 
   # def illustrations
-  #   @illustrations = Illustration.published.sort_published_desc.page(params[:page]).per(@pagination_per_large)
+    # @illustrations = Illustration.published.filter({search: params[:search], type: params[:type], illustrator: params[:illustrator]}).sort_published_desc.page(params[:page]).per(@pagination_per_large)
+    # @filter_source_types = Publication.publication_types_for_select2
+    # @filter_illustrators = Person.illustrator.published.sort_name
   # end
 
   # def illustration
@@ -37,10 +40,9 @@ class HomeController < ApplicationController
   # end
 
   def images
-    @illustrations = Illustration.published.sort_published_desc.page(params[:page]).per(@pagination_per_large)
-    @filter_source_types = Publication.publication_types_for_select
+    @illustrations = Illustration.published.filter({search: params[:search], type: params[:type], illustrator: params[:illustrator]}).sort_published_desc.page(params[:page]).per(@pagination_per_large)
+    @filter_source_types = Publication.publication_types_for_select2
     @filter_illustrators = Person.illustrator.published.sort_name
-  end
 
   def image
     @illustration = Illustration.friendly.published.find(params[:id])
@@ -55,7 +57,7 @@ class HomeController < ApplicationController
   # end
 
   def people
-    @people = Person.published.filter({role: params[:role]}).sort_name_asc.page(params[:page]).per(@pagination_per_large)
+    @people = Person.published.filter({search: params[:search], role: params[:role]}).sort_name_asc.page(params[:page]).per(@pagination_per_large)
     @filter_roles = Role.roles_assigned_to_published_people.sort_name.uniq
   end
 
@@ -64,7 +66,7 @@ class HomeController < ApplicationController
   end
 
   def news
-    @news = News.published.sort_published_desc.page(params[:page]).per(@pagination_per_small)
+    @news = News.published.filter({search: params[:search]}).sort_published_desc.page(params[:page]).per(@pagination_per_small)
   end
 
   def news_item
@@ -72,7 +74,7 @@ class HomeController < ApplicationController
   end
 
   def researches
-    @researches = Research.published.sort_published_desc.page(params[:page]).per(@pagination_per_small)
+    @researches = Research.published.filter({search: params[:search]}).sort_published_desc.page(params[:page]).per(@pagination_per_small)
   end
 
   def research
@@ -132,5 +134,9 @@ private
 
     @pagination_per_large = 12
     @pagination_per_small = 4
+  end
+
+  def clean_search_query
+    params[:search] = params[:search].present? ? params[:search].gsub("'", "").gsub('"', '') : nil
   end
 end

@@ -141,6 +141,14 @@ class Publication < ApplicationRecord
     return options
   end
 
+  def self.publication_types_for_select2
+    options = {}
+    publication_types.each do |key, value|
+      options[I18n.t("activerecord.attributes.#{model_name.i18n_key}.publication_types.#{key}")] = key
+    end
+    return options
+  end
+
   # if there are no values, then reject
   def self.reject_person_roles?(person)
     nontranslation_fields = %w(role_id person)
