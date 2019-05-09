@@ -10,7 +10,12 @@
             <label for="filter_search"><%= t('labels.filter.search') %></label>
           </div>
           <div class="filter-search">
-            <%= text_field :filter, :search, value: params[:search], 'data-key': 'search' %>
+            <div class="control has-icons-right">
+              <%= text_field :filter, :search, value: params[:search], 'data-key': 'search' %>
+              <span class="icon is-right">
+                <i class="search"></i>
+              </span>
+            </div>
           </div>
         </div>
       </div>

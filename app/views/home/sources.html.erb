@@ -24,12 +24,22 @@
             <label for="filter_search"><%= t('labels.filter.search') %></label>
           </div>
           <div class="filter-search">
-            <%= text_field :filter, :search, value: params[:search], 'data-key': 'search' %>
+            <div class="control has-icons-right">
+              <%= text_field :filter, :search, value: params[:search], 'data-key': 'search' %>
+              <span class="icon is-right">
+                <i class="search"></i>
+              </span>
+            </div>
           </div>
         </div>
         <div class="column is-3">
           <div class="filter-label">
-            <label for="filter_type"><%= t('labels.filter.source_type') %></label>
+            <div class="control has-icons-right">
+              <label for="filter_type"><%= t('labels.filter.source_type') %></label>
+              <span class="icon is-right">
+                <i class="down-arrow"></i>
+              </span>
+            </div>
           </div>
           <div class="filter-select">
             <%= select(:filter, :type, options_for_select(@filter_source_types, params[:type]), {prompt: ''}, {style: 'width: 100%', 'data-key': 'type'}) %>
@@ -37,7 +47,12 @@
         </div>
         <div class="column is-3">
           <div class="filter-label">
-            <label for="filter_language"><%= t('labels.filter.language') %></label>
+            <div class="control has-icons-right">
+              <label for="filter_language"><%= t('labels.filter.language') %></label>
+              <span class="icon is-right">
+                <i class="down-arrow"></i>
+              </span>
+            </div>
           </div>
           <div class="filter-select">
             <%= collection_select(:filter, :language, @filter_languages, :id, :language, {selected: params[:language], prompt: ''}, {style: 'width: 100%', 'data-key': 'language'}) %>
