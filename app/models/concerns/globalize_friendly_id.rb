@@ -15,7 +15,9 @@ module GlobalizeFriendlyId
     # override to create new slug if there is text and the existing value is nil or does not match
     # from: https://github.com/norman/friendly_id-globalize/blob/master/lib/friendly_id/globalize.rb
     def should_generate_new_friendly_id?
-      send("#{slug_candidates.first}_translations")[::Globalize.locale.to_s].present? && (
+      ((slug_candidates.first.class == Symbol && send("#{slug_candidates.first}_translations")[::Globalize.locale.to_s].present?) ||
+       (slug_candidates.first.class == Array && slug_candidates.first.present? &&
+          slug_candidates.first.all?{|field| send("#{field}_translations")[::Globalize.locale.to_s].present?})) && (
         translation_for(::Globalize.locale).send(friendly_id_config.slug_column).nil? ||
         !slug_candidate_values.include?(translation_for(::Globalize.locale).send(friendly_id_config.slug_column))
       )

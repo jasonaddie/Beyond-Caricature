@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_04_22_133324) do
+ActiveRecord::Schema.define(version: 2019_05_11_173027) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -345,11 +345,13 @@ ActiveRecord::Schema.define(version: 2019_04_22_133324) do
     t.boolean "is_public", default: false
     t.date "date_publish"
     t.string "slug"
+    t.string "first_name"
+    t.string "last_name"
     t.index "to_tsvector('simple'::regconfig, (((name)::text || ' '::text) || bio))", name: "idx_person_search", using: :gin
     t.index ["date_publish"], name: "index_person_translations_on_date_publish"
     t.index ["is_public"], name: "index_person_translations_on_is_public"
+    t.index ["last_name", "first_name"], name: "idx_person_name"
     t.index ["locale"], name: "index_person_translations_on_locale"
-    t.index ["name"], name: "index_person_translations_on_name"
     t.index ["person_id"], name: "index_person_translations_on_person_id"
     t.index ["slug"], name: "index_person_translations_on_slug"
   end

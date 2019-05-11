@@ -33,7 +33,7 @@ class Person < ApplicationRecord
   #################
   ## TRANSLATIONS ##
   #################
-  translates :name, :bio, :is_public, :date_publish, :slug, :versioning => :paper_trail
+  translates :name, :first_name, :last_name, :bio, :is_public, :date_publish, :slug, :versioning => :paper_trail
   accepts_nested_attributes_for :translations, allow_destroy: true
 
   #################
@@ -46,8 +46,8 @@ class Person < ApplicationRecord
   # give options of what to use when the slug is already in use by another record
   def slug_candidates
     [
-      :name,
-      [:name, :date_birth]
+      [:first_name, :last_name],
+      [:first_name, :last_name, :date_birth]
     ]
   end
 
@@ -69,11 +69,26 @@ class Person < ApplicationRecord
   #################
   scope :published, -> { with_translations(I18n.locale).where('person_translations.is_public': true) }
   scope :sort_published_desc, -> { order(date_publish: :desc) }
-  scope :sort_name, -> { with_translations(I18n.locale).order('person_translations.name asc') }
+  scope :sort_name, -> { with_translations(I18n.locale).order('person_translations.last_name asc, person_translations.first_name asc') }
 
   #################
   ## METHODS ##
   #################
+  def name
+    x = ''
+    if self.first_name.present?
+      x << self.first_name
+      if self.last_name.present?
+        x << ' '
+        x << self.last_name
+      end
+    elsif self.last_name.present?
+      x << self.last_name
+    end
+
+    return x
+  end
+
   def illustration_count
     self.illustrations.count
   end
@@ -146,7 +161,8 @@ class Person < ApplicationRecord
     list do
       field :is_public
       field :image
-      field :name
+      field :first_name
+      field :last_name
       field :date_birth
       field :date_death
       field :illustration_count do
@@ -159,7 +175,8 @@ class Person < ApplicationRecord
     show do
       field :is_public
       field :image
-      field :name
+      field :first_name
+      field :last_name
       field :bio
       field :date_birth
       field :date_death
@@ -192,6 +209,6 @@ class Person < ApplicationRecord
 
   def check_self_public_required_fields
     # call the methohd in the application record base object
-    super(%w(name bio))
+    super(%w(first_name last_name bio))
   end
 end

@@ -151,11 +151,11 @@ RailsAdmin.config do |config|
       html_attributes required: required? && !value.present?, class: 'is-public-field'
     end
 
-    include_fields :locale, :is_public, :name, :bio
+    include_fields :locale, :is_public, :first_name, :last_name, :bio
 
     edit do
       field :bio, :ck_editor
-      fields :name, :bio do
+      fields :first_name, :last_name, :bio do
         help I18n.t('admin.help.required_for_publication')
       end
       # uploader's cannot make anything public
