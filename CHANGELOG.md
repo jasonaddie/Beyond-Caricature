@@ -6,6 +6,20 @@ These are items that are have been finished, but not released yet.
 
 None at this time.
 
+## [0.27] - 2019-05-12
+### Fixed
+- Split Person name field into first and last name field
+- Sort records on public Peoples page by last name, first name
+- Sort records on public Sources page by source title ascending
+- Label for related items header in News/Research public pages
+- Increased title size and decreased size of meta text for the cards on the listing pages (i.e., Home, Sources, Images, People, News, Research)
+- Changed Illustrations to Images (i.e., URL, text labels, etc)
+- Changed public Person page so that any role can show the card for an illustration or a source
+- Highlights text is no longer centered
+
+### Added
+- Format for Issue number: № 4
+
 ## [0.26] - 2019-05-02
 ### Added
 - Pagination to the list pages: Sources, Issues, Illustrations, People, News and Research
