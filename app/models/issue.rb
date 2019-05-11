@@ -107,12 +107,18 @@ end
     self.illustrations.published.count
   end
 
+  def issue_number_formatted
+    if self.issue_number
+      "№ #{self.issue_number}"
+    end
+  end
+
   # journal name and issue number
   def full_title
     if self.publication
-      "#{self.publication.title} - #{self.issue_number}"
+      "#{self.publication.title}, #{issue_number_formatted}"
     else
-      self.issue_number
+      issue_number_formatted
     end
   end
 
