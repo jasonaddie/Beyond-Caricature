@@ -12,7 +12,9 @@
     grid-column: 2 / 3;
     margin-top: 0.86rem;
     .meta-title{
-      margin-bottom: 0.6315rem;
+      font-size: 1.25rem;
+      line-height: 1.35rem;
+      margin-bottom: 0.75rem;
       a, a:hover{
         color: $grey-dark;
       }

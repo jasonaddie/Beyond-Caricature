@@ -5,14 +5,17 @@
   height: 100%;
   .card-content{
     padding: 0.8rem;
+    font-size: 0.8rem;
 
     .card-title{
       color: $body-color;
+      font-size: 1rem;
+      line-height: 1.1rem;
+      margin-bottom: 0.75rem;
     }
 
     .content{
       color: $text-light;
-      font-size: 1rem;
       margin-top: 0.6315rem;
     }
   }
