@@ -141,13 +141,6 @@ $slideshow-slide-width: #{calc(100vw - 40px)};
 
 }
 
-.slick-slide {
-  text-align: center;
-  img{
-    display: inline-block;
-  }
-}
-
 
 @media (min-width: 769px){
   body.home.index{
@@ -215,6 +208,14 @@ $slideshow-arrow_width: #{100vw * $slideshow-arrow-width-percent};
   margin-bottom: 1rem;
   padding: 51px 16px 24px !important;
   background-color: $header-line-color;
+
+  .slick-slide {
+    text-align: center;
+    img{
+      display: inline-block;
+    }
+  }
+
 
   .slideshow-slide{
     margin: 0 calc(100vw * #{$slideshow-img-margin-percent} );
