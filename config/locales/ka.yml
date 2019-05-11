@@ -5,20 +5,20 @@ ka:
         one: Highlight
         other: Highlights
       illustration:
-        one: Illustration
-        other: Illustrations
+        one: Image
+        other: Images
       illustration_annotation:
         one: Annotation
         other: Annotations
       illustration_issue:
-        one: Illustration Issue
-        other: Illustration Issues
+        one: Image Issue
+        other: Image Issues
       illustration_publication:
-        one: Illustration Source
-        other: Illustration Sources
+        one: Image Source
+        other: Image Sources
       illustration_tag:
-        one: Illustration Tag
-        other: Illustration Tags
+        one: Image Tag
+        other: Image Tags
       illustrator:
         one: Illustrator
         other: Illustrators
@@ -97,19 +97,19 @@ ka:
         sort: Sort
         annotation: Annotation
       illustration_issue:
-        illustration_id: Illustration
+        illustration_id: Image
         issue_id: Issue
         page_number_start: Page Number Start
         page_number_end: Page Number End
         is_public:
       illustration_publication:
-        illustration_id: Illustration
+        illustration_id: Image
         publication_id: Source
         page_number_start: Page Number Start
         page_number_end: Page Number End
         is_public: Is Public?
       illustration_tag:
-        illustration_id: Illustration
+        illustration_id: Image
         tag_id: Tag
       illustrator:
         date_birth: Birth Date
@@ -145,7 +145,7 @@ ka:
         related_item_type: Type
         publication_id: Source
         issue_id: Issue
-        illustration_id: Illustration
+        illustration_id: Image
         illustrator_id: Illustrator
       news/translation:
         is_public: Is Public?
@@ -237,11 +237,11 @@ ka:
         related_item_types:
           publication: Source
           issue: Issue
-          illustration: Illustration
+          illustration: Image
           person: Person
         publication_id: Source
         issue_id: Issue
-        illustration_id: Illustration
+        illustration_id: Image
         person_id: Person
       research:
         is_public: Is Public?
@@ -280,9 +280,9 @@ ka:
           superadmin: Super Admin
   labels:
     translations: Translation Fields
-    illustration_count: Illustrations on File
+    illustration_count: Images on File
     issue_count: Issues on File
-    combined_publications_count: Source Illustrations
+    combined_publications_count: Source Images
     is_public_status: Public Status
     required_for_publication: Required fields for making public are missing
     language_error: "%{lang} Error: %{msg}"
@@ -296,8 +296,8 @@ ka:
     slideshow: Slideshow
     publications: Sources
     publication: Source
-    illustrations: Illustrations
-    illustration: Illustration
+    illustrations: Images
+    illustration: Image
     illustrators: Illustrators
     people: People
     issues: Issues
@@ -320,18 +320,18 @@ ka:
     journal_issues: Journal Issues
     journal_issues_illustrations: |
       Journal Issue
-      Illustrations
+      Images
     books: Books
     books_illustrations: |
       Book
-      Illustrations
+      Images
     originals: Originals
     originals_illustrations: |
       Original
-      Illustrations
+      Images
     illustrators_illustrations: |
       Illustrator
-      Illustrations
+      Images
     by: By
     lived: Lived
     roles: Roles
@@ -352,7 +352,7 @@ ka:
     meta:
       publication_type: Type
       publication_language: Language
-      illustration_count: Illustrations
+      illustration_count: Images
       issue_count: Issues
       publication_count: Sources
       publication_year: Year
@@ -376,7 +376,7 @@ ka:
   messages:
     no_data: There is no data on record at this time.
     no_issues: There are no issues on record at this time.
-    no_illustrations: There are no illustrations on record at this time.
+    no_illustrations: There are no images on record at this time.
   navigation_groups:
     primary: Primary Data
     supporting: Supporting Data
