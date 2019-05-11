@@ -14,7 +14,7 @@ class HomeController < ApplicationController
   end
 
   def sources
-    @publications = Publication.published.sort_published_desc.page(params[:page]).per(@pagination_per_large)
+    @publications = Publication.published.sort_name_asc.page(params[:page]).per(@pagination_per_large)
   end
 
   def source
