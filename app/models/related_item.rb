@@ -77,7 +77,7 @@ class RelatedItem < ApplicationRecord
     elsif self.issue.present?
       Rails.application.routes.url_helpers.issue_path(I18n.locale, self.issue.publication, self.issue)
     elsif self.illustration.present?
-      Rails.application.routes.url_helpers.illustration_path(I18n.locale, self.illustration)
+      Rails.application.routes.url_helpers.image_path(I18n.locale, self.illustration)
     elsif self.person.present?
       Rails.application.routes.url_helpers.person_path(I18n.locale, self.person)
     end

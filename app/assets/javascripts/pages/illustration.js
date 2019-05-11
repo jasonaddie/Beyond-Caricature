@@ -1,11 +1,11 @@
 // place annotation markers
 document.addEventListener("turbolinks:load", function() {
 
-  if (document.querySelector('body.home.illustration .modal-annotations') !== null){
+  if (document.querySelector('body.home.image .modal-annotations') !== null){
 
     // compute the correct top/left positioning for each marker based on the actuall image size being shown
     function setMarkerPositions(){
-      var img = document.querySelector('body.home.illustration .modal-annotations .annotation-markers img')
+      var img = document.querySelector('body.home.image .modal-annotations .annotation-markers img')
       var markers = img.parentElement.querySelectorAll('.annotation-marker')
       var help = img.parentElement.querySelector('.annotation_help')
       var list = img.parentElement.nextElementSibling
@@ -25,20 +25,20 @@ document.addEventListener("turbolinks:load", function() {
       }
     }
 
-    $('body.home.illustration .modal-annotations').on('opening-modal', setMarkerPositions)
+    $('body.home.image .modal-annotations').on('opening-modal', setMarkerPositions)
     $(window).on('resize', setMarkerPositions)
 
 
     // when click on markers on image, highlight the annotaiton text in the list of text
-    document.querySelectorAll('body.home.illustration .modal-annotations .annotation-markers .annotation-marker').forEach( el => {
+    document.querySelectorAll('body.home.image .modal-annotations .annotation-markers .annotation-marker').forEach( el => {
       el.addEventListener('click', () => {
         // turn off all highlights
-        document.querySelectorAll('body.home.illustration .modal-annotations .annotation-list li:not([data-number="' + el.dataset.number + '"]) .annotation-text').forEach( t => {
+        document.querySelectorAll('body.home.image .modal-annotations .annotation-list li:not([data-number="' + el.dataset.number + '"]) .annotation-text').forEach( t => {
           t.classList.remove('is-active')
         })
 
         // toggle the selected item
-        document.querySelector('body.home.illustration .modal-annotations .annotation-list li[data-number="' + el.dataset.number + '"] .annotation-text').classList.toggle('is-active')
+        document.querySelector('body.home.image .modal-annotations .annotation-list li[data-number="' + el.dataset.number + '"] .annotation-text').classList.toggle('is-active')
       })
     })
   }

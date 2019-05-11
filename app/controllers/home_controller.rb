@@ -26,11 +26,19 @@ class HomeController < ApplicationController
     @issue = @publication.issues.friendly.published.find(params[:id]) if @publication
   end
 
-  def illustrations
+  # def illustrations
+  #   @illustrations = Illustration.published.sort_published_desc.page(params[:page]).per(@pagination_per_large)
+  # end
+
+  # def illustration
+  #   @illustration = Illustration.friendly.published.find(params[:id])
+  # end
+
+  def images
     @illustrations = Illustration.published.sort_published_desc.page(params[:page]).per(@pagination_per_large)
   end
 
-  def illustration
+  def image
     @illustration = Illustration.friendly.published.find(params[:id])
   end
 

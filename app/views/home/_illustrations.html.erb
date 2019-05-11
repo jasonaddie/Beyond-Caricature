@@ -10,7 +10,7 @@
       <% illustrations.each do |illustration| %>
         <li>
           <div>
-            <%= link_to illustration_path(illustration) do %>
+            <%= link_to image_path(illustration) do %>
               <%= image_tag illustration.image.thumb('100x100#').url if illustration.image_stored? %>
             <% end %>
           </div>
