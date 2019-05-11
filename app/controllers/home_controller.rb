@@ -51,7 +51,7 @@ class HomeController < ApplicationController
   # end
 
   def people
-    @people = Person.published.sort_published_desc.page(params[:page]).per(@pagination_per_large)
+    @people = Person.published.sort_name_asc.page(params[:page]).per(@pagination_per_large)
   end
 
   def person

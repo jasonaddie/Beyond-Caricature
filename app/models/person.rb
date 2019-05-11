@@ -69,7 +69,7 @@ class Person < ApplicationRecord
   #################
   scope :published, -> { with_translations(I18n.locale).where('person_translations.is_public': true) }
   scope :sort_published_desc, -> { order(date_publish: :desc) }
-  scope :sort_name, -> { with_translations(I18n.locale).order('person_translations.last_name asc, person_translations.first_name asc') }
+  scope :sort_name_asc, -> { with_translations(I18n.locale).order('person_translations.last_name asc, person_translations.first_name asc') }
 
   #################
   ## METHODS ##
