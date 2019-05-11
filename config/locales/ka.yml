@@ -163,8 +163,16 @@ ka:
         date_death: Death Date
         is_public: Is Public?
         name: Name
+        last_name: Last Name
+        first_name: First Name
         bio: Biography
         image: Image
+      person/translation:
+        is_public: Is Public?
+        name: Name
+        last_name: Last Name
+        first_name: First Name
+        bio: Biography
       person_role:
         role: Role
         role_types:
@@ -176,10 +184,6 @@ ka:
           financier: Financier
           official: Official
           subject: Subject
-      person/translation:
-        is_public: Is Public?
-        name: Name
-        bio: Biography
       publication:
         publication_type: Source Type
         publication_types:
@@ -402,4 +406,4 @@ ka:
       oskar_alt: Self portrait of Oskar Schmerling holding a whip and wearing horns
   shared:
     news_item:
-      related_item_explanation: Links to items mentioned in this article
+      related_item_explanation: Related Items
