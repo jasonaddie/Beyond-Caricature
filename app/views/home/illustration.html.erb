@@ -43,7 +43,7 @@
       <ul class="meta-items-list">
         <% if @illustration.person_role %>
           <li>
-            <strong><%= t('labels.meta.illustrator') %>:</strong>
+            <strong><%= t('labels.by') %>:</strong>
             <%= link_to @illustration.person_role.name, person_path(@illustration.person_role.person), class: 'meta-link' %>
           </li>
         <% end %>

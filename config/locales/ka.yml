@@ -87,7 +87,7 @@ ka:
         context: Context
         illustration_annotation: Annotation
         illustration_annotations: Annotations
-        person_role: Illustrator
+        person_role: Person
       illustration/translation:
         is_public: Is Public?
         date_publish: Date Made Public

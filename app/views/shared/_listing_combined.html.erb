@@ -36,7 +36,7 @@
       <% end %>
     </div>
 
-    <% if total %>
+    <% if total && total.values.sum > records.length %>
       <div class="columns listing-more">
         <div class="column is-9 is-offset-3 has-text-centered">
           <% if total[:illustration] > 0 && more_path[:illustration] %>

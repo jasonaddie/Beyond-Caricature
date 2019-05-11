@@ -67,51 +67,47 @@ class PersonRole < ApplicationRecord
       #   - role can be assigned to publication or publication editors
       #     so if publication editor, go up a level and get publication
       roles.each do |role|
-        if role.is_illustrator?
-          person_roles = self.where(role_id: role.id)
-          role_ids = {
-            publication_ids: person_roles.where(person_roleable_type: 'Publication', role_id: role.id).pluck(:person_roleable_id).uniq,
-            illustration_ids: Illustration.published.where(id: self.where(role_id: role.id).pluck(:person_roleable_id)).pluck(:id).uniq
-          }
-          if role_ids[:publication_ids].length > 0
-            # update publication ids to only have published ids
-            role_ids[:publication_ids] = Publication.published.where(id: role_ids[:publication_ids]).pluck(:id).uniq
-          end
+        person_roles = self.where(role_id: role.id)
+        record_ids = {
+          publications: person_roles.where(person_roleable_type: 'Publication').pluck(:person_roleable_id).uniq,
+          pub_editors: person_roles.where(person_roleable_type: 'PublicationEditor').pluck(:person_roleable_id).uniq,
+          publication_ids: [],
+          illustration_ids: person_roles.where(person_roleable_type: 'Illustration').pluck(:person_roleable_id).uniq
+        }
+        if record_ids[:publications].present?
+          # get publication ids
+          record_ids[:publication_ids] << record_ids[:publications]
+        end
+        if record_ids[:pub_editors].present?
+          # get publication ids
+          record_ids[:publication_ids] << PublicationEditor.where(id: record_ids[:pub_editor]).pluck(:publication_id).uniq
+        end
+        # make sure we only have unique publication ids
+        record_ids[:publication_ids] = record_ids[:publication_ids].flatten.uniq
 
-          if role_ids[:publication_ids].length > 0 || role_ids[:illustration_ids].length > 0
-            # update publication ids to only have published ids
-            role_ids[:publication_ids] = Publication.published.where(id: role_ids[:publication_ids]).pluck(:id).uniq
-            records = [
-              Publication.published.where(id: role_ids[:publication_ids]).sort_published_desc.limit(6),
-              Illustration.where(id: role_ids[:illustration_ids]).sort_published_desc.limit(6)
-            ].flatten.compact
+        published_record_ids = {publications: nil, illustrations: nil}
+        if record_ids[:publication_ids].present?
+          published_record_ids[:publications] = Publication.published.where(id: record_ids[:publication_ids]).pluck(:id)
+        end
+        if record_ids[:illustration_ids].present?
+          published_record_ids[:illustrations] = Illustration.published.where(id: record_ids[:illustration_ids]).pluck(:id)
+        end
 
-            groups[role.name] = {total: {publication: role_ids[:publication_ids].length, illustration: role_ids[:illustration_ids].length},
-                                  latest_records: records.sort_by{|x| x.date_publish}.reverse[0..5],
-                                  is_illustrator: role.is_illustrator}
-          end
-        else
-          person_roles = self.where(role_id: role.id)
-          publication_ids = []
-          role_ids = {
-            publication: person_roles.where(person_roleable_type: 'Publication').pluck(:person_roleable_id).uniq,
-            pub_editor: person_roles.where(person_roleable_type: 'PublicationEditor').pluck(:person_roleable_id).uniq
-          }
 
-          if role_ids[:pub_editor].present?
-            # get publication ids
-            publication_ids << PublicationEditor.where(id: role_ids[:pub_editor]).pluck(:publication_id).uniq
-          end
-          publication_ids << role_ids[:publication]
-          publication_ids = publication_ids.flatten.uniq
 
-          record_ids = Publication.published.where(id: publication_ids).pluck(:id)
+        if published_record_ids[:publications].present? || published_record_ids[:illustrations].present?
+          records = []
+        if published_record_ids[:publications].present?
+          records << Publication.published.where(id: published_record_ids[:publications]).sort_published_desc.limit(6)
+        end
+        if published_record_ids[:illustrations].present?
+          records << Illustration.published.where(id: published_record_ids[:illustrations]).sort_published_desc.limit(6)
+        end
+        records.flatten!.compact!
 
-          if record_ids.length > 0
-            groups[role.name] = {total: record_ids.length,
-                                  latest_records: Publication.where(id: record_ids).sort_published_desc.limit(6),
-                                  is_illustrator: role.is_illustrator}
-          end
+          groups[role.name] = {total: {publication: (published_record_ids[:publications].present? ? published_record_ids[:publications].length : 0),
+                                        illustration: (published_record_ids[:illustrations].present? ? published_record_ids[:illustrations].length : 0)},
+                                latest_records: records.sort_by{|x| x.date_publish}.reverse[0..5]}
         end
       end
     end
