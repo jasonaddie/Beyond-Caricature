@@ -78,6 +78,17 @@ class Person < ApplicationRecord
     self.where(id: person_id)
   end
 
+  # get all people that are assigned to published illustrations
+  def self.with_illustrations
+    # get all published illustrations with a person role record
+    illustration_ids = Illustration.published.where(id: PersonRole.where(person_roleable_type: 'Illustration').pluck(:person_roleable_id).uniq).pluck(:id).uniq
+    if illustration_ids.present?
+      self.where(id: PersonRole.where(person_roleable_type: 'Illustration', person_roleable_id: illustration_ids).pluck(:person_id)).distinct
+    else
+      return self
+    end
+  end
+
   # filter people by the following:
   # - role - role id from person role model
   # - lived dates - start and/or end date

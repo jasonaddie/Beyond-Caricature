@@ -177,7 +177,7 @@ class PersonRole < ApplicationRecord
       # limit to only published person
       associated_collection_scope do
         Proc.new { |scope|
-          scope = scope.published.sort_name
+          scope = scope.published.sort_name_asc
         }
       end
     end
