@@ -97,7 +97,7 @@ class Publication < ApplicationRecord
   scope :not_journals, -> { where.not(publication_type: :journal) }
   scope :published, -> { with_translations(I18n.locale).where('publication_translations.is_public': true) }
   scope :sort_published_desc, -> { order(date_publish: :desc) }
-  scope :sort_name_asc, -> { with_translations(I18n.locale).order('publication_translations.title asc, publication_translations.date_publish asc') }
+  scope :sort_name_asc, -> { select('publications.*, publication_translations.title, publication_translations.date_publish').with_translations(I18n.locale).order('publication_translations.title asc, publication_translations.date_publish asc') }
 
   # filter people by the following:
   # - publication type - publication_type enum

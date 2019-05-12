@@ -42,7 +42,7 @@ class HomeController < ApplicationController
   def images
     @illustrations = Illustration.published.filter({search: params[:search], type: params[:type], illustrator: params[:illustrator]}).sort_published_desc.page(params[:page]).per(@pagination_per_large)
     @filter_source_types = Publication.publication_types_for_select2
-    @filter_illustrators = Person.illustrator.published.sort_name
+    @filter_illustrators = Person.illustrator.published.sort_name_asc
   end
 
   def image
