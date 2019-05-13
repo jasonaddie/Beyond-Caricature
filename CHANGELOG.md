@@ -6,6 +6,10 @@ These are items that are have been finished, but not released yet.
 
 None at this time.
 
+## [0.29] - 2019-05-14
+### Added
+- Add search and filters to Sources, People, Images, News and Research pages
+
 ## [0.28] - 2019-05-12
 ### Fixed
 - Sort records on public Peoples page by last name, first name
