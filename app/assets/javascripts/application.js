@@ -13,6 +13,11 @@
 //= require rails-ujs
 //= require turbolinks
 //= require jquery-3.3.1.min
+//= require jquery-ui/widgets/datepicker
+//= require jquery-ui/i18n/datepicker-az
+//= require jquery-ui/i18n/datepicker-hy
+//= require jquery-ui/i18n/datepicker-ka
+//= require jquery-ui/i18n/datepicker-ru
 //= require_tree .
 //= stub 'admin'
 
@@ -53,4 +58,35 @@ const debounce = (func, delay) => {
 
 function convertRemToPixels(rem) {
   return rem * parseFloat(getComputedStyle(document.documentElement).fontSize);
+}
+
+function getAll(selector) {
+  return Array.prototype.slice.call(document.querySelectorAll(selector), 0);
+}
+
+
+function formatDate(d)
+{
+
+  if (d !== null){
+    var month = d.getMonth();
+    var day = d.getDate();
+    month = month + 1;
+
+    month = month + "";
+
+    if (month.length == 1)
+    {
+        month = "0" + month;
+    }
+
+    day = day + "";
+
+    if (day.length == 1)
+    {
+        day = "0" + day;
+    }
+
+    return d.getFullYear() + '-' + month + '-' + day;
+  }
 }

@@ -87,7 +87,8 @@ class Illustration < ApplicationRecord
   # filter illustrations by the following:
   # - publication type - publication type key from publication table
   # - illustrator name - name of person with illustrator role
-  # - publication year - publication start and/or end year
+  # - date_start - publication start date
+  # - date_end - publication end date
   # - search - string (title, context, tags, source name?, illustrator name?)
   def self.filter(options={})
     x = self
@@ -103,13 +104,14 @@ class Illustration < ApplicationRecord
       x = x.joins(:person_role).where(person_roles: {person_id: Person.published.where(slug: options[:illustrator])})
     end
 
-    if options[:year].present?
-      if options[:year][:start].present?
-        x = x.joins(:publications).where('publications.year >= ?', options[:year][:start])
-      end
-      if options[:year][:end].present?
-        x = x.joins(:publications).where('publications.year <= ?', options[:year][:end])
-      end
+    puts '-------------'
+    puts options.inspect
+    if options[:date_start].present?
+      x = x.joins(:publications).where('publications.year >= ?', options[:date_start].year)
+    end
+
+    if options[:date_end].present?
+      x = x.joins(:publications).where('publications.year <= ?', options[:date_end].year)
     end
 
     if options[:search].present?

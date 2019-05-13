@@ -40,7 +40,10 @@ class HomeController < ApplicationController
   # end
 
   def images
-    @illustrations = Illustration.published.filter({search: params[:search], type: params[:type], illustrator: params[:illustrator]}).sort_published_desc.page(params[:page]).per(@pagination_per_large)
+    @illustrations = Illustration.published
+                        .filter({search: params[:search], type: params[:type], illustrator: params[:illustrator],
+                                date_start: convert_date_param(:date_start), date_end: convert_date_param(:date_end)})
+                        .sort_published_desc.page(params[:page]).per(@pagination_per_large)
     @filter_source_types = Publication.publication_types_for_select2
     @filter_illustrators = Person.with_illustrations.published.sort_name_asc
   end
@@ -139,5 +142,23 @@ private
 
   def clean_search_query
     params[:search] = params[:search].present? ? params[:search].gsub("'", "").gsub('"', '') : nil
+  end
+
+  def convert_date_param(param_key)
+    d = nil
+    if params[param_key].present?
+      begin
+        if /^\d\d\d\d-[0-1][1-9]-[0-3]\d$/.match?(params[param_key])
+          d = Date.parse(params[param_key])
+        else
+          # reset the param value
+          params[param_key] = nil
+        end
+      rescue
+        # do nothing
+      end
+    end
+
+    return d
   end
 end

@@ -31,6 +31,14 @@
         </div>
         <div class="column is-3">
           <div class="filter-label">
+            <label for="filter_search"><%= t('labels.filter.date') %></label>
+          </div>
+          <div class="filter-date">
+            <%= date_field :filter, :date, value: params[:date], 'data-key': 'date' %>
+          </div>
+        </div>
+        <div class="column is-3">
+          <div class="filter-label">
             <label for="filter_type"><%= t('labels.filter.source_type') %></label>
           </div>
           <div class="filter-select">
