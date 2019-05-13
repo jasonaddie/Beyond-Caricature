@@ -1,4 +1,3 @@
-//= require jquery-3.3.1.min
 //= require slick.min
 
 document.addEventListener("turbolinks:load", function() {
