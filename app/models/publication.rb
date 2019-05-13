@@ -102,7 +102,8 @@ class Publication < ApplicationRecord
   # filter people by the following:
   # - publication type - publication_type enum
   # - publication language - language id
-  # - publication year - start and/or end year
+  # - date_start - publication start date
+  # - date_end - publication end date
   # - search - string
   def self.filter(options={})
     x = self
@@ -114,13 +115,12 @@ class Publication < ApplicationRecord
       x = x.where(publication_language_id: options[:language])
     end
 
-    if options[:year].present?
-      if options[:year][:start].present?
-        x = x.where('year >= ?', options[:year][:start])
-      end
-      if options[:year][:end].present?
-        x = x.where('year <= ?', options[:year][:end])
-      end
+    if options[:date_start].present?
+      x = x.where('year >= ?', options[:date_start].year)
+    end
+
+    if options[:date_end].present?
+      x = x.where('year <= ?', options[:date_end].year)
     end
 
     if options[:search].present?

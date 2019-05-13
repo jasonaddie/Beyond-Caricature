@@ -104,8 +104,6 @@ class Illustration < ApplicationRecord
       x = x.joins(:person_role).where(person_roles: {person_id: Person.published.where(slug: options[:illustrator])})
     end
 
-    puts '-------------'
-    puts options.inspect
     if options[:date_start].present?
       x = x.joins(:publications).where('publications.year >= ?', options[:date_start].year)
     end

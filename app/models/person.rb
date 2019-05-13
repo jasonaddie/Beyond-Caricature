@@ -91,7 +91,8 @@ class Person < ApplicationRecord
 
   # filter people by the following:
   # - role - role id from person role model
-  # - lived dates - start and/or end date
+  # - date_start - birth date is greater than this date
+  # - date_end - death date is greater than this date
   # - search - string
   def self.filter(options={})
     x = self
@@ -99,13 +100,12 @@ class Person < ApplicationRecord
       x = x.joins(:person_roles).where(person_roles: {role_id: options[:role]})
     end
 
-    if options[:lived].present?
-      if options[:lived][:start].present?
-        x = x.where('date_birth >= ?', options[:lived][:start])
-      end
-      if options[:lived][:end].present?
-        x = x.where('date_death <= ?', options[:lived][:end])
-      end
+    if options[:date_start].present?
+      x = x.where('date_birth >= ?', options[:date_start])
+    end
+
+    if options[:date_end].present?
+      x = x.where('date_death <= ?', options[:date_end])
     end
 
     if options[:search].present?

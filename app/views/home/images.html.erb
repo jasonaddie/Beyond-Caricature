@@ -8,16 +8,6 @@
     hacked_class = ''
   end
 
-  filter_date = "&nbsp;"
-  if params[:date_start].present?
-    if params[:date_end].present?
-      filter_date = "#{params[:date_start]} - #{params[:date_end]}"
-    else
-      filter_date = " > #{params[:date_start]}"
-    end
-  elsif params[:date_end].present?
-    filter_date = " < #{params[:date_end]}"
-  end
 %>
 
 <div class="columns is-centered">
@@ -48,7 +38,7 @@
             <div class="dropdown-trigger">
               <button class="button control has-icons-right" aria-haspopup="true" aria-controls="dropdown-date">
                 <span class="dropdown-trigger-content" data-start="<%= params[:date_start] %>" data-end="<%= params[:date_end] %>">
-                  <%= filter_date.html_safe %>
+                  <%= generate_date_label(params[:date_start], params[:date_end]) %>
                 </span>
                 <span class="icon is-right">
                   <i class="down-arrow" aria-hidden="true"></i>

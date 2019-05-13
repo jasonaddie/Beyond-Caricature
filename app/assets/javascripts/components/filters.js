@@ -2,6 +2,7 @@ var dateFormat = 'yy-mm-dd'
 var defaultYear = 1906
 var defaultMonth = 0
 var currentDate = new Date(new Date().setHours(0,0,0,0))
+var yearAppStart = 2019
 
 document.addEventListener("turbolinks:load", function() {
   var $filter_selects = $('.filters .filter-select')
@@ -9,7 +10,16 @@ document.addEventListener("turbolinks:load", function() {
   var $filter_searches = $('.filters .filter-search')
   var $filter_date_content = $filter_dates.find('.dropdown-trigger-content')
   var $filter_label_date = $('.filters .filter-label-date')
+  var is_datepicker_now = $filter_dates.data('options') === 'now'
   var base_url = [location.protocol, '//', location.host, location.pathname].join('')
+
+  if (is_datepicker_now){
+    defaultYear = (new Date()).getFullYear()
+    defaultMonth = (new Date()).getMonth()
+  }else{
+    defaultYear = 1906
+    defaultMonth = 0
+  }
 
   // register all filter selects with select2
   $filter_selects.find('select').select2({
@@ -18,16 +28,12 @@ document.addEventListener("turbolinks:load", function() {
     placeholder: ' '
   })
 
-
   // register all dates with datepicker
   var date_options = $.extend(true, {}, $.datepicker.regional[$('html').attr('lang')], {
     changeMonth: true,
     changeYear: true,
-    dateFormat: dateFormat,
-    minDate: '1860-01-01',
-    maxDate: new Date((new Date()).getFullYear(), 12, 31),
-    yearRange: "1860:" + (new Date()).getFullYear()
-  })
+    dateFormat: dateFormat
+  }, generate_date_options(is_datepicker_now))
 
   var date_start = $filter_dates.find('.date-start .datepicker').datepicker(date_options)
     .on("change", function() {
@@ -154,6 +160,21 @@ document.addEventListener("turbolinks:load", function() {
       $(date_obj).find('.ui-datepicker-year').trigger('change')
     }
   }
+
+  function generate_date_options(is_datepicker_now){
+    options = {}
+    if (is_datepicker_now){
+      options.minDate = yearAppStart.toString() + '-01-01'
+      options.maxDate = new Date((new Date()).getFullYear(), 12, 31)
+      options.yearRange = yearAppStart.toString() + ":" + (new Date()).getFullYear()
+    }else{
+      options.minDate = '1860-01-01'
+      options.maxDate = new Date((new Date()).getFullYear(), 12, 31)
+      options.yearRange = "1860:" + (new Date()).getFullYear()
+    }
+    return options
+  }
+
 })
 
 
@@ -165,23 +186,20 @@ var updateQueryStringParam = function (urlQueryString, key, value) {
 
   // If the "search" string exists, then build params from it
   if (urlQueryString) {
-      var updateRegex = new RegExp('([\?&])' + key + '[^&]*');
-      var removeRegex = new RegExp('([\?&])' + key + '=[^&;]+[&;]?');
+    var updateRegex = new RegExp('([\?&])' + key + '[^&]*');
+    var removeRegex = new RegExp('([\?&])' + key + '=[^&;]+[&;]?');
 
-      if( typeof value === 'undefined' || value === null || value === '' ) { // Remove param if value is empty
-        console.log('- remove')
-          params = urlQueryString.replace(removeRegex, "$1");
-          params = params.replace( /[&;]$/, "" );
+    if( typeof value === 'undefined' || value === null || value === '' ) { // Remove param if value is empty
+      params = urlQueryString.replace(removeRegex, "$1");
+      params = params.replace( /[&;]$/, "" );
 
-      } else if (urlQueryString.match(updateRegex) !== null) { // If param exists already, update it
-        console.log('- update')
-          params = urlQueryString.replace(updateRegex, "$1" + newParam);
+    } else if (urlQueryString.match(updateRegex) !== null) { // If param exists already, update it
+      params = urlQueryString.replace(updateRegex, "$1" + newParam);
 
-      } else { // Otherwise, add it to end of query string
-        console.log('- add')
+    } else { // Otherwise, add it to end of query string
+      params = urlQueryString + '&' + newParam;
 
-          params = urlQueryString + '&' + newParam;
-      }
+    }
   }
 
   // do not include any null values in params

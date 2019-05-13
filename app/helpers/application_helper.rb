@@ -43,4 +43,19 @@ module ApplicationHelper
   def add_br_tags(text)
     text.gsub("\n", "</br>").html_safe
   end
+
+  def generate_date_label(date_start, date_end)
+    filter_date = "&nbsp;"
+    if date_start.present?
+      if date_end.present?
+        filter_date = "#{date_start} - #{date_end}"
+      else
+        filter_date = " > #{date_start}"
+      end
+    elsif date_end.present?
+      filter_date = " < #{date_end}"
+    end
+
+    return filter_date.html_safe
+  end
 end

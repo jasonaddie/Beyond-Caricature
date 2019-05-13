@@ -15,7 +15,10 @@ class HomeController < ApplicationController
   end
 
   def sources
-    @publications = Publication.published.filter({search: params[:search], type: params[:type], language: params[:language]}).sort_name_asc.page(params[:page]).per(@pagination_per_large)
+    @publications = Publication.published
+                      .filter({search: params[:search], type: params[:type], language: params[:language],
+                                date_start: convert_date_param(:date_start), date_end: convert_date_param(:date_end)})
+                      .sort_name_asc.page(params[:page]).per(@pagination_per_large)
     @filter_source_types = Publication.publication_types_for_select2
     @filter_languages = PublicationLanguage.active.sort_language.with_published_publications
   end
@@ -61,7 +64,10 @@ class HomeController < ApplicationController
   # end
 
   def people
-    @people = Person.published.filter({search: params[:search], role: params[:role]}).sort_name_asc.page(params[:page]).per(@pagination_per_large)
+    @people = Person.published
+                .filter({search: params[:search], role: params[:role],
+                          date_start: convert_date_param(:date_start), date_end: convert_date_param(:date_end)})
+                .sort_name_asc.page(params[:page]).per(@pagination_per_large)
     @filter_roles = Role.roles_assigned_to_published_people.sort_name.uniq
   end
 
@@ -70,7 +76,10 @@ class HomeController < ApplicationController
   end
 
   def news
-    @news = News.published.filter({search: params[:search]}).sort_published_desc.page(params[:page]).per(@pagination_per_small)
+    @news = News.published
+                .filter({search: params[:search],
+                        date_start: convert_date_param(:date_start), date_end: convert_date_param(:date_end)})
+                .sort_published_desc.page(params[:page]).per(@pagination_per_small)
   end
 
   def news_item
@@ -78,7 +87,10 @@ class HomeController < ApplicationController
   end
 
   def researches
-    @researches = Research.published.filter({search: params[:search]}).sort_published_desc.page(params[:page]).per(@pagination_per_small)
+    @researches = Research.published
+                          .filter({search: params[:search],
+                                    date_start: convert_date_param(:date_start), date_end: convert_date_param(:date_end)})
+                          .sort_published_desc.page(params[:page]).per(@pagination_per_small)
   end
 
   def research

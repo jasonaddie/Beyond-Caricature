@@ -75,6 +75,8 @@ class News < ApplicationRecord
 
   # filter news by the following:
   # - search - string
+  # - date_start - published after this date
+  # - date_end - published before this date
   def self.filter(options={})
     x = self
     if options[:search].present?
@@ -82,6 +84,14 @@ class News < ApplicationRecord
             .where(build_full_text_search_sql(%w(news_translations.title news_translations.summary news_translations.text)),
               options[:search]
             )
+    end
+
+    if options[:date_start].present?
+      x = x.with_translations(I18n.locale).where('news_translations.date_publish >= ?', options[:date_start])
+    end
+
+    if options[:date_end].present?
+      x = x.with_translations(I18n.locale).where('news_translations.date_publish <= ?', options[:date_end])
     end
 
     return x.distinct
