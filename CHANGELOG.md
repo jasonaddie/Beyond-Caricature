@@ -6,6 +6,10 @@ These are items that are have been finished, but not released yet.
 
 None at this time.
 
+## [0.30] - 2019-05-14
+### Fixed
+- Search/filter was not properly updating the url
+
 ## [0.29] - 2019-05-14
 ### Added
 - Add search and filters to Sources, People, Images, News and Research pages
