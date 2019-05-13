@@ -34,12 +34,7 @@
         </div>
         <div class="column is-3">
           <div class="filter-label">
-            <div class="control has-icons-right">
-              <label for="filter_type"><%= t('labels.filter.source_type') %></label>
-              <span class="icon is-right">
-                <i class="down-arrow"></i>
-              </span>
-            </div>
+            <label for="filter_type"><%= t('labels.filter.source_type') %></label>
           </div>
           <div class="filter-select">
             <%= select(:filter, :type, options_for_select(@filter_source_types, params[:type]), {prompt: ''}, {style: 'width: 100%', 'data-key': 'type'}) %>
@@ -47,12 +42,7 @@
         </div>
         <div class="column is-3">
           <div class="filter-label">
-            <div class="control has-icons-right">
-              <label for="filter_language"><%= t('labels.filter.language') %></label>
-              <span class="icon is-right">
-                <i class="down-arrow"></i>
-              </span>
-            </div>
+            <label for="filter_language"><%= t('labels.filter.language') %></label>
           </div>
           <div class="filter-select">
             <%= collection_select(:filter, :language, @filter_languages, :id, :language, {selected: params[:language], prompt: ''}, {style: 'width: 100%', 'data-key': 'language'}) %>

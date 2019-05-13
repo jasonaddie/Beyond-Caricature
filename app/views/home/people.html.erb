@@ -31,12 +31,7 @@
         </div>
         <div class="column is-3">
           <div class="filter-label">
-            <div class="control has-icons-right">
-              <label for="filter_role"><%= t('labels.filter.role') %></label>
-              <span class="icon is-right">
-                <i class="down-arrow"></i>
-              </span>
-            </div>
+            <label for="filter_role"><%= t('labels.filter.role') %></label>
           </div>
           <div class="filter-select">
             <%= collection_select(:filter, :role, @filter_roles, :id, :name, {selected: params[:role], prompt: ''}, {style: 'width: 100%', 'data-key': 'role'}) %>
