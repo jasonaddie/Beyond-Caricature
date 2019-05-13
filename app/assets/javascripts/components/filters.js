@@ -130,8 +130,10 @@ document.addEventListener("turbolinks:load", function() {
   var process_filter_request = function(ths){
     var key = $(ths).data('key')
     var val = $(ths).val()
+    var options = {}
+    options[key] = val
 
-    reload_page_with_new_params({key: val})
+    reload_page_with_new_params(options)
   }
 
   var reload_page_with_new_params = function(params){
