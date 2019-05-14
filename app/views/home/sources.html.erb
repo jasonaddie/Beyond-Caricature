@@ -2,12 +2,12 @@
 <%
   column_size = 'is-6-mobile is-4-tablet is-3-desktop is-3'
   card_partial = 'shared/card_meta_down'
-  image_size = '400x204#'
+  image_size = :wide
   hacked_class = 'hacked-mobile'
   if params[:view].present? && params[:view].downcase == 'list'
     column_size = 'is-12'
     card_partial = 'shared/card_meta_right'
-    image_size = '400x400#'
+    image_size = :square
     hacked_class = ''
   end
 %>
@@ -102,7 +102,7 @@
                 title: publication.title,
                 summary: card_partial == 'shared/card_meta_right' ? publication.about : nil,
                 link_path: source_path(publication),
-                cover_image_path: publication.cover_image.thumb(image_size).url,
+                cover_image_path: publication.cover_image.thumb(publication.generate_image_size_syntax(image_size)).url,
                 type: pub.human_enum_name(:publication_type, publication.publication_type),
                 language: publication.language,
                 date_label: I18n.t("labels.publication_dates.#{publication.publication_type}"),

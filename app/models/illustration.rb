@@ -11,6 +11,7 @@
 
 class Illustration < ApplicationRecord
   include FullTextSearch
+  include CropAlignment
 
   #################
   ## HISTORY TRACKING ##
@@ -240,6 +241,11 @@ class Illustration < ApplicationRecord
     configure :image do
       html_attributes required: required? && !value.present?, accept: 'image/*'
     end
+    configure :crop_alignment do
+      pretty_value do
+        bindings[:object].crop_alignment_formatted
+      end
+    end
     configure :person_role do
       # build simple list of name and role
       pretty_value do
@@ -278,6 +284,7 @@ class Illustration < ApplicationRecord
     show do
       field :is_public
       field :image
+      field :crop_alignment
       field :title
       field :context
       field :person_role
@@ -295,6 +302,9 @@ class Illustration < ApplicationRecord
     edit do
       field :image do
         help "#{I18n.t('admin.help.image_size.illustration')} #{I18n.t('admin.help.image')}"
+      end
+      field :crop_alignment do
+        help I18n.t('admin.help.crop_alignment')
       end
       field :person_role do
         help I18n.t('admin.help.person')

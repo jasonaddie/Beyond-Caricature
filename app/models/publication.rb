@@ -15,6 +15,7 @@
 
 class Publication < ApplicationRecord
   include FullTextSearch
+  include CropAlignment
 
   #################
   ## HISTORY TRACKING ##
@@ -270,6 +271,11 @@ class Publication < ApplicationRecord
     configure :cover_image do
       html_attributes required: required? && !value.present?, accept: 'image/*'
     end
+    configure :crop_alignment do
+      pretty_value do
+        bindings[:object].crop_alignment_formatted
+      end
+    end
     # create link to file
     configure :scanned_file do
       html_attributes required: required? && !value.present?, accept: '.pdf'
@@ -377,6 +383,7 @@ class Publication < ApplicationRecord
     show do
       field :is_public
       field :cover_image
+      field :crop_alignment
       field :publication_type
       field :publication_language
       field :scanned_file do
@@ -421,6 +428,9 @@ class Publication < ApplicationRecord
       end
       field :cover_image do
         help "#{I18n.t('admin.help.image_size.publication')} #{I18n.t('admin.help.image')}"
+      end
+      field :crop_alignment do
+        help I18n.t('admin.help.crop_alignment')
       end
       field :scanned_file do
         css_class 'publication-file'

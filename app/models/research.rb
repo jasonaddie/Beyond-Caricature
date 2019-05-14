@@ -10,6 +10,7 @@
 
 class Research < ApplicationRecord
   include FullTextSearch
+  include CropAlignment
 
   #################
   ## HISTORY TRACKING ##
@@ -138,6 +139,11 @@ class Research < ApplicationRecord
     configure :cover_image do
       html_attributes required: required? && !value.present?, accept: 'image/*'
     end
+    configure :crop_alignment do
+      pretty_value do
+        bindings[:object].crop_alignment_formatted
+      end
+    end
     configure :slideshows do
       # determine if the has many block should be open when page loads
       active do
@@ -170,6 +176,7 @@ class Research < ApplicationRecord
     show do
       field :is_public
       field :cover_image
+      field :crop_alignment
       field :title
       field :summary
       field :text
@@ -183,6 +190,9 @@ class Research < ApplicationRecord
     edit do
       field :cover_image do
         help "#{I18n.t('admin.help.image_size.research')} #{I18n.t('admin.help.image')}"
+      end
+      field :crop_alignment do
+        help I18n.t('admin.help.crop_alignment')
       end
       field :translations do
         label I18n.t('labels.translations')

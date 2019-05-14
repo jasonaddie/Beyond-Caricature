@@ -99,7 +99,7 @@
           <%= render partial: card_partial, locals: {
                 title: illustration.title,
                 link_path: image_path(illustration),
-                cover_image_path: illustration.image.thumb('400x400#').url,
+                cover_image_path: illustration.image.thumb(illustration.generate_image_size_syntax(:square)).url,
                 summary: illustration.context,
                 illustrator: illustration.person_role ? illustration.person_role.name : nil
             } %>

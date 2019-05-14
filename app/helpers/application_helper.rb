@@ -60,4 +60,5 @@ module ApplicationHelper
 
     return filter_date.html_safe
   end
+
 end

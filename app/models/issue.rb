@@ -17,6 +17,8 @@
 #
 
 class Issue < ApplicationRecord
+  include CropAlignment
+
   #################
   ## HISTORY TRACKING ##
   #################
@@ -176,6 +178,11 @@ end
     configure :cover_image do
       html_attributes required: required? && !value.present?, accept: 'image/*'
     end
+    configure :crop_alignment do
+      pretty_value do
+        bindings[:object].crop_alignment_formatted
+      end
+    end
     # create link to file
     configure :scanned_file do
       html_attributes required: required? && !value.present?, accept: '.pdf'
@@ -214,6 +221,7 @@ end
       field :issue_number
       field :date_publication
       field :cover_image
+      field :crop_alignment
       field :scanned_file
       field :illustration_count do
         label I18n.t('labels.illustration_count')
@@ -234,6 +242,9 @@ end
       field :date_publication
       field :cover_image do
         help I18n.t('admin.help.image')
+      end
+      field :crop_alignment do
+        help I18n.t('admin.help.crop_alignment')
       end
       field :scanned_file do
         help I18n.t('admin.help.file')

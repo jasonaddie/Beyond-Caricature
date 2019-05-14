@@ -12,6 +12,7 @@
 
 class Person < ApplicationRecord
   include FullTextSearch
+  include CropAlignment
 
   #################
   ## HISTORY TRACKING ##
@@ -188,6 +189,11 @@ class Person < ApplicationRecord
     configure :image do
       html_attributes required: required? && !value.present?, accept: 'image/*'
     end
+    configure :crop_alignment do
+      pretty_value do
+        bindings[:object].crop_alignment_formatted
+      end
+    end
     configure :is_public do
       # build an inline list that shows the status of each language
       pretty_value do
@@ -222,6 +228,7 @@ class Person < ApplicationRecord
     show do
       field :is_public
       field :image
+      field :crop_alignment
       field :first_name
       field :last_name
       field :bio
@@ -242,6 +249,9 @@ class Person < ApplicationRecord
       end
       field :image do
         help "#{I18n.t('admin.help.image_size.person')} #{I18n.t('admin.help.image')}"
+      end
+      field :crop_alignment do
+        help I18n.t('admin.help.crop_alignment')
       end
       field :date_birth
       field :date_death

@@ -22,13 +22,13 @@
                   title: record.title,
                   summary: summary_method[model_class].present? ? record.send(summary_method[model_class]) : nil,
                   link_path: send(link_path[model_class], record),
-                  cover_image_path: record.cover_image.thumb('400x204#').url
+                  cover_image_path: record.cover_image.thumb(record.generate_image_size_syntax(:wide)).url
               } %>
             <% elsif partial[model_class] == 'card_meta_hover' %>
               <%= render partial: 'shared/card_meta_hover', locals: {
                     title: record.title,
                     link_path: send(link_path[model_class], record),
-                    cover_image_path: record.image.thumb('400x400#').url,
+                    cover_image_path: record.image.thumb(record.generate_image_size_syntax(:square)).url,
                     illustrator: record.person_role ? record.person_role.name : nil
                 } %>
             <% end %>

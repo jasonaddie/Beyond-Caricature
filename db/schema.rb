@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_05_11_173027) do
+ActiveRecord::Schema.define(version: 2019_05_14_085309) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -62,6 +62,7 @@ ActiveRecord::Schema.define(version: 2019_05_11_173027) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.string "cover_image_uid"
+    t.string "crop_alignment", default: "c"
   end
 
   create_table "illustration_annotation_translations", force: :cascade do |t|
@@ -145,6 +146,7 @@ ActiveRecord::Schema.define(version: 2019_05_11_173027) do
     t.string "image_uid"
     t.string "slug"
     t.bigint "person_id"
+    t.string "crop_alignment", default: "c"
     t.index ["person_id"], name: "index_illustrations_on_person_id"
     t.index ["slug"], name: "index_illustrations_on_slug", unique: true
   end
@@ -191,6 +193,7 @@ ActiveRecord::Schema.define(version: 2019_05_11_173027) do
     t.string "scanned_file_uid"
     t.string "slug"
     t.integer "scanned_file_size"
+    t.string "crop_alignment", default: "c"
     t.index ["date_publication"], name: "index_issues_on_date_publication"
     t.index ["date_publish"], name: "index_issues_on_date_publish"
     t.index ["is_public"], name: "index_issues_on_is_public"
@@ -267,6 +270,7 @@ ActiveRecord::Schema.define(version: 2019_05_11_173027) do
     t.datetime "updated_at", null: false
     t.string "cover_image_uid"
     t.string "slug"
+    t.string "crop_alignment", default: "c"
     t.index ["slug"], name: "index_news_on_slug", unique: true
   end
 
@@ -315,6 +319,7 @@ ActiveRecord::Schema.define(version: 2019_05_11_173027) do
     t.string "slug"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "crop_alignment", default: "c"
     t.index ["date_birth"], name: "index_people_on_date_birth"
     t.index ["date_death"], name: "index_people_on_date_death"
     t.index ["is_public"], name: "index_people_on_is_public"
@@ -420,6 +425,7 @@ ActiveRecord::Schema.define(version: 2019_05_11_173027) do
     t.string "scanned_file_uid"
     t.string "slug"
     t.integer "scanned_file_size"
+    t.string "crop_alignment", default: "c"
     t.index ["publication_language_id"], name: "index_publications_on_publication_language_id"
     t.index ["publication_type"], name: "index_publications_on_publication_type"
     t.index ["slug"], name: "index_publications_on_slug", unique: true
@@ -471,6 +477,7 @@ ActiveRecord::Schema.define(version: 2019_05_11_173027) do
     t.datetime "updated_at", null: false
     t.string "cover_image_uid"
     t.string "slug"
+    t.string "crop_alignment", default: "c"
     t.index ["slug"], name: "index_researches_on_slug", unique: true
   end
 

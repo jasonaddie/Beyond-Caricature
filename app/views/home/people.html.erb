@@ -90,7 +90,7 @@
           <%= render partial: card_partial, locals: {
                 title: person.name,
                 link_path: person_path(person),
-                cover_image_path: person.image.thumb('400x400#').url,
+                cover_image_path: person.image.thumb(person.generate_image_size_syntax(:square)).url,
                 date_birth: person.date_birth,
                 date_death: person.date_death,
                 summary: person.bio,

@@ -17,7 +17,7 @@
         </div>
         <div class="listing-cover-image">
           <%= link_to send(item_path, item) do %>
-            <%= image_tag item.cover_image.thumb('438x326#').url %>
+            <%= image_tag item.cover_image.thumb(item.generate_image_size_syntax(:news)).url %>
           <% end %>
         </div>
         <h3>

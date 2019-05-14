@@ -9,6 +9,8 @@
 #
 
 class Highlight < ApplicationRecord
+  include CropAlignment
+
   #################
   ## HISTORY TRACKING ##
   #################
@@ -88,6 +90,11 @@ class Highlight < ApplicationRecord
     configure :cover_image do
       html_attributes required: required? && !value.present?, accept: 'image/*'
     end
+    configure :crop_alignment do
+      pretty_value do
+        bindings[:object].crop_alignment_formatted
+      end
+    end
 
     # list page
     list do
@@ -102,6 +109,7 @@ class Highlight < ApplicationRecord
     show do
       field :is_public
       field :cover_image
+      field :crop_alignment
       field :title
       field :summary
       field :link
@@ -114,6 +122,9 @@ class Highlight < ApplicationRecord
     edit do
       field :cover_image do
         help "#{I18n.t('admin.help.image_size.highlight')} #{I18n.t('admin.help.image')}"
+      end
+      field :crop_alignment do
+        help I18n.t('admin.help.crop_alignment')
       end
       field :translations do
         label I18n.t('labels.translations')
