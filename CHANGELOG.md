@@ -6,6 +6,15 @@ These are items that are have been finished, but not released yet.
 
 None at this time.
 
+## [0.31] - 2019-05-14
+### Added
+- Crop alignment field to data models with images that appear in lists (i.e., Source, Issue, Image, Person, News, Research)
+    - This field allows admins to indicate what part of the image to use when creating the thumbnail for list pages
+
+### Fixed
+- Language switcher loads entire page so language attributes are properly loaded
+- Consolidated all image size references into one method
+
 ## [0.30] - 2019-05-14
 ### Fixed
 - Search/filter was not properly updating the url
