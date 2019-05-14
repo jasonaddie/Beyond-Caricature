@@ -33,7 +33,9 @@ module ApplicationHelper
     end
 
     if url.present?
-      return link_to(locale, url, title: I18n.t("languages.#{locale}"), class: "navbar-item #{I18n.locale == locale ? ' is-active' : ''}")
+      return link_to(locale, url, title: I18n.t("languages.#{locale}"),
+                      class: "navbar-item #{I18n.locale == locale ? ' is-active' : ''}",
+                      'data-turbolinks': false)
     else
       return nil
     end
