@@ -278,6 +278,16 @@ az:
           editor: Editor
           admin: Admin
           superadmin: Super Admin
+  crop_alignments:
+    center: Center
+    north: North
+    northwest: North West
+    west: West
+    southwest: South West
+    south: South
+    southeast: South East
+    east: East
+    northeast: North East
   labels:
     translations: Translation Fields
     illustration_count: Images on File

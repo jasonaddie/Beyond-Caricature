@@ -185,6 +185,7 @@ ka:
       is_illustrator: Illustrators are a special role that requires additional processing and this flag is used to know if the role is an illustrator.
       page_content_name: This is just a unique value that can be used to find and show the correct content on a page.
       required: Required
+      crop_alignment: The image will be cropped to create the thumbnail for the listing pages. Use this field to indicate what area of the image you want to use for the thumbnail.
     errors:
       required_for_publication: is required for making the language public
       required_related_item: is required
