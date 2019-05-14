@@ -141,7 +141,11 @@ class Research < ApplicationRecord
     end
     configure :crop_alignment do
       pretty_value do
-        bindings[:object].crop_alignment_formatted
+        bindings[:view].content_tag(:div, bindings[:object].crop_alignment_formatted) +
+        if bindings[:object].cover_image.present?
+          bindings[:view].tag(:br) +
+          bindings[:view].image_tag(bindings[:object].cover_image.thumb(bindings[:object].generate_image_size_syntax(:news_small)).url, class: 'img-thumbnail')
+        end
       end
     end
     configure :slideshows do
@@ -175,7 +179,9 @@ class Research < ApplicationRecord
     # show page
     show do
       field :is_public
-      field :cover_image
+      field :cover_image do
+        thumb_method '150x'
+      end
       field :crop_alignment
       field :title
       field :summary

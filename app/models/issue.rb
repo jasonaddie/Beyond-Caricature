@@ -180,7 +180,11 @@ end
     end
     configure :crop_alignment do
       pretty_value do
-        bindings[:object].crop_alignment_formatted
+        bindings[:view].content_tag(:div, bindings[:object].crop_alignment_formatted) +
+        if bindings[:object].cover_image.present?
+          bindings[:view].tag(:br) +
+          bindings[:view].image_tag(bindings[:object].cover_image.thumb(bindings[:object].generate_image_size_syntax(:square_small)).url, class: 'img-thumbnail')
+        end
       end
     end
     # create link to file
@@ -220,7 +224,9 @@ end
       field :publication
       field :issue_number
       field :date_publication
-      field :cover_image
+      field :cover_image do
+        thumb_method '150x'
+      end
       field :crop_alignment
       field :scanned_file
       field :illustration_count do

@@ -41,7 +41,11 @@ module CropAlignment
         highlight: '726x483#',
         landscape: 'x576',
         portrait: '550x',
-        annotation: '550x'
+        annotation: '550x',
+        square_small: '150x150#',
+        wide_small: '150x76#',
+        news_small: '150x112#',
+        highlight_small: '150x100#'
       }
 
       syntax = ''
