@@ -94,6 +94,10 @@ a.read-more{
   }
 }
 
+h1.title.is-3{
+  font-weight: 700;
+}
+
 @media (min-width: 769px){
   body{
     background-image: url(asset_path('background_dashed_line.png'));
