@@ -363,7 +363,7 @@ hy:
       search: Search
       source_type: Source Type
       language: Language
-      illustrator: Creator
+      person: Creator
       role: Role
       date: Date
       date_explanation: Pick start date or end date or both.

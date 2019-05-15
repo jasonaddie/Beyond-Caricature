@@ -103,6 +103,7 @@ class Publication < ApplicationRecord
   # filter people by the following:
   # - publication type - publication_type enum
   # - publication language - language id
+  # - person - slug of person that is assigned to this publication
   # - date_start - publication start date
   # - date_end - publication end date
   # - search - string
@@ -114,6 +115,21 @@ class Publication < ApplicationRecord
 
     if options[:language].present?
       x = x.where(publication_language_id: options[:language])
+    end
+
+    if options[:person].present?
+      # see if person exists
+      # if so, get all publications or publication editors this person is assigned to
+      p = Person.published.friendly.select('id').find(options[:person])
+      if p.present?
+        pub_ids = PersonRole.where(person_id: p.id, person_roleable_type: 'Publication').pluck(:person_roleable_id)
+        pub_editor_ids = PersonRole.where(person_id: p.id, person_roleable_type: 'PublicationEditor').pluck(:person_roleable_id)
+        if pub_editor_ids.present?
+          pub_ids << PublicationEditor.where(id: pub_editor_ids).pluck(:publication_id)
+        end
+        pub_ids.flatten!.uniq!
+        x = x.where(id: pub_ids)
+      end
     end
 
     if options[:date_start].present?

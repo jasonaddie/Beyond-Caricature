@@ -86,7 +86,7 @@
           records: value[:latest_records],
           partial: {publication: 'card_meta_down', illustration: 'card_meta_hover'},
           link_path: {publication: :source_path, illustration: :image_path},
-          more_path: {publication: sources_path, illustration: images_path},
+          more_path: {publication: :sources_path, illustration: :images_path},
           summary_method: {publication: 'about', illustration: nil}
       } %>
   <% end %>

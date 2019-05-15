@@ -16,7 +16,8 @@ class HomeController < ApplicationController
 
   def sources
     @publications = Publication.published
-                      .filter({search: params[:search], type: params[:type], language: params[:language],
+                      .filter({search: params[:search], type: params[:type],
+                                language: params[:language], person: params[:person],
                                 date_start: convert_date_param(:date_start), date_end: convert_date_param(:date_end)})
                       .sort_name_asc.page(params[:page]).per(@pagination_per_large)
     @filter_source_types = Publication.publication_types_for_select2
@@ -44,7 +45,7 @@ class HomeController < ApplicationController
 
   def images
     @illustrations = Illustration.published
-                        .filter({search: params[:search], type: params[:type], illustrator: params[:illustrator],
+                        .filter({search: params[:search], type: params[:type], person: params[:person],
                                 date_start: convert_date_param(:date_start), date_end: convert_date_param(:date_end)})
                         .sort_published_desc.page(params[:page]).per(@pagination_per_large)
     @filter_source_types = Publication.publication_types_for_select2

@@ -40,10 +40,12 @@
       <div class="columns listing-more">
         <div class="column is-9 is-offset-3 has-text-centered">
           <% if total[:illustration] > 0 && more_path[:illustration] %>
-            <%= link_to t('labels.view_all_with_count', number: total[:illustration], title: t('labels.illustration')), more_path[:illustration], class: 'read-more is-lowercase' %>
+            <%= link_to t('labels.view_all_with_count', number: total[:illustration], title: t('labels.illustration')),
+                  send(more_path[:illustration], person: @person.slug), class: 'read-more is-lowercase' %>
           <% end %>
           <% if total[:publication] > 0 && more_path[:publication] %>
-            <%= link_to t('labels.view_all_with_count', number: total[:publication], title: t('labels.publication')), more_path[:publication], class: 'read-more is-lowercase' %>
+            <%= link_to t('labels.view_all_with_count', number: total[:publication], title: t('labels.publication')),
+                  send(more_path[:publication], person: @person.slug), class: 'read-more is-lowercase' %>
           <% end %>
         </div>
       </div>
