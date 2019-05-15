@@ -1,6 +1,11 @@
 @import 'vars';
 
 .modal{
+  &.modal-meta-text{
+    .modal-content{
+      background-color: #efefef;
+    }
+  }
   .modal-content{
     padding: 1.5rem;
     margin: 2rem 0;
