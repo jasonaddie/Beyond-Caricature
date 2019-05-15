@@ -70,8 +70,11 @@
         font-size: 18px;
         text-transform: uppercase;
         color: $nav-end-color;
-        .navbar-link span{
-          padding: 0 5px;
+        .navbar-link{
+          padding: 0;
+          span{
+            padding: 0 5px;
+          }
         }
         .navbar-link span, .navbar-item.is-active, .navbar-item:hover{
           background-color: $nav-end-color;
@@ -79,6 +82,22 @@
         }
         .navbar-item{
           color: $nav-end-color;
+
+        }
+        &.has-dropdown:hover{
+          background-color: transparent;
+          .navbar-dropdown{
+            background-color: transparent;
+            border: none;
+            box-shadow: none;
+            .navbar-item{
+              padding: 0 5px;
+              margin-top: 7px;
+              &:first-of-type{
+                margin-top: 0;
+              }
+            }
+          }
         }
       }
     }
@@ -156,6 +175,12 @@ body.home.index {
       box-shadow: none;
       .navbar-start{
         .navbar-item:hover{
+          background-color: $home-intro-color;
+        }
+      }
+      .navbar-end .navbar-item.locales.has-dropdown:hover{
+        background-color: $home-intro-color;
+        .navbar-link{
           background-color: $home-intro-color;
         }
       }
