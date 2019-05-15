@@ -1,12 +1,13 @@
 <%
   records ||= nil
+  show_list_view ||= 'true'
 %>
 
-  <div class="columns is-mobile">
+  <div class="columns is-mobile list-switcher">
     <div class="page-entries-info column">
       <%= page_entries_info records %>
     </div>
-    <% if records.present? %>
+    <% if records.present? && (show_list_view == 'true' || show_list_view == true)  %>
       <div class="grid-list-view column is-narrow has-text-right">
         <div class="list-view <%= params[:view].present? && params[:view].downcase == 'list' ? 'active' : '' %>">
           <%= link_to params.permit(:view).merge(view: 'list'), title: t('labels.list') do %>

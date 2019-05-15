@@ -63,7 +63,7 @@
       </div>
     </div>
 
-    <%= render partial: 'shared/list_switcher', locals: {records: @researches} %>
+    <%= render partial: 'shared/list_switcher', locals: {records: @researches, show_list_view: 'false'} %>
 
     <%= render partial: 'shared/listings_meta_right', locals: {
         items: @researches,
