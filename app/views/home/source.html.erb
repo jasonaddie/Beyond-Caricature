@@ -64,10 +64,15 @@
             <%= number_with_delimiter(@publication.issue_count) %>
           </li>
         <% end %>
+        <li>
+          <strong><%= t('labels.meta.illustration_count') %>:</strong>
+          <%= number_with_delimiter(@publication.illustration_count) %>
+        </li>
+
         <% roles = @publication.person_roles.group_people_by_role %>
         <% if roles.present? %>
-          <% roles.each do |role, people| %>
-            <li>
+          <% roles.each_with_index do |(role, people), index| %>
+            <li class="<%= index == 0 ? 'new-grouping' : '' %>">
               <strong><%= role %>:</strong>
               <%= people.map{|person| link_to(person.name, person_path(person.person), class: 'meta-link')}.join(' ').html_safe %>
             </li>
@@ -96,13 +101,8 @@
           <% end %>
         <% end %>
 
-        <li>
-          <strong><%= t('labels.meta.illustration_count') %>:</strong>
-          <%= number_with_delimiter(@publication.illustration_count) %>
-        </li>
-
         <% if @publication.related_items.present? %>
-          <li>
+          <li class="new-grouping">
             <strong><%= t('labels.meta.in_the_news') %>:</strong>
             <ul>
               <% @publication.related_items.each do |related_item| %>

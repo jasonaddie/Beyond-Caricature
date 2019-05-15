@@ -52,7 +52,7 @@
         </li>
 
         <% if @person.related_items.present? %>
-          <li>
+          <li class="new-grouping">
             <strong><%= t('labels.meta.in_the_news') %>:</strong>
             <ul>
               <% @person.related_items.each do |related_item| %>

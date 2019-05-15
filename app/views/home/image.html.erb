@@ -83,7 +83,7 @@
         <% end %>
 
         <% if @illustration.related_items.present? %>
-          <li>
+          <li class="new-grouping">
             <strong><%= t('labels.meta.in_the_news') %>:</strong>
             <ul>
               <% @illustration.related_items.each do |related_item| %>
