@@ -106,7 +106,8 @@
                 type: pub.human_enum_name(:publication_type, publication.publication_type),
                 language: publication.language,
                 date_label: I18n.t("labels.publication_dates.#{publication.publication_type}"),
-                date: publication.date
+                date: publication.date,
+                summary_length: 150
             } %>
         </div>
       <% end %>
