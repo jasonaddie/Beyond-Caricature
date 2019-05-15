@@ -3,12 +3,29 @@
 // is-active is used on mobile view to determine whether
 // menu is showing
 
+.navbar, .navbar-menu, .navbar-start, .navbar-end{
+  align-items: center !important;
+}
+
 .navbar{
+  min-height: 3.63rem !important;
+  .navbar-brand{
+    .navbar-item {
+      padding-left: 1.5rem;
+      img{
+        max-height: 31px;
+        width: 31px;
+        height: 31px;
+      }
+    }
+  }
+
   .navbar-container{
     width: 100%;
   }
   // override the defaults to make the x bigger
   .navbar-burger {
+    margin-right: 1.5rem;
     span{
       height: 2px;
       width: 20px;
@@ -19,6 +36,7 @@
     }
   }
   .navbar-item.search{
+    padding: 0.5rem 1.5rem;
     input{
       border: none;
       border-bottom: solid 1px $navbar-burger-color;
@@ -133,16 +151,30 @@
 
 @media(min-width: 1088px){
   .navbar{
+    min-height: 5.1rem !important;
     .navbar-container{
       display: flex;
-    }
-    .navbar-menu{
-      background-color: inherit;
-      .navbar-start{
-        .navbar-item{
-          &:hover{
-            background-color: inherit;
+      .navbar-brand{
+        .navbar-item {
+          padding-left: 0.75rem;
+          img{
+            max-height: 70px;
+            width: 70px;
+            height: 70px;
           }
+        }
+      }
+      .navbar-menu{
+        background-color: inherit;
+        .navbar-start{
+          .navbar-item{
+            &:hover{
+              background-color: inherit;
+            }
+          }
+        }
+        .navbar-end{
+          margin-right: 0.75rem;
         }
       }
     }
