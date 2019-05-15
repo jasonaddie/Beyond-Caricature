@@ -1,10 +1,15 @@
 @import 'vars';
 
+
 .modal{
   &.modal-meta-text{
     .modal-content{
       background-color: #efefef;
     }
+  }
+
+  .modal-background{
+    background-color: rgba(10, 10, 10, 0.6)
   }
   .modal-content{
     padding: 1.5rem;
