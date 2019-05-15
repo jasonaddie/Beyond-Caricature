@@ -3,8 +3,8 @@
 
 
 $slideshow-base-width: 1099px;
-$slideshow-base-height: 483px;
-$slideshow-base-ratio: #{$slideshow-base-height / $slideshow-base-width};
+$slideshow-base-height: 527px;
+$slideshow-base-ratio: #{($slideshow-base-height - 44px) / $slideshow-base-width};
 $slideshow-slide-width: #{calc(100vw - 40px)};
 
 .slideshow-highlights-slick{
@@ -12,6 +12,12 @@ $slideshow-slide-width: #{calc(100vw - 40px)};
   margin-top: 51px;
   margin-bottom: 68px;
   position: relative;
+
+  .slick-slide {
+    img{
+      box-shadow: -33px 35px 44px 0px rgba(0,0,0,0.1);
+    }
+  }
 
   .slideshow-slide{
     width: 100%;
@@ -61,7 +67,7 @@ $slideshow-slide-width: #{calc(100vw - 40px)};
   .slick-dots
   {
     position: absolute;
-    bottom: -20px;
+    bottom: 20px;
 
     display: block;
 
