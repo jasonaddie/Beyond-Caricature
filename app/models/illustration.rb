@@ -105,13 +105,56 @@ class Illustration < ApplicationRecord
       x = x.joins(:person_role).where(person_roles: {person_id: Person.published.where(slug: options[:person])})
     end
 
-    if options[:date_start].present?
-      x = x.joins(:publications).where('publications.year >= ?', options[:date_start].year)
+    if options[:date_start].present? && options[:date_end].present?
+      # get dates from publication and issue records
+      illustration_ids = []
+      issue_ids = Issue.published.where(['date_publication between ? and ?', options[:date_start], options[:date_end]]).pluck(:id)
+      if issue_ids.present?
+        illustration_ids << IllustrationIssue.where(issue_id: issue_ids).pluck(:illustration_id)
+      end
+      pub_ids = Publication.where(['year between ? and ?', options[:date_start].year, options[:date_end].year]).pluck(:id)
+      if pub_ids.present?
+        illustration_ids << IllustrationPublication.where(publication_id: pub_ids).pluck(:illustration_id)
+      end
+      if illustration_ids.present?
+        illustration_ids.flatten!.uniq!
+        x = x.where(id: illustration_ids)
+      end
+
+    elsif options[:date_start].present?
+      # get dates from publication and issue records
+      illustration_ids = []
+      issue_ids = Issue.published.where('date_publication >= ?', options[:date_start]).pluck(:id)
+      if issue_ids.present?
+        illustration_ids << IllustrationIssue.where(issue_id: issue_ids).pluck(:illustration_id)
+      end
+      pub_ids = Publication.where('year >= ?', options[:date_start].year).pluck(:id)
+      if pub_ids.present?
+        illustration_ids << IllustrationPublication.where(publication_id: pub_ids).pluck(:illustration_id)
+      end
+      if illustration_ids.present?
+        illustration_ids.flatten!.uniq!
+        x = x.where(id: illustration_ids)
+      end
+
+    elsif options[:date_end].present?
+      # get dates from publication and issue records
+      illustration_ids = []
+      issue_ids = Issue.published.where('date_publication <= ?', options[:date_end]).pluck(:id)
+      if issue_ids.present?
+        illustration_ids << IllustrationIssue.where(issue_id: issue_ids).pluck(:illustration_id)
+      end
+      pub_ids = Publication.where('year <= ?', options[:date_end].year).pluck(:id)
+      if pub_ids.present?
+        illustration_ids << IllustrationPublication.where(publication_id: pub_ids).pluck(:illustration_id)
+      end
+      if illustration_ids.present?
+        illustration_ids.flatten!.uniq!
+        x = x.where(id: illustration_ids)
+      end
+
     end
 
-    if options[:date_end].present?
-      x = x.joins(:publications).where('publications.year <= ?', options[:date_end].year)
-    end
 
     if options[:search].present?
       x = x.with_translations(I18n.locale)

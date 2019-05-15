@@ -126,18 +126,41 @@ class Publication < ApplicationRecord
         pub_editor_ids = PersonRole.where(person_id: p.id, person_roleable_type: 'PublicationEditor').pluck(:person_roleable_id)
         if pub_editor_ids.present?
           pub_ids << PublicationEditor.where(id: pub_editor_ids).pluck(:publication_id)
+          pub_ids.flatten!.uniq!
         end
-        pub_ids.flatten!.uniq!
         x = x.where(id: pub_ids)
       end
     end
 
-    if options[:date_start].present?
-      x = x.where('year >= ?', options[:date_start].year)
-    end
+    if options[:date_start].present? && options[:date_end].present?
+      # get dates from publication and issue records
+      from_issues = Issue.published.where(['date_publication between ? and ?', options[:date_start], options[:date_end]]).pluck(:publication_id)
+      pub_ids = Publication.where(['year between ? and ?', options[:date_start].year, options[:date_end].year]).pluck(:id)
+      if from_issues.present?
+        pub_ids << from_issues
+        pub_ids.flatten!.uniq!
+      end
+      x = x.where(id: pub_ids)
 
-    if options[:date_end].present?
-      x = x.where('year <= ?', options[:date_end].year)
+    elsif options[:date_start].present?
+      # get dates from publication and issue records
+      from_issues = Issue.published.where('date_publication >= ?', options[:date_start]).pluck(:publication_id)
+      pub_ids = Publication.where('year >= ?', options[:date_start].year).pluck(:id)
+      if from_issues.present?
+        pub_ids << from_issues
+        pub_ids.flatten!.uniq!
+      end
+      x = x.where(id: pub_ids)
+
+    elsif options[:date_end].present?
+      # get dates from publication and issue records
+      from_issues = Issue.published.where('date_publication <= ?', options[:date_end]).pluck(:publication_id)
+      pub_ids = Publication.where('year >= ?', options[:date_end].year).pluck(:id)
+      if from_issues.present?
+        pub_ids << from_issues
+        pub_ids.flatten!.uniq!
+      end
+      x = x.where(id: pub_ids)
     end
 
     if options[:search].present?

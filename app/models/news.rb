@@ -87,11 +87,13 @@ class News < ApplicationRecord
             )
     end
 
-    if options[:date_start].present?
-      x = x.with_translations(I18n.locale).where('news_translations.date_publish >= ?', options[:date_start])
-    end
+    if options[:date_start].present? && options[:date_end].present?
+      x = x.with_translations(I18n.locale).where(['news_translations.date_publish between ? and ?', options[:date_start], options[:date_end]])
 
-    if options[:date_end].present?
+    elsif options[:date_start].present?
+      x = x.with_translations(I18n.locale).where('news_translations.date_publish >= ?', options[:date_start])
+
+    elsif options[:date_end].present?
       x = x.with_translations(I18n.locale).where('news_translations.date_publish <= ?', options[:date_end])
     end
 
