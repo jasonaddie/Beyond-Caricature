@@ -50,21 +50,25 @@
   }
 }
 
-@media (min-width: 769px){
-  .share-links{
-    &.side{
-      display: block;
-    }
-    &.nav{
-      display: none;
-    }
-  }
-}
+// @media (min-width: 769px){
+//   .share-links{
+//     &.side{
+//       display: block;
+//     }
+//     &.nav{
+//       display: none;
+//     }
+//   }
+// }
 
 @media (min-width: 1088px){
   .share-links{
     &.side{
       right: 55px;
+      display: block;
+    }
+    &.nav{
+      display: none;
     }
   }
 }

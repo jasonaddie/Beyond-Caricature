@@ -10,7 +10,6 @@
 .navbar{
   min-height: 3.63rem !important;
   .navbar-brand{
-    width: percentage(1/12);
     .navbar-item {
       padding-left: 1.5rem;
       img{
@@ -67,18 +66,21 @@
         font-weight: 700;
         font-size: 20px;
         color: $nav-start-color;
-        &:hover{
-          background-color: $home-intro-color;
-        }
-        &.current-page:after, &:hover:after{
+        &:after{
           content:"";
           position:absolute;
           left:0;
           bottom:0;
           right:0;
           margin:auto;
-          background:$nav-start-active-color;
           height:7px;
+          transition: all .3s ease-in-out;
+        }
+        &:hover{
+          background-color: $home-intro-color;
+        }
+        &.current-page:after, &:hover:after{
+          background:$nav-start-active-color;
         }
       }
 
@@ -95,7 +97,7 @@
             padding: 0 5px;
           }
         }
-        .navbar-link span, .navbar-item.is-active, .navbar-item:hover{
+        .navbar-link span, .navbar-item.current-page, .navbar-item:hover{
           background-color: $nav-end-color;
           color: #fff;
         }
@@ -109,13 +111,6 @@
             background-color: transparent;
             border: none;
             box-shadow: none;
-            .navbar-item{
-              padding: 0 5px;
-              margin-top: 7px;
-              &:first-of-type{
-                margin-top: 0;
-              }
-            }
           }
         }
       }
@@ -158,6 +153,7 @@
     .navbar-container{
       display: flex;
       .navbar-brand{
+        width: percentage(1/12);
         .navbar-item {
           padding-left: 0.75rem;
           img{
@@ -178,6 +174,31 @@
         }
         .navbar-end{
           margin-right: 0.75rem;
+          .navbar-item{
+            &.locales.has-dropdown{
+              .navbar-dropdown{
+                transition: all .3s ease-in-out;
+                display:block;
+                opacity: 0;
+                .navbar-item{
+                  padding: 0 5px;
+                  margin-top: 7px;
+                  &.current-page{
+                    display: none;
+                  }
+                }
+              }
+              &:hover{
+                .navbar-dropdown{
+                  opacity: 1;
+                  .navbar-item{
+                    padding: 0 5px;
+                    margin-top: 7px;
+                  }
+                }
+              }
+            }
+          }
         }
         &.is-active{
           .navbar-start{
