@@ -15,7 +15,7 @@ $slideshow-slide-width: #{calc(100vw - 40px)};
 
   .slick-slide {
     img{
-      box-shadow: -33px 35px 44px 0px rgba(0,0,0,0.1);
+      box-shadow: -33px 35px 44px rgba(0, 0, 0, 0.08);
     }
   }
 
