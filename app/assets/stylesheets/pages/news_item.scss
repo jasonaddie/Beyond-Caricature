@@ -70,3 +70,16 @@ body.home.news_item, body.home.research{
     }
   }
 }
+
+@media (min-width: 1350px){
+  body.home.news_item, body.home.research{
+    .news-item-container{
+      .news-item-content{
+        .news-item-related{
+          width: 250px;
+          margin-right: calc(-250px - 0.75rem);
+        }
+      }
+    }
+  }
+}
