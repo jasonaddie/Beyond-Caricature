@@ -73,12 +73,15 @@ document.addEventListener("turbolinks:load", function() {
   // when select filter changes,
   // reload the page
   $filter_selects.on('change', 'select', function(){
+    show_loading_image()
     process_filter_request(this)
   })
 
   // when date filter closes,
   // reload the page
   $filter_dates.on('click', '.button-close', function(){
+    show_loading_image()
+
     var start = formatDate(date_start.datepicker("getDate"))
     var end = formatDate(date_end.datepicker("getDate"))
     var current = formatDate(currentDate)
@@ -123,9 +126,15 @@ document.addEventListener("turbolinks:load", function() {
   // reload the page
   $filter_searches.on('keyup', 'input', function (e) {
     if (e.keyCode == 13) {
+      show_loading_image()
       process_filter_request(this)
     }
   })
+
+  var show_loading_image = function(){
+    $('.loading').addClass('is-active')
+  }
+
 
   var process_filter_request = function(ths){
     var key = $(ths).data('key')
