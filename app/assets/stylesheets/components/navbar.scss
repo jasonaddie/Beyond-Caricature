@@ -10,6 +10,7 @@
 .navbar{
   min-height: 3.63rem !important;
   .navbar-brand{
+    width: percentage(1/12);
     .navbar-item {
       padding-left: 1.5rem;
       img{
