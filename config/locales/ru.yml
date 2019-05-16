@@ -369,7 +369,7 @@ ru:
       date_explanation: Pick start date or end date or both.
       date_start: Start Date
       date_end: End Date
-      date_close: Close
+      date_close: Confirm
       date_clear: Clear
     meta:
       publication_type: Type
