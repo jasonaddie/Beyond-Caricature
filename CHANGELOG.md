@@ -6,6 +6,34 @@ These are items that are have been finished, but not released yet.
 
 None at this time.
 
+## [0.32] - 2019-05-16
+### Added
+- Loading image when using search or filter
+- Shadow to highlight images
+- Small animation when hover over menu item or language switcher
+- Fonts to use for Georgian language
+
+### Fixed
+- Language switch styling
+- Make logo in navbar bigger
+- Width of menu items for mobile
+- Make menu font bolder
+- Remove shadow for around the listing blocks
+- Increase space for text on listing blocks that show text on top of image when hover over block (i.e., Image and Person pages)
+- Increase about page text width
+- All page headers are now bold
+- On News and Research listing pages, decrease space between image and title
+- Change background color in the view more popups
+- View all links on person page now work
+- Updated date filter queries
+- Decrease summary character length for List View on listing pages so text does not go past image
+- Not show grid / list view buttons on News and Research pages
+- Make left side of menu and page content line up
+- Related Items on the News and Research page now appears as a sidebar on widescreen monitors
+- Change date filter 'close' button to 'confirm'
+- Update all font sizes to use REM units instead of PX
+
+
 ## [0.31] - 2019-05-14
 ### Added
 - Crop alignment field to data models with images that appear in lists (i.e., Source, Issue, Image, Person, News, Research)
