@@ -18,14 +18,14 @@
 
 @font-face {
   font-family: 'Montserrat';
-  src: font-url('Montserrat-Light.otf') format("opentype");
-  font-weight: 300;
+  src: font-url('Montserrat-ExtraLight.otf') format("opentype");
+  font-weight: 200;
   font-style: normal;
 }
 @font-face {
   font-family: 'Montserrat';
-  src: font-url('Montserrat-ExtraLight.otf') format("opentype");
-  font-weight: 200;
+  src: font-url('Montserrat-Light.otf') format("opentype");
+  font-weight: 300;
   font-style: normal;
 }
 @font-face {
@@ -59,16 +59,69 @@
   font-style: italic;
 }
 
+// for geo language
+@font-face {
+  font-family: 'FiraGO';
+  src: font-url('FiraGO-ExtraLight.otf') format("opentype");
+  font-weight: 200;
+  font-style: normal;
+}
+@font-face {
+  font-family: 'FiraGO';
+  src: font-url('FiraGO-Light.otf') format("opentype");
+  font-weight: 300;
+  font-style: normal;
+}
+@font-face {
+  font-family: 'FiraGO';
+  src: font-url('FiraGO-Regular.otf') format("opentype");
+  font-weight: 400;
+  font-style: normal;
+}
+@font-face {
+  font-family: 'FiraGO';
+  src: font-url('FiraGO-Medium.otf') format("opentype");
+  font-weight: 500;
+  font-style: normal;
+}
+@font-face {
+  font-family: 'FiraGO';
+  src: font-url('FiraGO-SemiBold.otf') format("opentype");
+  font-weight: 600;
+  font-style: normal;
+}
+@font-face {
+  font-family: 'FiraGO';
+  src: font-url('FiraGO-Bold.otf') format("opentype");
+  font-weight: 700;
+  font-style: normal;
+}
+@font-face {
+  font-family: 'FiraGO';
+  src: font-url('FiraGO-Italic.otf') format("opentype");
+  font-weight: 400;
+  font-style: italic;
+}
+
 
 @import 'vars';
 @import "bulma";
 
 html{
   overflow-y: auto;
+  &:lang(ka){
+    font-size: 18px;
+  }
 }
 
 body{
   background-color: $body-background-color;
+}
+
+:lang(ka){
+  body,button,input,select,textarea{
+    font-family: 'FiraGO';
+  }
 }
 
 p{
@@ -109,6 +162,9 @@ h1.title.is-3{
 @media (max-width: 1088px){
   html{
     font-size: 16px;
+    &:lang(ka){
+      font-size: 15px;
+    }
   }
   body{
     line-height: 23px;
