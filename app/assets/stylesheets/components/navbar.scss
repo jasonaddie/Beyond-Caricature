@@ -64,7 +64,7 @@
       .navbar-item{
         position: relative;
         font-weight: 700;
-        font-size: 20px;
+        font-size: 1.05rem;
         color: $nav-start-color;
         &:after{
           content:"";
@@ -88,7 +88,7 @@
     .navbar-end{
       .navbar-item.locales{
         font-weight: 700;
-        font-size: 18px;
+        font-size: 0.9474rem;
         text-transform: uppercase;
         color: $nav-end-color;
         .navbar-link{
