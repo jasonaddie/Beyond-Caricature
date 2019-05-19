@@ -426,6 +426,11 @@ en:
   home:
     index:
       oskar_alt: Self portrait of Oskar Schmerling holding a whip and wearing horns
+    about:
+      donors:
+        reed: Reed College
+      partners:
+        geo_library: National Parliamentary Library of Georgia
   shared:
     news_item:
       related_item_explanation: Related Items

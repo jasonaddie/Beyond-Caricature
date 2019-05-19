@@ -1,7 +1,24 @@
+@import 'vars';
+
 body.home.about{
 
   .decoration{
     display: none;
+  }
+
+  .donors-partners{
+    a{
+      line-height: 1.1rem;
+      color: $body-color;
+      opacity: 0.7;
+      transition: opacity .3s ease-in-out;
+      &:hover{
+        opacity: 1;
+      }
+      img{
+        max-height: 85px;
+      }
+    }
   }
 }
 

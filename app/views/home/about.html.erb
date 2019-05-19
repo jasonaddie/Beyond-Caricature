@@ -22,16 +22,18 @@
       </li>
     </ul>
 
-    <div class="columns">
+    <div class="columns donors-partners">
       <div class="column is-6">
         <h2 class="title is-4"><%= t('labels.donors') %></h2>
 
         <ul class="has-no-bullets">
           <li>
-            donor 1
-          </li>
-          <li>
-            donor 2
+            <%= link_to "https://www.reed.edu/", target: :blank do %>
+              <%= image_tag "reed-college-logo.png" %>
+              <div>
+                <%= t('.donors.reed') %>
+              </div>
+            <% end %>
           </li>
         </ul>
 
@@ -41,10 +43,12 @@
 
         <ul class="has-no-bullets">
           <li>
-            partner 1
-          </li>
-          <li>
-            partner 2
+            <%= link_to "http://www.nplg.gov.ge/eng/home", target: :blank do %>
+              <%= image_tag "geo_library_logo.png" %>
+              <div>
+                <%= t('.partners.geo_library') %>
+              </div>
+            <% end %>
           </li>
         </ul>
 
