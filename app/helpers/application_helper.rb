@@ -61,4 +61,52 @@ module ApplicationHelper
     return filter_date.html_safe
   end
 
+
+  # build the hash syntax for the og and twitter image
+  # that has both the passed in image and the default share image
+  def generate_share_image_syntax(model, img_obj)
+    if model.send("#{img_obj}_stored?")
+      image_url = model.send(img_obj).thumb(model.generate_image_size_syntax(:share)).url
+      return {
+        og:{
+          image: [
+            {_: request.protocol + request.host_with_port + image_url},
+            {_: asset_url('share.png')}
+          ]
+        },
+        twitter:{
+          image: [
+            {_: request.protocol + request.host_with_port + image_url},
+            {_: asset_url('share.png')}
+          ]
+        }
+      }
+    else
+      return {}
+    end
+  end
+
+  # build the hash syntax for the og and twitter image
+  # that has both the passed in image and the default share image
+  def generate_share_image_syntax_old(image_url)
+    if image_url.present?
+      return {
+        og:{
+          image: [
+            {_: request.protocol + request.host_with_port + image_url},
+            {_: asset_url('share.png')}
+          ]
+        },
+        twitter:{
+          image: [
+            {_: request.protocol + request.host_with_port + image_url},
+            {_: asset_url('share.png')}
+          ]
+        }
+      }
+    else
+      return {}
+    end
+  end
+
 end

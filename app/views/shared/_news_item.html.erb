@@ -4,9 +4,11 @@
   items_link_label ||= nil
 %>
 
-<div class="news-item-cover-image">
-  <%= image_tag item.cover_image.url if item.cover_image_stored? %>
-</div>
+<% if item.cover_image_stored? %>
+  <div class="news-item-cover-image">
+    <%= image_tag item.cover_image.url %>
+  </div>
+<% end %>
 
 <div class="columns is-centered">
   <div class="news-item-container column is-half">

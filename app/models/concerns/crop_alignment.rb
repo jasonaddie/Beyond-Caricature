@@ -45,7 +45,8 @@ module CropAlignment
         square_small: '150x150#',
         wide_small: '150x76#',
         news_small: '150x112#',
-        highlight_small: '150x100#'
+        highlight_small: '150x100#',
+        share: '1200x630#'
       }
 
       syntax = ''

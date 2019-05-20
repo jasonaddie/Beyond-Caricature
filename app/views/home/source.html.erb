@@ -5,7 +5,8 @@
   @lang_switcher_params_key = :id
   @lang_switcher_is_public = true
   @lang_switcher_fallback_url = sources_path
-  set_meta_tags description: @publication.about
+  # set_meta_tags({description: @publication.about}.merge(generate_share_image_syntax(@publication.cover_image.thumb(@publication.generate_image_size_syntax(:share)).url)))
+  set_meta_tags({description: @publication.about}.merge(generate_share_image_syntax(@publication, :cover_image)))
 
   detail_orientation_class = 'landscape'
   image_size = :landscape
@@ -13,7 +14,7 @@
   img_offset_size=1
   meta_col_size = 10
   meta_offset_size=1
-  if @publication.cover_image.portrait?
+  if @publication.cover_image_stored? && @publication.cover_image.portrait?
     detail_orientation_class = 'portrait'
     image_size = :portrait
     img_col_size = 4
@@ -30,11 +31,13 @@
 
 
 <div class="columns meta-details <%= detail_orientation_class %>">
-  <div class="column is-offset-<%= img_offset_size %> is-<%= img_col_size %> meta-image">
-    <%= link_to 'javascript:void(0)', class: 'modal-button', 'data-target': 'modal-meta-image', title: t('labels.view_bigger_image') do %>
-      <%= image_tag @publication.cover_image.thumb(@publication.generate_image_size_syntax(image_size, false)).url, alt: @publication.title if @publication.cover_image_stored? %>
-    <% end %>
-  </div>
+  <% if @publication.cover_image_stored? %>
+    <div class="column is-offset-<%= img_offset_size %> is-<%= img_col_size %> meta-image">
+      <%= link_to 'javascript:void(0)', class: 'modal-button', 'data-target': 'modal-meta-image', title: t('labels.view_bigger_image') do %>
+        <%= image_tag @publication.cover_image.thumb(@publication.generate_image_size_syntax(image_size, false)).url, alt: @publication.title %>
+      <% end %>
+    </div>
+  <% end %>
   <div class="column is-offset-<%= meta_offset_size %> is-<%= meta_col_size %> meta-items">
     <h1 class="title is-3"><%= title @publication.title %></h1>
     <div class="meta-items-details">

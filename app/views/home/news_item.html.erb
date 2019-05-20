@@ -4,7 +4,7 @@
   @lang_switcher_params_key = :id
   @lang_switcher_is_public = true
   @lang_switcher_fallback_url = news_index_path
-  set_meta_tags description: @news_item.summary
+  set_meta_tags({description: @news_item.summary}.merge(generate_share_image_syntax(@news_item, :cover_image)))
 %>
 
 <%= render partial: 'shared/news_item', locals: {
