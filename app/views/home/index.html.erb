@@ -29,7 +29,7 @@
 <% if @highlights.present? %>
 
   <div class="slideshow-highlights-container columns is-centered">
-    <div class="slideshow-highlights-slick column is-10">
+    <div class="slideshow-highlights-slick column is-9">
       <div class="slideshow-slides">
         <% @highlights.each do |highlight| %>
           <div class="slideshow-slide">
@@ -55,7 +55,7 @@
 <% end %>
 
 <div class="listings columns is-centered">
-  <div class="column is-10">
+  <div class="column is-9">
     <% if @news.present? %>
 
       <%= render partial: 'shared/listing', locals: {
@@ -96,7 +96,7 @@
 <% if @stats.present? %>
 
   <div class="stats columns is-centered">
-    <div class="column is-8">
+    <div class="column is-7">
       <h2 class="title is-4"><%= t('labels.stats') %></h2>
       <ul class="has-no-bullets">
         <li>

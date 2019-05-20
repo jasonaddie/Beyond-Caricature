@@ -5,7 +5,7 @@
 $slideshow-base-width: 1099px;
 $slideshow-base-height: 527px;
 $slideshow-base-ratio: #{($slideshow-base-height - 44px) / $slideshow-base-width};
-$slideshow-slide-width: #{calc(100vw - 40px)};
+$slideshow-slide-width: #{calc((100vw - 40px) * 0.75)};
 
 .slideshow-highlights-slick{
   background: transparent;
@@ -67,7 +67,7 @@ $slideshow-slide-width: #{calc(100vw - 40px)};
   .slick-dots
   {
     position: absolute;
-    bottom: 20px;
+    bottom: 25px;
 
     display: block;
 
@@ -152,7 +152,7 @@ $slideshow-slide-width: #{calc(100vw - 40px)};
   body.home.index{
 
     .slideshow-highlights-container + .listings{
-      margin-top: -155px;
+      margin-top: -208px;
     }
   }
 }
@@ -165,10 +165,7 @@ $slideshow-slide-width: #{calc(100vw - 40px)};
       margin-bottom: 0;
 
       .slideshow-slide{
-        // width: $slideshow-slide-width !important;
-        height: calc(#{$slideshow-slide-width} * #{$slideshow-base-ratio}) !important;
-        max-width: $slideshow-base-width;
-        max-height: $slideshow-base-height;
+        height: calc((((100vw - 40px + 28.5px) * 0.75 - 28.5px) * 0.66 * 483 / 726) + 60px);
 
         .slideshow-slide-image{
           position: absolute;
@@ -178,7 +175,7 @@ $slideshow-slide-width: #{calc(100vw - 40px)};
         }
         .slideshow-slide-text{
           position: absolute;
-          top: calc(50% - 40px);
+          top: calc(50% - 80px);
           left: 0;
           width: 50%;
           .slideshow-slide-title {
@@ -195,6 +192,19 @@ $slideshow-slide-width: #{calc(100vw - 40px)};
     }
   }
 }
+
+@media (min-width: 1364px){
+  body.home.index{
+
+    .slideshow-highlights-slick{
+
+      .slideshow-slide{
+        height: 493px !important;
+      }
+    }
+  }
+}
+
 
 // calculations to make the news slideshow scale with the screen
 $slideshow-base-width: 1200px;

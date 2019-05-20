@@ -5,7 +5,7 @@ document.addEventListener("turbolinks:load", function() {
   // highlights slideshow
   if (document.querySelector('.slideshow-highlights-slick .slideshow-slides') !== null){
     $('.slideshow-highlights-slick .slideshow-slides').slick({
-      autoplay: true,
+      autoplay: false,
       autoplaySpeed: 4000,
       variableWidth: false,
       arrows: false,
