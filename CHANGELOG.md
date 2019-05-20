@@ -1,10 +1,17 @@
 This page lists additions, changes, and bug fixes that have been applied to the application code.
 The numbers in brackets (i.e., [0.1]), indicate the version number of the app.
 
-## [Unreleased]
-These are items that are have been finished, but not released yet.
+## [0.33] - 2019-05-20
+### Added
+- Partner and Donor logos
+- Site share image
+- Use cover image on detail pages for the share image (i.e., Source, Image, Person, News Item, Research Item)
 
-None at this time.
+### Fixed
+- Homepage adjustments
+    - Reduced content width
+    - Shrunk the background illustrations a bit
+    - Fixed slideshow height calculation
 
 ## [0.32] - 2019-05-16
 ### Added
