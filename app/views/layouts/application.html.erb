@@ -11,13 +11,15 @@
                             description: :description,
                             type: 'article',
                             site_name: :site,
-                            url: request.original_url
+                            url: request.original_url,
+                            image: asset_url('share.png')
                           },
                           twitter: {
                             card: 'summary',
                             site: t('meta.twitter_site'),
                             title: :title,
-                            description: :description
+                            description: :description,
+                            image: asset_url('share.png')
                           }
     %>
     <meta name="viewport" content="width=device-width, initial-scale=1">
