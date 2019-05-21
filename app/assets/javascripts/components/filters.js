@@ -51,12 +51,19 @@ document.addEventListener("turbolinks:load", function() {
 
   // if there is no date value, preset the calendar to show
   // a specific month and year
-  if ($filter_date_content.data('start') === ''){
+  if ($filter_date_content.data('start') === '' && $filter_date_content.data('end') !== ''){
+    var d = $.datepicker.parseDate( dateFormat, $filter_date_content.data('end'))
+    set_datepicker_select_values(date_start, d.getMonth(), d.getFullYear())
+  }else if ($filter_date_content.data('start') === ''){
     set_datepicker_select_values(date_start, defaultMonth, defaultYear)
   }else{
     date_start.datepicker('setDate', $filter_date_content.data('start'))
   }
-  if ($filter_date_content.data('end') === ''){
+
+  if ($filter_date_content.data('start') !== '' && $filter_date_content.data('end') === ''){
+    var d = $.datepicker.parseDate( dateFormat, $filter_date_content.data('start'))
+    set_datepicker_select_values(date_end, d.getMonth(), d.getFullYear())
+  }else if ($filter_date_content.data('end') === ''){
     set_datepicker_select_values(date_end, defaultMonth, defaultYear)
   }else{
     date_end.datepicker('setDate', $filter_date_content.data('end'))
