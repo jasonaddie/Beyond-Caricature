@@ -58,6 +58,12 @@
             <%= number_with_delimiter(@person.illustration_count) %>
           </div>
         <% end %>
+        <% if @person.publication_count.present? && @person.publication_count > 0 %>
+          <div>
+            <strong><%= "#{t('labels.meta.publication_count')}:" %></strong>
+            <%= number_with_delimiter(@person.publication_count) %>
+          </div>
+        <% end %>
 
         <% if @person.related_items.present? %>
           <li class="new-grouping">

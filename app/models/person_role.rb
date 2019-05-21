@@ -55,14 +55,13 @@ class PersonRole < ApplicationRecord
   # return a hash where the key is the role and the values are:
   #  - total - total number of published records for this role
   #  - latest_records - the latest records limited by the limit argument
-  #  - is_illustrator
   def self.group_published_record_by_role(limit=6)
     groups = {}
     roles = Role.where(id: self.pluck(:role_id).uniq).sort_name
 
     if roles.present?
       # if role
-      # - illustrator - then get all published illustrations and published illustrations
+      # - illustrator - then get all published illustrations
       # - else, get all published publications
       #   - role can be assigned to publication or publication editors
       #     so if publication editor, go up a level and get publication

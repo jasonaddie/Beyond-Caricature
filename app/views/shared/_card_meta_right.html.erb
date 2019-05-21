@@ -15,6 +15,7 @@
   summary_length ||= 190
   illustration_count ||= nil
   issue_count ||= nil
+  publication_count ||= nil
 %>
 
 <div class="card-meta-right">
@@ -68,6 +69,12 @@
         <%= roles %>
       </div>
     <% end %>
+    <% if illustrator.present? %>
+      <div>
+        <strong><%= "#{t('labels.by')}:" %></strong>
+        <%= illustrator %>
+      </div>
+    <% end %>
     <% if issue_count.present? && issue_count > 0 %>
       <div>
         <strong><%= "#{t('labels.meta.issue_count')}:" %></strong>
@@ -80,10 +87,10 @@
         <%= number_with_delimiter(illustration_count) %>
       </div>
     <% end %>
-    <% if illustrator.present? %>
+    <% if publication_count.present? && publication_count > 0 %>
       <div>
-        <strong><%= "#{t('labels.by')}:" %></strong>
-        <%= illustrator %>
+        <strong><%= "#{t('labels.meta.publication_count')}:" %></strong>
+        <%= number_with_delimiter(publication_count) %>
       </div>
     <% end %>
     <% if summary.present? %>

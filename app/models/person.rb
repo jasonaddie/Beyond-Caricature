@@ -150,6 +150,32 @@ class Person < ApplicationRecord
     return total
   end
 
+  # go through person_roles with roleable type of Publication or PublicationEditor
+  # and then see how many are published
+  def publication_count
+    total = nil
+    publication_ids = self.person_roles.where(person_roleable_type: 'Publication').pluck(:person_roleable_id)
+    pub_editor_ids = self.person_roles.where(person_roleable_type: 'PublicationEditor').pluck(:person_roleable_id)
+
+    if pub_editor_ids.present?
+      # get publication ids and add to publication_ids variable
+      pub_ids = PublicationEditor.where(id: pub_editor_ids).pluck(:publication_id)
+      if pub_ids.present?
+        if !publication_ids.present?
+          publication_ids = []
+        end
+        publication_ids << pub_ids
+        publication_ids.flatten!.uniq!
+      end
+    end
+
+    if publication_ids.present?
+      total = Publication.published.where(id: publication_ids).count
+    end
+
+    return total
+  end
+
   def unique_role_names
     self.person_roles.unique_roles.map{|x| x[:name]}.sort
   end
