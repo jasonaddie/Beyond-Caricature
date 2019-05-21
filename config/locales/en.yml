@@ -371,6 +371,7 @@ en:
       date_end: End Date
       date_close: Confirm
       date_clear: Clear
+    unknown: Unknown
     meta:
       publication_type: Type
       publication_language: Language

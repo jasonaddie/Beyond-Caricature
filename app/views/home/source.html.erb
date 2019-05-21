@@ -72,35 +72,24 @@
           <%= number_with_delimiter(@publication.illustration_count) %>
         </li>
 
-        <% roles = @publication.person_roles.group_people_by_role %>
+        <% roles = merge_publication_roles(@publication, @publication.publication_editors) %>
         <% if roles.present? %>
-          <% roles.each_with_index do |(role, people), index| %>
+          <% roles.each_with_index do |(role, records), index| %>
             <li class="<%= index == 0 ? 'new-grouping' : '' %>">
               <strong><%= role %>:</strong>
-              <%= people.map{|person| link_to(person.name, person_path(person.person), class: 'meta-link')}.join(' ').html_safe %>
-            </li>
-          <% end %>
-        <% end %>
-        <% if @publication.journal? && @publication.publication_editors.present? %>
-          <% @publication.publication_editors.each do |publication_editor| %>
-            <% roles = publication_editor.person_roles.group_people_by_role %>
-            <% if roles.present? %>
-              <li>
-                <strong>
-                  <%= publication_editor.year_start ? publication_editor.year_start : '?' %>
-                  -
-                  <%= publication_editor.year_end ? publication_editor.year_end : '?' %>
-                </strong>
+              <% if records.keys.length == 1 && records.keys.first == I18n.t('labels.unknown') %>
+                <%= records.values.flatten.map{|person| link_to(person.name, person_path(person.person), class: 'meta-link')}.join(' ').html_safe %>
+              <% else %>
                 <ul class="indent-list">
-                  <% roles.each do |role, people| %>
+                  <% records.sort.each do |label, people| %>
                     <li>
-                      <strong><%= role %>:</strong>
+                      <strong><%= label %>:</strong>
                       <%= people.map{|person| link_to(person.name, person_path(person.person), class: 'meta-link')}.join(' ').html_safe %>
                     </li>
                   <% end %>
                 </ul>
-              </li>
-            <% end %>
+              <% end %>
+            </li>
           <% end %>
         <% end %>
 
