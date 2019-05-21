@@ -102,11 +102,11 @@ class Person < ApplicationRecord
     end
 
     if options[:date_start].present?
-      x = x.where('date_birth >= ?', options[:date_start])
+      x = x.where('date_birth >= :start or date_death >= :start', start: options[:date_start])
     end
 
     if options[:date_end].present?
-      x = x.where('date_death <= ?', options[:date_end])
+      x = x.where('date_birth <= :end or date_death <= :end', end: options[:date_end])
     end
 
     if options[:search].present?
