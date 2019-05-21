@@ -8,6 +8,7 @@
   roles ||= nil
   # summary ||= nil
   cover_image_path ||= nil
+  illustration_count ||= nil
 %>
 
 <div class="card card-meta-hover">
@@ -47,6 +48,12 @@
         <div>
           <strong><%= "#{t('labels.roles')}:" %></strong>
           <%= roles %>
+        </div>
+      <% end %>
+      <% if illustration_count.present? && illustration_count > 0 %>
+        <div>
+          <strong><%= "#{t('labels.meta.illustration_count')}:" %></strong>
+          <%= number_with_delimiter(illustration_count) %>
         </div>
       <% end %>
     </div>

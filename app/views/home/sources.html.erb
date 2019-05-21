@@ -105,9 +105,11 @@
                 cover_image_path: publication.cover_image.thumb(publication.generate_image_size_syntax(image_size)).url,
                 type: pub.human_enum_name(:publication_type, publication.publication_type),
                 language: publication.language,
-                date_label: I18n.t("labels.publication_dates.#{publication.publication_type}"),
-                date: publication.date,
-                summary_length: 150
+                # date_label: I18n.t("labels.publication_dates.#{publication.publication_type}"),
+                # date: publication.date,
+                illustration_count: publication.illustration_count,
+                issue_count: publication.issue_count,
+                summary_length: 100
             } %>
         </div>
       <% end %>

@@ -9,6 +9,8 @@
   language ||= nil
   date ||= nil
   date_label ||= nil
+  illustration_count ||= nil
+  issue_count ||= nil
 %>
 
 <div class="card card-meta-down">
@@ -47,6 +49,18 @@
         <div>
           <strong><%= "#{t('labels.publication_date')}:" %></strong>
           <%= I18n.l publish_date %>
+        </div>
+      <% end %>
+      <% if issue_count.present? && issue_count > 0 %>
+        <div>
+          <strong><%= "#{t('labels.meta.issue_count')}:" %></strong>
+          <%= number_with_delimiter(issue_count) %>
+        </div>
+      <% end %>
+      <% if illustration_count.present? && illustration_count > 0 %>
+        <div>
+          <strong><%= "#{t('labels.meta.illustration_count')}:" %></strong>
+          <%= number_with_delimiter(illustration_count) %>
         </div>
       <% end %>
       <% if summary.present? %>

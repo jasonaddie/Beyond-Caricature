@@ -13,6 +13,8 @@
   date ||= nil
   date_label ||= nil
   summary_length ||= 190
+  illustration_count ||= nil
+  issue_count ||= nil
 %>
 
 <div class="card-meta-right">
@@ -48,12 +50,6 @@
         <%= language %>
       </div>
     <% end %>
-    <% if illustrator.present? %>
-      <div>
-        <strong><%= "#{t('labels.by')}:" %></strong>
-        <%= illustrator %>
-      </div>
-    <% end %>
     <% if date_birth %>
       <div>
         <strong><%= t('labels.meta.date_birth') %>:</strong>
@@ -70,6 +66,24 @@
       <div>
         <strong><%= "#{t('labels.roles')}:" %></strong>
         <%= roles %>
+      </div>
+    <% end %>
+    <% if issue_count.present? && issue_count > 0 %>
+      <div>
+        <strong><%= "#{t('labels.meta.issue_count')}:" %></strong>
+        <%= number_with_delimiter(issue_count) %>
+      </div>
+    <% end %>
+    <% if illustration_count.present? && illustration_count > 0 %>
+      <div>
+        <strong><%= "#{t('labels.meta.illustration_count')}:" %></strong>
+        <%= number_with_delimiter(illustration_count) %>
+      </div>
+    <% end %>
+    <% if illustrator.present? %>
+      <div>
+        <strong><%= "#{t('labels.by')}:" %></strong>
+        <%= illustrator %>
       </div>
     <% end %>
     <% if summary.present? %>

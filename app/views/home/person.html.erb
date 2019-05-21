@@ -52,6 +52,12 @@
             <%= role_records.keys.join(', ') %>
           <% end %>
         </li>
+        <% if @person.illustration_count.present? && @person.illustration_count > 0 %>
+          <div>
+            <strong><%= "#{t('labels.meta.illustration_count')}:" %></strong>
+            <%= number_with_delimiter(@person.illustration_count) %>
+          </div>
+        <% end %>
 
         <% if @person.related_items.present? %>
           <li class="new-grouping">

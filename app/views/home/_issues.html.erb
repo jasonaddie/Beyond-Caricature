@@ -13,7 +13,8 @@
                 title: issue.issue_number_formatted,
                 link_path: issue_path(publication, issue),
                 cover_image_path: issue.cover_image.thumb(issue.generate_image_size_syntax(:wide)).url,
-                publish_date: issue.date_publication
+                publish_date: issue.date_publication,
+                illustration_count: issue.illustration_count
             } %>
         </div>
       <% end %>

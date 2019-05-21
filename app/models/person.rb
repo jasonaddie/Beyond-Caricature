@@ -30,7 +30,7 @@ class Person < ApplicationRecord
   ## ASSOCIATIONS ##
   #################
   has_many :person_roles, dependent: :destroy
-  has_many :illustrations, dependent: :nullify
+  # has_many :illustrations, dependent: :nullify
   has_many :related_items, dependent: :nullify
 
   #################
@@ -137,8 +137,17 @@ class Person < ApplicationRecord
     return x
   end
 
+  # go through person_roles with roleable type of Illustration
+  # and then see how many are published
   def illustration_count
-    self.illustrations.count
+    total = nil
+    illustration_ids = self.person_roles.where(person_roleable_type: 'Illustration').pluck(:person_roleable_id)
+
+    if illustration_ids.present?
+      total = Illustration.published.where(id: illustration_ids).count
+    end
+
+    return total
   end
 
   def unique_role_names

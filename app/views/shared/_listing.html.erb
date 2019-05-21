@@ -6,6 +6,7 @@
   summary_method ||= 'about'
   link_path ||= nil
   more_path ||= nil
+  show_counts ||= 'false'
 %>
 
 <% if records.present? %>
@@ -21,14 +22,16 @@
                   title: record.title,
                   summary: record.send(summary_method),
                   link_path: send(link_path, record),
-                  cover_image_path: record.cover_image.thumb(record.generate_image_size_syntax(:wide)).url
+                  cover_image_path: record.cover_image.thumb(record.generate_image_size_syntax(:wide)).url,
+                  illustration_count: show_counts == true ? record.illustration_count : nil
               } %>
             <% elsif partial == 'card_meta_hover' %>
               <%= render partial: 'shared/card_meta_hover', locals: {
                     title: record.title,
                     link_path: send(link_path, record),
                     cover_image_path: record.image.thumb(record.generate_image_size_syntax(:square)).url,
-                    illustrator: record.person_role ? record.person_role.name : nil
+                    illustrator: record.person_role ? record.person_role.name : nil,
+                    illustration_count: show_counts == true ? record.illustration_count : nil
                 } %>
             <% end %>
         </div>
