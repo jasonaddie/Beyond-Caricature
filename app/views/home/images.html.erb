@@ -29,8 +29,9 @@
             <label for="filter_search"><%= t('labels.filter.search') %></label>
           </div>
           <div class="filter-search">
-            <div class="control has-icons-right">
+            <div class="control has-icons-right is-clearfix">
               <%= text_field :filter, :search, value: params[:search], 'data-key': 'search' %>
+              <span class="clear-search <%= params[:search].present? ? 'is-active' : '' %>" title="Remove all items">×</span>
               <span class="icon is-right">
                 <i class="search"></i>
               </span>

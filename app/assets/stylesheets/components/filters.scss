@@ -52,16 +52,30 @@
     }
   }
   .filter-search{
+    position: relative;
     input{
       border: none;
       border-bottom: solid 1px $navbar-burger-color;
       background-color: $body-background-color;
-      padding-right: 20px;
+      padding-right: 34px;
       width: 100%;
       font-size: 1rem;
       font-weight: 400;
       color: $header-line-color;
       opacity: 0.7;
+    }
+    .clear-search{
+      font-weight: 700;
+      position: absolute;
+      right: 20px;
+      top: 0;
+      width: 12px;
+      cursor: pointer;
+      color: $grey-dark;
+      display:none;
+      &.is-active{
+        display: inherit;
+      }
     }
     .icon{
       width: 18px !important;

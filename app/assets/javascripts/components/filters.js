@@ -15,6 +15,7 @@ document.addEventListener("turbolinks:load", function() {
   var $filter_dates = $('.filters .filter-date')
   var $filter_dates_clear = $filter_dates.find('.clear-date')
   var $filter_searches = $('.filters .filter-search')
+  var $filter_searches_clear = $filter_searches.find('.clear-search')
   var $filter_date_content = $filter_dates.find('.dropdown-trigger-content')
   var $filter_label_date = $('.filters .filter-label-date')
   var is_datepicker_now = $filter_dates.data('options') === 'now'
@@ -107,22 +108,21 @@ document.addEventListener("turbolinks:load", function() {
   // when click on 'x' in date label
   // reload page without the date param
   $filter_dates_clear.on('click', function(){
-    show_loading_image()
+    toggle_loading_image()
     reload_page_with_new_params({date_start: null, date_end: null})
   })
-
 
   // when select filter changes,
   // reload the page
   $filter_selects.on('change', 'select', function(){
-    show_loading_image()
+    toggle_loading_image()
     process_filter_request(this)
   })
 
   // when date filter closes,
   // reload the page
   $filter_dates.on('click', '.button-close', function(){
-    show_loading_image()
+    toggle_loading_image()
 
     var start = formatDate(date_start.datepicker("getDate"))
     var end = formatDate(date_end.datepicker("getDate"))
@@ -168,9 +168,24 @@ document.addEventListener("turbolinks:load", function() {
   // reload the page
   $filter_searches.on('keyup', 'input', function (e) {
     if (e.keyCode == 13) {
-      show_loading_image()
+      toggle_loading_image()
       process_filter_request(this)
+    }else {
+      if (this.value.length >  0){
+        $filter_searches_clear.addClass('is-active')
+      }else{
+        $filter_searches_clear.removeClass('is-active')
+      }
     }
+  })
+
+  // when click on 'x' in search
+  // reload page withouth the search param
+  $filter_searches_clear.on('click', function(){
+    toggle_loading_image()
+    $filter_searches.find('input').val('')
+    $filter_searches_clear.removeClass('is-active')
+    reload_page_with_new_params({search: null})
   })
 
   // show/hide filters on mobile
@@ -179,8 +194,8 @@ document.addEventListener("turbolinks:load", function() {
   })
 
 
-  var show_loading_image = function(){
-    $('.loading').addClass('is-active')
+  var toggle_loading_image = function(){
+    $('.loading').toggleClass('is-active')
   }
 
 
@@ -204,8 +219,13 @@ document.addEventListener("turbolinks:load", function() {
       new_search = updateQueryStringParam(new_search, 'page', null)
     }
 
-    // load the page with the updated filters
-    window.location = base_url + new_search
+    if (window.location.toLocaleString() === (base_url + new_search)){
+      // nothing changed so turn off loader
+      toggle_loading_image()
+    }else{
+      // load the page with the updated filters
+      window.location = base_url + new_search
+    }
   }
 
   // set the month and year selects in the datepicker if
