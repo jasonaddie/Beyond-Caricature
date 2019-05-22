@@ -92,11 +92,17 @@
         border-bottom: solid 1px $navbar-burger-color;
         justify-content: left;
         text-align: left;
-        padding: 0 16px 0 0;
+        padding: 0 20px 0 0;
         height: inherit;
         border-radius: inherit;
         &:focus{
           box-shadow: inherit;
+        }
+        .dropdown-trigger-content{
+          width: 100%;
+          .clear-date{
+            font-weight: 700;
+          }
         }
         .icon{
           width: 14px !important;

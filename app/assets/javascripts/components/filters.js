@@ -13,6 +13,7 @@ document.addEventListener("turbolinks:load", function() {
   var $filter_toggle = $('.filters .filter-toggle')
   var $filter_selects = $('.filters .filter-select')
   var $filter_dates = $('.filters .filter-date')
+  var $filter_dates_clear = $filter_dates.find('.clear-date')
   var $filter_searches = $('.filters .filter-search')
   var $filter_date_content = $filter_dates.find('.dropdown-trigger-content')
   var $filter_label_date = $('.filters .filter-label-date')
@@ -103,6 +104,12 @@ document.addEventListener("turbolinks:load", function() {
     $(this).siblings('.dropdown').find('.dropdown-trigger .button').trigger('click')
   })
 
+  // when click on 'x' in date label
+  // reload page without the date param
+  $filter_dates_clear.on('click', function(){
+    show_loading_image()
+    reload_page_with_new_params({date_start: null, date_end: null})
+  })
 
 
   // when select filter changes,

@@ -43,9 +43,14 @@
             </div>
             <div class="filter-date dropdown">
               <div class="dropdown-trigger">
-                <button class="button control has-icons-right" aria-haspopup="true" aria-controls="dropdown-date">
+                <button class="button control has-icons-right is-clearfix" aria-haspopup="true" aria-controls="dropdown-date">
                   <span class="dropdown-trigger-content" data-start="<%= params[:date_start] %>" data-end="<%= params[:date_end] %>" data-min="<%= @filter_date_ranges[:min] %>" data-max="<%= @filter_date_ranges[:max] %>">
-                    <%= generate_date_label(params[:date_start], params[:date_end]) %>
+
+                    <% label = generate_date_label(params[:date_start], params[:date_end]) %>
+                    <% if label != '&nbsp;' %>
+                      <span class="clear-date is-pulled-right" title="Remove all items">×</span>
+                    <% end %>
+                    <%= label %>
                   </span>
                   <span class="icon is-right">
                     <i class="down-arrow" aria-hidden="true"></i>
