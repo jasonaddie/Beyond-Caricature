@@ -22,6 +22,7 @@ class HomeController < ApplicationController
                       .sort_name_asc.page(params[:page]).per(@pagination_per_large)
     @filter_source_types = Publication.publication_types_for_select2
     @filter_languages = PublicationLanguage.active.sort_language.with_published_publications
+    @filter_date_ranges = Publication.date_ranges
   end
 
   def source
@@ -52,6 +53,7 @@ class HomeController < ApplicationController
                         .sort_published_desc.page(params[:page]).per(@pagination_per_large)
     @filter_source_types = Publication.publication_types_for_select2
     @filter_illustrators = Person.with_illustrations.published.sort_name_asc
+    @filter_date_ranges = Illustration.date_ranges
   end
 
   def image
@@ -72,6 +74,7 @@ class HomeController < ApplicationController
                           date_start: convert_date_param(:date_start), date_end: convert_date_param(:date_end)})
                 .sort_name_asc.page(params[:page]).per(@pagination_per_large)
     @filter_roles = Role.roles_assigned_to_published_people.sort_name.uniq
+    @filter_date_ranges = Person.date_ranges
   end
 
   def person
@@ -83,6 +86,7 @@ class HomeController < ApplicationController
                 .filter({search: params[:search],
                         date_start: convert_date_param(:date_start), date_end: convert_date_param(:date_end)})
                 .sort_published_desc.page(params[:page]).per(@pagination_per_small)
+    @filter_date_ranges = News.date_ranges
   end
 
   def news_item
@@ -94,6 +98,7 @@ class HomeController < ApplicationController
                           .filter({search: params[:search],
                                     date_start: convert_date_param(:date_start), date_end: convert_date_param(:date_end)})
                           .sort_published_desc.page(params[:page]).per(@pagination_per_small)
+    @filter_date_ranges = Research.date_ranges
   end
 
   def research

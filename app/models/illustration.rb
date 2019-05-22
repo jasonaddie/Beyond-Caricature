@@ -85,6 +85,39 @@ class Illustration < ApplicationRecord
   scope :published, -> { with_translations(I18n.locale).where('illustration_translations.is_public': true) }
   scope :sort_published_desc, -> { order(date_publish: :desc) }
 
+  # get the min and max date values
+  def self.date_ranges
+    range = nil
+
+    # get published records
+    pubs = Publication.published.pluck(:id, :year)
+    issues = Issue.published.pluck(:id, :date_publication)
+    illustrations = self.published.pluck(:id)
+
+    if illustrations.present? && (pubs.present? || issues.present?)
+      # get ids of pubs and issues that also have published illustrations
+      illustration_pubs = IllustrationPublication.where(publication_id: pubs.map{|x| x[0]}, illustration_id: illustrations).pluck(:publication_id).uniq
+      illustration_issues = IllustrationIssue.where(issue_id: issues.map{|x| x[0]}, illustration_id: illustrations).pluck(:issue_id).uniq
+
+      years = []
+      if illustration_pubs.present?
+        years << pubs.select{|x| illustration_pubs.include?(x[0])}.map{|x| x[1]}
+      end
+      if illustration_issues.present?
+        years << issues.select{|x| illustration_issues.include?(x[0])}.map{|x| x[1].year}
+      end
+
+      if years.present?
+        years.flatten!.uniq!
+        years = years.reject(&:blank?)
+        years.sort!
+        range = {min: years.first, max: years.last}
+      end
+    end
+
+    return range
+  end
+
   # filter illustrations by the following:
   # - publication type - publication type key from publication table
   # - person - slug of person assigned to this illustration

@@ -90,6 +90,17 @@ class Person < ApplicationRecord
     end
   end
 
+  # get the min and max date values
+  def self.date_ranges
+    range = nil
+    dates = self.published.pluck(:date_birth, :date_death).flatten.uniq.reject(&:blank?).sort
+    if dates.present?
+      range = {min: dates.first, max: dates.last}
+    end
+
+    return range
+  end
+
   # filter people by the following:
   # - role - role id from person role model
   # - date_start - birth date is greater than this date

@@ -74,6 +74,17 @@ class Research < ApplicationRecord
   scope :published, -> { where(is_public: true) }
   scope :sort_published_desc, -> { order(date_publish: :desc) }
 
+  # get the min and max date values
+  def self.date_ranges
+    range = nil
+    dates = self.published.pluck(:date_publish).flatten.uniq.reject(&:blank?).sort
+    if dates.present?
+      range = {min: dates.first, max: dates.last}
+    end
+
+    return range
+  end
+
   # filter news by the following:
   # - search - string
   # - date_start - published after this date

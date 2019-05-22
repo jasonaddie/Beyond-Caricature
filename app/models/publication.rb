@@ -100,6 +100,23 @@ class Publication < ApplicationRecord
   scope :sort_published_desc, -> { order(date_publish: :desc) }
   scope :sort_name_asc, -> { select('publications.*, publication_translations.title, publication_translations.date_publish').with_translations(I18n.locale).order('publication_translations.title asc, publication_translations.date_publish asc') }
 
+  # get the min and max date values
+  def self.date_ranges
+    range = nil
+    pub_years = self.published.pluck(:year).uniq.reject(&:blank?)
+    issue_dates = Issue.published.pluck(:date_publication).uniq.reject(&:blank?)
+    if issue_dates.present?
+      pub_years << issue_dates.map{|x| x.year}
+    end
+    if pub_years.present?
+      pub_years.flatten!.uniq!
+      pub_years.sort!
+      range = {min: pub_years.first, max: pub_years.last}
+    end
+
+    return range
+  end
+
   # filter people by the following:
   # - publication type - publication_type enum
   # - publication language - language id

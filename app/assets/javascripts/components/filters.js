@@ -1,8 +1,12 @@
 var dateFormat = 'yy-mm-dd'
-var defaultYear = 1906
-var defaultMonth = 0
+var defaultYear = (new Date()).getFullYear()
+var defaultMonth = (new Date()).getMonth()
 var currentDate = new Date(new Date().setHours(0,0,0,0))
 var yearAppStart = 2019
+var minDate = yearAppStart.toString() + '-01-01'
+var maxDate = new Date((new Date()).getFullYear(), 12, 31)
+var yearRange
+var defaultDate = new Date()
 
 document.addEventListener("turbolinks:load", function() {
   var $filter_selects = $('.filters .filter-select')
@@ -13,12 +17,23 @@ document.addEventListener("turbolinks:load", function() {
   var is_datepicker_now = $filter_dates.data('options') === 'now'
   var base_url = [location.protocol, '//', location.host, location.pathname].join('')
 
-  if (is_datepicker_now){
-    defaultYear = (new Date()).getFullYear()
-    defaultMonth = (new Date()).getMonth()
-  }else{
-    defaultYear = 1906
-    defaultMonth = 0
+  // if there is a min value, set it as min date
+  if ($filter_date_content.data('min') !== ''){
+    minDate = $filter_date_content.data('min')
+  }
+  // if there is a max value, set it as max date
+  if ($filter_date_content.data('max') !== ''){
+    maxDate = $filter_date_content.data('max')
+  }
+
+  // set the year range
+  yearRange = minDate.substring(0,4) + ':' + maxDate.substring(0,4)
+
+  if (!is_datepicker_now){
+    var d = $.datepicker.parseDate( dateFormat, minDate)
+    defaultYear = d.getFullYear()
+    defaultMonth = d.getMonth()
+    defaultDate = null
   }
 
   // register all filter selects with select2
@@ -29,11 +44,22 @@ document.addEventListener("turbolinks:load", function() {
   })
 
   // register all dates with datepicker
+  // var date_options = $.extend(true, {}, $.datepicker.regional[$('html').attr('lang')], {
+  //   changeMonth: true,
+  //   changeYear: true,
+  //   dateFormat: dateFormat,
+  //   minDate: minDate,
+  //   maxDate: maxDate,
+  //   yearRange: yearRange
+  // }, generate_date_options(is_datepicker_now))
   var date_options = $.extend(true, {}, $.datepicker.regional[$('html').attr('lang')], {
     changeMonth: true,
     changeYear: true,
-    dateFormat: dateFormat
-  }, generate_date_options(is_datepicker_now))
+    dateFormat: dateFormat,
+    minDate: minDate,
+    maxDate: maxDate,
+    yearRange: yearRange
+  })
 
   var date_start = $filter_dates.find('.date-start .datepicker').datepicker(date_options)
     .on("change", function() {

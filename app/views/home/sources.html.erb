@@ -32,48 +32,50 @@
             </div>
           </div>
         </div>
-        <div class="column is-3">
-          <div class="filter-label filter-label-date">
-            <label><%= t('labels.filter.date') %></label>
-          </div>
-          <div class="filter-date dropdown">
-            <div class="dropdown-trigger">
-              <button class="button control has-icons-right" aria-haspopup="true" aria-controls="dropdown-date">
-                <span class="dropdown-trigger-content" data-start="<%= params[:date_start] %>" data-end="<%= params[:date_end] %>">
-                  <%= generate_date_label(params[:date_start], params[:date_end]) %>
-                </span>
-                <span class="icon is-right">
-                  <i class="down-arrow" aria-hidden="true"></i>
-                </span>
-              </button>
+        <% if @filter_date_ranges.present? %>
+          <div class="column is-3">
+            <div class="filter-label filter-label-date">
+              <label><%= t('labels.filter.date') %></label>
             </div>
-            <div class="dropdown-menu" id="dropdown-date" role="menu">
-              <div class="dropdown-content">
-                <div class="dropdown-item is-clearfix">
-                  <%= t('labels.filter.date_explanation') %>
-                  <button class="button button-close is-pulled-right is-small">
-                    <%= t('labels.filter.date_close') %>
-                  </button>
-                  <button class="button button-clear is-pulled-right is-small">
-                    <%= t('labels.filter.date_clear') %>
-                  </button>
-                </div>
-                <div class="dropdown-item calendar date-start">
-                  <div class='date-label'>
-                    <%= t('labels.filter.date_start') %>
+            <div class="filter-date dropdown">
+              <div class="dropdown-trigger">
+                <button class="button control has-icons-right" aria-haspopup="true" aria-controls="dropdown-date">
+                  <span class="dropdown-trigger-content" data-start="<%= params[:date_start] %>" data-end="<%= params[:date_end] %>" data-min="<%= @filter_date_ranges[:min] %>-01-01" data-max="<%= @filter_date_ranges[:max] %>-01-01">
+                    <%= generate_date_label(params[:date_start], params[:date_end]) %>
+                  </span>
+                  <span class="icon is-right">
+                    <i class="down-arrow" aria-hidden="true"></i>
+                  </span>
+                </button>
+              </div>
+              <div class="dropdown-menu" id="dropdown-date" role="menu">
+                <div class="dropdown-content">
+                  <div class="dropdown-item is-clearfix">
+                    <%= t('labels.filter.date_explanation') %>
+                    <button class="button button-close is-pulled-right is-small">
+                      <%= t('labels.filter.date_close') %>
+                    </button>
+                    <button class="button button-clear is-pulled-right is-small">
+                      <%= t('labels.filter.date_clear') %>
+                    </button>
                   </div>
-                  <div class="datepicker"></div>
-                </div>
-                <div class="dropdown-item calendar date-end">
-                  <div class='date-label'>
-                    <%= t('labels.filter.date_end') %>
+                  <div class="dropdown-item calendar date-start">
+                    <div class='date-label'>
+                      <%= t('labels.filter.date_start') %>
+                    </div>
+                    <div class="datepicker"></div>
                   </div>
-                  <div class="datepicker"></div>
+                  <div class="dropdown-item calendar date-end">
+                    <div class='date-label'>
+                      <%= t('labels.filter.date_end') %>
+                    </div>
+                    <div class="datepicker"></div>
+                  </div>
                 </div>
               </div>
             </div>
           </div>
-        </div>
+        <% end %>
         <div class="column is-3">
           <div class="filter-label">
             <label for="filter_type"><%= t('labels.filter.source_type') %></label>
