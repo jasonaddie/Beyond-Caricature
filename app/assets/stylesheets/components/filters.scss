@@ -1,6 +1,44 @@
 @import 'vars';
 
 .filters{
+  .filters-button {
+    button{
+      letter-spacing: 3.4px;
+      background-color: $nav-start-active-color;
+      text-transform: lowercase;
+      opacity: 0.7;
+      color: #fff;
+      padding: 8px 25px;
+      border-radius: 25px;
+      white-space: nowrap;
+      &:hover{
+        opacity: 1;
+        color: #fff;
+      }
+    }
+
+    // .icon{
+    //   width: 14px !important;
+    //   height: 24px !important;
+    //   margin-right: 0;
+    //   margin-left: 0;
+    //   &:hover{
+    //     cursor: pointer;
+    //   }
+
+    //   i.down-arrow{
+    //     display: inline-block;
+    //     width: 14px;
+    //     height: 7px;
+    //     vertical-align: middle;
+    //     background: url(asset_path('down_arrow_white.svg')) no-repeat 0 top;
+    //     background-size: cover;
+    //     margin-top: 11px;
+    //   }
+    // }
+
+  }
+
   .filter-label{
     label{
       font-weight: 600;
@@ -82,9 +120,9 @@
       }
     }
     .dropdown-menu{
-      width: 650px;
+      width: 275px;
       .dropdown-item.calendar{
-        display: inline-block;
+        display: block;
       }
     }
   }
@@ -110,6 +148,49 @@
     }
   }
 }
+
+@media (min-width: 600px){
+  .filters{
+    .filter-date{
+      .dropdown-menu{
+        width: 545px;
+        .dropdown-item.calendar{
+          display: inline-block;
+        }
+      }
+    }
+  }
+}
+
+@media (min-width: 769px) and (max-width: 1087px){
+  .filters{
+    .filter-date{
+      .dropdown-menu{
+        width: 545px;
+        left: inherit;
+        right: 0;
+      }
+    }
+  }
+}
+
+@media (min-width: 1088px){
+  .filters{
+    .filter-date{
+      .dropdown-menu{
+        width: 650px;
+        left: 0;
+        right: inherit;
+      }
+    }
+  }
+}
+
+
+
+
+
+
 
 // style the popup select filters
 .select2-container--default .select2-selection--single .select2-selection__arrow b{

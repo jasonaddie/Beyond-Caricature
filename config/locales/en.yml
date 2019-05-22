@@ -359,6 +359,7 @@ en:
       journal: Issue Dates
       book: Year
       original: Year
+    filters: Filters
     filter:
       search: Search
       source_type: Source Type

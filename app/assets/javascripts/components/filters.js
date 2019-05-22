@@ -9,6 +9,8 @@ var yearRange
 var defaultDate = new Date()
 
 document.addEventListener("turbolinks:load", function() {
+  var $filter_button = $('.filters .filters-button button')
+  var $filter_toggle = $('.filters .filter-toggle')
   var $filter_selects = $('.filters .filter-select')
   var $filter_dates = $('.filters .filter-date')
   var $filter_searches = $('.filters .filter-search')
@@ -163,6 +165,12 @@ document.addEventListener("turbolinks:load", function() {
       process_filter_request(this)
     }
   })
+
+  // show/hide filters on mobile
+  $filter_button.on('click', function(){
+    $filter_toggle.toggleClass('is-hidden-mobile')
+  })
+
 
   var show_loading_image = function(){
     $('.loading').addClass('is-active')
