@@ -1,12 +1,11 @@
 var dateFormat = 'yy-mm-dd'
 var defaultYear = (new Date()).getFullYear()
 var defaultMonth = (new Date()).getMonth()
-var currentDate = new Date(new Date().setHours(0,0,0,0))
 var yearAppStart = 2019
-var minDate = yearAppStart.toString() + '-01-01'
-var maxDate = new Date((new Date()).getFullYear(), 12, 31)
-var yearRange
-var defaultDate = new Date()
+var defaultMinDate = yearAppStart.toString() + '-01-01'
+var defaultMaxDate = new Date((new Date()).getFullYear(), 12, 31)
+var yearRange, minDate, maxDate
+var defaultDate = null
 
 document.addEventListener("turbolinks:load", function() {
   var $filter_button = $('.filters .filters-button button')
@@ -20,125 +19,138 @@ document.addEventListener("turbolinks:load", function() {
   var $filter_label_date = $('.filters .filter-label-date')
   var is_datepicker_now = $filter_dates.data('options') === 'now'
   var base_url = [location.protocol, '//', location.host, location.pathname].join('')
-
+  ////////////////////////////////////////////
+  // DATES
+  ////////////////////////////////////////////
   // if there is a min value, set it as min date
   if ($filter_date_content.data('min') !== ''){
     minDate = $filter_date_content.data('min')
+  }else{
+    minDate = defaultMinDate
   }
   // if there is a max value, set it as max date
   if ($filter_date_content.data('max') !== ''){
     maxDate = $filter_date_content.data('max')
+  }else{
+    maxDate = defaultMaxDate
   }
 
   // set the year range
   yearRange = minDate.substring(0,4) + ':' + maxDate.substring(0,4)
 
-  if (!is_datepicker_now){
-    var d = $.datepicker.parseDate( dateFormat, minDate)
-    defaultYear = d.getFullYear()
-    defaultMonth = d.getMonth()
-    defaultDate = null
+console.log('________________________-')
+console.log(is_datepicker_now)
+console.log(minDate)
+console.log(maxDate)
+  var default_date = minDate
+  if (is_datepicker_now){
+    console.log('- setting default year/month to max date')
+    default_date = maxDate
   }
-
-  // register all filter selects with select2
-  $filter_selects.find('select').select2({
-    allowClear: true,
-    dropdownAutoWidth: true,
-    placeholder: ' '
-  })
+  var d = $.datepicker.parseDate( dateFormat, default_date)
+  defaultYear = d.getFullYear()
+  defaultMonth = d.getMonth()
 
   // register all dates with datepicker
-  // var date_options = $.extend(true, {}, $.datepicker.regional[$('html').attr('lang')], {
-  //   changeMonth: true,
-  //   changeYear: true,
-  //   dateFormat: dateFormat,
-  //   minDate: minDate,
-  //   maxDate: maxDate,
-  //   yearRange: yearRange
-  // }, generate_date_options(is_datepicker_now))
   var date_options = $.extend(true, {}, $.datepicker.regional[$('html').attr('lang')], {
     changeMonth: true,
     changeYear: true,
     dateFormat: dateFormat,
     minDate: minDate,
     maxDate: maxDate,
-    yearRange: yearRange
+    yearRange: yearRange,
+    defaultDate: default_date
   })
 
+console.log(date_options)
+  // when change one dates, update the min/max of the other
   var date_start = $filter_dates.find('.date-start .datepicker').datepicker(date_options)
     .on("change", function() {
+      console.log('DATE START CHANGE')
       var d = getDate(this)
-      date_end.datepicker( "option", "minDate", d );
-      set_datepicker_select_values(date_end, d.getMonth(), d.getFullYear())
+      if (d !== null){
+        var end = date_end.datepicker("getDate")
+        date_end.datepicker( "option", "minDate", d );
+        if (end < d || end === null){
+          // end is less than the new start date, so reset end to null
+          reset_date(date_end)
+          set_datepicker_select_values(date_end, d.getMonth(), d.getFullYear())
+        }
+      }
     })
 
   var date_end = $filter_dates.find('.date-end .datepicker').datepicker(date_options)
     .on("change", function() {
+      console.log('DATE END CHANGE')
       var d = getDate(this)
-      date_start.datepicker( "option", "maxDate", d );
-      set_datepicker_select_values(date_start, d.getMonth(), d.getFullYear())
+      if (d !== null){
+        var start = date_start.datepicker("getDate")
+        date_start.datepicker( "option", "maxDate", d );
+        if (start > d || start === null){
+          // start is greater than the new end date, so reset start to null
+          reset_date(date_start)
+          set_datepicker_select_values(date_start, d.getMonth(), d.getFullYear())
+        }
+      }
     })
 
   // if there is no date value, preset the calendar to show
   // a specific month and year
+  console.log('############')
+  console.log($filter_date_content.data('start'))
+  console.log($filter_date_content.data('end'))
   if ($filter_date_content.data('start') === '' && $filter_date_content.data('end') !== ''){
     var d = $.datepicker.parseDate( dateFormat, $filter_date_content.data('end'))
+    reset_date(date_start)
     set_datepicker_select_values(date_start, d.getMonth(), d.getFullYear())
   }else if ($filter_date_content.data('start') === ''){
+    console.log('- no start date, reseting start calendar')
+    reset_date(date_start)
     set_datepicker_select_values(date_start, defaultMonth, defaultYear)
   }else{
     date_start.datepicker('setDate', $filter_date_content.data('start'))
   }
 
+console.log(date_start.find(".ui-datepicker-current-day a"))
+
   if ($filter_date_content.data('start') !== '' && $filter_date_content.data('end') === ''){
     var d = $.datepicker.parseDate( dateFormat, $filter_date_content.data('start'))
+    reset_date(date_end)
     set_datepicker_select_values(date_end, d.getMonth(), d.getFullYear())
   }else if ($filter_date_content.data('end') === ''){
+    console.log('- no end date, reseting end calendar')
+    reset_date(date_end)
     set_datepicker_select_values(date_end, defaultMonth, defaultYear)
   }else{
     date_end.datepicker('setDate', $filter_date_content.data('end'))
   }
 
+console.log(date_end.find(".ui-datepicker-current-day a"))
+
   // when click on date label
   // open datepicker
   $filter_label_date.on('click', function(){
+    console.log('DATE LABEL CLICK')
     $(this).siblings('.dropdown').find('.dropdown-trigger .button').trigger('click')
   })
 
   // when click on 'x' in date label
   // reload page without the date param
   $filter_dates_clear.on('click', function(){
+    console.log('BUTTON X CLICK')
     toggle_loading_image()
     reload_page_with_new_params({date_start: null, date_end: null})
-  })
-
-  // when select filter changes,
-  // reload the page
-  $filter_selects.on('change', 'select', function(){
-    toggle_loading_image()
-    process_filter_request(this)
   })
 
   // when date filter closes,
   // reload the page
   $filter_dates.on('click', '.button-close', function(){
+    console.log('BUTTON CLOSE CLICK')
     toggle_loading_image()
 
     var start = formatDate(date_start.datepicker("getDate"))
     var end = formatDate(date_end.datepicker("getDate"))
-    var current = formatDate(currentDate)
-    var params = {}
-
-    if (start && start !== current){
-      params.date_start = start
-    }else{
-      params.date_start = null
-    }
-    if (end && end !== current){
-      params.date_end = end
-    }else{
-      params.date_end = null
-    }
+    var params = {date_start: start, date_end: end}
 
     // if the values have changed, reload the page
     if ($filter_date_content.length > 0 && (
@@ -157,13 +169,39 @@ document.addEventListener("turbolinks:load", function() {
   })
 
   // clear the date filter values
+  // and reset the min/max values
   $filter_dates.on('click', '.button-clear', function(){
-    date_start.datepicker('setDate', currentDate)
-    set_datepicker_select_values(date_start, defaultMonth, defaultYear, true)
-    date_end.datepicker('setDate', currentDate)
+    console.log('BUTTON CLEAR CLICK')
+    reset_date(date_end)
+    date_end.datepicker( "option", {minDate: minDate, maxDate: maxDate} )
     set_datepicker_select_values(date_end, defaultMonth, defaultYear, true)
+
+    reset_date(date_start)
+    date_start.datepicker( "option", {minDate: minDate, maxDate: maxDate} )
+    set_datepicker_select_values(date_start, defaultMonth, defaultYear, true)
   })
 
+  ////////////////////////////////////////////
+  // SELECTS
+  ////////////////////////////////////////////
+  // register all filter selects with select2
+  $filter_selects.find('select').select2({
+    allowClear: true,
+    dropdownAutoWidth: true,
+    placeholder: ' '
+  })
+
+  // when select filter changes,
+  // reload the page
+  $filter_selects.on('change', 'select', function(){
+    toggle_loading_image()
+    process_filter_request(this)
+  })
+
+
+  ////////////////////////////////////////////
+  // SEARCH
+  ////////////////////////////////////////////
   // when search changes,
   // reload the page
   $filter_searches.on('keyup', 'input', function (e) {
@@ -188,11 +226,25 @@ document.addEventListener("turbolinks:load", function() {
     reload_page_with_new_params({search: null})
   })
 
+
+  ////////////////////////////////////////////
+  // FUNCTIONS
+  ////////////////////////////////////////////
   // show/hide filters on mobile
   $filter_button.on('click', function(){
     $filter_toggle.toggleClass('is-hidden-mobile')
   })
 
+  // when set a date to null,
+  // it is still selected in the calendar,
+  // so also remove the highlight class
+  function reset_date(date_obj){
+    date_obj.datepicker('setDate', null)
+    console.log("!!!!!!!!!!!!!!!!!!!!!!!!!")
+    console.log(date_obj.find(".ui-datepicker-current-day a"))
+    date_obj.find(".ui-datepicker-current-day a").removeClass("ui-state-highlight ui-state-active")
+    console.log(date_obj.find(".ui-datepicker-current-day a"))
+  }
 
   var toggle_loading_image = function(){
     $('.loading').toggleClass('is-active')
@@ -232,26 +284,21 @@ document.addEventListener("turbolinks:load", function() {
   // - datepicker value is today's date
   // - or forceSetting = true
   function set_datepicker_select_values(date_obj, month, year, forceSetting){
-    if (date_obj.datepicker('getDate').getTime() === currentDate.getTime() || forceSetting === true){
-      $(date_obj).find('.ui-datepicker-month').val(month)
-      $(date_obj).find('.ui-datepicker-month').trigger('change')
+    console.log('==============')
+    console.log(year)
+    console.log(month)
+    if (date_obj.datepicker('getDate') === null || forceSetting === true){
       $(date_obj).find('.ui-datepicker-year').val(year)
       $(date_obj).find('.ui-datepicker-year').trigger('change')
+      $(date_obj).find('.ui-datepicker-month').val(month)
+      $(date_obj).find('.ui-datepicker-month').trigger('change')
     }
-  }
 
-  function generate_date_options(is_datepicker_now){
-    options = {}
-    if (is_datepicker_now){
-      options.minDate = yearAppStart.toString() + '-01-01'
-      options.maxDate = new Date((new Date()).getFullYear(), 12, 31)
-      options.yearRange = yearAppStart.toString() + ":" + (new Date()).getFullYear()
-    }else{
-      options.minDate = '1860-01-01'
-      options.maxDate = new Date((new Date()).getFullYear(), 12, 31)
-      options.yearRange = "1860:" + (new Date()).getFullYear()
-    }
-    return options
+    // if (trigger_change === true){
+      // console.log('- triggering change')
+      // $(date_obj).find('.ui-datepicker-year').trigger('change')
+      // $(date_obj).find('.ui-datepicker-month').trigger('change')
+    // }
   }
 
 })

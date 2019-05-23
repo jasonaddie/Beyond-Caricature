@@ -46,7 +46,7 @@
             <div class="filter-date dropdown">
               <div class="dropdown-trigger">
                 <button class="button control has-icons-right is-clearfix" aria-haspopup="true" aria-controls="dropdown-date">
-                  <span class="dropdown-trigger-content" data-start="<%= params[:date_start] %>" data-end="<%= params[:date_end] %>" data-min="<%= @filter_date_ranges[:min] %>-01-01" data-max="<%= @filter_date_ranges[:max] %>-01-01">
+                  <span class="dropdown-trigger-content" data-start="<%= params[:date_start] %>" data-end="<%= params[:date_end] %>" data-min="<%= @filter_date_ranges[:min] %>-01-01" data-max="<%= @filter_date_ranges[:max] %>-12-31">
 
                     <% label = generate_date_label(params[:date_start], params[:date_end]) %>
                     <% if label != '&nbsp;' %>
