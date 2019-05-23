@@ -71,13 +71,19 @@
                   </div>
                   <div class="dropdown-item calendar date-start">
                     <div class='date-label'>
-                      <%= t('labels.filter.date_start') %>
+                      <%= t('labels.filter.date_start') %>:
+                      <span class="selected-date-label" data-no-data="<%= I18n.t('labels.filter.no_date') %>">
+                        <%= params[:date_start].present? ? params[:date_start] : I18n.t('labels.filter.no_date') %>
+                      </span>
                     </div>
                     <div class="datepicker"></div>
                   </div>
                   <div class="dropdown-item calendar date-end">
                     <div class='date-label'>
-                      <%= t('labels.filter.date_end') %>
+                      <%= t('labels.filter.date_end') %>:
+                      <span class="selected-date-label" data-no-data="<%= I18n.t('labels.filter.no_date') %>">
+                        <%= params[:date_end].present? ? params[:date_end] : I18n.t('labels.filter.no_date') %>
+                      </span>
                     </div>
                     <div class="datepicker"></div>
                   </div>

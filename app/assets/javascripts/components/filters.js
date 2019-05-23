@@ -69,6 +69,7 @@ console.log(date_options)
       console.log('DATE START CHANGE')
       var d = getDate(this)
       if (d !== null){
+        // update end date min date
         var end = date_end.datepicker("getDate")
         date_end.datepicker( "option", "minDate", d );
         if (end < d || end === null){
@@ -76,6 +77,12 @@ console.log(date_options)
           reset_date(date_end)
           set_datepicker_select_values(date_end, d.getMonth(), d.getFullYear())
         }
+
+        // update selected date label
+        $(this).parent().find('.selected-date-label').text(formatDate(d))
+      }else{
+        // update selected date label
+        $(this).parent().find('.selected-date-label').text($(this).parent().find('.selected-date-label').data('no-data'))
       }
     })
 
@@ -84,6 +91,7 @@ console.log(date_options)
       console.log('DATE END CHANGE')
       var d = getDate(this)
       if (d !== null){
+        // update start date max date
         var start = date_start.datepicker("getDate")
         date_start.datepicker( "option", "maxDate", d );
         if (start > d || start === null){
@@ -91,6 +99,12 @@ console.log(date_options)
           reset_date(date_start)
           set_datepicker_select_values(date_start, d.getMonth(), d.getFullYear())
         }
+
+        // update selected date label
+        $(this).parent().find('.selected-date-label').text(formatDate(d))
+      }else{
+        // update selected date label
+        $(this).parent().find('.selected-date-label').text($(this).parent().find('.selected-date-label').data('no-data'))
       }
     })
 
@@ -175,10 +189,12 @@ console.log(date_end.find(".ui-datepicker-current-day a"))
     reset_date(date_end)
     date_end.datepicker( "option", {minDate: minDate, maxDate: maxDate} )
     set_datepicker_select_values(date_end, defaultMonth, defaultYear, true)
+    date_end.parent().find('.selected-date-label').text(date_end.parent().find('.selected-date-label').data('no-data'))
 
     reset_date(date_start)
     date_start.datepicker( "option", {minDate: minDate, maxDate: maxDate} )
     set_datepicker_select_values(date_start, defaultMonth, defaultYear, true)
+    date_start.parent().find('.selected-date-label').text(date_start.parent().find('.selected-date-label').data('no-data'))
   })
 
   ////////////////////////////////////////////

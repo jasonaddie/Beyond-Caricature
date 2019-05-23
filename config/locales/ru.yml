@@ -372,6 +372,7 @@ ru:
       date_end: End Date
       date_close: Confirm
       date_clear: Clear
+      no_date: None
     unknown: Unknown
     meta:
       publication_type: Type
