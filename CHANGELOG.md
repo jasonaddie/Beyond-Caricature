@@ -1,6 +1,28 @@
 This page lists additions, changes, and bug fixes that have been applied to the application code.
 The numbers in brackets (i.e., [0.1]), indicate the version number of the app.
 
+## [0.34] - 2019-05-24
+### Added
+- Image count to meta data in listing pages
+- Issue count to meta data for Journals on the Source listnig page
+- Source count to meta data in Person listing page
+- Date filter ranges are now based on data in the system; if there is no date data, date filter is hidden
+- Screen size responsiveness to filters
+- x button to remove text in search filter
+- x button to remove value for date filter
+- In date filter, show the dates that are selected next to the 'Start Date' and 'End Date' labels above the calendar
+
+### Fixed
+- Background image of lines now go all the way down
+- Source page people roles are now better grouped together
+- Calculation of count of illustrations for a person
+- View all image links on Source and Issue page now working
+- Logic for Person data filter
+- Reduced partner/donor logo size
+- Default calendar view for date filter will either be the first date (for Source, Image, Person) or most recent date (for News and Resaerch)
+- Overrode the datepicker library script so that it works when no dates are selected (can have end date with no start date)
+- Removed old code
+
 ## [0.33] - 2019-05-20
 ### Added
 - Partner and Donor logos
