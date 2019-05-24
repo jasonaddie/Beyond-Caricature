@@ -19,9 +19,6 @@ ka:
       illustration_tag:
         one: Image Tag
         other: Image Tags
-      illustrator:
-        one: Illustrator
-        other: Illustrators
       issue:
         one: Issue
         other: Issues
@@ -111,17 +108,6 @@ ka:
       illustration_tag:
         illustration_id: Image
         tag_id: Tag
-      illustrator:
-        date_birth: Birth Date
-        date_death: Death Date
-        is_public: Is Public?
-        name: Name
-        bio: Biography
-        image: Image
-      illustrator/translation:
-        is_public: Is Public?
-        name: Name
-        bio: Biography
       issue:
         publication: Journal
         publication_id: Journal
@@ -146,7 +132,6 @@ ka:
         publication_id: Source
         issue_id: Issue
         illustration_id: Image
-        illustrator_id: Illustrator
       news/translation:
         is_public: Is Public?
         date_publish: Date Made Public

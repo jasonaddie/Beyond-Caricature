@@ -6,6 +6,7 @@
 #  created_at      :datetime         not null
 #  updated_at      :datetime         not null
 #  cover_image_uid :string
+#  crop_alignment  :string           default("center")
 #
 
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html

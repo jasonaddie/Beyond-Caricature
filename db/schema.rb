@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_05_14_085309) do
+ActiveRecord::Schema.define(version: 2019_05_24_142538) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -149,36 +149,6 @@ ActiveRecord::Schema.define(version: 2019_05_14_085309) do
     t.string "crop_alignment", default: "c"
     t.index ["person_id"], name: "index_illustrations_on_person_id"
     t.index ["slug"], name: "index_illustrations_on_slug", unique: true
-  end
-
-  create_table "illustrator_translations", force: :cascade do |t|
-    t.integer "illustrator_id", null: false
-    t.string "locale", null: false
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.string "name"
-    t.text "bio"
-    t.boolean "is_public", default: false
-    t.date "date_publish"
-    t.string "slug"
-    t.index ["date_publish"], name: "index_illustrator_translations_on_date_publish"
-    t.index ["illustrator_id"], name: "index_illustrator_translations_on_illustrator_id"
-    t.index ["is_public"], name: "index_illustrator_translations_on_is_public"
-    t.index ["locale"], name: "index_illustrator_translations_on_locale"
-    t.index ["name"], name: "index_illustrator_translations_on_name"
-    t.index ["slug"], name: "index_illustrator_translations_on_slug"
-  end
-
-  create_table "illustrators", force: :cascade do |t|
-    t.date "date_birth"
-    t.date "date_death"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.string "image_uid"
-    t.string "slug"
-    t.index ["date_birth"], name: "index_illustrators_on_date_birth"
-    t.index ["date_death"], name: "index_illustrators_on_date_death"
-    t.index ["slug"], name: "index_illustrators_on_slug", unique: true
   end
 
   create_table "issues", force: :cascade do |t|
@@ -438,13 +408,11 @@ ActiveRecord::Schema.define(version: 2019_05_14_085309) do
     t.string "news_itemable_type"
     t.bigint "publication_id"
     t.bigint "illustration_id"
-    t.bigint "illustrator_id"
     t.bigint "issue_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.bigint "person_id"
     t.index ["illustration_id"], name: "index_related_items_on_illustration_id"
-    t.index ["illustrator_id"], name: "index_related_items_on_illustrator_id"
     t.index ["issue_id"], name: "index_related_items_on_issue_id"
     t.index ["news_itemable_id", "news_itemable_type"], name: "idx_related_items_news"
     t.index ["person_id"], name: "index_related_items_on_person_id"

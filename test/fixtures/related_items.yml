@@ -8,7 +8,6 @@
 #  news_itemable_type :string
 #  publication_id     :bigint(8)
 #  illustration_id    :bigint(8)
-#  illustrator_id     :bigint(8)
 #  issue_id           :bigint(8)
 #  created_at         :datetime         not null
 #  updated_at         :datetime         not null

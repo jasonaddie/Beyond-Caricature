@@ -14,6 +14,7 @@
 #  scanned_file_uid  :string
 #  slug              :string
 #  scanned_file_size :integer
+#  crop_alignment    :string           default("center")
 #
 
 class Issue < ApplicationRecord

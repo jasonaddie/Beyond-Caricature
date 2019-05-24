@@ -6,6 +6,7 @@
 #  created_at      :datetime         not null
 #  updated_at      :datetime         not null
 #  cover_image_uid :string
+#  crop_alignment  :string           default("center")
 #
 
 class News < ApplicationRecord
@@ -33,7 +34,7 @@ class News < ApplicationRecord
   has_many :related_items, as: :news_itemable, dependent: :destroy
   accepts_nested_attributes_for :related_items, allow_destroy: true,
     reject_if: ->(item){ item['related_item_type'].blank? && item['publication_id'].blank? && item['issue_id'].blank? &&
-                        item['illustration_id'].blank? && item['illustrator_id'].blank?}
+                        item['illustration_id'].blank? && item['person_id'].blank?}
 
   #################
   ## TRANSLATIONS ##

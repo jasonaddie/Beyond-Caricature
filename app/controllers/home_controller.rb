@@ -34,16 +34,6 @@ class HomeController < ApplicationController
     @issue = @publication.issues.friendly.published.find(params[:id]) if @publication
   end
 
-  # def illustrations
-    # @illustrations = Illustration.published.filter({search: params[:search], type: params[:type], illustrator: params[:illustrator]}).sort_published_desc.page(params[:page]).per(@pagination_per_large)
-    # @filter_source_types = Publication.publication_types_for_select2
-    # @filter_illustrators = Person.illustrator.published.sort_name
-  # end
-
-  # def illustration
-  #   @illustration = Illustration.friendly.published.find(params[:id])
-  # end
-
   def images
     @illustrations = Illustration.published
                         .filter({search: params[:search], type: params[:type],
@@ -59,14 +49,6 @@ class HomeController < ApplicationController
   def image
     @illustration = Illustration.friendly.published.find(params[:id])
   end
-
-  # def illustrators
-  #   @illustrators = Illustrator.published.sort_published_desc
-  # end
-
-  # def illustrator
-  #   @illustrator = Illustrator.friendly.published.find(params[:id])
-  # end
 
   def people
     @people = Person.published

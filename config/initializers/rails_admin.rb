@@ -76,7 +76,6 @@ RailsAdmin.config do |config|
   config.included_models = [
     'User',
     'PublicationLanguage','PublicationLanguage::Translation',
-    # 'Illustrator', 'Illustrator::Translation',
     'Person', 'Person::Translation',
     'Role', 'Role::Translation',
     'PersonRole',
@@ -114,32 +113,6 @@ RailsAdmin.config do |config|
         help I18n.t('admin.help.required')
       end
     end
-  end
-
-  config.model 'Illustrator::Translation' do
-    visible false
-    configure :locale, :hidden do
-      help ''
-    end
-    configure :is_public do
-      html_attributes required: required? && !value.present?, class: 'is-public-field'
-    end
-
-    include_fields :locale, :is_public, :name, :bio
-
-    edit do
-      field :bio, :ck_editor
-      fields :name, :bio do
-        help I18n.t('admin.help.required_for_publication')
-      end
-      # uploader's cannot make anything public
-      field :is_public do
-        visible do
-          !bindings[:view]._current_user.uploader?
-        end
-      end
-    end
-
   end
 
   config.model 'Person::Translation' do
