@@ -13,7 +13,8 @@
 //= require rails-ujs
 //= require turbolinks
 //= require jquery-3.3.1.min
-//= require jquery-ui/widgets/datepicker
+//= require custom_jqueryui_datepicker
+// require jquery-ui/widgets/datepicker
 //= require jquery-ui/i18n/datepicker-az
 //= require jquery-ui/i18n/datepicker-hy
 //= require jquery-ui/i18n/datepicker-ka
