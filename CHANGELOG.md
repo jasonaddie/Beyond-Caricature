@@ -1,6 +1,10 @@
 This page lists additions, changes, and bug fixes that have been applied to the application code.
 The numbers in brackets (i.e., [0.1]), indicate the version number of the app.
 
+## [0.35] - 2019-05-25
+### Added
+- Now have staging and production environements and deployments
+
 ## [0.34] - 2019-05-24
 ### Added
 - Image count to meta data in listing pages
