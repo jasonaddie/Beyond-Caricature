@@ -8,7 +8,7 @@ services:
 
   app:
     restart: unless-stopped
-    image: schmerling/app:0.34
+    image: schmerling/app:0.35
     env_file:
       - ./.env.production
     environment:
@@ -19,5 +19,5 @@ services:
   server:
     restart: unless-stopped
     environment:
-      DOMAINS: 'schmerling.org -> http://app:3000'
+      DOMAINS: 'www.schmerling.org => schmerling.org, schmerling.org -> http://app:3000'
       PRODUCTION: 'true'
