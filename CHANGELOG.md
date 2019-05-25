@@ -1,6 +1,10 @@
 This page lists additions, changes, and bug fixes that have been applied to the application code.
 The numbers in brackets (i.e., [0.1]), indicate the version number of the app.
 
+## [0.36] - 2019-05-25
+### Fixed
+- Emails sent using oskar email address
+
 ## [0.35] - 2019-05-25
 ### Added
 - Now have staging and production environements and deployments
