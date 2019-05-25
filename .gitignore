@@ -39,3 +39,4 @@ yarn-debug.log*
 # env variables
 .env
 .env.production
+.env.staging

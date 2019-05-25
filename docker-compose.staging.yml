@@ -4,13 +4,13 @@ services:
   db:
     restart: unless-stopped
     env_file:
-      - ./.env.production
+      - ./.env.staging
 
   app:
     restart: unless-stopped
     image: schmerling/app:0.34
     env_file:
-      - ./.env.production
+      - ./.env.staging
     environment:
       - POSTGRES_HOST=db
       - RAILS_ENV=production
@@ -19,5 +19,5 @@ services:
   server:
     restart: unless-stopped
     environment:
-      DOMAINS: 'schmerling.org -> http://app:3000'
+      DOMAINS: 'test.schmerling.org -> http://app:3000'
       PRODUCTION: 'true'

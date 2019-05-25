@@ -107,12 +107,20 @@ Next, you can use docker-machine to connect to the server. If you did not instal
 eval $(docker-machine env schmerling)
 ```
 ```bash
-docker-machine use schmerling
+docker-machine use schmerling-production
+```
+or
+```bash
+docker-machine use schmerling-staging
 ```
 
 Now you can run docker compose to update the images on the server. IMPORTANT - you must reference the docker-compose.prod.yml file in the docker-compose statement so the production settings are used on the server.
 ```bash
 docker-compose -f docker-compose.yml -f docker-compose.prod.yml up -d
+```
+or
+```bash
+docker-compose -f docker-compose.yml -f docker-compose.staging.yml up -d
 ```
 
 If you need to perform any migration or anything else on the app image, you can use `docker exec` to get into the image and do what needs to be done.
