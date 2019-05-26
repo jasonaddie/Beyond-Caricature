@@ -177,7 +177,8 @@ class Person < ApplicationRecord
           publication_ids = []
         end
         publication_ids << pub_ids
-        publication_ids.flatten!.uniq!
+        publication_ids.flatten!
+        publication_ids.uniq!
       end
     end
 

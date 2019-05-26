@@ -109,7 +109,8 @@ class Illustration < ApplicationRecord
       end
 
       if years.present?
-        years.flatten!.uniq!
+        years.flatten!
+        years.uniq!
         years = years.reject(&:blank?)
         years.sort!
         range = {min: years.first, max: years.last}
@@ -162,7 +163,8 @@ class Illustration < ApplicationRecord
         illustration_ids << IllustrationPublication.where(publication_id: pub_ids).pluck(:illustration_id)
       end
       if illustration_ids.present?
-        illustration_ids.flatten!.uniq!
+        illustration_ids.flatten!
+        illustration_ids.uniq!
         x = x.where(id: illustration_ids)
       end
 
@@ -178,7 +180,8 @@ class Illustration < ApplicationRecord
         illustration_ids << IllustrationPublication.where(publication_id: pub_ids).pluck(:illustration_id)
       end
       if illustration_ids.present?
-        illustration_ids.flatten!.uniq!
+        illustration_ids.flatten!
+        illustration_ids.uniq!
         x = x.where(id: illustration_ids)
       end
 
@@ -194,7 +197,8 @@ class Illustration < ApplicationRecord
         illustration_ids << IllustrationPublication.where(publication_id: pub_ids).pluck(:illustration_id)
       end
       if illustration_ids.present?
-        illustration_ids.flatten!.uniq!
+        illustration_ids.flatten!
+        illustration_ids.uniq!
         x = x.where(id: illustration_ids)
       end
 

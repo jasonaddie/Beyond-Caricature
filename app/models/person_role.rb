@@ -96,13 +96,15 @@ class PersonRole < ApplicationRecord
 
         if published_record_ids[:publications].present? || published_record_ids[:illustrations].present?
           records = []
-        if published_record_ids[:publications].present?
-          records << Publication.published.where(id: published_record_ids[:publications]).sort_published_desc.limit(6)
-        end
-        if published_record_ids[:illustrations].present?
-          records << Illustration.published.where(id: published_record_ids[:illustrations]).sort_published_desc.limit(6)
-        end
-        records.flatten!.compact!
+
+          if published_record_ids[:publications].present?
+            records << Publication.published.where(id: published_record_ids[:publications]).sort_published_desc.limit(6)
+          end
+          if published_record_ids[:illustrations].present?
+            records << Illustration.published.where(id: published_record_ids[:illustrations]).sort_published_desc.limit(6)
+          end
+          records.flatten!
+          records.compact!
 
           groups[role.name] = {total: {publication: (published_record_ids[:publications].present? ? published_record_ids[:publications].length : 0),
                                         illustration: (published_record_ids[:illustrations].present? ? published_record_ids[:illustrations].length : 0)},

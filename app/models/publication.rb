@@ -110,7 +110,8 @@ class Publication < ApplicationRecord
       pub_years << issue_dates.map{|x| x.year}
     end
     if pub_years.present?
-      pub_years.flatten!.uniq!
+      pub_years.flatten!
+      pub_years.uniq!
       pub_years.sort!
       range = {min: pub_years.first, max: pub_years.last}
     end
@@ -144,7 +145,8 @@ class Publication < ApplicationRecord
         pub_editor_ids = PersonRole.where(person_id: p.id, person_roleable_type: 'PublicationEditor').pluck(:person_roleable_id)
         if pub_editor_ids.present?
           pub_ids << PublicationEditor.where(id: pub_editor_ids).pluck(:publication_id)
-          pub_ids.flatten!.uniq!
+          pub_ids.flatten!
+          pub_ids.uniq!
         end
         x = x.where(id: pub_ids)
       end
@@ -156,7 +158,8 @@ class Publication < ApplicationRecord
       pub_ids = Publication.where(['year between ? and ?', options[:date_start].year, options[:date_end].year]).pluck(:id)
       if from_issues.present?
         pub_ids << from_issues
-        pub_ids.flatten!.uniq!
+        pub_ids.flatten!
+        pub_ids.uniq!
       end
       x = x.where(id: pub_ids)
 
@@ -166,7 +169,8 @@ class Publication < ApplicationRecord
       pub_ids = Publication.where('year >= ?', options[:date_start].year).pluck(:id)
       if from_issues.present?
         pub_ids << from_issues
-        pub_ids.flatten!.uniq!
+        pub_ids.flatten!
+        pub_ids.uniq!
       end
       x = x.where(id: pub_ids)
 
@@ -176,7 +180,8 @@ class Publication < ApplicationRecord
       pub_ids = Publication.where('year >= ?', options[:date_end].year).pluck(:id)
       if from_issues.present?
         pub_ids << from_issues
-        pub_ids.flatten!.uniq!
+        pub_ids.flatten!
+        pub_ids.uniq!
       end
       x = x.where(id: pub_ids)
     end
