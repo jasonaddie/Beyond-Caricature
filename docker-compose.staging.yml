@@ -8,7 +8,7 @@ services:
 
   app:
     restart: unless-stopped
-    image: schmerling/app:0.35
+    image: schmerling/app:0.37
     env_file:
       - ./.env.staging
     environment:

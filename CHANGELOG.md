@@ -1,6 +1,10 @@
 This page lists additions, changes, and bug fixes that have been applied to the application code.
 The numbers in brackets (i.e., [0.1]), indicate the version number of the app.
 
+## [0.37] - 2019-05-26
+### Fixed
+- Date range calculations had a bug that did not test if data was present before trying to use it
+
 ## [0.36] - 2019-05-25
 ### Fixed
 - Emails sent using oskar email address
