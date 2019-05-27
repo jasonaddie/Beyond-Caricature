@@ -179,7 +179,7 @@ ka:
           research: One listing pages, this image will have a size of 438x326px.
           publication: One listing pages, this image will have a size of 400x204px.
           slideshow: Image should have a width of at least 844px.
-      file: Only PDF files are allowed. There is no size limit.
+      file: Only PDF files are allowed. File must be less than 30MB.
       person: Only published People are shown.
       slideshow_placeholder: By default the slideshow will appear at the end of this text. If you want it to appear in the text, add the text [slideshow] into the text where you want it to appear.
       is_illustrator: Illustrators are a special role that requires additional processing and this flag is used to know if the role is an illustrator.

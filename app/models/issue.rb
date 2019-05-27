@@ -95,6 +95,7 @@ end
   validates :issue_number, presence: true
   validates :date_publication, presence: true
   validates_size_of :cover_image, maximum: 5.megabytes
+  validates_size_of :scanned_file, maximum: 30.megabytes
   validates_property :ext, of: :cover_image, in: ['jpg', 'jpeg', 'png', 'JPG', 'JPEG', 'PNG']
   validates_property :ext, of: :scanned_file, as: 'pdf'
 
