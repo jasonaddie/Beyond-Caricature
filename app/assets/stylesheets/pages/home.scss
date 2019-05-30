@@ -79,9 +79,8 @@ body.home.index{
     text-align: center;
     margin-top: 0;
     margin-bottom: 50px;
-    ul{
-      columns: 2;
-      li{
+    .stat-items{
+      .stat-item{
         margin-bottom: 44px;
         .stats-count{
           margin-top: 27px;
@@ -166,11 +165,6 @@ body.home.index{
     .listings{
       // padding-left: 50px;
       // padding-right: 50px;
-    }
-    .stats{
-      ul{
-        columns: 4;
-      }
     }
   }
 }

@@ -99,47 +99,14 @@
   <div class="stats columns is-centered">
     <div class="column is-7">
       <h2 class="title is-4"><%= t('labels.stats') %></h2>
-      <ul class="has-no-bullets">
-        <li>
-          <div class="stats-heading has-text-weight-bold"><%= t('labels.journals') %></div>
-          <div class="stats-count has-text-weight-bold"><%= @stats[:journals] %></div>
-        </li>
-
-        <li>
-          <div class="stats-heading has-text-weight-bold"><%= t('labels.journal_issues') %></div>
-          <div class="stats-count has-text-weight-bold"><%= @stats[:journal_issues] %></div>
-        </li>
-
-        <li>
-          <div class="stats-heading has-text-weight-bold"><%= t('labels.books') %></div>
-          <div class="stats-count has-text-weight-bold"><%= @stats[:books] %></div>
-        </li>
-
-        <li>
-          <div class="stats-heading has-text-weight-bold"><%= t('labels.originals') %></div>
-          <div class="stats-count has-text-weight-bold"><%= @stats[:originals] %></div>
-        </li>
-
-        <li>
-          <div class="stats-heading has-text-weight-bold"><%= t('labels.illustrations') %></div>
-          <div class="stats-count has-text-weight-bold"><%= @stats[:illustrations] %></div>
-        </li>
-
-        <li>
-          <div class="stats-heading has-text-weight-bold"><%= t('labels.people') %></div>
-          <div class="stats-count has-text-weight-bold"><%= @stats[:people] %></div>
-        </li>
-
-        <li>
-          <div class="stats-heading has-text-weight-bold"><%= t('labels.research') %></div>
-          <div class="stats-count has-text-weight-bold"><%= @stats[:research] %></div>
-        </li>
-
-        <li>
-          <div class="stats-heading has-text-weight-bold"><%= t('labels.languages') %></div>
-          <div class="stats-count has-text-weight-bold"><%= @stats[:languages] %></div>
-        </li>
-      </ul>
+      <div class="columns is-multiline is-mobile stat-items">
+        <% [:journals, :journal_issues, :books, :originals, :illustrations, :people, :research, :languages].each do |item| %>
+          <div class="column is-6-mobile is-6-tablet is-3-desktop stat-item">
+            <div class="stats-heading has-text-weight-bold"><%= t("labels.#{item}") %></div>
+            <div class="stats-count has-text-weight-bold"><%= @stats[item] %></div>
+          </div>
+        <% end %>
+      </div>
     </div>
   </div>
 
