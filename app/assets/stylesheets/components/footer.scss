@@ -24,6 +24,16 @@ main {
     &:last-child{
       margin-bottom: 0 !important;
     }
+
+    .contact a{
+      color: $footer-color;
+      opacity: 0.7;
+      transition: opacity .3s ease-in-out;
+      &:hover{
+        color: $footer-color;
+        opacity: 1;
+      }
+    }
   }
   .share{
     opacity: 0.6;

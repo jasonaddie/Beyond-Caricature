@@ -1,17 +1,19 @@
 <footer class="footer">
   <div class="columns">
-    <div class="column is-offset-1 is-6">
-      <%= t('labels.contact') %>
-      oskar@schmerling.org
+    <div class="column is-offset-1 is-6 contact">
+      <%= t('labels.contact') %>:
+      <a href="mailto:oskar@schmerling.org">oskar@schmerling.org</a>
     </div>
     <div class="column is-3">
       <%= t('labels.followus') %>
       <%= link_to 'https://facebook.com', target: :blank, class: 'share facebook' do %>
         <%= inline_svg('facebook.svg', alt: t('labels.facebook')) %>
       <% end %>
+<% if false %>
       <%= link_to 'https://twitter.com', target: :blank, class: 'share twitter' do %>
         <%= inline_svg('twitter.svg', alt: t('labels.twitter')) %>
       <% end %>
+<% end %>
     </div>
     <div class="column is-2">
       &copy; <%= DateTime.now.year %>
