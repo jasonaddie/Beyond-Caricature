@@ -112,9 +112,15 @@ end
   end
 
   def issue_number_formatted
-    if self.issue_number
-      "№ #{self.issue_number}"
+    x = ''
+    if self.issue_number.present?
+      x = "№ #{self.issue_number}"
+      if self.date_publication.present?
+        x << " (#{self.date_publication.year})"
+      end
     end
+
+    return x
   end
 
   # journal name and issue number
