@@ -24,7 +24,7 @@ class Person < ApplicationRecord
   ## ATTACHED FILES ##
   #################
   dragonfly_accessor :image do
-    default Rails.root.join('public','images','default-square.png')
+    default Rails.root.join('public','images','default-square-person.png')
   end
 
   #################
