@@ -312,21 +312,11 @@ ru:
     view_all: View All
     view_all_with_count: View All %{number} %{title} Records
     stats: Stats
+    journals: Journals
     journal_issues: Journal Issues
-    journal_issues_illustrations: |
-      Journal Issue
-      Images
     books: Books
-    books_illustrations: |
-      Book
-      Images
     originals: Originals
-    originals_illustrations: |
-      Original
-      Images
-    illustrators_illustrations: |
-      Illustrator
-      Images
+    languages: Languages
     by: By
     lived: Lived
     roles: Roles
@@ -414,6 +404,7 @@ ru:
   home:
     index:
       oskar_alt: Self portrait of Oskar Schmerling holding a whip and wearing horns
+      scroll: Scroll
     about:
       donors:
         reed: Reed College

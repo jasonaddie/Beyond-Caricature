@@ -98,36 +98,18 @@ class HomeController < ApplicationController
 private
 
   # get counts for the following:
-  # journal issues | issue illustrations
-  # book | book illustrations
-  # original | original illustrations
-  # illustrator | illustrator illustration
+  # Journals, Journal Issues, Books, Originals, Images, People, Research, Languages
   def get_stats
     stats = {}
 
-      # issues
-      ids = Issue.published.pluck(:id)
-      stats[:journal_issues] = {}
-      stats[:journal_issues][:count] = ids.count
-      stats[:journal_issues][:illustrations] = IllustrationIssue.where(issue_id: ids).count
-
-      # books
-      ids = Publication.published.book.pluck(:id)
-      stats[:books] = {}
-      stats[:books][:count] = ids.count
-      stats[:books][:illustrations] = IllustrationPublication.where(publication_id: ids).count
-
-      # originals
-      ids = Publication.published.original.pluck(:id)
-      stats[:originals] = {}
-      stats[:originals][:count] = ids.count
-      stats[:originals][:illustrations] = IllustrationPublication.where(publication_id: ids).count
-
-      # illustrators
-      ids = PersonRole.illustrators
-      stats[:illustrators] = {}
-      stats[:illustrators][:count] = ids.map{|x| x.person_id}.uniq.length
-      stats[:illustrators][:illustrations] = Illustration.published.where(id: ids.map{|x| x.person_roleable_id}.uniq).count
+      stats[:journals] = Publication.published.journal.count
+      stats[:journal_issues] = Issue.published.count
+      stats[:books] = Publication.published.book.count
+      stats[:originals] = Publication.published.original.count
+      stats[:illustrations] = Illustration.published.count
+      stats[:people] = Person.published.count
+      stats[:research] = Research.published.count
+      stats[:languages] = Publication.published.select(:publication_language_id).distinct.count
 
     return stats
   end
