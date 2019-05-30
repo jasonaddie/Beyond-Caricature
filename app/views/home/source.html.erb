@@ -141,7 +141,7 @@
           records: Illustration.where(id: illustration_ids).sort_published_desc.limit(6),
           partial: 'card_meta_hover',
           link_path: :image_path,
-          more_path: images_path(publication: @publication.slug)
+          more_path: images_path(source: @publication.slug)
       } %>
 
 <% end %>
