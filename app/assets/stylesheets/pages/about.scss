@@ -13,6 +13,12 @@ body.home.about{
   }
 
   .donors-partners{
+    li{
+      margin-top: 2rem;
+      &:nth-child(1){
+        margin-top: 0;
+      }
+    }
     a{
       line-height: 1.1rem;
       color: $body-color;
