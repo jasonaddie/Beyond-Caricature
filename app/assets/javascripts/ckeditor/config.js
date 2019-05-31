@@ -59,3 +59,29 @@ CKEDITOR.editorConfig = function( config ) {
   };
 
 };
+
+
+CKEDITOR.on('dialogDefinition', function(ev) {
+
+  try {
+
+    var dialogName = ev.data.name;
+    var dialogDefinition = ev.data.definition;
+
+    if (dialogName == 'link') {
+
+      var informationTab = dialogDefinition.getContents('target');
+
+      var targetField = informationTab.get('linkTargetType');
+
+      targetField['default'] = '_blank';
+
+    }
+
+  } catch (exception) {
+
+    alert('Error ' + ev.message);
+
+  }
+
+});
