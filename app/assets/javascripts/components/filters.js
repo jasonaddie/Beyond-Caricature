@@ -23,160 +23,162 @@ document.addEventListener("turbolinks:load", function() {
   // DATES
   ////////////////////////////////////////////
   // if there is a min value, set it as min date
-  if ($filter_date_content.data('min') !== ''){
-    minDate = $filter_date_content.data('min')
-  }else{
-    minDate = defaultMinDate
-  }
-  // if there is a max value, set it as max date
-  if ($filter_date_content.data('max') !== ''){
-    maxDate = $filter_date_content.data('max')
-  }else{
-    maxDate = defaultMaxDate
-  }
-
-  // set the year range
-  yearRange = minDate.substring(0,4) + ':' + maxDate.substring(0,4)
-
-  var default_date = minDate
-  if (is_datepicker_now){
-    default_date = maxDate
-  }
-  var d = $.datepicker.parseDate( dateFormat, default_date)
-  defaultYear = d.getFullYear()
-  defaultMonth = d.getMonth()
-
-  // register all dates with datepicker
-  var date_options = $.extend(true, {}, $.datepicker.regional[$('html').attr('lang')], {
-    changeMonth: true,
-    changeYear: true,
-    dateFormat: dateFormat,
-    minDate: minDate,
-    maxDate: maxDate,
-    yearRange: yearRange,
-    defaultDate: null
-  })
-
-  // when change one dates, update the min/max of the other
-  var date_start = $filter_dates.find('.date-start .datepicker').datepicker(date_options)
-    .on("change", function() {
-      var d = getDate(this)
-      if (d !== null){
-        // update end date min date
-        var end = date_end.datepicker("getDate")
-        date_end.datepicker( "option", "minDate", d );
-        if (end < d || end === null){
-          // end is less than the new start date, so reset end to null
-          reset_date(date_end)
-          set_datepicker_select_values(date_end, d.getMonth(), d.getFullYear())
-        }
-
-        // update selected date label
-        $(this).parent().find('.selected-date-label').text(formatDate(d))
-      }else{
-        // update selected date label
-        $(this).parent().find('.selected-date-label').text($(this).parent().find('.selected-date-label').data('no-data'))
-      }
-    })
-
-  var date_end = $filter_dates.find('.date-end .datepicker').datepicker(date_options)
-    .on("change", function() {
-      var d = getDate(this)
-      if (d !== null){
-        // update start date max date
-        var start = date_start.datepicker("getDate")
-        date_start.datepicker( "option", "maxDate", d );
-        if (start > d || start === null){
-          // start is greater than the new end date, so reset start to null
-          reset_date(date_start)
-          set_datepicker_select_values(date_start, d.getMonth(), d.getFullYear())
-        }
-
-        // update selected date label
-        $(this).parent().find('.selected-date-label').text(formatDate(d))
-      }else{
-        // update selected date label
-        $(this).parent().find('.selected-date-label').text($(this).parent().find('.selected-date-label').data('no-data'))
-      }
-    })
-
-  // if there is no date value, preset the calendar to show
-  // a specific month and year
-  if ($filter_date_content.data('start') === '' && $filter_date_content.data('end') !== ''){
-    var d = $.datepicker.parseDate( dateFormat, $filter_date_content.data('end'))
-    reset_date(date_start)
-    set_datepicker_select_values(date_start, d.getMonth(), d.getFullYear())
-  }else if ($filter_date_content.data('start') === ''){
-    reset_date(date_start)
-    set_datepicker_select_values(date_start, defaultMonth, defaultYear)
-  }else{
-    date_start.datepicker('setDate', $filter_date_content.data('start'))
-  }
-
-  if ($filter_date_content.data('start') !== '' && $filter_date_content.data('end') === ''){
-    var d = $.datepicker.parseDate( dateFormat, $filter_date_content.data('start'))
-    reset_date(date_end)
-    set_datepicker_select_values(date_end, d.getMonth(), d.getFullYear())
-  }else if ($filter_date_content.data('end') === ''){
-    reset_date(date_end)
-    set_datepicker_select_values(date_end, defaultMonth, defaultYear)
-  }else{
-    date_end.datepicker('setDate', $filter_date_content.data('end'))
-  }
-
-  // when click on date label
-  // open datepicker
-  $filter_label_date.on('click', function(){
-    $(this).siblings('.dropdown').find('.dropdown-trigger .button').trigger('click')
-  })
-
-  // when click on 'x' in date label
-  // reload page without the date param
-  $filter_dates_clear.on('click', function(){
-    toggle_loading_image()
-    reload_page_with_new_params({date_start: null, date_end: null})
-  })
-
-  // when date filter closes,
-  // reload the page
-  $filter_dates.on('click', '.button-close', function(){
-    toggle_loading_image()
-
-    var start = formatDate(date_start.datepicker("getDate"))
-    var end = formatDate(date_end.datepicker("getDate"))
-    var params = {date_start: start, date_end: end}
-
-    // if the values have changed, reload the page
-    if ($filter_date_content.length > 0 && (
-        (($filter_date_content.data('start') !== '' || params.date_start !== null) &&
-          $filter_date_content.data('start') !== params.date_start) ||
-        (($filter_date_content.data('end') !== '' || params.date_end !== null) &&
-          $filter_date_content.data('end') !== params.date_end)
-      )){
-
-      reload_page_with_new_params(params)
+  if ($filter_dates.length >  0){
+    if ($filter_date_content.data('min') !== ''){
+      minDate = $filter_date_content.data('min')
     }else{
-      // values of not changed - close the dropdown
-      $(this).closest('.dropdown').removeClass('is-active')
+      minDate = defaultMinDate
+    }
+    // if there is a max value, set it as max date
+    if ($filter_date_content.data('max') !== ''){
+      maxDate = $filter_date_content.data('max')
+    }else{
+      maxDate = defaultMaxDate
     }
 
-  })
+    // set the year range
+    yearRange = minDate.substring(0,4) + ':' + maxDate.substring(0,4)
 
-  // clear the date filter values
-  // and reset the min/max values
-  $filter_dates.on('click', '.button-clear', function(){
-    reset_date(date_end)
-    date_end.datepicker( "option", {minDate: minDate, maxDate: maxDate} )
-    set_datepicker_select_values(date_end, defaultMonth, defaultYear, true)
-    date_end.parent().find('.selected-date-label').text(date_end.parent().find('.selected-date-label').data('no-data'))
-    reset_calendar_selections(date_end)
+    var default_date = minDate
+    if (is_datepicker_now){
+      default_date = maxDate
+    }
+    var d = $.datepicker.parseDate( dateFormat, default_date)
+    defaultYear = d.getFullYear()
+    defaultMonth = d.getMonth()
 
-    reset_date(date_start)
-    date_start.datepicker( "option", {minDate: minDate, maxDate: maxDate} )
-    set_datepicker_select_values(date_start, defaultMonth, defaultYear, true)
-    date_start.parent().find('.selected-date-label').text(date_start.parent().find('.selected-date-label').data('no-data'))
-    reset_calendar_selections(date_start)
-  })
+    // register all dates with datepicker
+    var date_options = $.extend(true, {}, $.datepicker.regional[$('html').attr('lang')], {
+      changeMonth: true,
+      changeYear: true,
+      dateFormat: dateFormat,
+      minDate: minDate,
+      maxDate: maxDate,
+      yearRange: yearRange,
+      defaultDate: null
+    })
+
+    // when change one dates, update the min/max of the other
+    var date_start = $filter_dates.find('.date-start .datepicker').datepicker(date_options)
+      .on("change", function() {
+        var d = getDate(this)
+        if (d !== null){
+          // update end date min date
+          var end = date_end.datepicker("getDate")
+          date_end.datepicker( "option", "minDate", d );
+          if (end < d || end === null){
+            // end is less than the new start date, so reset end to null
+            reset_date(date_end)
+            set_datepicker_select_values(date_end, d.getMonth(), d.getFullYear())
+          }
+
+          // update selected date label
+          $(this).parent().find('.selected-date-label').text(formatDate(d))
+        }else{
+          // update selected date label
+          $(this).parent().find('.selected-date-label').text($(this).parent().find('.selected-date-label').data('no-data'))
+        }
+      })
+
+    var date_end = $filter_dates.find('.date-end .datepicker').datepicker(date_options)
+      .on("change", function() {
+        var d = getDate(this)
+        if (d !== null){
+          // update start date max date
+          var start = date_start.datepicker("getDate")
+          date_start.datepicker( "option", "maxDate", d );
+          if (start > d || start === null){
+            // start is greater than the new end date, so reset start to null
+            reset_date(date_start)
+            set_datepicker_select_values(date_start, d.getMonth(), d.getFullYear())
+          }
+
+          // update selected date label
+          $(this).parent().find('.selected-date-label').text(formatDate(d))
+        }else{
+          // update selected date label
+          $(this).parent().find('.selected-date-label').text($(this).parent().find('.selected-date-label').data('no-data'))
+        }
+      })
+
+    // if there is no date value, preset the calendar to show
+    // a specific month and year
+    if ($filter_date_content.data('start') === '' && $filter_date_content.data('end') !== ''){
+      var d = $.datepicker.parseDate( dateFormat, $filter_date_content.data('end'))
+      reset_date(date_start)
+      set_datepicker_select_values(date_start, d.getMonth(), d.getFullYear())
+    }else if ($filter_date_content.data('start') === ''){
+      reset_date(date_start)
+      set_datepicker_select_values(date_start, defaultMonth, defaultYear)
+    }else{
+      date_start.datepicker('setDate', $filter_date_content.data('start'))
+    }
+
+    if ($filter_date_content.data('start') !== '' && $filter_date_content.data('end') === ''){
+      var d = $.datepicker.parseDate( dateFormat, $filter_date_content.data('start'))
+      reset_date(date_end)
+      set_datepicker_select_values(date_end, d.getMonth(), d.getFullYear())
+    }else if ($filter_date_content.data('end') === ''){
+      reset_date(date_end)
+      set_datepicker_select_values(date_end, defaultMonth, defaultYear)
+    }else{
+      date_end.datepicker('setDate', $filter_date_content.data('end'))
+    }
+
+    // when click on date label
+    // open datepicker
+    $filter_label_date.on('click', function(){
+      $(this).siblings('.dropdown').find('.dropdown-trigger .button').trigger('click')
+    })
+
+    // when click on 'x' in date label
+    // reload page without the date param
+    $filter_dates_clear.on('click', function(){
+      toggle_loading_image()
+      reload_page_with_new_params({date_start: null, date_end: null})
+    })
+
+    // when date filter closes,
+    // reload the page
+    $filter_dates.on('click', '.button-close', function(){
+      toggle_loading_image()
+
+      var start = formatDate(date_start.datepicker("getDate"))
+      var end = formatDate(date_end.datepicker("getDate"))
+      var params = {date_start: start, date_end: end}
+
+      // if the values have changed, reload the page
+      if ($filter_date_content.length > 0 && (
+          (($filter_date_content.data('start') !== '' || params.date_start !== null) &&
+            $filter_date_content.data('start') !== params.date_start) ||
+          (($filter_date_content.data('end') !== '' || params.date_end !== null) &&
+            $filter_date_content.data('end') !== params.date_end)
+        )){
+
+        reload_page_with_new_params(params)
+      }else{
+        // values of not changed - close the dropdown
+        $(this).closest('.dropdown').removeClass('is-active')
+      }
+
+    })
+
+    // clear the date filter values
+    // and reset the min/max values
+    $filter_dates.on('click', '.button-clear', function(){
+      reset_date(date_end)
+      date_end.datepicker( "option", {minDate: minDate, maxDate: maxDate} )
+      set_datepicker_select_values(date_end, defaultMonth, defaultYear, true)
+      date_end.parent().find('.selected-date-label').text(date_end.parent().find('.selected-date-label').data('no-data'))
+      reset_calendar_selections(date_end)
+
+      reset_date(date_start)
+      date_start.datepicker( "option", {minDate: minDate, maxDate: maxDate} )
+      set_datepicker_select_values(date_start, defaultMonth, defaultYear, true)
+      date_start.parent().find('.selected-date-label').text(date_start.parent().find('.selected-date-label').data('no-data'))
+      reset_calendar_selections(date_start)
+    })
+  }
 
   ////////////////////////////////////////////
   // SELECTS
