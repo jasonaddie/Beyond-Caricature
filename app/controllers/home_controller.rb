@@ -88,7 +88,8 @@ class HomeController < ApplicationController
   end
 
   def about
-    @page = PageContent.with_translations(I18n.locale).find_by_name('about')
+    @about = PageContent.with_translations(I18n.locale).find_by_name('about')
+    @contributors = PageContent.with_translations(I18n.locale).find_by_name('contributors')
   end
 
   def robots

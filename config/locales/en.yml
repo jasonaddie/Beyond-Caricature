@@ -308,6 +308,7 @@ en:
     contact: Contact
     donors: Funding
     partners: Partners
+    contributors: Contributors
     read_more: Read More
     view_all: View All
     view_all_with_count: View All %{number} %{title} Records

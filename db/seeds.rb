@@ -34,4 +34,8 @@ pg = PageContent.new(name: 'about')
 pg.content_translations = content
 pg.save
 
+pg = PageContent.new(name: 'contributors')
+pg.content_translations = content
+pg.save
+
 I18n.locale = original_locale
