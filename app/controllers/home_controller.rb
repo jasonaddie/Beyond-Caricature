@@ -37,7 +37,8 @@ class HomeController < ApplicationController
   def images
     @illustrations = Illustration.published
                         .filter({search: params[:search], type: params[:type],
-                                person: params[:person], source: params[:source],
+                                person: params[:person], tag: params[:tag],
+                                source: params[:source],
                                 journal: params[:journal], issue: params[:issue],
                                 date_start: convert_date_param(:date_start), date_end: convert_date_param(:date_end)})
                         .sort_published_desc.page(params[:page]).per(@pagination_per_large)

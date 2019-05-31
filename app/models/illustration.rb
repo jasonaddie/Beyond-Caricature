@@ -125,9 +125,10 @@ class Illustration < ApplicationRecord
   # - person - slug of person assigned to this illustration
   # - source - slug of publication assgined to this illustration
   # - journal / issue - slugs of journal and issue assign to this illustration
+  # - tag - slug of a tag assigned to this illustration
   # - date_start - publication start date
   # - date_end - publication end date
-  # - search - string (title, context, tags, source name?)
+  # - search - string (title, context)
   def self.filter(options={})
     x = self
     if options[:type].present?
@@ -149,6 +150,10 @@ class Illustration < ApplicationRecord
     if options[:journal].present? && options[:issue].present?
       x = x.joins(:issues).where(issues: {id: Issue.published.where(slug: options[:issue]).pluck(:id),
                                           publication_id: Publication.published.where(slug: options[:journal]).pluck(:id)})
+    end
+
+    if options[:tag].present?
+      x = x.joins(:tags).where(tags: {id: Tag.where(slug: options[:tag]).pluck(:id)})
     end
 
     if options[:date_start].present? && options[:date_end].present?
@@ -204,11 +209,9 @@ class Illustration < ApplicationRecord
 
     end
 
-
     if options[:search].present?
       x = x.with_translations(I18n.locale)
-            .joins(tags: :translations)
-            .where(build_full_text_search_sql(%w(illustration_translations.title illustration_translations.context tag_translations.name)),
+            .where(build_full_text_search_sql(%w(illustration_translations.title illustration_translations.context)),
               options[:search]
             )
     end

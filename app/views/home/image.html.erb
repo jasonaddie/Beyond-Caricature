@@ -77,7 +77,7 @@
             <ul>
               <% @illustration.tags.each do |tag| %>
                 <li>
-                  <%= link_to tag.name, images_path(search: tag.name), class: 'meta-link' %>
+                  <%= link_to tag.name, images_path(tag: tag.slug), class: 'meta-link' %>
                 </li>
               <% end %>
             </ul>

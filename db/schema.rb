@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_05_31_112341) do
+ActiveRecord::Schema.define(version: 2019_05_31_203122) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -494,15 +494,19 @@ ActiveRecord::Schema.define(version: 2019_05_31_112341) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.string "name"
+    t.string "slug"
     t.index "to_tsvector('simple'::regconfig, (name)::text)", name: "idx_tag_search", using: :gin
     t.index ["locale"], name: "index_tag_translations_on_locale"
     t.index ["name"], name: "index_tag_translations_on_name"
+    t.index ["slug"], name: "index_tag_translations_on_slug"
     t.index ["tag_id"], name: "index_tag_translations_on_tag_id"
   end
 
   create_table "tags", force: :cascade do |t|
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "slug"
+    t.index ["slug"], name: "index_tags_on_slug", unique: true
   end
 
   create_table "thumbs", force: :cascade do |t|
