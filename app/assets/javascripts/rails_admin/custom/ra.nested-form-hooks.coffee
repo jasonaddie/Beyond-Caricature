@@ -72,6 +72,13 @@ $(document).on 'nested:fieldRemoved', 'form', (content) ->
   one_to_one = controls.data('nestedone') != undefined
   toggler = controls.find('.toggler')
 
+
+  if content.field.closest('.tab-content.annotations').length > 0
+    # update the markers to reflect the change
+    annotate_imgs = new annotate_image()
+    annotate_imgs.remove_markers()
+    annotate_imgs.add_markers()
+
   # try to activate another tab
   (if current_li.next().length then current_li.next() else current_li.prev()).children('a:first').tab('show')
 

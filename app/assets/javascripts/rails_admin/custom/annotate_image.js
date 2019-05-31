@@ -38,7 +38,9 @@ function annotate_image(){
   // if there are annotations on record,
   // add the markers on the image and in each tab pane
   this.add_markers = function(){
-    var $tab_panes = $('.tab-content.annotations > .fields.tab-pane')
+    // only add marker if tab pane is visible
+    // (when it is being deleted, it is not visible)
+    var $tab_panes = $('.tab-content.annotations > .fields.tab-pane:visible')
     var $existing_markers = $img_container.find('.marker')
     var img_width = $img.width()
     var img_height = $img.height()
