@@ -49,7 +49,7 @@ class Illustration < ApplicationRecord
   #################
   ## TRANSLATIONS ##
   #################
-  translates :title, :context, :is_public, :date_publish, :slug, :versioning => :paper_trail
+  translates :title, :context, :is_public, :published_at, :slug, :versioning => :paper_trail
   accepts_nested_attributes_for :translations, allow_destroy: true
 
   #################
@@ -63,7 +63,7 @@ class Illustration < ApplicationRecord
   def slug_candidates
     [
       :title,
-      [:title, :date_publish]
+      [:title, :published_at]
     ]
   end
 
@@ -77,14 +77,14 @@ class Illustration < ApplicationRecord
   #################
   ## CALLBACKS ##
   #################
-  before_save :set_translation_publish_dates
+  before_save :set_translation_published_at
   validate :check_self_public_required_fields
 
   #################
   ## SCOPES ##
   #################
   scope :published, -> { with_translations(I18n.locale).where('illustration_translations.is_public': true) }
-  scope :sort_published_desc, -> { order(date_publish: :desc) }
+  scope :sort_published_desc, -> { order(published_at: :desc) }
 
   # get the min and max date values
   def self.date_ranges
@@ -373,7 +373,7 @@ class Illustration < ApplicationRecord
       field :combined_publications_count do
         label I18n.t('labels.combined_publications_count')
       end
-      field :date_publish
+      field :published_at
     end
 
     # show page
@@ -391,7 +391,7 @@ class Illustration < ApplicationRecord
         label I18n.t('labels.combined_publications_count')
       end
       field :tags
-      field :date_publish
+      field :published_at
       field :created_at
       field :updated_at
     end

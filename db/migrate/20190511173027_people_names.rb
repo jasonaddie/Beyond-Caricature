@@ -33,7 +33,7 @@ class PeopleNames < ActiveRecord::Migration[5.2]
                 end
               end
             end
-            # vaidation of required for public fields can cause saving to fail so skip validation
+            # vaidation required for public fields can cause saving to fail so skip validation
             p.save(:validate => false)
           end
         end

@@ -51,7 +51,7 @@ class Publication < ApplicationRecord
   #################
   ## TRANSLATIONS ##
   #################
-  translates :title, :about, :is_public, :date_publish, :slug, :versioning => :paper_trail
+  translates :title, :about, :is_public, :published_at, :slug, :versioning => :paper_trail
   accepts_nested_attributes_for :translations, allow_destroy: true
 
   #################
@@ -90,7 +90,7 @@ class Publication < ApplicationRecord
   #################
   ## CALLBACKS ##
   #################
-  before_save :set_translation_publish_dates
+  before_save :set_translation_published_at
   validate :check_self_public_required_fields
 
   #################
@@ -99,8 +99,8 @@ class Publication < ApplicationRecord
   scope :journals, -> { where(publication_type: :journal) }
   scope :not_journals, -> { where.not(publication_type: :journal) }
   scope :published, -> { with_translations(I18n.locale).where('publication_translations.is_public': true) }
-  scope :sort_published_desc, -> { order(date_publish: :desc) }
-  scope :sort_name_asc, -> { select('publications.*, publication_translations.title, publication_translations.date_publish').with_translations(I18n.locale).order('publication_translations.title asc, publication_translations.date_publish asc') }
+  scope :sort_published_desc, -> { order(published_at: :desc) }
+  scope :sort_name_asc, -> { select('publications.*, publication_translations.title, publication_translations.published_at').with_translations(I18n.locale).order('publication_translations.title asc, publication_translations.published_at asc') }
 
   # get the min and max date values
   def self.date_ranges
@@ -443,7 +443,7 @@ class Publication < ApplicationRecord
       field :publication_language
       field :title
       field :year
-      field :date_publish
+      field :published_at
     end
 
     # show page
@@ -482,7 +482,7 @@ class Publication < ApplicationRecord
           bindings[:object].book? || bindings[:object].original?
         end
       end
-      field :date_publish
+      field :published_at
       field :created_at
       field :updated_at
     end

@@ -7,7 +7,7 @@
 #  issue_number      :string
 #  date_publication  :date
 #  is_public         :boolean          default(FALSE)
-#  date_publish      :date
+#  date_publish_old  :date
 #  created_at        :datetime         not null
 #  updated_at        :datetime         not null
 #  cover_image_uid   :string
@@ -15,6 +15,7 @@
 #  slug              :string
 #  scanned_file_size :integer
 #  crop_alignment    :string           default("center")
+#  published_at      :datetime
 #
 
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html

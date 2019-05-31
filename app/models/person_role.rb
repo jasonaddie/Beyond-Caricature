@@ -108,7 +108,7 @@ class PersonRole < ApplicationRecord
 
           groups[role.name] = {total: {publication: (published_record_ids[:publications].present? ? published_record_ids[:publications].length : 0),
                                         illustration: (published_record_ids[:illustrations].present? ? published_record_ids[:illustrations].length : 0)},
-                                latest_records: records.sort_by{|x| x.date_publish}.reverse[0..5]}
+                                latest_records: records.sort_by{|x| x.published_at}.reverse[0..5]}
         end
       end
     end

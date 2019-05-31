@@ -37,7 +37,7 @@ class Person < ApplicationRecord
   #################
   ## TRANSLATIONS ##
   #################
-  translates :name, :first_name, :last_name, :bio, :is_public, :date_publish, :slug, :versioning => :paper_trail
+  translates :name, :first_name, :last_name, :bio, :is_public, :published_at, :slug, :versioning => :paper_trail
   accepts_nested_attributes_for :translations, allow_destroy: true
 
   #################
@@ -64,7 +64,7 @@ class Person < ApplicationRecord
   #################
   ## CALLBACKS ##
   #################
-  before_save :set_translation_publish_dates
+  before_save :set_translation_published_at
   validate :check_self_public_required_fields
   # before_validation :remove_blanks
 
@@ -72,7 +72,7 @@ class Person < ApplicationRecord
   ## SCOPES ##
   #################
   scope :published, -> { with_translations(I18n.locale).where('person_translations.is_public': true) }
-  scope :sort_published_desc, -> { order(date_publish: :desc) }
+  scope :sort_published_desc, -> { order(published_at: :desc) }
   scope :sort_name_asc, -> { select('people.*, person_translations.last_name, person_translations.first_name').with_translations(I18n.locale).order('person_translations.last_name asc, person_translations.first_name asc') }
 
   def self.illustrator
@@ -273,7 +273,7 @@ class Person < ApplicationRecord
       field :illustration_count do
         label I18n.t('labels.illustration_count')
       end
-      field :date_publish
+      field :published_at
     end
 
     # show page
@@ -291,7 +291,7 @@ class Person < ApplicationRecord
       field :illustration_count do
         label I18n.t('labels.illustration_count')
       end
-      field :date_publish
+      field :published_at
       field :created_at
       field :updated_at
     end

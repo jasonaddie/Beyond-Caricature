@@ -39,7 +39,7 @@ class News < ApplicationRecord
   #################
   ## TRANSLATIONS ##
   #################
-  translates :title, :summary, :text, :is_public, :date_publish, :slug, :versioning => :paper_trail
+  translates :title, :summary, :text, :is_public, :published_at, :slug, :versioning => :paper_trail
   accepts_nested_attributes_for :translations, allow_destroy: true
 
   #################
@@ -53,7 +53,7 @@ class News < ApplicationRecord
   def slug_candidates
     [
       :title,
-      [:title, :date_publish]
+      [:title, :published_at]
     ]
   end
 
@@ -66,19 +66,19 @@ class News < ApplicationRecord
   #################
   ## CALLBACKS ##
   #################
-  before_save :set_translation_publish_dates
+  before_save :set_translation_published_at
   validate :check_self_public_required_fields
 
   #################
   ## SCOPES ##
   #################
   scope :published, -> { where(is_public: true) }
-  scope :sort_published_desc, -> { order(date_publish: :desc) }
+  scope :sort_published_desc, -> { order(published_at: :desc) }
 
   # get the min and max date values
   def self.date_ranges
     range = nil
-    dates = self.published.pluck(:date_publish).flatten.uniq.reject(&:blank?).sort
+    dates = self.published.pluck(:published_at).flatten.uniq.reject(&:blank?).sort
     if dates.present?
       range = {min: dates.first, max: dates.last}
     end
@@ -100,13 +100,13 @@ class News < ApplicationRecord
     end
 
     if options[:date_start].present? && options[:date_end].present?
-      x = x.with_translations(I18n.locale).where(['news_translations.date_publish between ? and ?', options[:date_start], options[:date_end]])
+      x = x.with_translations(I18n.locale).where(['news_translations.published_at between ? and ?', options[:date_start], options[:date_end]])
 
     elsif options[:date_start].present?
-      x = x.with_translations(I18n.locale).where('news_translations.date_publish >= ?', options[:date_start])
+      x = x.with_translations(I18n.locale).where('news_translations.published_at >= ?', options[:date_start])
 
     elsif options[:date_end].present?
-      x = x.with_translations(I18n.locale).where('news_translations.date_publish <= ?', options[:date_end])
+      x = x.with_translations(I18n.locale).where('news_translations.published_at <= ?', options[:date_end])
     end
 
     return x.distinct
@@ -186,7 +186,7 @@ class News < ApplicationRecord
       field :cover_image
       field :title
       field :summary
-      field :date_publish
+      field :published_at
     end
 
     # show page
@@ -200,7 +200,7 @@ class News < ApplicationRecord
       field :summary
       field :text
       field :slideshows
-      field :date_publish
+      field :published_at
       field :created_at
       field :updated_at
     end

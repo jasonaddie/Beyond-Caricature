@@ -64,14 +64,14 @@ az:
     attributes:
       highlight:
         is_public: Is Public?
-        date_publish: Date Made Public
+        published_at: Date Made Public
         title: Title
         summary: Summary
         link: Link To
         cover_image: Cover Image
       highlight/translation:
         is_public: Is Public?
-        date_publish: Date Made Public
+        published_at: Date Made Public
         title: Title
         summary: Summary
         link: Link To
@@ -79,7 +79,7 @@ az:
         person_id: Person
         image: Image
         is_public: Is Public?
-        date_publish: Date Made Public
+        published_at: Date Made Public
         title: Title
         context: Context
         illustration_annotation: Annotation
@@ -87,7 +87,7 @@ az:
         person_role: Person
       illustration/translation:
         is_public: Is Public?
-        date_publish: Date Made Public
+        published_at: Date Made Public
         title: Title
         context: Context
       illustration_annotations:
@@ -114,12 +114,12 @@ az:
         issue_number: Issue Number
         date_publication: Publication Date
         is_public: Is Public?
-        date_publish: Date Made Public
+        published_at: Date Made Public
         scanned_file: PDF File
         cover_image: Cover Image
       news:
         is_public: Is Public?
-        date_publish: Date Made Public
+        published_at: Date Made Public
         title: Title
         summary: Summary
         text: Text
@@ -134,7 +134,7 @@ az:
         illustration_id: Image
       news/translation:
         is_public: Is Public?
-        date_publish: Date Made Public
+        published_at: Date Made Public
         title: Title
         summary: Summary
         text: Text
@@ -178,7 +178,7 @@ az:
         publication_language: Language
         publication_language_id: Language
         is_public: Is Public?
-        date_publish: Date Made Public
+        published_at: Date Made Public
         year: Year
         title: Title
         about: About
@@ -200,7 +200,7 @@ az:
         person_role: Related Person
       publication/translation:
         is_public: Is Public?
-        date_publish: Date Made Public
+        published_at: Date Made Public
         title: Title
         about: About
         editor: Editor
@@ -230,7 +230,7 @@ az:
         person_id: Person
       research:
         is_public: Is Public?
-        date_publish: Date Made Public
+        published_at: Date Made Public
         title: Title
         summary: Summary
         text: Text
@@ -239,7 +239,7 @@ az:
         slideshows: Sliedshow Images
       research/translation:
         is_public: Is Public?
-        date_publish: Date Made Public
+        published_at: Date Made Public
         title: Title
         summary: Summary
         text: Text

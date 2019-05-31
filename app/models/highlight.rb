@@ -25,7 +25,7 @@ class Highlight < ApplicationRecord
   #################
   ## TRANSLATIONS ##
   #################
-  translates :title, :summary, :link, :is_public, :date_publish, :versioning => :paper_trail
+  translates :title, :summary, :link, :is_public, :published_at, :versioning => :paper_trail
   accepts_nested_attributes_for :translations, allow_destroy: true
 
   #################
@@ -37,14 +37,14 @@ class Highlight < ApplicationRecord
   #################
   ## CALLBACKS ##
   #################
-  before_save :set_translation_publish_dates
+  before_save :set_translation_published_at
   validate :check_self_public_required_fields
 
   #################
   ## SCOPES ##
   #################
   scope :published, -> { where(is_public: true) }
-  scope :sort_published_desc, -> { order(date_publish: :desc) }
+  scope :sort_published_desc, -> { order(published_at: :desc) }
 
   #################
   ## RAILS ADMIN CONFIGURATION ##
@@ -120,7 +120,7 @@ class Highlight < ApplicationRecord
       field :title
       field :summary
       field :link
-      field :date_publish
+      field :published_at
       field :created_at
       field :updated_at
     end

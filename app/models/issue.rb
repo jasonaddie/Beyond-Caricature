@@ -7,7 +7,7 @@
 #  issue_number      :string
 #  date_publication  :date
 #  is_public         :boolean          default(FALSE)
-#  date_publish      :date
+#  date_publish_old  :date
 #  created_at        :datetime         not null
 #  updated_at        :datetime         not null
 #  cover_image_uid   :string
@@ -15,6 +15,7 @@
 #  slug              :string
 #  scanned_file_size :integer
 #  crop_alignment    :string           default("center")
+#  published_at      :datetime
 #
 
 class Issue < ApplicationRecord
@@ -102,7 +103,7 @@ end
   #################
   ## CALLBACKS ##
   #################
-  before_save :set_publish_date
+  before_save :set_published_at
 
   #################
   ## METHODS ##
@@ -136,7 +137,7 @@ end
   ## SCOPES ##
   #################
   scope :published, -> { where(is_public: true) }
-  scope :sort_published_desc, -> { order(date_publish: :desc) }
+  scope :sort_published_desc, -> { order(published_at: :desc) }
   scope :sort_publication_desc, -> { order(date_publication: :desc) }
 
   # get the min and max dates on record
@@ -167,10 +168,6 @@ end
     weight 30
 
     # configuration
-    configure :date_publish do
-      date_format :default
-      datepicker_options showTodayButton: true, format: 'YYYY-MM-DD'
-    end
     configure :date_publication do
       date_format :default
       datepicker_options showTodayButton: false, format: 'YYYY-MM-DD', viewMode: 'years', minDate: '1800-01-01', maxDate: "#{Time.now.year}-12-31"
@@ -223,7 +220,7 @@ end
       field :illustration_count do
         label I18n.t('labels.illustration_count')
       end
-      field :date_publish
+      field :published_at
     end
 
     # show page
@@ -240,7 +237,7 @@ end
       field :illustration_count do
         label I18n.t('labels.illustration_count')
       end
-      field :date_publish
+      field :published_at
       field :created_at
       field :updated_at
     end

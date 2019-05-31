@@ -9,10 +9,10 @@
       <div class="listing-meta-right">
         <div class="listing-date">
           <div class="listing-date-month">
-            <%= item.date_publish.strftime("%b") %>
+            <%= item.published_at.strftime("%b") %>
           </div>
           <div class="listing-date-day-year">
-            <%= item.date_publish.strftime("%d %Y") %>
+            <%= item.published_at.strftime("%d %Y") %>
           </div>
         </div>
         <div class="listing-cover-image">

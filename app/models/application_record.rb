@@ -6,6 +6,11 @@ class ApplicationRecord < ActiveRecord::Base
     I18n.t("activerecord.attributes.#{model_name.i18n_key}.#{enum_name.to_s.pluralize}.#{enum_value}")
   end
 
+  #### METHODS
+  def skip_published_at_callback(value = false)
+    @skip_callback = @skip_callback ? @skip_callback : value
+  end
+
   #################
   ## PRIVATE METHODS ##
   #################
@@ -67,22 +72,35 @@ class ApplicationRecord < ActiveRecord::Base
   end
 
   # if the is_public is being set to true,
-  # then also set the publish date
-  def set_publish_date
-    if self.is_public == true && self.is_public_changed?
-      self.date_publish = Time.now
+  # then also set the published_at
+  # if the item was public but now is not,
+  # reset published_at to nil
+  def set_published_at
+    if !skip_published_at_callback && self.is_public_changed?
+      if self.is_public == true
+        self.published_at = Time.now
+      elsif self.is_public == false
+        self.published_at = nil
+      end
     end
   end
 
   # check each language and if the is_public is being set to true,
-  # then also set the publish date
-  def set_translation_publish_dates
-    self.is_public_translations.each do |locale, flag|
-      if flag == true
-        # is public = true, check date
-        if self.date_publish_translations[locale].nil?
-          # date does not exist, set it
-          self.attributes = {date_publish: Time.now, locale: locale}
+  # then also set the published_at
+  # if the item was public but now is not,
+  # reset published_at to nil
+  def set_translation_published_at
+    if !skip_published_at_callback
+      self.is_public_translations.each do |locale, flag|
+        if flag == true
+          # is public = true, check date
+          if self.published_at_translations[locale].nil?
+            # date does not exist, set it
+            self.attributes = {published_at: Time.now, locale: locale}
+          end
+        else
+          # is not public, so make sure published_at is nil
+          self.attributes = {published_at: nil, locale: locale}
         end
       end
     end
