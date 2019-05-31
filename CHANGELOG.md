@@ -1,6 +1,27 @@
 This page lists additions, changes, and bug fixes that have been applied to the application code.
 The numbers in brackets (i.e., [0.1]), indicate the version number of the app.
 
+## [0.39] - 2019-06-01
+### Added
+- New deafult image for people
+- New issue number format with year at the end
+- Hide language switcher
+- Made email in footer a link
+- New Contributors section on About page
+- NCEEER logo to About page
+- Links in textbox now defualt to open in a new tab
+
+### Fixed
+- View all images link from Source page now works
+- Tag link on Image page now works
+- Changed 'Donor' to 'Funding' on About page
+- Removed twitter icon from footer
+- Updated stat categories on homepage
+- Converted publish date to publish datetime so image records can be sorted by date and time
+- Whene delete an image annotation, markers are updated
+- Test if date filter exists before trying to work with it
+- Image search now working
+
 ## [0.38] - 2019-05-27
 ### Fixed
 - Set PDF max file size to 30MB
