@@ -1,0 +1,341 @@
+Line #,Key,en Version,ru Translation
+1,ru.activerecord.models.highlight.one,Highlight,Highlight
+2,ru.activerecord.models.highlight.other,Highlights,Highlights
+3,ru.activerecord.models.illustration.one,Image,Image
+4,ru.activerecord.models.illustration.other,Images,Images
+5,ru.activerecord.models.illustration_annotation.one,Annotation,Annotation
+6,ru.activerecord.models.illustration_annotation.other,Annotations,Annotations
+7,ru.activerecord.models.illustration_issue.one,Image Issue,Image Issue
+8,ru.activerecord.models.illustration_issue.other,Image Issues,Image Issues
+9,ru.activerecord.models.illustration_publication.one,Image Source,Image Source
+10,ru.activerecord.models.illustration_publication.other,Image Sources,Image Sources
+11,ru.activerecord.models.illustration_tag.one,Image Tag,Image Tag
+12,ru.activerecord.models.illustration_tag.other,Image Tags,Image Tags
+13,ru.activerecord.models.issue.one,Issue,Issue
+14,ru.activerecord.models.issue.other,Issues,Issues
+15,ru.activerecord.models.news.one,News Item,News Item
+16,ru.activerecord.models.news.other,News,News
+17,ru.activerecord.models.page_content.one,Page Text,Page Text
+18,ru.activerecord.models.page_content.other,Page Text,Page Text
+19,ru.activerecord.models.person.one,Person,Person
+20,ru.activerecord.models.person.other,People,People
+21,ru.activerecord.models.person_role.one,Person,Person
+22,ru.activerecord.models.person_role.other,People,People
+23,ru.activerecord.models.publication.one,Source,Source
+24,ru.activerecord.models.publication.other,Sources,Sources
+25,ru.activerecord.models.publication_editor.one,Journal Editor,Journal Editor
+26,ru.activerecord.models.publication_editor.other,Journal Editors,Journal Editors
+27,ru.activerecord.models.publication_language.one,Language,Language
+28,ru.activerecord.models.publication_language.other,Languages,Languages
+29,ru.activerecord.models.related_item.one,Related Item,Related Item
+30,ru.activerecord.models.related_item.other,Related Items,Related Items
+31,ru.activerecord.models.research.one,Research,Research
+32,ru.activerecord.models.research.other,Research,Research
+33,ru.activerecord.models.role.one,Person Role,Person Role
+34,ru.activerecord.models.role.other,Person Roles,Person Roles
+35,ru.activerecord.models.slideshow.one,Slideshow Image,Slideshow Image
+36,ru.activerecord.models.slideshow.other,Slideshow Images,Slideshow Images
+37,ru.activerecord.models.tag.one,Tag,Tag
+38,ru.activerecord.models.tag.other,Tags,Tags
+39,ru.activerecord.models.user.one,User,User
+40,ru.activerecord.models.user.other,Users,Users
+41,ru.activerecord.attributes.highlight.is_public,Is Public?,Is Public?
+42,ru.activerecord.attributes.highlight.published_at,Date Made Public,Date Made Public
+43,ru.activerecord.attributes.highlight.title,Title,Title
+44,ru.activerecord.attributes.highlight.summary,Summary,Summary
+45,ru.activerecord.attributes.highlight.link,Link To,Link To
+46,ru.activerecord.attributes.highlight.cover_image,Cover Image,Cover Image
+47,ru.activerecord.attributes.highlight/translation.is_public,Is Public?,Is Public?
+48,ru.activerecord.attributes.highlight/translation.published_at,Date Made Public,Date Made Public
+49,ru.activerecord.attributes.highlight/translation.title,Title,Title
+50,ru.activerecord.attributes.highlight/translation.summary,Summary,Summary
+51,ru.activerecord.attributes.highlight/translation.link,Link To,Link To
+52,ru.activerecord.attributes.illustration.person_id,Person,Person
+53,ru.activerecord.attributes.illustration.image,Image,Image
+54,ru.activerecord.attributes.illustration.is_public,Is Public?,Is Public?
+55,ru.activerecord.attributes.illustration.published_at,Date Made Public,Date Made Public
+56,ru.activerecord.attributes.illustration.title,Title,Title
+57,ru.activerecord.attributes.illustration.context,Context,Context
+58,ru.activerecord.attributes.illustration.illustration_annotation,Annotation,Annotation
+59,ru.activerecord.attributes.illustration.illustration_annotations,Annotations,Annotations
+60,ru.activerecord.attributes.illustration.person_role,Person,Person
+61,ru.activerecord.attributes.illustration/translation.is_public,Is Public?,Is Public?
+62,ru.activerecord.attributes.illustration/translation.published_at,Date Made Public,Date Made Public
+63,ru.activerecord.attributes.illustration/translation.title,Title,Title
+64,ru.activerecord.attributes.illustration/translation.context,Context,Context
+65,ru.activerecord.attributes.illustration_annotations.sort,Sort,Sort
+66,ru.activerecord.attributes.illustration_annotations.annotation,Annotation,Annotation
+67,ru.activerecord.attributes.illustration_issue.illustration_id,Image,Image
+68,ru.activerecord.attributes.illustration_issue.issue_id,Issue,Issue
+69,ru.activerecord.attributes.illustration_issue.page_number_start,Page Number Start,Page Number Start
+70,ru.activerecord.attributes.illustration_issue.page_number_end,Page Number End,Page Number End
+71,ru.activerecord.attributes.illustration_issue.is_public,,
+72,ru.activerecord.attributes.illustration_publication.illustration_id,Image,Image
+73,ru.activerecord.attributes.illustration_publication.publication_id,Source,Source
+74,ru.activerecord.attributes.illustration_publication.page_number_start,Page Number Start,Page Number Start
+75,ru.activerecord.attributes.illustration_publication.page_number_end,Page Number End,Page Number End
+76,ru.activerecord.attributes.illustration_publication.is_public,Is Public?,Is Public?
+77,ru.activerecord.attributes.illustration_tag.illustration_id,Image,Image
+78,ru.activerecord.attributes.illustration_tag.tag_id,Tag,Tag
+79,ru.activerecord.attributes.issue.publication,Journal,Journal
+80,ru.activerecord.attributes.issue.publication_id,Journal,Journal
+81,ru.activerecord.attributes.issue.issue_number,Issue Number,Issue Number
+82,ru.activerecord.attributes.issue.date_publication,Publication Date,Publication Date
+83,ru.activerecord.attributes.issue.is_public,Is Public?,Is Public?
+84,ru.activerecord.attributes.issue.published_at,Date Made Public,Date Made Public
+85,ru.activerecord.attributes.issue.scanned_file,PDF File,PDF File
+86,ru.activerecord.attributes.issue.cover_image,Cover Image,Cover Image
+87,ru.activerecord.attributes.news.is_public,Is Public?,Is Public?
+88,ru.activerecord.attributes.news.published_at,Date Made Public,Date Made Public
+89,ru.activerecord.attributes.news.title,Title,Title
+90,ru.activerecord.attributes.news.summary,Summary,Summary
+91,ru.activerecord.attributes.news.text,Text,Text
+92,ru.activerecord.attributes.news.cover_image,Cover Image,Cover Image
+93,ru.activerecord.attributes.news.slideshow,Sliedshow Image,Sliedshow Image
+94,ru.activerecord.attributes.news.slideshows,Sliedshow Images,Sliedshow Images
+95,ru.activerecord.attributes.news.related_item,Related Item,Related Item
+96,ru.activerecord.attributes.news.related_items,Related Items,Related Items
+97,ru.activerecord.attributes.news.related_item_type,Type,Type
+98,ru.activerecord.attributes.news.publication_id,Source,Source
+99,ru.activerecord.attributes.news.issue_id,Issue,Issue
+100,ru.activerecord.attributes.news.illustration_id,Image,Image
+101,ru.activerecord.attributes.news/translation.is_public,Is Public?,Is Public?
+102,ru.activerecord.attributes.news/translation.published_at,Date Made Public,Date Made Public
+103,ru.activerecord.attributes.news/translation.title,Title,Title
+104,ru.activerecord.attributes.news/translation.summary,Summary,Summary
+105,ru.activerecord.attributes.news/translation.text,Text,Text
+106,ru.activerecord.attributes.page_content.name,Name,Name
+107,ru.activerecord.attributes.page_content.content,Text,Text
+108,ru.activerecord.attributes.page_content/translation.content,Text,Text
+109,ru.activerecord.attributes.person.date_birth,Birth Date,Birth Date
+110,ru.activerecord.attributes.person.date_death,Death Date,Death Date
+111,ru.activerecord.attributes.person.is_public,Is Public?,Is Public?
+112,ru.activerecord.attributes.person.name,Name,Name
+113,ru.activerecord.attributes.person.last_name,Last Name,Last Name
+114,ru.activerecord.attributes.person.first_name,First Name,First Name
+115,ru.activerecord.attributes.person.bio,Biography,Biography
+116,ru.activerecord.attributes.person.image,Image,Image
+117,ru.activerecord.attributes.person/translation.is_public,Is Public?,Is Public?
+118,ru.activerecord.attributes.person/translation.name,Name,Name
+119,ru.activerecord.attributes.person/translation.last_name,Last Name,Last Name
+120,ru.activerecord.attributes.person/translation.first_name,First Name,First Name
+121,ru.activerecord.attributes.person/translation.bio,Biography,Biography
+122,ru.activerecord.attributes.person_role.role,Role,Role
+123,ru.activerecord.attributes.person_role.role_types.illustrator,Illustrator,Illustrator
+124,ru.activerecord.attributes.person_role.role_types.editor,Editor,Editor
+125,ru.activerecord.attributes.person_role.role_types.publisher,Publisher,Publisher
+126,ru.activerecord.attributes.person_role.role_types.writer,Writer,Writer
+127,ru.activerecord.attributes.person_role.role_types.printer,Printer,Printer
+128,ru.activerecord.attributes.person_role.role_types.financier,Financier,Financier
+129,ru.activerecord.attributes.person_role.role_types.official,Official,Official
+130,ru.activerecord.attributes.person_role.role_types.subject,Subject,Subject
+131,ru.activerecord.attributes.publication.publication_type,Source Type,Source Type
+132,ru.activerecord.attributes.publication.publication_types.journal,Journal,Journal
+133,ru.activerecord.attributes.publication.publication_types.book,Book,Book
+134,ru.activerecord.attributes.publication.publication_types.original,Original,Original
+135,ru.activerecord.attributes.publication.publication_language,Language,Language
+136,ru.activerecord.attributes.publication.publication_language_id,Language,Language
+137,ru.activerecord.attributes.publication.is_public,Is Public?,Is Public?
+138,ru.activerecord.attributes.publication.published_at,Date Made Public,Date Made Public
+139,ru.activerecord.attributes.publication.year,Year,Year
+140,ru.activerecord.attributes.publication.title,Title,Title
+141,ru.activerecord.attributes.publication.about,About,About
+142,ru.activerecord.attributes.publication.editor,Editor,Editor
+143,ru.activerecord.attributes.publication.publisher,Publisher,Publisher
+144,ru.activerecord.attributes.publication.writer,Writer,Writer
+145,ru.activerecord.attributes.publication.scanned_file,PDF File,PDF File
+146,ru.activerecord.attributes.publication.cover_image,Cover Image,Cover Image
+147,ru.activerecord.attributes.publication.publication_editor,Journal Editor,Journal Editor
+148,ru.activerecord.attributes.publication.publication_editors,Journal Editors,Journal Editors
+149,ru.activerecord.attributes.publication.editors,Editors,Editors
+150,ru.activerecord.attributes.publication.publishers,Publishers,Publishers
+151,ru.activerecord.attributes.publication.writers,Writers,Writers
+152,ru.activerecord.attributes.publication.printers,Printers,Printers
+153,ru.activerecord.attributes.publication.financiers,Financiers,Financiers
+154,ru.activerecord.attributes.publication.officials,Officials,Officials
+155,ru.activerecord.attributes.publication.subjects,Subjects,Subjects
+156,ru.activerecord.attributes.publication.person_roles,Related People,Related People
+157,ru.activerecord.attributes.publication.person_role,Related Person,Related Person
+158,ru.activerecord.attributes.publication/translation.is_public,Is Public?,Is Public?
+159,ru.activerecord.attributes.publication/translation.published_at,Date Made Public,Date Made Public
+160,ru.activerecord.attributes.publication/translation.title,Title,Title
+161,ru.activerecord.attributes.publication/translation.about,About,About
+162,ru.activerecord.attributes.publication/translation.editor,Editor,Editor
+163,ru.activerecord.attributes.publication/translation.publisher,Publisher,Publisher
+164,ru.activerecord.attributes.publication/translation.writer,Writer,Writer
+165,ru.activerecord.attributes.publication_editor.editors,Editors,Editors
+166,ru.activerecord.attributes.publication_editor.publishers,Publishers,Publishers
+167,ru.activerecord.attributes.publication_editor.year_start,Year Start,Year Start
+168,ru.activerecord.attributes.publication_editor.year_end,Year End,Year End
+169,ru.activerecord.attributes.publication_editor.person_roles,Related People,Related People
+170,ru.activerecord.attributes.publication_editor.person_role,Related Person,Related Person
+171,ru.activerecord.attributes.publication_language.is_active,Is Public?,Is Public?
+172,ru.activerecord.attributes.publication_language/translation.language,Language,Language
+173,ru.activerecord.attributes.related_item.related_item_type,Type,Type
+174,ru.activerecord.attributes.related_item.related_item_types.publication,Source,Source
+175,ru.activerecord.attributes.related_item.related_item_types.issue,Issue,Issue
+176,ru.activerecord.attributes.related_item.related_item_types.illustration,Image,Image
+177,ru.activerecord.attributes.related_item.related_item_types.person,Person,Person
+178,ru.activerecord.attributes.related_item.publication_id,Source,Source
+179,ru.activerecord.attributes.related_item.issue_id,Issue,Issue
+180,ru.activerecord.attributes.related_item.illustration_id,Image,Image
+181,ru.activerecord.attributes.related_item.person_id,Person,Person
+182,ru.activerecord.attributes.research.is_public,Is Public?,Is Public?
+183,ru.activerecord.attributes.research.published_at,Date Made Public,Date Made Public
+184,ru.activerecord.attributes.research.title,Title,Title
+185,ru.activerecord.attributes.research.summary,Summary,Summary
+186,ru.activerecord.attributes.research.text,Text,Text
+187,ru.activerecord.attributes.research.cover_image,Cover Image,Cover Image
+188,ru.activerecord.attributes.research.slideshow,Sliedshow Image,Sliedshow Image
+189,ru.activerecord.attributes.research.slideshows,Sliedshow Images,Sliedshow Images
+190,ru.activerecord.attributes.research/translation.is_public,Is Public?,Is Public?
+191,ru.activerecord.attributes.research/translation.published_at,Date Made Public,Date Made Public
+192,ru.activerecord.attributes.research/translation.title,Title,Title
+193,ru.activerecord.attributes.research/translation.summary,Summary,Summary
+194,ru.activerecord.attributes.research/translation.text,Text,Text
+195,ru.activerecord.attributes.role.name,Name,Name
+196,ru.activerecord.attributes.role.is_illustrator,Is Illustrator?,Is Illustrator?
+197,ru.activerecord.attributes.slideshow.image,Image,Image
+198,ru.activerecord.attributes.slideshow.sort,Sort Order,Sort Order
+199,ru.activerecord.attributes.slideshow.caption,Caption,Caption
+200,ru.activerecord.attributes.slideshow/translation.caption,Caption,Caption
+201,ru.activerecord.attributes.tag.name,Name,Name
+202,ru.activerecord.attributes.user.email,Email,Email
+203,ru.activerecord.attributes.user.name,Name,Name
+204,ru.activerecord.attributes.user.role,Role,Role
+205,ru.activerecord.attributes.user.roles.uploader,Uploader,Uploader
+206,ru.activerecord.attributes.user.roles.editor,Editor,Editor
+207,ru.activerecord.attributes.user.roles.admin,Admin,Admin
+208,ru.activerecord.attributes.user.roles.superadmin,Super Admin,Super Admin
+209,ru.crop_alignments.center,Center,Center
+210,ru.crop_alignments.north,North,North
+211,ru.crop_alignments.northwest,North West,North West
+212,ru.crop_alignments.west,West,West
+213,ru.crop_alignments.southwest,South West,South West
+214,ru.crop_alignments.south,South,South
+215,ru.crop_alignments.southeast,South East,South East
+216,ru.crop_alignments.east,East,East
+217,ru.crop_alignments.northeast,North East,North East
+218,ru.labels.translations,Translation Fields,Translation Fields
+219,ru.labels.illustration_count,Images on File,Images on File
+220,ru.labels.issue_count,Issues on File,Issues on File
+221,ru.labels.combined_publications_count,Source Images,Source Images
+222,ru.labels.is_public_status,Public Status,Public Status
+223,ru.labels.required_for_publication,Required fields for making public are missing,Required fields for making public are missing
+224,ru.labels.language_error,%{lang} Error: %{msg},%{lang} Error: %{msg}
+225,ru.labels.language_switcher,Language Switcher,Language Switcher
+226,ru.labels.view,View,View
+227,ru.labels.view_file,View PDF,View PDF
+228,ru.labels.view_file_with_size,View %{name} PDF (%{size}),View %{name} PDF (%{size})
+229,ru.labels.news,News,News
+230,ru.labels.research,Research,Research
+231,ru.labels.related_items,Releated Items,Releated Items
+232,ru.labels.slideshow,Slideshow,Slideshow
+233,ru.labels.publications,Sources,Sources
+234,ru.labels.publication,Source,Source
+235,ru.labels.illustrations,Images,Images
+236,ru.labels.illustration,Image,Image
+237,ru.labels.illustrators,Illustrators,Illustrators
+238,ru.labels.people,People,People
+239,ru.labels.issues,Issues,Issues
+240,ru.labels.all_news,View All News,View All News
+241,ru.labels.all_research,View All Research,View All Research
+242,ru.labels.about,About,About
+243,ru.labels.highlights,Highlights,Highlights
+244,ru.labels.home,Home,Home
+245,ru.labels.contact,Contact,Contact
+246,ru.labels.followus,Follow us on:,Follow us on:
+247,ru.labels.facebook,Facebook,Facebook
+248,ru.labels.twitter,Twitter,Twitter
+249,ru.labels.donors,Funding,Funding
+250,ru.labels.partners,Partners,Partners
+251,ru.labels.contributors,Contributors,Contributors
+252,ru.labels.read_more,Read More,Read More
+253,ru.labels.view_all,View All,View All
+254,ru.labels.view_all_with_count,View All %{number} %{title} Records,View All %{number} %{title} Records
+255,ru.labels.stats,Stats,Stats
+256,ru.labels.journals,Journals,Journals
+257,ru.labels.journal_issues,Journal Issues,Journal Issues
+258,ru.labels.books,Books,Books
+259,ru.labels.originals,Originals,Originals
+260,ru.labels.languages,Languages,Languages
+261,ru.labels.by,By,By
+262,ru.labels.lived,Lived,Lived
+263,ru.labels.roles,Roles,Roles
+264,ru.labels.type,Type,Type
+265,ru.labels.next,Next,Next
+266,ru.labels.previous,Previous,Previous
+267,ru.labels.view_bigger_image,Click to view the original image,Click to view the original image
+268,ru.labels.view_annotations,View Annotations,View Annotations
+269,ru.labels.annotations_for,Annotations For: %{name},Annotations For: %{name}
+270,ru.labels.annotation_help,Click on numbers to view the annotation text,Click on numbers to view the annotation text
+271,ru.labels.publication_date,Published,Published
+272,ru.labels.list,View the records in a list view,View the records in a list view
+273,ru.labels.grid,View the records in a grid view,View the records in a grid view
+274,ru.labels.publication_dates.journal,Issue Dates,Issue Dates
+275,ru.labels.publication_dates.book,Year,Year
+276,ru.labels.publication_dates.original,Year,Year
+277,ru.labels.filters,Filters,Filters
+278,ru.labels.filter.search,Search,Search
+279,ru.labels.filter.source_type,Source Type,Source Type
+280,ru.labels.filter.language,Language,Language
+281,ru.labels.filter.person,Person,Person
+282,ru.labels.filter.role,Role,Role
+283,ru.labels.filter.date,Date,Date
+284,ru.labels.filter.date_explanation,Pick start date or end date or both.,Pick start date or end date or both.
+285,ru.labels.filter.date_start,Start Date,Start Date
+286,ru.labels.filter.date_end,End Date,End Date
+287,ru.labels.filter.date_close,Confirm,Confirm
+288,ru.labels.filter.date_clear,Clear,Clear
+289,ru.labels.filter.no_date,None,None
+290,ru.labels.unknown,Unknown,Unknown
+291,ru.labels.meta.publication_type,Type,Type
+292,ru.labels.meta.publication_language,Language,Language
+293,ru.labels.meta.illustration_count,Images,Images
+294,ru.labels.meta.issue_count,Issues,Issues
+295,ru.labels.meta.publication_count,Sources,Sources
+296,ru.labels.meta.publication_year,Year,Year
+297,ru.labels.meta.creation_year,Year,Year
+298,ru.labels.meta.editor,Editor,Editor
+299,ru.labels.meta.publisher,Publisher,Publisher
+300,ru.labels.meta.writer,Writer,Writer
+301,ru.labels.meta.year_start,Start,Start
+302,ru.labels.meta.year_end,End,End
+303,ru.labels.meta.issue_number,Issue,Issue
+304,ru.labels.meta.publication_date,Published,Published
+305,ru.labels.meta.in_the_news,In The News,In The News
+306,ru.labels.meta.journal,Journal,Journal
+307,ru.labels.meta.published_in,Published In,Published In
+308,ru.labels.meta.date_birth,Born,Born
+309,ru.labels.meta.date_death,Died,Died
+310,ru.labels.meta.tags,Tags,Tags
+311,ru.labels.meta.roles,Roles,Roles
+312,ru.labels.meta.people,People,People
+313,ru.labels.meta.lived,Lived,Lived
+314,ru.messages.no_data,There is no data on record at this time.,There is no data on record at this time.
+315,ru.messages.no_issues,There are no issues on record at this time.,There are no issues on record at this time.
+316,ru.messages.no_illustrations,There are no images on record at this time.,There are no images on record at this time.
+317,ru.navigation_groups.primary,Primary Data,Primary Data
+318,ru.navigation_groups.supporting,Supporting Data,Supporting Data
+319,ru.navigation_groups.news,News Items,News Items
+320,ru.navigation_groups.admin,Admin,Admin
+321,ru.meta.site_name,Beyond Caricature,Beyond Caricature
+322,ru.meta.sub_title,The Oskar Schmerling Digital Archive,The Oskar Schmerling Digital Archive
+323,ru.meta.description,This is a brief description of the site,This is a brief description of the site
+324,ru.meta.twitter_site,@schmerling,@schmerling
+325,ru.languages.en,English,English
+326,ru.languages.ru,Russian,Russian
+327,ru.languages.az,Azeri,Azeri
+328,ru.languages.ka,Georgian,Georgian
+329,ru.languages.hy,Armenian,Armenian
+330,ru.status.yes,Yes,Yes
+331,ru.status.true,Yes,Yes
+332,ru.status.no,No,No
+333,ru.status.false,No,No
+334,ru.devise.failure.deleted_account,Your account has been deleted and you can no longer login.,Your account has been deleted and you can no longer login.
+335,ru.home.index.oskar_alt,Self portrait of Oskar Schmerling holding a whip and wearing horns,Self portrait of Oskar Schmerling holding a whip and wearing horns
+336,ru.home.index.scroll,Scroll,Scroll
+337,ru.home.about.donors.reed,Reed College,Reed College
+338,ru.home.about.donors.nceeer,National Council for Eurasian and East European Research,National Council for Eurasian and East European Research
+339,ru.home.about.partners.geo_library,National Parliamentary Library of Georgia,National Parliamentary Library of Georgia
+340,ru.shared.news_item.related_item_explanation,Related Items,Related Items

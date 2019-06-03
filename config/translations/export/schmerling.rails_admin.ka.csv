@@ -1,0 +1,163 @@
+Line #,Key,en Version,ka Translation
+1,ka.admin.js.true,true,true
+2,ka.admin.js.false,false,false
+3,ka.admin.js.is_present,Is present,Is present
+4,ka.admin.js.is_blank,Is blank,Is blank
+5,ka.admin.js.date,Date ...,Date ...
+6,ka.admin.js.between_and_,Between ... and ...,Between ... and ...
+7,ka.admin.js.today,Today,Today
+8,ka.admin.js.yesterday,Yesterday,Yesterday
+9,ka.admin.js.this_week,This week,This week
+10,ka.admin.js.last_week,Last week,Last week
+11,ka.admin.js.number,Number ...,Number ...
+12,ka.admin.js.contains,Contains,Contains
+13,ka.admin.js.is_exactly,Is exactly,Is exactly
+14,ka.admin.js.starts_with,Starts with,Starts with
+15,ka.admin.js.ends_with,Ends with,Ends with
+16,ka.admin.js.too_many_objects,"Too many objects, use search box above","Too many objects, use search box above"
+17,ka.admin.js.no_objects,No objects found,No objects found
+18,ka.admin.loading,Loading...,Loading...
+19,ka.admin.toggle_navigation,Toggle navigation,Toggle navigation
+20,ka.admin.home.name,Home,Home
+21,ka.admin.pagination.previous,&laquo; Prev,&laquo; Prev
+22,ka.admin.pagination.next,Next &raquo;,Next &raquo;
+23,ka.admin.pagination.truncate,…,…
+24,ka.admin.misc.search,Search,Search
+25,ka.admin.misc.filter,Filter,Filter
+26,ka.admin.misc.refresh,Refresh,Refresh
+27,ka.admin.misc.show_all,Show all,Show all
+28,ka.admin.misc.add_filter,Add filter,Add filter
+29,ka.admin.misc.bulk_menu_title,Selected items,Selected items
+30,ka.admin.misc.remove,Remove,Remove
+31,ka.admin.misc.add_new,Add new,Add new
+32,ka.admin.misc.chosen,Chosen %{name},Chosen %{name}
+33,ka.admin.misc.chose_all,Choose all,Choose all
+34,ka.admin.misc.clear_all,Clear all,Clear all
+35,ka.admin.misc.up,Up,Up
+36,ka.admin.misc.down,Down,Down
+37,ka.admin.misc.navigation,Navigation,Navigation
+38,ka.admin.misc.navigation_static_label,Links,Links
+39,ka.admin.misc.log_out,Log out,Log out
+40,ka.admin.misc.ago,ago,ago
+41,ka.admin.misc.more,Plus %{count} more %{models_name},Plus %{count} more %{models_name}
+42,ka.admin.flash.successful,%{name} successfully %{action},%{name} successfully %{action}
+43,ka.admin.flash.error,%{name} failed to be %{action},%{name} failed to be %{action}
+44,ka.admin.flash.noaction,No actions were taken,No actions were taken
+45,ka.admin.flash.model_not_found,Model '%{model}' could not be found,Model '%{model}' could not be found
+46,ka.admin.flash.object_not_found,%{model} with id '%{id}' could not be found,%{model} with id '%{id}' could not be found
+47,ka.admin.table_headers.model_name,Model name,Model name
+48,ka.admin.table_headers.last_created,Last created,Last created
+49,ka.admin.table_headers.records,Records,Records
+50,ka.admin.table_headers.username,User,User
+51,ka.admin.table_headers.changes,Changes,Changes
+52,ka.admin.table_headers.created_at,Date/Time,Date/Time
+53,ka.admin.table_headers.item,Item,Item
+54,ka.admin.table_headers.message,Message,Message
+55,ka.admin.actions.dashboard.title,Site Administration,Site Administration
+56,ka.admin.actions.dashboard.menu,Dashboard,Dashboard
+57,ka.admin.actions.dashboard.breadcrumb,Dashboard,Dashboard
+58,ka.admin.actions.index.title,List of %{model_label_plural},List of %{model_label_plural}
+59,ka.admin.actions.index.menu,List,List
+60,ka.admin.actions.index.breadcrumb,%{model_label_plural},%{model_label_plural}
+61,ka.admin.actions.show.title,Details for %{model_label} '%{object_label}',Details for %{model_label} '%{object_label}'
+62,ka.admin.actions.show.menu,Show,Show
+63,ka.admin.actions.show.breadcrumb,%{object_label},%{object_label}
+64,ka.admin.actions.show_in_app.menu,Show in app,Show in app
+65,ka.admin.actions.new.title,New %{model_label},New %{model_label}
+66,ka.admin.actions.new.menu,Add new,Add new
+67,ka.admin.actions.new.breadcrumb,New,New
+68,ka.admin.actions.new.link,Add a new %{model_label},Add a new %{model_label}
+69,ka.admin.actions.new.done,created,created
+70,ka.admin.actions.edit.title,Edit %{model_label} '%{object_label}',Edit %{model_label} '%{object_label}'
+71,ka.admin.actions.edit.menu,Edit,Edit
+72,ka.admin.actions.edit.breadcrumb,Edit,Edit
+73,ka.admin.actions.edit.link,Edit this %{model_label},Edit this %{model_label}
+74,ka.admin.actions.edit.done,updated,updated
+75,ka.admin.actions.delete.title,Delete %{model_label} '%{object_label}',Delete %{model_label} '%{object_label}'
+76,ka.admin.actions.delete.menu,Delete,Delete
+77,ka.admin.actions.delete.breadcrumb,Delete,Delete
+78,ka.admin.actions.delete.link,Delete '%{object_label}',Delete '%{object_label}'
+79,ka.admin.actions.delete.done,deleted,deleted
+80,ka.admin.actions.bulk_delete.title,Delete %{model_label_plural},Delete %{model_label_plural}
+81,ka.admin.actions.bulk_delete.menu,Multiple delete,Multiple delete
+82,ka.admin.actions.bulk_delete.breadcrumb,Multiple delete,Multiple delete
+83,ka.admin.actions.bulk_delete.bulk_link,Delete selected %{model_label_plural},Delete selected %{model_label_plural}
+84,ka.admin.actions.export.title,Export %{model_label_plural},Export %{model_label_plural}
+85,ka.admin.actions.export.menu,Export,Export
+86,ka.admin.actions.export.breadcrumb,Export,Export
+87,ka.admin.actions.export.link,Export found %{model_label_plural},Export found %{model_label_plural}
+88,ka.admin.actions.export.bulk_link,Export selected %{model_label_plural},Export selected %{model_label_plural}
+89,ka.admin.actions.export.done,exported,exported
+90,ka.admin.actions.history_index.title,History for %{model_label_plural},History for %{model_label_plural}
+91,ka.admin.actions.history_index.menu,History,History
+92,ka.admin.actions.history_index.breadcrumb,History,History
+93,ka.admin.actions.history_show.title,History for %{model_label} '%{object_label}',History for %{model_label} '%{object_label}'
+94,ka.admin.actions.history_show.menu,History,History
+95,ka.admin.actions.history_show.breadcrumb,History,History
+96,ka.admin.actions.user_soft_delete.title,Delete %{model_label} '%{object_label}',Delete %{model_label} '%{object_label}'
+97,ka.admin.actions.user_soft_delete.menu,Delete,Delete
+98,ka.admin.actions.user_soft_delete.breadcrumb,Delete,Delete
+99,ka.admin.actions.user_soft_delete.link,Delete '%{object_label}',Delete '%{object_label}'
+100,ka.admin.actions.user_soft_delete.done,deleted,deleted
+101,ka.admin.actions.changelog.title,Change Log,Change Log
+102,ka.admin.actions.changelog.menu,Change Log,Change Log
+103,ka.admin.actions.changelog.breadcrumb,Change Log,Change Log
+104,ka.admin.actions.changelog.version,Version,Version
+105,ka.admin.form.cancel,Cancel,Cancel
+106,ka.admin.form.basic_info,Basic info,Basic info
+107,ka.admin.form.required,Required,Required
+108,ka.admin.form.optional,Optional,Optional
+109,ka.admin.form.one_char,character,character
+110,ka.admin.form.char_length_up_to,length up to,length up to
+111,ka.admin.form.char_length_of,length of,length of
+112,ka.admin.form.save,Save,Save
+113,ka.admin.form.save_and_add_another,Save and add another,Save and add another
+114,ka.admin.form.save_and_edit,Save and edit,Save and edit
+115,ka.admin.form.all_of_the_following_related_items_will_be_deleted,? The following related items may be deleted or orphaned:,? The following related items may be deleted or orphaned:
+116,ka.admin.form.are_you_sure_you_want_to_delete_the_object,Are you sure you want to delete this %{model_name},Are you sure you want to delete this %{model_name}
+117,ka.admin.form.confirmation,"Yes, I'm sure","Yes, I'm sure"
+118,ka.admin.form.bulk_delete,"The following objects will be deleted, which may delete or orphan some of their related dependencies:","The following objects will be deleted, which may delete or orphan some of their related dependencies:"
+119,ka.admin.form.new_model,%{name} (new),%{name} (new)
+120,ka.admin.export.confirmation,Export to %{name},Export to %{name}
+121,ka.admin.export.select,Select fields to export,Select fields to export
+122,ka.admin.export.select_all_fields,Select All Fields,Select All Fields
+123,ka.admin.export.fields_from,Fields from %{name},Fields from %{name}
+124,ka.admin.export.fields_from_associated,Fields from associated %{name},Fields from associated %{name}
+125,ka.admin.export.display,Display %{name}: %{type},Display %{name}: %{type}
+126,ka.admin.export.options_for,Options for %{name},Options for %{name}
+127,ka.admin.export.empty_value_for_associated_objects,<empty>,<empty>
+128,ka.admin.export.click_to_reverse_selection,Click to reverse selection,Click to reverse selection
+129,ka.admin.export.csv.header_for_root_methods,%{name},%{name}
+130,ka.admin.export.csv.header_for_association_methods,%{name} [%{association}],%{name} [%{association}]
+131,ka.admin.export.csv.encoding_to,Encode to,Encode to
+132,ka.admin.export.csv.encoding_to_help,Choose output encoding. Leave empty to let current input encoding untouched: (%{name}),Choose output encoding. Leave empty to let current input encoding untouched: (%{name})
+133,ka.admin.export.csv.skip_header,No header,No header
+134,ka.admin.export.csv.skip_header_help,Do not output a header (no fields description),Do not output a header (no fields description)
+135,ka.admin.export.csv.default_col_sep,",",","
+136,ka.admin.export.csv.col_sep,Column separator,Column separator
+137,ka.admin.export.csv.col_sep_help,Leave blank for default ('%{value}'),Leave blank for default ('%{value}')
+138,ka.admin.help.required_for_publication,Required for making public,Required for making public
+139,ka.admin.help.soft_delete,"To re-activate a user, delete the date","To re-activate a user, delete the date"
+140,ka.admin.help.sort,Drag and drop the items to put them in the order you want them to appear,Drag and drop the items to put them in the order you want them to appear
+141,ka.admin.help.move,Drag this item up or down to change the order you want them to appear,Drag this item up or down to change the order you want them to appear
+142,ka.admin.help.only_public_items,Only published items are shown in the list,Only published items are shown in the list
+143,ka.admin.help.only_active_languages,Only active languages are shown in the list,Only active languages are shown in the list
+144,ka.admin.help.missing_annotation_image,"After you load an illustration, the image will appear here.","After you load an illustration, the image will appear here."
+145,ka.admin.help.annotation.add,Place marker on image,Place marker on image
+146,ka.admin.help.image,"Only jpg, jpeg or png files are allowed. Image must be less than 5MB.","Only jpg, jpeg or png files are allowed. Image must be less than 5MB."
+147,ka.admin.help.image_size.highlight,Image should be at least 900x632px.,Image should be at least 900x632px.
+148,ka.admin.help.image_size.illustration,"On listing pages, this image will have a size of 400x400px.","On listing pages, this image will have a size of 400x400px."
+149,ka.admin.help.image_size.person,"On listing pages, this image will have a size of 400x400px.","On listing pages, this image will have a size of 400x400px."
+150,ka.admin.help.image_size.news,"One listing pages, this image will have a size of 438x326px and 400x204px.","One listing pages, this image will have a size of 438x326px and 400x204px."
+151,ka.admin.help.image_size.research,"One listing pages, this image will have a size of 438x326px.","One listing pages, this image will have a size of 438x326px."
+152,ka.admin.help.image_size.publication,"One listing pages, this image will have a size of 400x204px.","One listing pages, this image will have a size of 400x204px."
+153,ka.admin.help.image_size.slideshow,Image should have a width of at least 844px.,Image should have a width of at least 844px.
+154,ka.admin.help.file,Only PDF files are allowed. File must be less than 30MB.,Only PDF files are allowed. File must be less than 30MB.
+155,ka.admin.help.person,Only published People are shown.,Only published People are shown.
+156,ka.admin.help.slideshow_placeholder,"By default the slideshow will appear at the end of this text. If you want it to appear in the text, add the text [slideshow] into the text where you want it to appear.","By default the slideshow will appear at the end of this text. If you want it to appear in the text, add the text [slideshow] into the text where you want it to appear."
+157,ka.admin.help.is_illustrator,Illustrators are a special role that requires additional processing and this flag is used to know if the role is an illustrator.,Illustrators are a special role that requires additional processing and this flag is used to know if the role is an illustrator.
+158,ka.admin.help.page_content_name,This is just a unique value that can be used to find and show the correct content on a page.,This is just a unique value that can be used to find and show the correct content on a page.
+159,ka.admin.help.required,Required,Required
+160,ka.admin.help.crop_alignment,The image will be cropped to create the thumbnail for the listing pages. Use this field to indicate what area of the image you want to use for the thumbnail.,The image will be cropped to create the thumbnail for the listing pages. Use this field to indicate what area of the image you want to use for the thumbnail.
+161,ka.admin.errors.required_for_publication,is required for making the language public,is required for making the language public
+162,ka.admin.errors.required_related_item,is required,is required

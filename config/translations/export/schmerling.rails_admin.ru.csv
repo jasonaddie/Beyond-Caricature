@@ -1,0 +1,163 @@
+Line #,Key,en Version,ru Translation
+1,ru.admin.js.true,true,true
+2,ru.admin.js.false,false,false
+3,ru.admin.js.is_present,Is present,Is present
+4,ru.admin.js.is_blank,Is blank,Is blank
+5,ru.admin.js.date,Date ...,Date ...
+6,ru.admin.js.between_and_,Between ... and ...,Between ... and ...
+7,ru.admin.js.today,Today,Today
+8,ru.admin.js.yesterday,Yesterday,Yesterday
+9,ru.admin.js.this_week,This week,This week
+10,ru.admin.js.last_week,Last week,Last week
+11,ru.admin.js.number,Number ...,Number ...
+12,ru.admin.js.contains,Contains,Contains
+13,ru.admin.js.is_exactly,Is exactly,Is exactly
+14,ru.admin.js.starts_with,Starts with,Starts with
+15,ru.admin.js.ends_with,Ends with,Ends with
+16,ru.admin.js.too_many_objects,"Too many objects, use search box above","Too many objects, use search box above"
+17,ru.admin.js.no_objects,No objects found,No objects found
+18,ru.admin.loading,Loading...,Loading...
+19,ru.admin.toggle_navigation,Toggle navigation,Toggle navigation
+20,ru.admin.home.name,Home,Home
+21,ru.admin.pagination.previous,&laquo; Prev,&laquo; Prev
+22,ru.admin.pagination.next,Next &raquo;,Next &raquo;
+23,ru.admin.pagination.truncate,…,…
+24,ru.admin.misc.search,Search,Search
+25,ru.admin.misc.filter,Filter,Filter
+26,ru.admin.misc.refresh,Refresh,Refresh
+27,ru.admin.misc.show_all,Show all,Show all
+28,ru.admin.misc.add_filter,Add filter,Add filter
+29,ru.admin.misc.bulk_menu_title,Selected items,Selected items
+30,ru.admin.misc.remove,Remove,Remove
+31,ru.admin.misc.add_new,Add new,Add new
+32,ru.admin.misc.chosen,Chosen %{name},Chosen %{name}
+33,ru.admin.misc.chose_all,Choose all,Choose all
+34,ru.admin.misc.clear_all,Clear all,Clear all
+35,ru.admin.misc.up,Up,Up
+36,ru.admin.misc.down,Down,Down
+37,ru.admin.misc.navigation,Navigation,Navigation
+38,ru.admin.misc.navigation_static_label,Links,Links
+39,ru.admin.misc.log_out,Log out,Log out
+40,ru.admin.misc.ago,ago,ago
+41,ru.admin.misc.more,Plus %{count} more %{models_name},Plus %{count} more %{models_name}
+42,ru.admin.flash.successful,%{name} successfully %{action},%{name} successfully %{action}
+43,ru.admin.flash.error,%{name} failed to be %{action},%{name} failed to be %{action}
+44,ru.admin.flash.noaction,No actions were taken,No actions were taken
+45,ru.admin.flash.model_not_found,Model '%{model}' could not be found,Model '%{model}' could not be found
+46,ru.admin.flash.object_not_found,%{model} with id '%{id}' could not be found,%{model} with id '%{id}' could not be found
+47,ru.admin.table_headers.model_name,Model name,Model name
+48,ru.admin.table_headers.last_created,Last created,Last created
+49,ru.admin.table_headers.records,Records,Records
+50,ru.admin.table_headers.username,User,User
+51,ru.admin.table_headers.changes,Changes,Changes
+52,ru.admin.table_headers.created_at,Date/Time,Date/Time
+53,ru.admin.table_headers.item,Item,Item
+54,ru.admin.table_headers.message,Message,Message
+55,ru.admin.actions.dashboard.title,Site Administration,Site Administration
+56,ru.admin.actions.dashboard.menu,Dashboard,Dashboard
+57,ru.admin.actions.dashboard.breadcrumb,Dashboard,Dashboard
+58,ru.admin.actions.index.title,List of %{model_label_plural},List of %{model_label_plural}
+59,ru.admin.actions.index.menu,List,List
+60,ru.admin.actions.index.breadcrumb,%{model_label_plural},%{model_label_plural}
+61,ru.admin.actions.show.title,Details for %{model_label} '%{object_label}',Details for %{model_label} '%{object_label}'
+62,ru.admin.actions.show.menu,Show,Show
+63,ru.admin.actions.show.breadcrumb,%{object_label},%{object_label}
+64,ru.admin.actions.show_in_app.menu,Show in app,Show in app
+65,ru.admin.actions.new.title,New %{model_label},New %{model_label}
+66,ru.admin.actions.new.menu,Add new,Add new
+67,ru.admin.actions.new.breadcrumb,New,New
+68,ru.admin.actions.new.link,Add a new %{model_label},Add a new %{model_label}
+69,ru.admin.actions.new.done,created,created
+70,ru.admin.actions.edit.title,Edit %{model_label} '%{object_label}',Edit %{model_label} '%{object_label}'
+71,ru.admin.actions.edit.menu,Edit,Edit
+72,ru.admin.actions.edit.breadcrumb,Edit,Edit
+73,ru.admin.actions.edit.link,Edit this %{model_label},Edit this %{model_label}
+74,ru.admin.actions.edit.done,updated,updated
+75,ru.admin.actions.delete.title,Delete %{model_label} '%{object_label}',Delete %{model_label} '%{object_label}'
+76,ru.admin.actions.delete.menu,Delete,Delete
+77,ru.admin.actions.delete.breadcrumb,Delete,Delete
+78,ru.admin.actions.delete.link,Delete '%{object_label}',Delete '%{object_label}'
+79,ru.admin.actions.delete.done,deleted,deleted
+80,ru.admin.actions.bulk_delete.title,Delete %{model_label_plural},Delete %{model_label_plural}
+81,ru.admin.actions.bulk_delete.menu,Multiple delete,Multiple delete
+82,ru.admin.actions.bulk_delete.breadcrumb,Multiple delete,Multiple delete
+83,ru.admin.actions.bulk_delete.bulk_link,Delete selected %{model_label_plural},Delete selected %{model_label_plural}
+84,ru.admin.actions.export.title,Export %{model_label_plural},Export %{model_label_plural}
+85,ru.admin.actions.export.menu,Export,Export
+86,ru.admin.actions.export.breadcrumb,Export,Export
+87,ru.admin.actions.export.link,Export found %{model_label_plural},Export found %{model_label_plural}
+88,ru.admin.actions.export.bulk_link,Export selected %{model_label_plural},Export selected %{model_label_plural}
+89,ru.admin.actions.export.done,exported,exported
+90,ru.admin.actions.history_index.title,History for %{model_label_plural},History for %{model_label_plural}
+91,ru.admin.actions.history_index.menu,History,History
+92,ru.admin.actions.history_index.breadcrumb,History,History
+93,ru.admin.actions.history_show.title,History for %{model_label} '%{object_label}',History for %{model_label} '%{object_label}'
+94,ru.admin.actions.history_show.menu,History,History
+95,ru.admin.actions.history_show.breadcrumb,History,History
+96,ru.admin.actions.user_soft_delete.title,Delete %{model_label} '%{object_label}',Delete %{model_label} '%{object_label}'
+97,ru.admin.actions.user_soft_delete.menu,Delete,Delete
+98,ru.admin.actions.user_soft_delete.breadcrumb,Delete,Delete
+99,ru.admin.actions.user_soft_delete.link,Delete '%{object_label}',Delete '%{object_label}'
+100,ru.admin.actions.user_soft_delete.done,deleted,deleted
+101,ru.admin.actions.changelog.title,Change Log,Change Log
+102,ru.admin.actions.changelog.menu,Change Log,Change Log
+103,ru.admin.actions.changelog.breadcrumb,Change Log,Change Log
+104,ru.admin.actions.changelog.version,Version,Version
+105,ru.admin.form.cancel,Cancel,Cancel
+106,ru.admin.form.basic_info,Basic info,Basic info
+107,ru.admin.form.required,Required,Required
+108,ru.admin.form.optional,Optional,Optional
+109,ru.admin.form.one_char,character,character
+110,ru.admin.form.char_length_up_to,length up to,length up to
+111,ru.admin.form.char_length_of,length of,length of
+112,ru.admin.form.save,Save,Save
+113,ru.admin.form.save_and_add_another,Save and add another,Save and add another
+114,ru.admin.form.save_and_edit,Save and edit,Save and edit
+115,ru.admin.form.all_of_the_following_related_items_will_be_deleted,? The following related items may be deleted or orphaned:,? The following related items may be deleted or orphaned:
+116,ru.admin.form.are_you_sure_you_want_to_delete_the_object,Are you sure you want to delete this %{model_name},Are you sure you want to delete this %{model_name}
+117,ru.admin.form.confirmation,"Yes, I'm sure","Yes, I'm sure"
+118,ru.admin.form.bulk_delete,"The following objects will be deleted, which may delete or orphan some of their related dependencies:","The following objects will be deleted, which may delete or orphan some of their related dependencies:"
+119,ru.admin.form.new_model,%{name} (new),%{name} (new)
+120,ru.admin.export.confirmation,Export to %{name},Export to %{name}
+121,ru.admin.export.select,Select fields to export,Select fields to export
+122,ru.admin.export.select_all_fields,Select All Fields,Select All Fields
+123,ru.admin.export.fields_from,Fields from %{name},Fields from %{name}
+124,ru.admin.export.fields_from_associated,Fields from associated %{name},Fields from associated %{name}
+125,ru.admin.export.display,Display %{name}: %{type},Display %{name}: %{type}
+126,ru.admin.export.options_for,Options for %{name},Options for %{name}
+127,ru.admin.export.empty_value_for_associated_objects,<empty>,<empty>
+128,ru.admin.export.click_to_reverse_selection,Click to reverse selection,Click to reverse selection
+129,ru.admin.export.csv.header_for_root_methods,%{name},%{name}
+130,ru.admin.export.csv.header_for_association_methods,%{name} [%{association}],%{name} [%{association}]
+131,ru.admin.export.csv.encoding_to,Encode to,Encode to
+132,ru.admin.export.csv.encoding_to_help,Choose output encoding. Leave empty to let current input encoding untouched: (%{name}),Choose output encoding. Leave empty to let current input encoding untouched: (%{name})
+133,ru.admin.export.csv.skip_header,No header,No header
+134,ru.admin.export.csv.skip_header_help,Do not output a header (no fields description),Do not output a header (no fields description)
+135,ru.admin.export.csv.default_col_sep,",",","
+136,ru.admin.export.csv.col_sep,Column separator,Column separator
+137,ru.admin.export.csv.col_sep_help,Leave blank for default ('%{value}'),Leave blank for default ('%{value}')
+138,ru.admin.help.required_for_publication,Required for making public,Required for making public
+139,ru.admin.help.soft_delete,"To re-activate a user, delete the date","To re-activate a user, delete the date"
+140,ru.admin.help.sort,Drag and drop the items to put them in the order you want them to appear,Drag and drop the items to put them in the order you want them to appear
+141,ru.admin.help.move,Drag this item up or down to change the order you want them to appear,Drag this item up or down to change the order you want them to appear
+142,ru.admin.help.only_public_items,Only published items are shown in the list,Only published items are shown in the list
+143,ru.admin.help.only_active_languages,Only active languages are shown in the list,Only active languages are shown in the list
+144,ru.admin.help.missing_annotation_image,"After you load an illustration, the image will appear here.","After you load an illustration, the image will appear here."
+145,ru.admin.help.annotation.add,Place marker on image,Place marker on image
+146,ru.admin.help.image,"Only jpg, jpeg or png files are allowed. Image must be less than 5MB.","Only jpg, jpeg or png files are allowed. Image must be less than 5MB."
+147,ru.admin.help.image_size.highlight,Image should be at least 900x632px.,Image should be at least 900x632px.
+148,ru.admin.help.image_size.illustration,"On listing pages, this image will have a size of 400x400px.","On listing pages, this image will have a size of 400x400px."
+149,ru.admin.help.image_size.person,"On listing pages, this image will have a size of 400x400px.","On listing pages, this image will have a size of 400x400px."
+150,ru.admin.help.image_size.news,"One listing pages, this image will have a size of 438x326px and 400x204px.","One listing pages, this image will have a size of 438x326px and 400x204px."
+151,ru.admin.help.image_size.research,"One listing pages, this image will have a size of 438x326px.","One listing pages, this image will have a size of 438x326px."
+152,ru.admin.help.image_size.publication,"One listing pages, this image will have a size of 400x204px.","One listing pages, this image will have a size of 400x204px."
+153,ru.admin.help.image_size.slideshow,Image should have a width of at least 844px.,Image should have a width of at least 844px.
+154,ru.admin.help.file,Only PDF files are allowed. File must be less than 30MB.,Only PDF files are allowed. File must be less than 30MB.
+155,ru.admin.help.person,Only published People are shown.,Only published People are shown.
+156,ru.admin.help.slideshow_placeholder,"By default the slideshow will appear at the end of this text. If you want it to appear in the text, add the text [slideshow] into the text where you want it to appear.","By default the slideshow will appear at the end of this text. If you want it to appear in the text, add the text [slideshow] into the text where you want it to appear."
+157,ru.admin.help.is_illustrator,Illustrators are a special role that requires additional processing and this flag is used to know if the role is an illustrator.,Illustrators are a special role that requires additional processing and this flag is used to know if the role is an illustrator.
+158,ru.admin.help.page_content_name,This is just a unique value that can be used to find and show the correct content on a page.,This is just a unique value that can be used to find and show the correct content on a page.
+159,ru.admin.help.required,Required,Required
+160,ru.admin.help.crop_alignment,The image will be cropped to create the thumbnail for the listing pages. Use this field to indicate what area of the image you want to use for the thumbnail.,The image will be cropped to create the thumbnail for the listing pages. Use this field to indicate what area of the image you want to use for the thumbnail.
+161,ru.admin.errors.required_for_publication,is required for making the language public,is required for making the language public
+162,ru.admin.errors.required_related_item,is required,is required

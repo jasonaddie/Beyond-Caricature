@@ -1,0 +1,10 @@
+Line #,Key,en Version,hy Translation
+1,hy.views.pagination.first,&laquo; First,&laquo; First
+2,hy.views.pagination.last,Last &raquo;,Last &raquo;
+3,hy.views.pagination.previous,&lsaquo; Prev,&lsaquo; Prev
+4,hy.views.pagination.next,Next &rsaquo;,Next &rsaquo;
+5,hy.views.pagination.truncate,&hellip;,&hellip;
+6,hy.helpers.page_entries_info.one_page.display_entries.zero,No %{entry_name} found,No %{entry_name} found
+7,hy.helpers.page_entries_info.one_page.display_entries.one,Displaying <b>1</b> %{entry_name},Displaying <b>1</b> %{entry_name}
+8,hy.helpers.page_entries_info.one_page.display_entries.other,Displaying <b>all %{count}</b> %{entry_name},Displaying <b>all %{count}</b> %{entry_name}
+9,hy.helpers.page_entries_info.more_pages.display_entries,Displaying %{entry_name} <b>%{first}&nbsp;-&nbsp;%{last}</b> of <b>%{total}</b> in total,Displaying %{entry_name} <b>%{first}&nbsp;-&nbsp;%{last}</b> of <b>%{total}</b> in total
