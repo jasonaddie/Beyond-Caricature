@@ -33,7 +33,7 @@ class Role < ApplicationRecord
   #################
   ## SCOPES ##
   #################
-  scope :sort_name, -> { select('roles.*, role_translations.name').with_translations(I18n.locale).order('role_translations.name asc') }
+  scope :sort_name_asc, -> { select('roles.*, role_translations.name').with_translations(I18n.locale).order('role_translations.name asc') }
   scope :illustrators, -> { where(is_illustrator: true) }
   scope :roles_assigned_to_published_people, -> { joins(:people) }
 

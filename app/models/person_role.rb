@@ -40,7 +40,7 @@ class PersonRole < ApplicationRecord
   # group the person records by the role
   def self.group_people_by_role
     groups = {}
-    roles = Role.where(id: self.pluck(:role_id).uniq).sort_name
+    roles = Role.where(id: self.pluck(:role_id).uniq).sort_name_asc
 
     if roles.present?
       roles.each do |role|
@@ -57,7 +57,7 @@ class PersonRole < ApplicationRecord
   #  - latest_records - the latest records limited by the limit argument
   def self.group_published_record_by_role(limit=6)
     groups = {}
-    roles = Role.where(id: self.pluck(:role_id).uniq).sort_name
+    roles = Role.where(id: self.pluck(:role_id).uniq).sort_name_asc
 
     if roles.present?
       # if role
@@ -121,7 +121,7 @@ class PersonRole < ApplicationRecord
   def self.unique_roles
     roles = []
     records = self.all
-    uniq_roles = Role.where(id: records.map{|x| x.role_id}.uniq.reject(&:nil?)).sort_name
+    uniq_roles = Role.where(id: records.map{|x| x.role_id}.uniq.reject(&:nil?)).sort_name_asc
 
     if uniq_roles.present?
       uniq_roles.sort.each do |role|
@@ -171,7 +171,7 @@ class PersonRole < ApplicationRecord
       # sort the names
       associated_collection_scope do
         Proc.new { |scope|
-          scope = scope.sort_name
+          scope = scope.sort_name_asc
         }
       end
     end

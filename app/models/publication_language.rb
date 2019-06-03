@@ -29,7 +29,7 @@ class PublicationLanguage < ApplicationRecord
   ## SCOPES ##
   #################
   scope :active, -> { where(is_active: true) }
-  scope :sort_language, -> { with_translations(I18n.locale).order('publication_language_translations.language asc') }
+  scope :sort_language_asc, -> { with_translations(I18n.locale).order('publication_language_translations.language asc') }
 
   def self.with_published_publications
     self.where(id: Publication.published.pluck(:publication_language_id).uniq)

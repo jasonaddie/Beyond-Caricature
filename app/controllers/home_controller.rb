@@ -21,9 +21,9 @@ class HomeController < ApplicationController
                                 date_start: convert_date_param(:date_start), date_end: convert_date_param(:date_end)})
                       .sort_name_asc.page(params[:page]).per(@pagination_per_large)
     @filter_source_types = Publication.publication_types_for_select2
-    @filter_languages = PublicationLanguage.active.sort_language.with_published_publications
+    @filter_languages = PublicationLanguage.active.sort_language_asc.with_published_publications
     @filter_date_ranges = Publication.date_ranges
-    @filter_roles = Role.with_publications.sort_name
+    @filter_roles = Role.with_publications.sort_name_asc
     @filter_people = Person.with_publications.published.sort_name_asc
   end
 
@@ -47,7 +47,7 @@ class HomeController < ApplicationController
     @filter_source_types = Publication.publication_types_for_select2
     @filter_people = Person.with_illustrations.published.sort_name_asc
     @filter_date_ranges = Illustration.date_ranges
-    @filter_roles = Role.with_illustrations.sort_name
+    @filter_roles = Role.with_illustrations.sort_name_asc
     @filter_tags = Tag.with_illustrations.sort_name_asc
   end
 
@@ -60,7 +60,7 @@ class HomeController < ApplicationController
                 .filter({search: params[:search], role: params[:role],
                           date_start: convert_date_param(:date_start), date_end: convert_date_param(:date_end)})
                 .sort_name_asc.page(params[:page]).per(@pagination_per_large)
-    @filter_roles = Role.roles_assigned_to_published_people.sort_name.uniq
+    @filter_roles = Role.roles_assigned_to_published_people.sort_name_asc.uniq
     @filter_date_ranges = Person.date_ranges
   end
 
