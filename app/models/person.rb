@@ -81,7 +81,7 @@ class Person < ApplicationRecord
   end
 
   # get all people that are assigned to published illustrations
-  def self.with_illustrations
+  def self.with_published_illustrations
     # get all published illustrations with a person role record
     illustration_ids = Illustration.published.where(id: PersonRole.where(person_roleable_type: 'Illustration').pluck(:person_roleable_id).uniq).pluck(:id).uniq
     if illustration_ids.present?
@@ -93,7 +93,7 @@ class Person < ApplicationRecord
 
   # get all people that are assigned to published publications
   # - have to check both publication and publication editor roles
-  def self.with_publications
+  def self.with_published_publications
     # get all role records assigned to a publication
     pub_roles = PersonRole.where(person_roleable_type: 'Publication')
     pub_editor_roles = PersonRole.where(person_roleable_type: 'PublicationEditor')

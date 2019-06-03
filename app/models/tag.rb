@@ -51,7 +51,7 @@ class Tag < ApplicationRecord
   scope :sort_name_asc, -> { select('tags.*, tag_translations.name').with_translations(I18n.locale).order('tag_translations.name asc') }
 
   # get all tags that are assigned to published illustrations
-  def self.with_illustrations
+  def self.with_published_illustrations
     illustration_tags = IllustrationTag.all.pluck(:illustration_id, :tag_id)
     if illustration_tags.present?
       published_illustrations = Illustration.published.where(id: illustration_tags.map{|x| x[0]}).pluck(:id).uniq

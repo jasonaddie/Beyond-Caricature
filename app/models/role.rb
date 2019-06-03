@@ -35,10 +35,10 @@ class Role < ApplicationRecord
   #################
   scope :sort_name_asc, -> { select('roles.*, role_translations.name').with_translations(I18n.locale).order('role_translations.name asc') }
   scope :illustrators, -> { where(is_illustrator: true) }
-  scope :roles_assigned_to_published_people, -> { joins(:people) }
+  scope :with_published_people, -> { joins(:people) }
 
   # get all roles that are assigned to published illustrations
-  def self.with_illustrations
+  def self.with_published_illustrations
     # get all published illustrations with a person role record
     illustration_ids = Illustration.published.where(id: PersonRole.where(person_roleable_type: 'Illustration').pluck(:person_roleable_id).uniq).pluck(:id).uniq
     if illustration_ids.present?
@@ -50,7 +50,7 @@ class Role < ApplicationRecord
 
   # get all roles that are assigned to published publications
   # - have to check both publication and publication editor roles
-  def self.with_publications
+  def self.with_published_publications
     # get all role records assigned to a publication
     pub_roles = PersonRole.where(person_roleable_type: 'Publication')
     pub_editor_roles = PersonRole.where(person_roleable_type: 'PublicationEditor')
