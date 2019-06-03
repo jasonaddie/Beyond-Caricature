@@ -93,14 +93,16 @@
             </div>
           </div>
         <% end %>
-        <div class="column is-6-tablet is-3-desktop">
-          <div class="filter-label">
-            <label for="filter_type"><%= t('labels.filter.source_type') %></label>
+        <% if @filter_source_types.present? %>
+          <div class="column is-6-tablet is-3-desktop">
+            <div class="filter-label">
+              <label for="filter_type"><%= t('labels.filter.source_type') %></label>
+            </div>
+            <div class="filter-select">
+              <%= select(:filter, :type, options_for_select(@filter_source_types, params[:type]), {prompt: ''}, {style: 'width: 100%', 'data-key': 'type'}) %>
+            </div>
           </div>
-          <div class="filter-select">
-            <%= select(:filter, :type, options_for_select(@filter_source_types, params[:type]), {prompt: ''}, {style: 'width: 100%', 'data-key': 'type'}) %>
-          </div>
-        </div>
+        <% end %>
         <% if @filter_people.present? %>
           <div class="column is-6-tablet is-3-desktop">
             <div class="filter-label">
