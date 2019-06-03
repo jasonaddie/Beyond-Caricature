@@ -108,7 +108,7 @@
             <label for="filter_language"><%= t('labels.filter.language') %></label>
           </div>
           <div class="filter-select">
-            <%= collection_select(:filter, :language, @filter_languages, :id, :language, {selected: params[:language], prompt: ''}, {style: 'width: 100%', 'data-key': 'language'}) %>
+            <%= collection_select(:filter, :language, @filter_languages, :slug, :language, {selected: params[:language], prompt: ''}, {style: 'width: 100%', 'data-key': 'language'}) %>
           </div>
         </div>
         <div class="column is-6-tablet is-3-desktop">

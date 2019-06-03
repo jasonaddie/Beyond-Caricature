@@ -34,7 +34,7 @@ class Publication < ApplicationRecord
   #################
   ## ASSOCIATIONS ##
   #################
-  belongs_to :publication_language, -> { active }
+  belongs_to :publication_language, -> { published }
   has_many :issues, dependent: :nullify
   has_many :illustration_publications, dependent: :destroy
   has_many :illustrations, through: :illustration_publications
@@ -135,7 +135,7 @@ class Publication < ApplicationRecord
     end
 
     if options[:language].present?
-      x = x.where(publication_language_id: options[:language])
+      x = x.where(publication_language_id: PublicationLanguage.published.where(slug: options[:language]).pluck(:id))
     end
 
     if options[:person].present?

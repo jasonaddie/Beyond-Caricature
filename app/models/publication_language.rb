@@ -17,8 +17,23 @@ class PublicationLanguage < ApplicationRecord
   #################
   ## TRANSLATIONS ##
   #################
-  translates :language, :versioning => :paper_trail
+  translates :language, :slug, :versioning => :paper_trail
   accepts_nested_attributes_for :translations, allow_destroy: true
+
+  #################
+  ## SLUG
+  #################
+  extend FriendlyId
+  include GlobalizeFriendlyId # overriden and extra methods for friendly id located in concern folder
+  friendly_id :slug_candidates, use: [:globalize, :history, :slugged]
+
+  # give options of what to use when the slug is already in use by another record
+  def slug_candidates
+    [
+      :language,
+      [:language, :id]
+    ]
+  end
 
   #################
   ## VALIDATION ##
@@ -28,7 +43,7 @@ class PublicationLanguage < ApplicationRecord
   #################
   ## SCOPES ##
   #################
-  scope :active, -> { where(is_active: true) }
+  scope :published, -> { where(is_active: true) }
   scope :sort_language_asc, -> { with_translations(I18n.locale).order('publication_language_translations.language asc') }
 
   def self.with_published_publications

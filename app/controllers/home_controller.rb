@@ -21,7 +21,7 @@ class HomeController < ApplicationController
                                 date_start: convert_date_param(:date_start), date_end: convert_date_param(:date_end)})
                       .sort_name_asc.page(params[:page]).per(@pagination_per_large)
     @filter_source_types = Publication.publication_types_for_select2
-    @filter_languages = PublicationLanguage.active.sort_language_asc.with_published_publications
+    @filter_languages = PublicationLanguage.published.sort_language_asc.with_published_publications
     @filter_date_ranges = Publication.date_ranges
     @filter_roles = Role.with_published_publications.sort_name_asc
     @filter_people = Person.with_published_publications.published.sort_name_asc

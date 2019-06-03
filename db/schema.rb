@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_06_03_103417) do
+ActiveRecord::Schema.define(version: 2019_06_03_105311) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -355,15 +355,19 @@ ActiveRecord::Schema.define(version: 2019_06_03_103417) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.string "language"
+    t.string "slug"
     t.index ["locale"], name: "index_publication_language_translations_on_locale"
     t.index ["publication_language_id"], name: "index_3b9f159e130bba83a1635d416364467009519f06"
+    t.index ["slug"], name: "index_publication_language_translations_on_slug"
   end
 
   create_table "publication_languages", force: :cascade do |t|
     t.boolean "is_active", default: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "slug"
     t.index ["is_active"], name: "index_publication_languages_on_is_active"
+    t.index ["slug"], name: "index_publication_languages_on_slug", unique: true
   end
 
   create_table "publication_translations", force: :cascade do |t|

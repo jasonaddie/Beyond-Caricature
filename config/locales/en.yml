@@ -214,7 +214,7 @@ en:
         person_roles: Related People
         person_role: Related Person
       publication_language:
-        is_active: Is Active?
+        is_active: Is Public?
       publication_language/translation:
         language: Language
       related_item:
