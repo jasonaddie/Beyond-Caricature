@@ -1,6 +1,13 @@
 This page lists additions, changes, and bug fixes that have been applied to the application code.
 The numbers in brackets (i.e., [0.1]), indicate the version number of the app.
 
+## [0.41] - 2019-06-03
+### Added
+- Ability to export/inport site translations to spreadsheet
+
+### Fixed
+- Test if a list filter has content to filter by before showing on page
+
 ## [0.40] - 2019-06-03
 ### Added
 - Slug to Role and Publication Language data model
