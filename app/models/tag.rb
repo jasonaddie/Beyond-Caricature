@@ -46,6 +46,28 @@ class Tag < ApplicationRecord
   # translation_class.validates :name, presence: true
 
   #################
+  ## SCOPES ##
+  #################
+  scope :sort_name_asc, -> { select('tags.*, tag_translations.name').with_translations(I18n.locale).order('tag_translations.name asc') }
+
+  # get all tags that are assigned to published illustrations
+  def self.with_illustrations
+    illustration_tags = IllustrationTag.all.pluck(:illustration_id, :tag_id)
+    if illustration_tags.present?
+      published_illustrations = Illustration.published.where(id: illustration_tags.map{|x| x[0]}).pluck(:id).uniq
+      # if we have published illustrations, get the appropriate tags that are assigned to these illustrations
+      if published_illustrations.present?
+        where(id: illustration_tags.select{|x| published_illustrations.include?(x[0])}.map{|x| x[1]}.uniq)
+      else
+        self
+      end
+    else
+      return self
+    end
+  end
+
+
+  #################
   ## METHODS ##
   #################
   def illustration_count

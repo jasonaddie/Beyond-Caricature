@@ -122,10 +122,11 @@ class Illustration < ApplicationRecord
 
   # filter illustrations by the following:
   # - publication type - publication type key from publication table
-  # - person - slug of person assigned to this illustration
-  # - source - slug of publication assgined to this illustration
-  # - journal / issue - slugs of journal and issue assign to this illustration
-  # - tag - slug of a tag assigned to this illustration
+  # - person - slug of person assigned to illustrations
+  # - role - role id from person role model
+  # - source - slug of publication assgined to illustrations
+  # - journal / issue - slugs of journal and issue assigned to illustrations
+  # - tag - slug of a tag assigned to illustrations
   # - date_start - publication start date
   # - date_end - publication end date
   # - search - string (title, context)
@@ -141,6 +142,10 @@ class Illustration < ApplicationRecord
 
     if options[:person].present?
       x = x.joins(:person_role).where(person_roles: {person_id: Person.published.where(slug: options[:person]).pluck(:id)})
+    end
+
+    if options[:role].present?
+      x = x.joins(:person_role).where(person_roles: {role_id: options[:role]})
     end
 
     if options[:source].present?

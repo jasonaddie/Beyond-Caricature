@@ -17,12 +17,14 @@ class HomeController < ApplicationController
   def sources
     @publications = Publication.published
                       .filter({search: params[:search], type: params[:type],
-                                language: params[:language], person: params[:person],
+                                language: params[:language], person: params[:person], role: params[:role],
                                 date_start: convert_date_param(:date_start), date_end: convert_date_param(:date_end)})
                       .sort_name_asc.page(params[:page]).per(@pagination_per_large)
     @filter_source_types = Publication.publication_types_for_select2
     @filter_languages = PublicationLanguage.active.sort_language.with_published_publications
     @filter_date_ranges = Publication.date_ranges
+    @filter_roles = Role.with_publications.sort_name
+    @filter_people = Person.with_publications.published.sort_name_asc
   end
 
   def source
@@ -37,14 +39,16 @@ class HomeController < ApplicationController
   def images
     @illustrations = Illustration.published
                         .filter({search: params[:search], type: params[:type],
-                                person: params[:person], tag: params[:tag],
-                                source: params[:source],
+                                person: params[:person], role: params[:role],
+                                tag: params[:tag], source: params[:source],
                                 journal: params[:journal], issue: params[:issue],
                                 date_start: convert_date_param(:date_start), date_end: convert_date_param(:date_end)})
                         .sort_published_desc.page(params[:page]).per(@pagination_per_large)
     @filter_source_types = Publication.publication_types_for_select2
-    @filter_illustrators = Person.with_illustrations.published.sort_name_asc
+    @filter_people = Person.with_illustrations.published.sort_name_asc
     @filter_date_ranges = Illustration.date_ranges
+    @filter_roles = Role.with_illustrations.sort_name
+    @filter_tags = Tag.with_illustrations.sort_name_asc
   end
 
   def image

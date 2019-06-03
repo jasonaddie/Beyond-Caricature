@@ -79,9 +79,9 @@ class PersonRole < ApplicationRecord
         end
         if record_ids[:pub_editors].present?
           # get publication ids
-          record_ids[:publication_ids] << PublicationEditor.where(id: record_ids[:pub_editor]).pluck(:publication_id).uniq
+          record_ids[:publication_ids] << PublicationEditor.where(id: record_ids[:pub_editors]).pluck(:publication_id).uniq
         end
-        # make sure we only have unique publication ids
+        # make sure we only have unique ids
         record_ids[:publication_ids] = record_ids[:publication_ids].flatten.uniq
 
         published_record_ids = {publications: nil, illustrations: nil}
@@ -98,17 +98,18 @@ class PersonRole < ApplicationRecord
           records = []
 
           if published_record_ids[:publications].present?
-            records << Publication.published.where(id: published_record_ids[:publications]).sort_published_desc.limit(6)
+            records << Publication.published.where(id: published_record_ids[:publications]).sort_published_desc.limit(limit)
           end
           if published_record_ids[:illustrations].present?
-            records << Illustration.published.where(id: published_record_ids[:illustrations]).sort_published_desc.limit(6)
+            records << Illustration.published.where(id: published_record_ids[:illustrations]).sort_published_desc.limit(limit)
           end
           records.flatten!
           records.compact!
 
-          groups[role.name] = {total: {publication: (published_record_ids[:publications].present? ? published_record_ids[:publications].length : 0),
+          groups[role.name] = {role_id: role.id,
+                                total: {publication: (published_record_ids[:publications].present? ? published_record_ids[:publications].length : 0),
                                         illustration: (published_record_ids[:illustrations].present? ? published_record_ids[:illustrations].length : 0)},
-                                latest_records: records.sort_by{|x| x.published_at}.reverse[0..5]}
+                                latest_records: records.sort_by{|x| x.published_at}.reverse[0..(limit-1)]}
         end
       end
     end

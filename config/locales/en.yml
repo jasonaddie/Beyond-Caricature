@@ -340,7 +340,7 @@ en:
       search: Search
       source_type: Source Type
       language: Language
-      person: Creator
+      person: Person
       role: Role
       date: Date
       date_explanation: Pick start date or end date or both.

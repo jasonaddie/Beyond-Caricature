@@ -111,6 +111,22 @@
             <%= collection_select(:filter, :language, @filter_languages, :id, :language, {selected: params[:language], prompt: ''}, {style: 'width: 100%', 'data-key': 'language'}) %>
           </div>
         </div>
+        <div class="column is-6-tablet is-3-desktop">
+          <div class="filter-label">
+            <label for="filter_person"><%= t('labels.filter.person') %></label>
+          </div>
+          <div class="filter-select">
+            <%= collection_select(:filter, :person, @filter_people, :slug, :name, {selected: params[:person], prompt: ''}, {style: 'width: 100%', 'data-key': 'person'}) %>
+          </div>
+        </div>
+        <div class="column is-6-tablet is-3-desktop">
+          <div class="filter-label">
+            <label for="filter_role"><%= t('labels.filter.role') %></label>
+          </div>
+          <div class="filter-select">
+            <%= collection_select(:filter, :role, @filter_roles, :id, :name, {selected: params[:role], prompt: ''}, {style: 'width: 100%', 'data-key': 'role'}) %>
+          </div>
+        </div>
       </div>
     </div>
 

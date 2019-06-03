@@ -96,6 +96,7 @@
   <% role_records.each do |key, value| %>
     <%= render partial: 'shared/listing_combined', locals: {
           title: key,
+          role_id: value[:role_id],
           total: value[:total],
           records: value[:latest_records],
           partial: {publication: 'card_meta_down', illustration: 'card_meta_hover'},

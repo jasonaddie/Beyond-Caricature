@@ -91,6 +91,53 @@ class Person < ApplicationRecord
     end
   end
 
+  # get all people that are assigned to published publications
+  # - have to check both publication and publication editor roles
+  def self.with_publications
+    # get all role records assigned to a publication
+    pub_roles = PersonRole.where(person_roleable_type: 'Publication')
+    pub_editor_roles = PersonRole.where(person_roleable_type: 'PublicationEditor')
+
+    publication_ids = []
+    pub_editors = nil
+    if pub_roles.present?
+      # get publication ids
+      publication_ids << pub_roles.map{|x| x.person_roleable_id}
+    end
+    if pub_editor_roles.present?
+      # get publication ids from publication editor records
+      pub_editors = PublicationEditor.where(id: pub_editor_roles.map{|x| x.person_roleable_id}).pluck(:id, :publication_id).uniq
+      publication_ids << pub_editors.map{|x| x[1]}.uniq
+    end
+    # make sure we only have unique ids
+    publication_ids = publication_ids.flatten.uniq
+
+    # figure out which ones are published
+    published_publication_ids = Publication.published.where(id: publication_ids).pluck(:id).uniq
+
+    if published_publication_ids.present?
+      # pull the person_id from the roles that are assigned to the published records
+      person_ids = []
+      if pub_roles.present?
+        person_ids << pub_roles.select{|x| published_publication_ids.include?(x.person_roleable_id) }.map{|x| x.person_id}
+      end
+      if pub_editor_roles.present?
+        published_pub_editors = pub_editors.select{|x| published_publication_ids.include?(x[1])}.uniq
+        person_ids << pub_editor_roles.select{|x| published_pub_editors.include?(x.person_roleable_id) }.map{|x| x.person_id}
+      end
+      # make sure we only have unique ids
+      person_ids = person_ids.flatten.uniq
+
+      if person_ids.present?
+        self.where(id: person_ids).distinct
+      else
+        self
+      end
+    else
+      return self
+    end
+  end
+
   # get the min and max date values
   def self.date_ranges
     range = nil

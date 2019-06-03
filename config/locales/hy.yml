@@ -308,6 +308,7 @@ hy:
     contact: Contact
     donors: Funding
     partners: Partners
+    contributors: Contributors
     read_more: Read More
     view_all: View All
     view_all_with_count: View All %{number} %{title} Records
@@ -339,7 +340,7 @@ hy:
       search: Search
       source_type: Source Type
       language: Language
-      person: Creator
+      person: Person
       role: Role
       date: Date
       date_explanation: Pick start date or end date or both.
@@ -408,6 +409,7 @@ hy:
     about:
       donors:
         reed: Reed College
+        nceeer: National Council for Eurasian and East European Research
       partners:
         geo_library: National Parliamentary Library of Georgia
   shared:

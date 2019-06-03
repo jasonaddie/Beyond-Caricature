@@ -124,6 +124,7 @@ class Publication < ApplicationRecord
   # - publication type - publication_type enum
   # - publication language - language id
   # - person - slug of person that is assigned to this publication
+  # - role - role id from person role model
   # - date_start - publication start date
   # - date_end - publication end date
   # - search - string
@@ -151,6 +152,17 @@ class Publication < ApplicationRecord
         end
         x = x.where(id: pub_ids)
       end
+    end
+
+    if options[:role].present?
+      pub_ids = PersonRole.where(role_id: options[:role], person_roleable_type: 'Publication').pluck(:person_roleable_id)
+      pub_editor_ids = PersonRole.where(role_id: options[:role], person_roleable_type: 'PublicationEditor').pluck(:person_roleable_id)
+      if pub_editor_ids.present?
+        pub_ids << PublicationEditor.where(id: pub_editor_ids).pluck(:publication_id)
+        pub_ids.flatten!
+        pub_ids.uniq!
+      end
+      x = x.where(id: pub_ids)
     end
 
     if options[:date_start].present? && options[:date_end].present?
