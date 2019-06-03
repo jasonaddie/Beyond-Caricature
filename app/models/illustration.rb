@@ -123,7 +123,7 @@ class Illustration < ApplicationRecord
   # filter illustrations by the following:
   # - publication type - publication type key from publication table
   # - person - slug of person assigned to illustrations
-  # - role - role id from person role model
+  # - role - slug of role
   # - source - slug of publication assgined to illustrations
   # - journal / issue - slugs of journal and issue assigned to illustrations
   # - tag - slug of a tag assigned to illustrations
@@ -145,7 +145,7 @@ class Illustration < ApplicationRecord
     end
 
     if options[:role].present?
-      x = x.joins(:person_role).where(person_roles: {role_id: options[:role]})
+      x = x.joins(:person_role).where(person_roles: {role_id: Role.where(slug: options[:role]).pluck(:id)})
     end
 
     if options[:source].present?

@@ -124,7 +124,7 @@
             <label for="filter_role"><%= t('labels.filter.role') %></label>
           </div>
           <div class="filter-select">
-            <%= collection_select(:filter, :role, @filter_roles, :id, :name, {selected: params[:role], prompt: ''}, {style: 'width: 100%', 'data-key': 'role'}) %>
+            <%= collection_select(:filter, :role, @filter_roles, :slug, :name, {selected: params[:role], prompt: ''}, {style: 'width: 100%', 'data-key': 'role'}) %>
           </div>
         </div>
       </div>

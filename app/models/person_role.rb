@@ -106,7 +106,7 @@ class PersonRole < ApplicationRecord
           records.flatten!
           records.compact!
 
-          groups[role.name] = {role_id: role.id,
+          groups[role.name] = {role_slug: role.slug,
                                 total: {publication: (published_record_ids[:publications].present? ? published_record_ids[:publications].length : 0),
                                         illustration: (published_record_ids[:illustrations].present? ? published_record_ids[:illustrations].length : 0)},
                                 latest_records: records.sort_by{|x| x.published_at}.reverse[0..(limit-1)]}

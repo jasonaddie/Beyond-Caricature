@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_05_31_203122) do
+ActiveRecord::Schema.define(version: 2019_06_03_103417) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -455,16 +455,20 @@ ActiveRecord::Schema.define(version: 2019_05_31_203122) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.string "name"
+    t.string "slug"
     t.index ["locale"], name: "index_role_translations_on_locale"
     t.index ["name"], name: "index_role_translations_on_name"
     t.index ["role_id"], name: "index_role_translations_on_role_id"
+    t.index ["slug"], name: "index_role_translations_on_slug"
   end
 
   create_table "roles", force: :cascade do |t|
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.boolean "is_illustrator", default: false
+    t.string "slug"
     t.index ["is_illustrator"], name: "index_roles_on_is_illustrator"
+    t.index ["slug"], name: "index_roles_on_slug", unique: true
   end
 
   create_table "slideshow_translations", force: :cascade do |t|
