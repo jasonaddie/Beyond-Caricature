@@ -1,6 +1,16 @@
 This page lists additions, changes, and bug fixes that have been applied to the application code.
 The numbers in brackets (i.e., [0.1]), indicate the version number of the app.
 
+## [0.40] - 2019-06-03
+### Added
+- Slug to Role and Publication Language data model
+- Source and Image page now show all filters that are available
+
+### Fixed
+- Updated code to have better consisten naming patterns
+- Person page was not showing journals records where person was assigned through Journal Editors section
+- Source and Issue page now show all of images
+
 ## [0.39] - 2019-06-01
 ### Added
 - New deafult image for people
