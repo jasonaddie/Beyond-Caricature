@@ -1,6 +1,15 @@
 This page lists additions, changes, and bug fixes that have been applied to the application code.
 The numbers in brackets (i.e., [0.1]), indicate the version number of the app.
 
+## [0.42] - 2019-06-04
+### Added
+- Last Update column as been added to all admin list pages
+
+### Fixed
+- Defined admin search for each data model (i.e., Image, Source, etc)
+- If pass in bad filter value (i.e, user changes url and provides bad data), return no matches
+- Format Date Made Public in admin pages so it does not include seconds and timezone
+
 ## [0.41] - 2019-06-03
 ### Added
 - Ability to export/inport site translations to spreadsheet
