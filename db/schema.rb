@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_06_03_105311) do
+ActiveRecord::Schema.define(version: 2019_06_04_105303) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -52,6 +52,7 @@ ActiveRecord::Schema.define(version: 2019_06_03_105311) do
     t.boolean "is_public", default: false
     t.date "date_publish_old"
     t.datetime "published_at"
+    t.index "to_tsvector('simple'::regconfig, (((title)::text || ' '::text) || summary))", name: "idx_highlight_search", using: :gin
     t.index ["highlight_id"], name: "index_highlight_translations_on_highlight_id"
     t.index ["is_public"], name: "index_highlight_translations_on_is_public"
     t.index ["locale"], name: "index_highlight_translations_on_locale"
@@ -165,6 +166,7 @@ ActiveRecord::Schema.define(version: 2019_06_03_105311) do
     t.integer "scanned_file_size"
     t.string "crop_alignment", default: "c"
     t.datetime "published_at"
+    t.index "to_tsvector('simple'::regconfig, (issue_number)::text)", name: "idx_issue_search", using: :gin
     t.index ["date_publication"], name: "index_issues_on_date_publication"
     t.index ["is_public"], name: "index_issues_on_is_public"
     t.index ["publication_id"], name: "index_issues_on_publication_id"
@@ -270,6 +272,7 @@ ActiveRecord::Schema.define(version: 2019_06_03_105311) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.text "content"
+    t.index "to_tsvector('simple'::regconfig, content)", name: "idx_page_content_search2", using: :gin
     t.index ["locale"], name: "index_page_content_translations_on_locale"
     t.index ["page_content_id"], name: "index_page_content_translations_on_page_content_id"
   end
@@ -278,6 +281,7 @@ ActiveRecord::Schema.define(version: 2019_06_03_105311) do
     t.string "name"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.index "to_tsvector('simple'::regconfig, (name)::text)", name: "idx_page_content_search1", using: :gin
     t.index ["name"], name: "index_page_contents_on_name"
   end
 
@@ -323,7 +327,7 @@ ActiveRecord::Schema.define(version: 2019_06_03_105311) do
     t.string "first_name"
     t.string "last_name"
     t.datetime "published_at"
-    t.index "to_tsvector('simple'::regconfig, (((name)::text || ' '::text) || bio))", name: "idx_person_search", using: :gin
+    t.index "to_tsvector('simple'::regconfig, (((((first_name)::text || ' '::text) || (last_name)::text) || ' '::text) || bio))", name: "idx_person_search", using: :gin
     t.index ["is_public"], name: "index_person_translations_on_is_public"
     t.index ["last_name", "first_name"], name: "idx_person_name"
     t.index ["locale"], name: "index_person_translations_on_locale"
@@ -356,6 +360,7 @@ ActiveRecord::Schema.define(version: 2019_06_03_105311) do
     t.datetime "updated_at", null: false
     t.string "language"
     t.string "slug"
+    t.index "to_tsvector('simple'::regconfig, (language)::text)", name: "idx_publication_language_search", using: :gin
     t.index ["locale"], name: "index_publication_language_translations_on_locale"
     t.index ["publication_language_id"], name: "index_3b9f159e130bba83a1635d416364467009519f06"
     t.index ["slug"], name: "index_publication_language_translations_on_slug"
@@ -460,6 +465,7 @@ ActiveRecord::Schema.define(version: 2019_06_03_105311) do
     t.datetime "updated_at", null: false
     t.string "name"
     t.string "slug"
+    t.index "to_tsvector('simple'::regconfig, (name)::text)", name: "idx_role_search", using: :gin
     t.index ["locale"], name: "index_role_translations_on_locale"
     t.index ["name"], name: "index_role_translations_on_name"
     t.index ["role_id"], name: "index_role_translations_on_role_id"
@@ -557,6 +563,7 @@ ActiveRecord::Schema.define(version: 2019_06_03_105311) do
     t.integer "role", default: 0
     t.string "name"
     t.datetime "deleted_at"
+    t.index "to_tsvector('simple'::regconfig, (((name)::text || ' '::text) || (email)::text))", name: "idx_user_search", using: :gin
     t.index ["confirmation_token"], name: "index_users_on_confirmation_token", unique: true
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true

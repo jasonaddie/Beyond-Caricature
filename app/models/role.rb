@@ -9,6 +9,8 @@
 #
 
 class Role < ApplicationRecord
+  include FullTextSearch
+
   #################
   ## HISTORY TRACKING ##
   #################
@@ -51,6 +53,29 @@ class Role < ApplicationRecord
   scope :sort_name_asc, -> { select('roles.*, role_translations.name').with_translations(I18n.locale).order('role_translations.name asc') }
   scope :illustrators, -> { where(is_illustrator: true) }
   scope :with_published_people, -> { joins(:people) }
+
+  # search query for the list admin page
+  # - role
+  def self.admin_search(q)
+    ids = []
+
+    roles = self.with_translations(I18n.locale)
+          .where(build_full_text_search_sql(%w(role_translations.name)),
+            q
+          ).pluck(:id)
+
+    if roles.present?
+      ids << roles
+    end
+
+    ids = ids.flatten.uniq
+
+    if ids.present?
+      self.where(id: ids).distinct
+    else
+      self.none
+    end
+  end
 
   # get all roles that are assigned to published illustrations
   def self.with_published_illustrations
@@ -124,6 +149,8 @@ class Role < ApplicationRecord
 
     # list page
     list do
+      search_by :admin_search
+
       field :name
       field :is_illustrator
     end

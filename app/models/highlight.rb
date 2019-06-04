@@ -10,6 +10,7 @@
 #
 
 class Highlight < ApplicationRecord
+  include FullTextSearch
   include CropAlignment
 
   #################
@@ -45,6 +46,30 @@ class Highlight < ApplicationRecord
   #################
   scope :published, -> { where(is_public: true) }
   scope :sort_published_desc, -> { order(published_at: :desc) }
+
+  # search query for the list admin page
+  # - title
+  # - summary
+  def self.admin_search(q)
+    ids = []
+
+    highlights = self.with_translations(I18n.locale)
+          .where(build_full_text_search_sql(%w(highlight_translations.title highlight_translations.summary)),
+            q
+          ).pluck(:id)
+
+    if highlights.present?
+      ids << highlights
+    end
+
+    ids = ids.flatten.uniq
+
+    if ids.present?
+      self.where(id: ids).distinct
+    else
+      self.none
+    end
+  end
 
   #################
   ## RAILS ADMIN CONFIGURATION ##
@@ -103,6 +128,8 @@ class Highlight < ApplicationRecord
 
     # list page
     list do
+      search_by :admin_search
+
       field :is_public
       field :cover_image
       field :title

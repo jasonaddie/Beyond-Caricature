@@ -75,6 +75,31 @@ class Research < ApplicationRecord
   scope :published, -> { where(is_public: true) }
   scope :sort_published_desc, -> { order(published_at: :desc) }
 
+  # search query for the list admin page
+  # - title
+  # - summary
+  # - text
+  def self.admin_search(q)
+    ids = []
+
+    research = self.with_translations(I18n.locale)
+          .where(build_full_text_search_sql(%w(research_translations.title research_translations.summary research_translations.text)),
+            q
+          ).pluck(:id)
+
+    if research.present?
+      ids << research
+    end
+
+    ids = ids.flatten.uniq
+
+    if ids.present?
+      self.where(id: ids).distinct
+    else
+      self.none
+    end
+  end
+
   # get the min and max date values
   def self.date_ranges
     range = nil
@@ -86,7 +111,7 @@ class Research < ApplicationRecord
     return range
   end
 
-  # filter news by the following:
+  # filter research by the following:
   # - search - string
   # - date_start - published after this date
   # - date_end - published before this date
@@ -183,6 +208,8 @@ class Research < ApplicationRecord
 
     # list page
     list do
+      search_by :admin_search
+
       field :is_public
       field :cover_image
       field :title

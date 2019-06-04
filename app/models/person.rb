@@ -75,6 +75,30 @@ class Person < ApplicationRecord
   scope :sort_published_desc, -> { order(published_at: :desc) }
   scope :sort_name_asc, -> { select('people.*, person_translations.last_name, person_translations.first_name').with_translations(I18n.locale).order('person_translations.last_name asc, person_translations.first_name asc') }
 
+  # search query for the list admin page
+  # - first name
+  # - last name
+  def self.admin_search(q)
+    ids = []
+
+    people = self.with_translations(I18n.locale)
+          .where(build_full_text_search_sql(%w(person_translations.first_name person_translations.last_name)),
+            q
+          ).pluck(:id)
+
+    if people.present?
+      ids << people
+    end
+
+    ids = ids.flatten.uniq
+
+    if ids.present?
+      self.where(id: ids).distinct
+    else
+      self.none
+    end
+  end
+
   def self.illustrator
     person_id = PersonRole.illustrators.pluck(:person_id).uniq
     self.where(id: person_id)
@@ -170,7 +194,7 @@ class Person < ApplicationRecord
 
     if options[:search].present?
       x = x.with_translations(I18n.locale)
-            .where(build_full_text_search_sql(%w(person_translations.name person_translations.bio)),
+            .where(build_full_text_search_sql(%w(person_translations.first_name person_translations.last_name person_translations.bio)),
               options[:search]
             )
     end
@@ -311,6 +335,8 @@ class Person < ApplicationRecord
 
     # list page
     list do
+      search_by :admin_search
+
       field :is_public
       field :image
       field :first_name

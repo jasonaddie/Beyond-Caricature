@@ -19,6 +19,7 @@
 #
 
 class Issue < ApplicationRecord
+  include FullTextSearch
   include CropAlignment
 
   #################
@@ -106,6 +107,68 @@ end
   before_save :set_published_at
 
   #################
+  ## SCOPES ##
+  #################
+  scope :published, -> { where(is_public: true) }
+  scope :sort_published_desc, -> { order(published_at: :desc) }
+  scope :sort_publication_desc, -> { order(date_publication: :desc) }
+
+  # search query for the list admin page
+  # - issue number
+  # - journal name
+  def self.admin_search(q)
+    ids = []
+
+    # issue number
+    issues = self.where(build_full_text_search_sql(%w(issue_number)),
+            q
+          ).pluck(:id)
+
+    if issues.present?
+      ids << issues
+    end
+
+    # journal name
+    journals = Publication.with_translations(I18n.locale)
+          .journals
+          .where(build_full_text_search_sql(%w(publication_translations.title)),
+            q
+          ).pluck(:id)
+
+    if journals.present?
+      jounral_issues = self.where(publication_id: journals).pluck(:id)
+      if jounral_issues.present?
+        ids << jounral_issues
+      end
+    end
+
+    ids = ids.flatten.uniq
+
+    if ids.present?
+      self.where(id: ids).distinct
+    else
+      self.none
+    end
+  end
+
+  # get the min and max dates on record
+  # and return in format: start - end
+  def self.start_end_dates
+    string = nil
+    dates = self.all.pluck(:date_publication).sort
+
+    if dates.present?
+      string = I18n.l(dates.first)
+      if dates.length > 1
+        string << ' - '
+        string << I18n.l(dates.last)
+      end
+    end
+
+    return string
+  end
+
+  #################
   ## METHODS ##
   #################
   def illustration_count
@@ -131,30 +194,6 @@ end
     else
       issue_number_formatted
     end
-  end
-
-  #################
-  ## SCOPES ##
-  #################
-  scope :published, -> { where(is_public: true) }
-  scope :sort_published_desc, -> { order(published_at: :desc) }
-  scope :sort_publication_desc, -> { order(date_publication: :desc) }
-
-  # get the min and max dates on record
-  # and return in format: start - end
-  def self.start_end_dates
-    string = nil
-    dates = self.all.pluck(:date_publication).sort
-
-    if dates.present?
-      string = I18n.l(dates.first)
-      if dates.length > 1
-        string << ' - '
-        string << I18n.l(dates.last)
-      end
-    end
-
-    return string
   end
 
   #################
@@ -212,6 +251,8 @@ end
 
     # list page
     list do
+      search_by :admin_search
+
       field :is_public
       field :cover_image
       field :publication

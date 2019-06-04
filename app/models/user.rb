@@ -25,6 +25,8 @@
 #
 
 class User < ApplicationRecord
+  include FullTextSearch
+
   # Include default devise modules. Others available are:
   # :lockable, :timeoutable, :trackable and :omniauthable, :registerable
   devise :database_authenticatable, :confirmable,
@@ -50,6 +52,29 @@ class User < ApplicationRecord
   #################
   ## SCOPES ##
   #################
+  # search query for the list admin page
+  # - name
+  # - email
+  def self.admin_search(q)
+    ids = []
+
+    users = self.where(build_full_text_search_sql(%w(name email)),
+            q
+          ).pluck(:id)
+
+    if users.present?
+      ids << users
+    end
+
+    ids = ids.flatten.uniq
+
+    if ids.present?
+      self.where(id: ids).distinct
+    else
+      self.none
+    end
+  end
+
   def self.roles_for_select
     options = {}
     roles.each do |key, value|
@@ -103,6 +128,8 @@ class User < ApplicationRecord
 
     # list page
     list do
+      search_by :admin_search
+
       field :name
       field :email
       field :role

@@ -7,6 +7,8 @@ RailsAdmin.config do |config|
   RailsAdmin::Config::Actions.register(RailsAdmin::Config::Actions::Changelog)
 
   ## Custom Fields
+  require Rails.root.join('lib', 'rails_admin', 'adapters', 'active_record.rb')
+  require Rails.root.join('lib', 'rails_admin', 'config', 'sections', 'list.rb')
 
   ### Popular gems integration
 

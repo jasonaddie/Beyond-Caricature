@@ -86,6 +86,74 @@ class Illustration < ApplicationRecord
   scope :published, -> { with_translations(I18n.locale).where('illustration_translations.is_public': true) }
   scope :sort_published_desc, -> { order(published_at: :desc) }
 
+
+  # search query for the list admin page
+  # - illustration title
+  # - publication name
+  # - person name
+  # - tag name
+  def self.admin_search(q)
+    ids = []
+
+    # illustration title and context
+    illustrations = self.with_translations(I18n.locale)
+          .where(build_full_text_search_sql(%w(illustration_translations.title illustration_translations.context)),
+            q
+          ).pluck(:id)
+
+    if illustrations.present?
+      ids << illustrations
+    end
+
+    # publication name
+    publications = self.joins(publications: :translations)
+          .where(publication_translations: {locale: I18n.locale})
+          .where(build_full_text_search_sql(%w(publication_translations.title)),
+            q
+          ).pluck(:id)
+
+    if publications.present?
+      ids << publications
+    end
+
+    # person name
+    # - first search for people that might match
+    # - then if matches found, get which ones are assigned to illustrations
+    people = Person.with_translations(I18n.locale)
+              .where(build_full_text_search_sql(%w(person_translations.first_name person_translations.last_name)),
+                q
+              ).pluck(:id)
+
+    if people.present?
+      people_illustrations = self.joins(:person_role)
+                            .where(person_roles: {person_id: people})
+                            .pluck(:id)
+
+      if people_illustrations.present?
+        ids << people_illustrations
+      end
+    end
+
+    # tag name
+    tags = self.joins(tags: :translations)
+          .where(tag_translations: {locale: I18n.locale})
+          .where(build_full_text_search_sql(%w(tag_translations.name)),
+            q
+          ).pluck(:id)
+
+    if tags.present?
+      ids << tags
+    end
+
+    ids = ids.flatten.uniq
+
+    if ids.present?
+      self.where(id: ids).distinct
+    else
+      self.none
+    end
+  end
+
   # get the min and max date values
   def self.date_ranges
     range = nil
@@ -374,6 +442,8 @@ class Illustration < ApplicationRecord
 
     # list page
     list do
+      search_by :admin_search
+
       field :is_public
       field :image
       field :title

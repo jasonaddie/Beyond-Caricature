@@ -102,6 +102,64 @@ class Publication < ApplicationRecord
   scope :sort_published_desc, -> { order(published_at: :desc) }
   scope :sort_name_asc, -> { select('publications.*, publication_translations.title, publication_translations.published_at').with_translations(I18n.locale).order('publication_translations.title asc, publication_translations.published_at asc') }
 
+  # search query for the list admin page
+  # - title
+  # - language
+  # - source type
+  def self.admin_search(q)
+    ids = []
+
+    # publication title
+    publications = self.with_translations(I18n.locale)
+          .where(build_full_text_search_sql(%w(publication_translations.title)),
+            q
+          ).pluck(:id)
+
+    if publications.present?
+      ids << publications
+    end
+
+    # publication language
+    # - search languages and then get the publications that has those languages
+    languages = PublicationLanguage.with_translations(I18n.locale)
+          .where(build_full_text_search_sql(%w(publication_language_translations.language)),
+            q
+          ).pluck(:id)
+
+    if languages.present?
+      publication_languages = self.where(publication_language_id: languages)
+      if publication_languages.present?
+        ids << publication_languages
+      end
+    end
+
+    # source type
+    # - have to search through locale values and if match, get key
+    #   and then find matches
+    locale_text = I18n.t('activerecord.attributes.publication.publication_types')
+    matches = []
+    locale_text.each do |key, text|
+      if text.downcase.starts_with?(q.downcase)
+        matches << key
+      end
+    end
+
+    if matches.present?
+      source_types = self.where(publication_type: matches).pluck(:id)
+      if source_types.present?
+        ids << source_types
+      end
+    end
+
+    ids = ids.flatten.uniq
+
+    if ids.present?
+      self.where(id: ids).distinct
+    else
+      self.none
+    end
+  end
+
   # get the min and max date values
   def self.date_ranges
     range = nil
@@ -454,6 +512,8 @@ class Publication < ApplicationRecord
 
     # list page
     list do
+      search_by :admin_search
+
       field :is_public
       field :cover_image
       field :publication_type

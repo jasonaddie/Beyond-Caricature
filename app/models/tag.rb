@@ -8,6 +8,8 @@
 #
 
 class Tag < ApplicationRecord
+  include FullTextSearch
+
   #################
   ## HISTORY TRACKING ##
   #################
@@ -50,6 +52,29 @@ class Tag < ApplicationRecord
   #################
   scope :sort_name_asc, -> { select('tags.*, tag_translations.name').with_translations(I18n.locale).order('tag_translations.name asc') }
 
+  # search query for the list admin page
+  # - name
+  def self.admin_search(q)
+    ids = []
+
+    tags = self.with_translations(I18n.locale)
+          .where(build_full_text_search_sql(%w(tag_translations.name)),
+            q
+          ).pluck(:id)
+
+    if tags.present?
+      ids << tags
+    end
+
+    ids = ids.flatten.uniq
+
+    if ids.present?
+      self.where(id: ids).distinct
+    else
+      self.none
+    end
+  end
+
   # get all tags that are assigned to published illustrations
   def self.with_published_illustrations
     illustration_tags = IllustrationTag.all.pluck(:illustration_id, :tag_id)
@@ -87,6 +112,8 @@ class Tag < ApplicationRecord
 
     # list page
     list do
+      search_by :admin_search
+
       field :name
       field :illustration_count do
         label I18n.t('labels.illustration_count')

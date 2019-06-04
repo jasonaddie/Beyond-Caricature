@@ -9,6 +9,8 @@
 #
 
 class PublicationLanguage < ApplicationRecord
+  include FullTextSearch
+
   #################
   ## HISTORY TRACKING ##
   #################
@@ -46,6 +48,29 @@ class PublicationLanguage < ApplicationRecord
   scope :published, -> { where(is_active: true) }
   scope :sort_language_asc, -> { with_translations(I18n.locale).order('publication_language_translations.language asc') }
 
+  # search query for the list admin page
+  # - language
+  def self.admin_search(q)
+    ids = []
+
+    languages = self.with_translations(I18n.locale)
+          .where(build_full_text_search_sql(%w(publication_language_translations.language)),
+            q
+          ).pluck(:id)
+
+    if languages.present?
+      ids << languages
+    end
+
+    ids = ids.flatten.uniq
+
+    if ids.present?
+      self.where(id: ids).distinct
+    else
+      self.none
+    end
+  end
+
   def self.with_published_publications
     self.where(id: Publication.published.pluck(:publication_language_id).uniq)
   end
@@ -63,6 +88,8 @@ class PublicationLanguage < ApplicationRecord
 
     # list page
     list do
+      search_by :admin_search
+
       field :language
       field :is_active
     end

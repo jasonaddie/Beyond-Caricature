@@ -75,6 +75,31 @@ class News < ApplicationRecord
   scope :published, -> { where(is_public: true) }
   scope :sort_published_desc, -> { order(published_at: :desc) }
 
+  # search query for the list admin page
+  # - title
+  # - summary
+  # - text
+  def self.admin_search(q)
+    ids = []
+
+    news = self.with_translations(I18n.locale)
+          .where(build_full_text_search_sql(%w(news_translations.title news_translations.summary news_translations.text)),
+            q
+          ).pluck(:id)
+
+    if news.present?
+      ids << news
+    end
+
+    ids = ids.flatten.uniq
+
+    if ids.present?
+      self.where(id: ids).distinct
+    else
+      self.none
+    end
+  end
+
   # get the min and max date values
   def self.date_ranges
     range = nil
@@ -182,6 +207,8 @@ class News < ApplicationRecord
 
     # list page
     list do
+      search_by :admin_search
+
       field :is_public
       field :cover_image
       field :title
