@@ -99,6 +99,8 @@
   - en.activerecord.attributes.issue.published_at
   - en.activerecord.attributes.news.published_at
   - en.activerecord.attributes.news/translation.published_at
+  - en.activerecord.attributes.person.published_at
+  - en.activerecord.attributes.person/translation.published_at
   - en.activerecord.attributes.publication.published_at
   - en.activerecord.attributes.publication/translation.published_at
   - en.activerecord.attributes.research.published_at
@@ -126,6 +128,18 @@
   - en.activerecord.attributes.news.cover_image
   - en.activerecord.attributes.publication.cover_image
   - en.activerecord.attributes.research.cover_image
+- - en.activerecord.attributes.highlight.updated_at
+  - en.activerecord.attributes.illustration.updated_at
+  - en.activerecord.attributes.issue.updated_at
+  - en.activerecord.attributes.news.updated_at
+  - en.activerecord.attributes.page_content.updated_at
+  - en.activerecord.attributes.person.updated_at
+  - en.activerecord.attributes.publication.updated_at
+  - en.activerecord.attributes.publication_language.updated_at
+  - en.activerecord.attributes.research.updated_at
+  - en.activerecord.attributes.role.updated_at
+  - en.activerecord.attributes.tag.updated_at
+  - en.activerecord.attributes.user.updated_at
 - - en.activerecord.attributes.illustration.context
   - en.activerecord.attributes.illustration/translation.context
 - - en.activerecord.attributes.illustration_issue.page_number_start

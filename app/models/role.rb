@@ -147,12 +147,20 @@ class Role < ApplicationRecord
     # control the order in the admin nav menu
     weight 150
 
+    configure :updated_at do
+      # remove the time zone
+      pretty_value do
+        value.nil? ? nil : value.strftime("%Y-%m-%d %H:%M")
+      end
+    end
+
     # list page
     list do
       search_by :admin_search
 
       field :name
       field :is_illustrator
+      field :updated_at
     end
 
     # show page

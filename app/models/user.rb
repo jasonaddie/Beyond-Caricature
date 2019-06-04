@@ -126,6 +126,13 @@ class User < ApplicationRecord
       end
     end
 
+    configure :updated_at do
+      # remove the time zone
+      pretty_value do
+        value.nil? ? nil : value.strftime("%Y-%m-%d %H:%M")
+      end
+    end
+
     # list page
     list do
       search_by :admin_search
@@ -135,6 +142,7 @@ class User < ApplicationRecord
       field :role
       field :deleted_at
       field :current_sign_in_at
+      field :updated_at
     end
 
     # show page

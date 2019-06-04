@@ -45,297 +45,311 @@ Line #,Key,en Version,ka Translation
 44,ka.activerecord.attributes.highlight.summary,Summary,Summary
 45,ka.activerecord.attributes.highlight.link,Link To,Link To
 46,ka.activerecord.attributes.highlight.cover_image,Cover Image,Cover Image
-47,ka.activerecord.attributes.highlight/translation.is_public,Is Public?,Is Public?
-48,ka.activerecord.attributes.highlight/translation.published_at,Date Made Public,Date Made Public
-49,ka.activerecord.attributes.highlight/translation.title,Title,Title
-50,ka.activerecord.attributes.highlight/translation.summary,Summary,Summary
-51,ka.activerecord.attributes.highlight/translation.link,Link To,Link To
-52,ka.activerecord.attributes.illustration.person_id,Person,Person
-53,ka.activerecord.attributes.illustration.image,Image,Image
-54,ka.activerecord.attributes.illustration.is_public,Is Public?,Is Public?
-55,ka.activerecord.attributes.illustration.published_at,Date Made Public,Date Made Public
-56,ka.activerecord.attributes.illustration.title,Title,Title
-57,ka.activerecord.attributes.illustration.context,Context,Context
-58,ka.activerecord.attributes.illustration.illustration_annotation,Annotation,Annotation
-59,ka.activerecord.attributes.illustration.illustration_annotations,Annotations,Annotations
-60,ka.activerecord.attributes.illustration.person_role,Person,Person
-61,ka.activerecord.attributes.illustration/translation.is_public,Is Public?,Is Public?
-62,ka.activerecord.attributes.illustration/translation.published_at,Date Made Public,Date Made Public
-63,ka.activerecord.attributes.illustration/translation.title,Title,Title
-64,ka.activerecord.attributes.illustration/translation.context,Context,Context
-65,ka.activerecord.attributes.illustration_annotations.sort,Sort,Sort
-66,ka.activerecord.attributes.illustration_annotations.annotation,Annotation,Annotation
-67,ka.activerecord.attributes.illustration_issue.illustration_id,Image,Image
-68,ka.activerecord.attributes.illustration_issue.issue_id,Issue,Issue
-69,ka.activerecord.attributes.illustration_issue.page_number_start,Page Number Start,Page Number Start
-70,ka.activerecord.attributes.illustration_issue.page_number_end,Page Number End,Page Number End
-71,ka.activerecord.attributes.illustration_issue.is_public,,
-72,ka.activerecord.attributes.illustration_publication.illustration_id,Image,Image
-73,ka.activerecord.attributes.illustration_publication.publication_id,Source,Source
-74,ka.activerecord.attributes.illustration_publication.page_number_start,Page Number Start,Page Number Start
-75,ka.activerecord.attributes.illustration_publication.page_number_end,Page Number End,Page Number End
-76,ka.activerecord.attributes.illustration_publication.is_public,Is Public?,Is Public?
-77,ka.activerecord.attributes.illustration_tag.illustration_id,Image,Image
-78,ka.activerecord.attributes.illustration_tag.tag_id,Tag,Tag
-79,ka.activerecord.attributes.issue.publication,Journal,Journal
-80,ka.activerecord.attributes.issue.publication_id,Journal,Journal
-81,ka.activerecord.attributes.issue.issue_number,Issue Number,Issue Number
-82,ka.activerecord.attributes.issue.date_publication,Publication Date,Publication Date
-83,ka.activerecord.attributes.issue.is_public,Is Public?,Is Public?
-84,ka.activerecord.attributes.issue.published_at,Date Made Public,Date Made Public
-85,ka.activerecord.attributes.issue.scanned_file,PDF File,PDF File
-86,ka.activerecord.attributes.issue.cover_image,Cover Image,Cover Image
-87,ka.activerecord.attributes.news.is_public,Is Public?,Is Public?
-88,ka.activerecord.attributes.news.published_at,Date Made Public,Date Made Public
-89,ka.activerecord.attributes.news.title,Title,Title
-90,ka.activerecord.attributes.news.summary,Summary,Summary
-91,ka.activerecord.attributes.news.text,Text,Text
-92,ka.activerecord.attributes.news.cover_image,Cover Image,Cover Image
-93,ka.activerecord.attributes.news.slideshow,Sliedshow Image,Sliedshow Image
-94,ka.activerecord.attributes.news.slideshows,Sliedshow Images,Sliedshow Images
-95,ka.activerecord.attributes.news.related_item,Related Item,Related Item
-96,ka.activerecord.attributes.news.related_items,Related Items,Related Items
-97,ka.activerecord.attributes.news.related_item_type,Type,Type
-98,ka.activerecord.attributes.news.publication_id,Source,Source
-99,ka.activerecord.attributes.news.issue_id,Issue,Issue
-100,ka.activerecord.attributes.news.illustration_id,Image,Image
-101,ka.activerecord.attributes.news/translation.is_public,Is Public?,Is Public?
-102,ka.activerecord.attributes.news/translation.published_at,Date Made Public,Date Made Public
-103,ka.activerecord.attributes.news/translation.title,Title,Title
-104,ka.activerecord.attributes.news/translation.summary,Summary,Summary
-105,ka.activerecord.attributes.news/translation.text,Text,Text
-106,ka.activerecord.attributes.page_content.name,Name,Name
-107,ka.activerecord.attributes.page_content.content,Text,Text
-108,ka.activerecord.attributes.page_content/translation.content,Text,Text
-109,ka.activerecord.attributes.person.date_birth,Birth Date,Birth Date
-110,ka.activerecord.attributes.person.date_death,Death Date,Death Date
-111,ka.activerecord.attributes.person.is_public,Is Public?,Is Public?
-112,ka.activerecord.attributes.person.name,Name,Name
-113,ka.activerecord.attributes.person.last_name,Last Name,Last Name
-114,ka.activerecord.attributes.person.first_name,First Name,First Name
-115,ka.activerecord.attributes.person.bio,Biography,Biography
-116,ka.activerecord.attributes.person.image,Image,Image
-117,ka.activerecord.attributes.person/translation.is_public,Is Public?,Is Public?
-118,ka.activerecord.attributes.person/translation.name,Name,Name
-119,ka.activerecord.attributes.person/translation.last_name,Last Name,Last Name
-120,ka.activerecord.attributes.person/translation.first_name,First Name,First Name
-121,ka.activerecord.attributes.person/translation.bio,Biography,Biography
-122,ka.activerecord.attributes.person_role.role,Role,Role
-123,ka.activerecord.attributes.person_role.role_types.illustrator,Illustrator,Illustrator
-124,ka.activerecord.attributes.person_role.role_types.editor,Editor,Editor
-125,ka.activerecord.attributes.person_role.role_types.publisher,Publisher,Publisher
-126,ka.activerecord.attributes.person_role.role_types.writer,Writer,Writer
-127,ka.activerecord.attributes.person_role.role_types.printer,Printer,Printer
-128,ka.activerecord.attributes.person_role.role_types.financier,Financier,Financier
-129,ka.activerecord.attributes.person_role.role_types.official,Official,Official
-130,ka.activerecord.attributes.person_role.role_types.subject,Subject,Subject
-131,ka.activerecord.attributes.publication.publication_type,Source Type,Source Type
-132,ka.activerecord.attributes.publication.publication_types.journal,Journal,Journal
-133,ka.activerecord.attributes.publication.publication_types.book,Book,Book
-134,ka.activerecord.attributes.publication.publication_types.original,Original,Original
-135,ka.activerecord.attributes.publication.publication_language,Language,Language
-136,ka.activerecord.attributes.publication.publication_language_id,Language,Language
-137,ka.activerecord.attributes.publication.is_public,Is Public?,Is Public?
-138,ka.activerecord.attributes.publication.published_at,Date Made Public,Date Made Public
-139,ka.activerecord.attributes.publication.year,Year,Year
-140,ka.activerecord.attributes.publication.title,Title,Title
-141,ka.activerecord.attributes.publication.about,About,About
-142,ka.activerecord.attributes.publication.editor,Editor,Editor
-143,ka.activerecord.attributes.publication.publisher,Publisher,Publisher
-144,ka.activerecord.attributes.publication.writer,Writer,Writer
-145,ka.activerecord.attributes.publication.scanned_file,PDF File,PDF File
-146,ka.activerecord.attributes.publication.cover_image,Cover Image,Cover Image
-147,ka.activerecord.attributes.publication.publication_editor,Journal Editor,Journal Editor
-148,ka.activerecord.attributes.publication.publication_editors,Journal Editors,Journal Editors
-149,ka.activerecord.attributes.publication.editors,Editors,Editors
-150,ka.activerecord.attributes.publication.publishers,Publishers,Publishers
-151,ka.activerecord.attributes.publication.writers,Writers,Writers
-152,ka.activerecord.attributes.publication.printers,Printers,Printers
-153,ka.activerecord.attributes.publication.financiers,Financiers,Financiers
-154,ka.activerecord.attributes.publication.officials,Officials,Officials
-155,ka.activerecord.attributes.publication.subjects,Subjects,Subjects
-156,ka.activerecord.attributes.publication.person_roles,Related People,Related People
-157,ka.activerecord.attributes.publication.person_role,Related Person,Related Person
-158,ka.activerecord.attributes.publication/translation.is_public,Is Public?,Is Public?
-159,ka.activerecord.attributes.publication/translation.published_at,Date Made Public,Date Made Public
-160,ka.activerecord.attributes.publication/translation.title,Title,Title
-161,ka.activerecord.attributes.publication/translation.about,About,About
-162,ka.activerecord.attributes.publication/translation.editor,Editor,Editor
-163,ka.activerecord.attributes.publication/translation.publisher,Publisher,Publisher
-164,ka.activerecord.attributes.publication/translation.writer,Writer,Writer
-165,ka.activerecord.attributes.publication_editor.editors,Editors,Editors
-166,ka.activerecord.attributes.publication_editor.publishers,Publishers,Publishers
-167,ka.activerecord.attributes.publication_editor.year_start,Year Start,Year Start
-168,ka.activerecord.attributes.publication_editor.year_end,Year End,Year End
-169,ka.activerecord.attributes.publication_editor.person_roles,Related People,Related People
-170,ka.activerecord.attributes.publication_editor.person_role,Related Person,Related Person
-171,ka.activerecord.attributes.publication_language.is_active,Is Public?,Is Public?
-172,ka.activerecord.attributes.publication_language/translation.language,Language,Language
-173,ka.activerecord.attributes.related_item.related_item_type,Type,Type
-174,ka.activerecord.attributes.related_item.related_item_types.publication,Source,Source
-175,ka.activerecord.attributes.related_item.related_item_types.issue,Issue,Issue
-176,ka.activerecord.attributes.related_item.related_item_types.illustration,Image,Image
-177,ka.activerecord.attributes.related_item.related_item_types.person,Person,Person
-178,ka.activerecord.attributes.related_item.publication_id,Source,Source
-179,ka.activerecord.attributes.related_item.issue_id,Issue,Issue
-180,ka.activerecord.attributes.related_item.illustration_id,Image,Image
-181,ka.activerecord.attributes.related_item.person_id,Person,Person
-182,ka.activerecord.attributes.research.is_public,Is Public?,Is Public?
-183,ka.activerecord.attributes.research.published_at,Date Made Public,Date Made Public
-184,ka.activerecord.attributes.research.title,Title,Title
-185,ka.activerecord.attributes.research.summary,Summary,Summary
-186,ka.activerecord.attributes.research.text,Text,Text
-187,ka.activerecord.attributes.research.cover_image,Cover Image,Cover Image
-188,ka.activerecord.attributes.research.slideshow,Sliedshow Image,Sliedshow Image
-189,ka.activerecord.attributes.research.slideshows,Sliedshow Images,Sliedshow Images
-190,ka.activerecord.attributes.research/translation.is_public,Is Public?,Is Public?
-191,ka.activerecord.attributes.research/translation.published_at,Date Made Public,Date Made Public
-192,ka.activerecord.attributes.research/translation.title,Title,Title
-193,ka.activerecord.attributes.research/translation.summary,Summary,Summary
-194,ka.activerecord.attributes.research/translation.text,Text,Text
-195,ka.activerecord.attributes.role.name,Name,Name
-196,ka.activerecord.attributes.role.is_illustrator,Is Illustrator?,Is Illustrator?
-197,ka.activerecord.attributes.slideshow.image,Image,Image
-198,ka.activerecord.attributes.slideshow.sort,Sort Order,Sort Order
-199,ka.activerecord.attributes.slideshow.caption,Caption,Caption
-200,ka.activerecord.attributes.slideshow/translation.caption,Caption,Caption
-201,ka.activerecord.attributes.tag.name,Name,Name
-202,ka.activerecord.attributes.user.email,Email,Email
-203,ka.activerecord.attributes.user.name,Name,Name
-204,ka.activerecord.attributes.user.role,Role,Role
-205,ka.activerecord.attributes.user.roles.uploader,Uploader,Uploader
-206,ka.activerecord.attributes.user.roles.editor,Editor,Editor
-207,ka.activerecord.attributes.user.roles.admin,Admin,Admin
-208,ka.activerecord.attributes.user.roles.superadmin,Super Admin,Super Admin
-209,ka.crop_alignments.center,Center,Center
-210,ka.crop_alignments.north,North,North
-211,ka.crop_alignments.northwest,North West,North West
-212,ka.crop_alignments.west,West,West
-213,ka.crop_alignments.southwest,South West,South West
-214,ka.crop_alignments.south,South,South
-215,ka.crop_alignments.southeast,South East,South East
-216,ka.crop_alignments.east,East,East
-217,ka.crop_alignments.northeast,North East,North East
-218,ka.labels.translations,Translation Fields,Translation Fields
-219,ka.labels.illustration_count,Images on File,Images on File
-220,ka.labels.issue_count,Issues on File,Issues on File
-221,ka.labels.combined_publications_count,Source Images,Source Images
-222,ka.labels.is_public_status,Public Status,Public Status
-223,ka.labels.required_for_publication,Required fields for making public are missing,Required fields for making public are missing
-224,ka.labels.language_error,%{lang} Error: %{msg},%{lang} Error: %{msg}
-225,ka.labels.language_switcher,Language Switcher,Language Switcher
-226,ka.labels.view,View,View
-227,ka.labels.view_file,View PDF,View PDF
-228,ka.labels.view_file_with_size,View %{name} PDF (%{size}),View %{name} PDF (%{size})
-229,ka.labels.news,News,News
-230,ka.labels.research,Research,Research
-231,ka.labels.related_items,Releated Items,Releated Items
-232,ka.labels.slideshow,Slideshow,Slideshow
-233,ka.labels.publications,Sources,Sources
-234,ka.labels.publication,Source,Source
-235,ka.labels.illustrations,Images,Images
-236,ka.labels.illustration,Image,Image
-237,ka.labels.illustrators,Illustrators,Illustrators
-238,ka.labels.people,People,People
-239,ka.labels.issues,Issues,Issues
-240,ka.labels.all_news,View All News,View All News
-241,ka.labels.all_research,View All Research,View All Research
-242,ka.labels.about,About,About
-243,ka.labels.highlights,Highlights,Highlights
-244,ka.labels.home,Home,Home
-245,ka.labels.contact,Contact,Contact
-246,ka.labels.followus,Follow us on:,Follow us on:
-247,ka.labels.facebook,Facebook,Facebook
-248,ka.labels.twitter,Twitter,Twitter
-249,ka.labels.donors,Funding,Funding
-250,ka.labels.partners,Partners,Partners
-251,ka.labels.contributors,Contributors,Contributors
-252,ka.labels.read_more,Read More,Read More
-253,ka.labels.view_all,View All,View All
-254,ka.labels.view_all_with_count,View All %{number} %{title} Records,View All %{number} %{title} Records
-255,ka.labels.stats,Stats,Stats
-256,ka.labels.journals,Journals,Journals
-257,ka.labels.journal_issues,Journal Issues,Journal Issues
-258,ka.labels.books,Books,Books
-259,ka.labels.originals,Originals,Originals
-260,ka.labels.languages,Languages,Languages
-261,ka.labels.by,By,By
-262,ka.labels.lived,Lived,Lived
-263,ka.labels.roles,Roles,Roles
-264,ka.labels.type,Type,Type
-265,ka.labels.next,Next,Next
-266,ka.labels.previous,Previous,Previous
-267,ka.labels.view_bigger_image,Click to view the original image,Click to view the original image
-268,ka.labels.view_annotations,View Annotations,View Annotations
-269,ka.labels.annotations_for,Annotations For: %{name},Annotations For: %{name}
-270,ka.labels.annotation_help,Click on numbers to view the annotation text,Click on numbers to view the annotation text
-271,ka.labels.publication_date,Published,Published
-272,ka.labels.list,View the records in a list view,View the records in a list view
-273,ka.labels.grid,View the records in a grid view,View the records in a grid view
-274,ka.labels.publication_dates.journal,Issue Dates,Issue Dates
-275,ka.labels.publication_dates.book,Year,Year
-276,ka.labels.publication_dates.original,Year,Year
-277,ka.labels.filters,Filters,Filters
-278,ka.labels.filter.search,Search,Search
-279,ka.labels.filter.source_type,Source Type,Source Type
-280,ka.labels.filter.language,Language,Language
-281,ka.labels.filter.person,Person,Person
-282,ka.labels.filter.role,Role,Role
-283,ka.labels.filter.date,Date,Date
-284,ka.labels.filter.date_explanation,Pick start date or end date or both.,Pick start date or end date or both.
-285,ka.labels.filter.date_start,Start Date,Start Date
-286,ka.labels.filter.date_end,End Date,End Date
-287,ka.labels.filter.date_close,Confirm,Confirm
-288,ka.labels.filter.date_clear,Clear,Clear
-289,ka.labels.filter.no_date,None,None
-290,ka.labels.unknown,Unknown,Unknown
-291,ka.labels.meta.publication_type,Type,Type
-292,ka.labels.meta.publication_language,Language,Language
-293,ka.labels.meta.illustration_count,Images,Images
-294,ka.labels.meta.issue_count,Issues,Issues
-295,ka.labels.meta.publication_count,Sources,Sources
-296,ka.labels.meta.publication_year,Year,Year
-297,ka.labels.meta.creation_year,Year,Year
-298,ka.labels.meta.editor,Editor,Editor
-299,ka.labels.meta.publisher,Publisher,Publisher
-300,ka.labels.meta.writer,Writer,Writer
-301,ka.labels.meta.year_start,Start,Start
-302,ka.labels.meta.year_end,End,End
-303,ka.labels.meta.issue_number,Issue,Issue
-304,ka.labels.meta.publication_date,Published,Published
-305,ka.labels.meta.in_the_news,In The News,In The News
-306,ka.labels.meta.journal,Journal,Journal
-307,ka.labels.meta.published_in,Published In,Published In
-308,ka.labels.meta.date_birth,Born,Born
-309,ka.labels.meta.date_death,Died,Died
-310,ka.labels.meta.tags,Tags,Tags
-311,ka.labels.meta.roles,Roles,Roles
-312,ka.labels.meta.people,People,People
-313,ka.labels.meta.lived,Lived,Lived
-314,ka.messages.no_data,There is no data on record at this time.,There is no data on record at this time.
-315,ka.messages.no_issues,There are no issues on record at this time.,There are no issues on record at this time.
-316,ka.messages.no_illustrations,There are no images on record at this time.,There are no images on record at this time.
-317,ka.navigation_groups.primary,Primary Data,Primary Data
-318,ka.navigation_groups.supporting,Supporting Data,Supporting Data
-319,ka.navigation_groups.news,News Items,News Items
-320,ka.navigation_groups.admin,Admin,Admin
-321,ka.meta.site_name,Beyond Caricature,Beyond Caricature
-322,ka.meta.sub_title,The Oskar Schmerling Digital Archive,The Oskar Schmerling Digital Archive
-323,ka.meta.description,This is a brief description of the site,This is a brief description of the site
-324,ka.meta.twitter_site,@schmerling,@schmerling
-325,ka.languages.en,English,English
-326,ka.languages.ru,Russian,Russian
-327,ka.languages.az,Azeri,Azeri
-328,ka.languages.ka,Georgian,Georgian
-329,ka.languages.hy,Armenian,Armenian
-330,ka.status.yes,Yes,Yes
-331,ka.status.true,Yes,Yes
-332,ka.status.no,No,No
-333,ka.status.false,No,No
-334,ka.devise.failure.deleted_account,Your account has been deleted and you can no longer login.,Your account has been deleted and you can no longer login.
-335,ka.home.index.oskar_alt,Self portrait of Oskar Schmerling holding a whip and wearing horns,Self portrait of Oskar Schmerling holding a whip and wearing horns
-336,ka.home.index.scroll,Scroll,Scroll
-337,ka.home.about.donors.reed,Reed College,Reed College
-338,ka.home.about.donors.nceeer,National Council for Eurasian and East European Research,National Council for Eurasian and East European Research
-339,ka.home.about.partners.geo_library,National Parliamentary Library of Georgia,National Parliamentary Library of Georgia
-340,ka.shared.news_item.related_item_explanation,Related Items,Related Items
+47,ka.activerecord.attributes.highlight.updated_at,Last Updated,Last Updated
+48,ka.activerecord.attributes.highlight/translation.is_public,Is Public?,Is Public?
+49,ka.activerecord.attributes.highlight/translation.published_at,Date Made Public,Date Made Public
+50,ka.activerecord.attributes.highlight/translation.title,Title,Title
+51,ka.activerecord.attributes.highlight/translation.summary,Summary,Summary
+52,ka.activerecord.attributes.highlight/translation.link,Link To,Link To
+53,ka.activerecord.attributes.illustration.person_id,Person,Person
+54,ka.activerecord.attributes.illustration.image,Image,Image
+55,ka.activerecord.attributes.illustration.is_public,Is Public?,Is Public?
+56,ka.activerecord.attributes.illustration.published_at,Date Made Public,Date Made Public
+57,ka.activerecord.attributes.illustration.title,Title,Title
+58,ka.activerecord.attributes.illustration.context,Context,Context
+59,ka.activerecord.attributes.illustration.illustration_annotation,Annotation,Annotation
+60,ka.activerecord.attributes.illustration.illustration_annotations,Annotations,Annotations
+61,ka.activerecord.attributes.illustration.person_role,Person,Person
+62,ka.activerecord.attributes.illustration.updated_at,Last Updated,Last Updated
+63,ka.activerecord.attributes.illustration/translation.is_public,Is Public?,Is Public?
+64,ka.activerecord.attributes.illustration/translation.published_at,Date Made Public,Date Made Public
+65,ka.activerecord.attributes.illustration/translation.title,Title,Title
+66,ka.activerecord.attributes.illustration/translation.context,Context,Context
+67,ka.activerecord.attributes.illustration_annotations.sort,Sort,Sort
+68,ka.activerecord.attributes.illustration_annotations.annotation,Annotation,Annotation
+69,ka.activerecord.attributes.illustration_issue.illustration_id,Image,Image
+70,ka.activerecord.attributes.illustration_issue.issue_id,Issue,Issue
+71,ka.activerecord.attributes.illustration_issue.page_number_start,Page Number Start,Page Number Start
+72,ka.activerecord.attributes.illustration_issue.page_number_end,Page Number End,Page Number End
+73,ka.activerecord.attributes.illustration_issue.is_public,,
+74,ka.activerecord.attributes.illustration_publication.illustration_id,Image,Image
+75,ka.activerecord.attributes.illustration_publication.publication_id,Source,Source
+76,ka.activerecord.attributes.illustration_publication.page_number_start,Page Number Start,Page Number Start
+77,ka.activerecord.attributes.illustration_publication.page_number_end,Page Number End,Page Number End
+78,ka.activerecord.attributes.illustration_publication.is_public,Is Public?,Is Public?
+79,ka.activerecord.attributes.illustration_tag.illustration_id,Image,Image
+80,ka.activerecord.attributes.illustration_tag.tag_id,Tag,Tag
+81,ka.activerecord.attributes.issue.publication,Journal,Journal
+82,ka.activerecord.attributes.issue.publication_id,Journal,Journal
+83,ka.activerecord.attributes.issue.issue_number,Issue Number,Issue Number
+84,ka.activerecord.attributes.issue.date_publication,Publication Date,Publication Date
+85,ka.activerecord.attributes.issue.is_public,Is Public?,Is Public?
+86,ka.activerecord.attributes.issue.published_at,Date Made Public,Date Made Public
+87,ka.activerecord.attributes.issue.scanned_file,PDF File,PDF File
+88,ka.activerecord.attributes.issue.cover_image,Cover Image,Cover Image
+89,ka.activerecord.attributes.issue.updated_at,Last Updated,Last Updated
+90,ka.activerecord.attributes.news.is_public,Is Public?,Is Public?
+91,ka.activerecord.attributes.news.published_at,Date Made Public,Date Made Public
+92,ka.activerecord.attributes.news.title,Title,Title
+93,ka.activerecord.attributes.news.summary,Summary,Summary
+94,ka.activerecord.attributes.news.text,Text,Text
+95,ka.activerecord.attributes.news.cover_image,Cover Image,Cover Image
+96,ka.activerecord.attributes.news.slideshow,Sliedshow Image,Sliedshow Image
+97,ka.activerecord.attributes.news.slideshows,Sliedshow Images,Sliedshow Images
+98,ka.activerecord.attributes.news.related_item,Related Item,Related Item
+99,ka.activerecord.attributes.news.related_items,Related Items,Related Items
+100,ka.activerecord.attributes.news.related_item_type,Type,Type
+101,ka.activerecord.attributes.news.publication_id,Source,Source
+102,ka.activerecord.attributes.news.issue_id,Issue,Issue
+103,ka.activerecord.attributes.news.illustration_id,Image,Image
+104,ka.activerecord.attributes.news.updated_at,Last Updated,Last Updated
+105,ka.activerecord.attributes.news/translation.is_public,Is Public?,Is Public?
+106,ka.activerecord.attributes.news/translation.published_at,Date Made Public,Date Made Public
+107,ka.activerecord.attributes.news/translation.title,Title,Title
+108,ka.activerecord.attributes.news/translation.summary,Summary,Summary
+109,ka.activerecord.attributes.news/translation.text,Text,Text
+110,ka.activerecord.attributes.page_content.name,Name,Name
+111,ka.activerecord.attributes.page_content.content,Text,Text
+112,ka.activerecord.attributes.page_content.updated_at,Last Updated,Last Updated
+113,ka.activerecord.attributes.page_content/translation.content,Text,Text
+114,ka.activerecord.attributes.person.date_birth,Birth Date,Birth Date
+115,ka.activerecord.attributes.person.date_death,Death Date,Death Date
+116,ka.activerecord.attributes.person.is_public,Is Public?,Is Public?
+117,ka.activerecord.attributes.person.published_at,Date Made Public,Date Made Public
+118,ka.activerecord.attributes.person.name,Name,Name
+119,ka.activerecord.attributes.person.last_name,Last Name,Last Name
+120,ka.activerecord.attributes.person.first_name,First Name,First Name
+121,ka.activerecord.attributes.person.bio,Biography,Biography
+122,ka.activerecord.attributes.person.image,Image,Image
+123,ka.activerecord.attributes.person.updated_at,Last Updated,Last Updated
+124,ka.activerecord.attributes.person/translation.is_public,Is Public?,Is Public?
+125,ka.activerecord.attributes.person/translation.published_at,Date Made Public,Date Made Public
+126,ka.activerecord.attributes.person/translation.name,Name,Name
+127,ka.activerecord.attributes.person/translation.last_name,Last Name,Last Name
+128,ka.activerecord.attributes.person/translation.first_name,First Name,First Name
+129,ka.activerecord.attributes.person/translation.bio,Biography,Biography
+130,ka.activerecord.attributes.person_role.role,Role,Role
+131,ka.activerecord.attributes.person_role.role_types.illustrator,Illustrator,Illustrator
+132,ka.activerecord.attributes.person_role.role_types.editor,Editor,Editor
+133,ka.activerecord.attributes.person_role.role_types.publisher,Publisher,Publisher
+134,ka.activerecord.attributes.person_role.role_types.writer,Writer,Writer
+135,ka.activerecord.attributes.person_role.role_types.printer,Printer,Printer
+136,ka.activerecord.attributes.person_role.role_types.financier,Financier,Financier
+137,ka.activerecord.attributes.person_role.role_types.official,Official,Official
+138,ka.activerecord.attributes.person_role.role_types.subject,Subject,Subject
+139,ka.activerecord.attributes.publication.publication_type,Source Type,Source Type
+140,ka.activerecord.attributes.publication.publication_types.journal,Journal,Journal
+141,ka.activerecord.attributes.publication.publication_types.book,Book,Book
+142,ka.activerecord.attributes.publication.publication_types.original,Original,Original
+143,ka.activerecord.attributes.publication.publication_language,Language,Language
+144,ka.activerecord.attributes.publication.publication_language_id,Language,Language
+145,ka.activerecord.attributes.publication.is_public,Is Public?,Is Public?
+146,ka.activerecord.attributes.publication.published_at,Date Made Public,Date Made Public
+147,ka.activerecord.attributes.publication.year,Year,Year
+148,ka.activerecord.attributes.publication.title,Title,Title
+149,ka.activerecord.attributes.publication.about,About,About
+150,ka.activerecord.attributes.publication.editor,Editor,Editor
+151,ka.activerecord.attributes.publication.publisher,Publisher,Publisher
+152,ka.activerecord.attributes.publication.writer,Writer,Writer
+153,ka.activerecord.attributes.publication.scanned_file,PDF File,PDF File
+154,ka.activerecord.attributes.publication.cover_image,Cover Image,Cover Image
+155,ka.activerecord.attributes.publication.publication_editor,Journal Editor,Journal Editor
+156,ka.activerecord.attributes.publication.publication_editors,Journal Editors,Journal Editors
+157,ka.activerecord.attributes.publication.editors,Editors,Editors
+158,ka.activerecord.attributes.publication.publishers,Publishers,Publishers
+159,ka.activerecord.attributes.publication.writers,Writers,Writers
+160,ka.activerecord.attributes.publication.printers,Printers,Printers
+161,ka.activerecord.attributes.publication.financiers,Financiers,Financiers
+162,ka.activerecord.attributes.publication.officials,Officials,Officials
+163,ka.activerecord.attributes.publication.subjects,Subjects,Subjects
+164,ka.activerecord.attributes.publication.person_roles,Related People,Related People
+165,ka.activerecord.attributes.publication.person_role,Related Person,Related Person
+166,ka.activerecord.attributes.publication.updated_at,Last Updated,Last Updated
+167,ka.activerecord.attributes.publication/translation.is_public,Is Public?,Is Public?
+168,ka.activerecord.attributes.publication/translation.published_at,Date Made Public,Date Made Public
+169,ka.activerecord.attributes.publication/translation.title,Title,Title
+170,ka.activerecord.attributes.publication/translation.about,About,About
+171,ka.activerecord.attributes.publication/translation.editor,Editor,Editor
+172,ka.activerecord.attributes.publication/translation.publisher,Publisher,Publisher
+173,ka.activerecord.attributes.publication/translation.writer,Writer,Writer
+174,ka.activerecord.attributes.publication_editor.editors,Editors,Editors
+175,ka.activerecord.attributes.publication_editor.publishers,Publishers,Publishers
+176,ka.activerecord.attributes.publication_editor.year_start,Year Start,Year Start
+177,ka.activerecord.attributes.publication_editor.year_end,Year End,Year End
+178,ka.activerecord.attributes.publication_editor.person_roles,Related People,Related People
+179,ka.activerecord.attributes.publication_editor.person_role,Related Person,Related Person
+180,ka.activerecord.attributes.publication_language.is_active,Is Public?,Is Public?
+181,ka.activerecord.attributes.publication_language.updated_at,Last Updated,Last Updated
+182,ka.activerecord.attributes.publication_language/translation.language,Language,Language
+183,ka.activerecord.attributes.related_item.related_item_type,Type,Type
+184,ka.activerecord.attributes.related_item.related_item_types.publication,Source,Source
+185,ka.activerecord.attributes.related_item.related_item_types.issue,Issue,Issue
+186,ka.activerecord.attributes.related_item.related_item_types.illustration,Image,Image
+187,ka.activerecord.attributes.related_item.related_item_types.person,Person,Person
+188,ka.activerecord.attributes.related_item.publication_id,Source,Source
+189,ka.activerecord.attributes.related_item.issue_id,Issue,Issue
+190,ka.activerecord.attributes.related_item.illustration_id,Image,Image
+191,ka.activerecord.attributes.related_item.person_id,Person,Person
+192,ka.activerecord.attributes.research.is_public,Is Public?,Is Public?
+193,ka.activerecord.attributes.research.published_at,Date Made Public,Date Made Public
+194,ka.activerecord.attributes.research.title,Title,Title
+195,ka.activerecord.attributes.research.summary,Summary,Summary
+196,ka.activerecord.attributes.research.text,Text,Text
+197,ka.activerecord.attributes.research.cover_image,Cover Image,Cover Image
+198,ka.activerecord.attributes.research.slideshow,Sliedshow Image,Sliedshow Image
+199,ka.activerecord.attributes.research.slideshows,Sliedshow Images,Sliedshow Images
+200,ka.activerecord.attributes.research.updated_at,Last Updated,Last Updated
+201,ka.activerecord.attributes.research/translation.is_public,Is Public?,Is Public?
+202,ka.activerecord.attributes.research/translation.published_at,Date Made Public,Date Made Public
+203,ka.activerecord.attributes.research/translation.title,Title,Title
+204,ka.activerecord.attributes.research/translation.summary,Summary,Summary
+205,ka.activerecord.attributes.research/translation.text,Text,Text
+206,ka.activerecord.attributes.role.name,Name,Name
+207,ka.activerecord.attributes.role.is_illustrator,Is Illustrator?,Is Illustrator?
+208,ka.activerecord.attributes.role.updated_at,Last Updated,Last Updated
+209,ka.activerecord.attributes.slideshow.image,Image,Image
+210,ka.activerecord.attributes.slideshow.sort,Sort Order,Sort Order
+211,ka.activerecord.attributes.slideshow.caption,Caption,Caption
+212,ka.activerecord.attributes.slideshow/translation.caption,Caption,Caption
+213,ka.activerecord.attributes.tag.name,Name,Name
+214,ka.activerecord.attributes.tag.updated_at,Last Updated,Last Updated
+215,ka.activerecord.attributes.user.email,Email,Email
+216,ka.activerecord.attributes.user.name,Name,Name
+217,ka.activerecord.attributes.user.role,Role,Role
+218,ka.activerecord.attributes.user.roles.uploader,Uploader,Uploader
+219,ka.activerecord.attributes.user.roles.editor,Editor,Editor
+220,ka.activerecord.attributes.user.roles.admin,Admin,Admin
+221,ka.activerecord.attributes.user.roles.superadmin,Super Admin,Super Admin
+222,ka.activerecord.attributes.user.updated_at,Last Updated,Last Updated
+223,ka.crop_alignments.center,Center,Center
+224,ka.crop_alignments.north,North,North
+225,ka.crop_alignments.northwest,North West,North West
+226,ka.crop_alignments.west,West,West
+227,ka.crop_alignments.southwest,South West,South West
+228,ka.crop_alignments.south,South,South
+229,ka.crop_alignments.southeast,South East,South East
+230,ka.crop_alignments.east,East,East
+231,ka.crop_alignments.northeast,North East,North East
+232,ka.labels.translations,Translation Fields,Translation Fields
+233,ka.labels.illustration_count,Images on File,Images on File
+234,ka.labels.issue_count,Issues on File,Issues on File
+235,ka.labels.combined_publications_count,Source Images,Source Images
+236,ka.labels.is_public_status,Public Status,Public Status
+237,ka.labels.required_for_publication,Required fields for making public are missing,Required fields for making public are missing
+238,ka.labels.language_error,%{lang} Error: %{msg},%{lang} Error: %{msg}
+239,ka.labels.language_switcher,Language Switcher,Language Switcher
+240,ka.labels.view,View,View
+241,ka.labels.view_file,View PDF,View PDF
+242,ka.labels.view_file_with_size,View %{name} PDF (%{size}),View %{name} PDF (%{size})
+243,ka.labels.news,News,News
+244,ka.labels.research,Research,Research
+245,ka.labels.related_items,Releated Items,Releated Items
+246,ka.labels.slideshow,Slideshow,Slideshow
+247,ka.labels.publications,Sources,Sources
+248,ka.labels.publication,Source,Source
+249,ka.labels.illustrations,Images,Images
+250,ka.labels.illustration,Image,Image
+251,ka.labels.illustrators,Illustrators,Illustrators
+252,ka.labels.people,People,People
+253,ka.labels.issues,Issues,Issues
+254,ka.labels.all_news,View All News,View All News
+255,ka.labels.all_research,View All Research,View All Research
+256,ka.labels.about,About,About
+257,ka.labels.highlights,Highlights,Highlights
+258,ka.labels.home,Home,Home
+259,ka.labels.contact,Contact,Contact
+260,ka.labels.followus,Follow us on:,Follow us on:
+261,ka.labels.facebook,Facebook,Facebook
+262,ka.labels.twitter,Twitter,Twitter
+263,ka.labels.donors,Funding,Funding
+264,ka.labels.partners,Partners,Partners
+265,ka.labels.contributors,Contributors,Contributors
+266,ka.labels.read_more,Read More,Read More
+267,ka.labels.view_all,View All,View All
+268,ka.labels.view_all_with_count,View All %{number} %{title} Records,View All %{number} %{title} Records
+269,ka.labels.stats,Stats,Stats
+270,ka.labels.journals,Journals,Journals
+271,ka.labels.journal_issues,Journal Issues,Journal Issues
+272,ka.labels.books,Books,Books
+273,ka.labels.originals,Originals,Originals
+274,ka.labels.languages,Languages,Languages
+275,ka.labels.by,By,By
+276,ka.labels.lived,Lived,Lived
+277,ka.labels.roles,Roles,Roles
+278,ka.labels.type,Type,Type
+279,ka.labels.next,Next,Next
+280,ka.labels.previous,Previous,Previous
+281,ka.labels.view_bigger_image,Click to view the original image,Click to view the original image
+282,ka.labels.view_annotations,View Annotations,View Annotations
+283,ka.labels.annotations_for,Annotations For: %{name},Annotations For: %{name}
+284,ka.labels.annotation_help,Click on numbers to view the annotation text,Click on numbers to view the annotation text
+285,ka.labels.publication_date,Published,Published
+286,ka.labels.list,View the records in a list view,View the records in a list view
+287,ka.labels.grid,View the records in a grid view,View the records in a grid view
+288,ka.labels.publication_dates.journal,Issue Dates,Issue Dates
+289,ka.labels.publication_dates.book,Year,Year
+290,ka.labels.publication_dates.original,Year,Year
+291,ka.labels.filters,Filters,Filters
+292,ka.labels.filter.search,Search,Search
+293,ka.labels.filter.source_type,Source Type,Source Type
+294,ka.labels.filter.language,Language,Language
+295,ka.labels.filter.person,Person,Person
+296,ka.labels.filter.role,Role,Role
+297,ka.labels.filter.date,Date,Date
+298,ka.labels.filter.date_explanation,Pick start date or end date or both.,Pick start date or end date or both.
+299,ka.labels.filter.date_start,Start Date,Start Date
+300,ka.labels.filter.date_end,End Date,End Date
+301,ka.labels.filter.date_close,Confirm,Confirm
+302,ka.labels.filter.date_clear,Clear,Clear
+303,ka.labels.filter.no_date,None,None
+304,ka.labels.unknown,Unknown,Unknown
+305,ka.labels.meta.publication_type,Type,Type
+306,ka.labels.meta.publication_language,Language,Language
+307,ka.labels.meta.illustration_count,Images,Images
+308,ka.labels.meta.issue_count,Issues,Issues
+309,ka.labels.meta.publication_count,Sources,Sources
+310,ka.labels.meta.publication_year,Year,Year
+311,ka.labels.meta.creation_year,Year,Year
+312,ka.labels.meta.editor,Editor,Editor
+313,ka.labels.meta.publisher,Publisher,Publisher
+314,ka.labels.meta.writer,Writer,Writer
+315,ka.labels.meta.year_start,Start,Start
+316,ka.labels.meta.year_end,End,End
+317,ka.labels.meta.issue_number,Issue,Issue
+318,ka.labels.meta.publication_date,Published,Published
+319,ka.labels.meta.in_the_news,In The News,In The News
+320,ka.labels.meta.journal,Journal,Journal
+321,ka.labels.meta.published_in,Published In,Published In
+322,ka.labels.meta.date_birth,Born,Born
+323,ka.labels.meta.date_death,Died,Died
+324,ka.labels.meta.tags,Tags,Tags
+325,ka.labels.meta.roles,Roles,Roles
+326,ka.labels.meta.people,People,People
+327,ka.labels.meta.lived,Lived,Lived
+328,ka.messages.no_data,There is no data on record at this time.,There is no data on record at this time.
+329,ka.messages.no_issues,There are no issues on record at this time.,There are no issues on record at this time.
+330,ka.messages.no_illustrations,There are no images on record at this time.,There are no images on record at this time.
+331,ka.navigation_groups.primary,Primary Data,Primary Data
+332,ka.navigation_groups.supporting,Supporting Data,Supporting Data
+333,ka.navigation_groups.news,News Items,News Items
+334,ka.navigation_groups.admin,Admin,Admin
+335,ka.meta.site_name,Beyond Caricature,Beyond Caricature
+336,ka.meta.sub_title,The Oskar Schmerling Digital Archive,The Oskar Schmerling Digital Archive
+337,ka.meta.description,This is a brief description of the site,This is a brief description of the site
+338,ka.meta.twitter_site,@schmerling,@schmerling
+339,ka.languages.en,English,English
+340,ka.languages.ru,Russian,Russian
+341,ka.languages.az,Azeri,Azeri
+342,ka.languages.ka,Georgian,Georgian
+343,ka.languages.hy,Armenian,Armenian
+344,ka.status.yes,Yes,Yes
+345,ka.status.true,Yes,Yes
+346,ka.status.no,No,No
+347,ka.status.false,No,No
+348,ka.devise.failure.deleted_account,Your account has been deleted and you can no longer login.,Your account has been deleted and you can no longer login.
+349,ka.home.index.oskar_alt,Self portrait of Oskar Schmerling holding a whip and wearing horns,Self portrait of Oskar Schmerling holding a whip and wearing horns
+350,ka.home.index.scroll,Scroll,Scroll
+351,ka.home.about.donors.reed,Reed College,Reed College
+352,ka.home.about.donors.nceeer,National Council for Eurasian and East European Research,National Council for Eurasian and East European Research
+353,ka.home.about.partners.geo_library,National Parliamentary Library of Georgia,National Parliamentary Library of Georgia
+354,ka.shared.news_item.related_item_explanation,Related Items,Related Items

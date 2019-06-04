@@ -45,297 +45,311 @@ Line #,Key,en Version,hy Translation
 44,hy.activerecord.attributes.highlight.summary,Summary,Summary
 45,hy.activerecord.attributes.highlight.link,Link To,Link To
 46,hy.activerecord.attributes.highlight.cover_image,Cover Image,Cover Image
-47,hy.activerecord.attributes.highlight/translation.is_public,Is Public?,Is Public?
-48,hy.activerecord.attributes.highlight/translation.published_at,Date Made Public,Date Made Public
-49,hy.activerecord.attributes.highlight/translation.title,Title,Title
-50,hy.activerecord.attributes.highlight/translation.summary,Summary,Summary
-51,hy.activerecord.attributes.highlight/translation.link,Link To,Link To
-52,hy.activerecord.attributes.illustration.person_id,Person,Person
-53,hy.activerecord.attributes.illustration.image,Image,Image
-54,hy.activerecord.attributes.illustration.is_public,Is Public?,Is Public?
-55,hy.activerecord.attributes.illustration.published_at,Date Made Public,Date Made Public
-56,hy.activerecord.attributes.illustration.title,Title,Title
-57,hy.activerecord.attributes.illustration.context,Context,Context
-58,hy.activerecord.attributes.illustration.illustration_annotation,Annotation,Annotation
-59,hy.activerecord.attributes.illustration.illustration_annotations,Annotations,Annotations
-60,hy.activerecord.attributes.illustration.person_role,Person,Person
-61,hy.activerecord.attributes.illustration/translation.is_public,Is Public?,Is Public?
-62,hy.activerecord.attributes.illustration/translation.published_at,Date Made Public,Date Made Public
-63,hy.activerecord.attributes.illustration/translation.title,Title,Title
-64,hy.activerecord.attributes.illustration/translation.context,Context,Context
-65,hy.activerecord.attributes.illustration_annotations.sort,Sort,Sort
-66,hy.activerecord.attributes.illustration_annotations.annotation,Annotation,Annotation
-67,hy.activerecord.attributes.illustration_issue.illustration_id,Image,Image
-68,hy.activerecord.attributes.illustration_issue.issue_id,Issue,Issue
-69,hy.activerecord.attributes.illustration_issue.page_number_start,Page Number Start,Page Number Start
-70,hy.activerecord.attributes.illustration_issue.page_number_end,Page Number End,Page Number End
-71,hy.activerecord.attributes.illustration_issue.is_public,,
-72,hy.activerecord.attributes.illustration_publication.illustration_id,Image,Image
-73,hy.activerecord.attributes.illustration_publication.publication_id,Source,Source
-74,hy.activerecord.attributes.illustration_publication.page_number_start,Page Number Start,Page Number Start
-75,hy.activerecord.attributes.illustration_publication.page_number_end,Page Number End,Page Number End
-76,hy.activerecord.attributes.illustration_publication.is_public,Is Public?,Is Public?
-77,hy.activerecord.attributes.illustration_tag.illustration_id,Image,Image
-78,hy.activerecord.attributes.illustration_tag.tag_id,Tag,Tag
-79,hy.activerecord.attributes.issue.publication,Journal,Journal
-80,hy.activerecord.attributes.issue.publication_id,Journal,Journal
-81,hy.activerecord.attributes.issue.issue_number,Issue Number,Issue Number
-82,hy.activerecord.attributes.issue.date_publication,Publication Date,Publication Date
-83,hy.activerecord.attributes.issue.is_public,Is Public?,Is Public?
-84,hy.activerecord.attributes.issue.published_at,Date Made Public,Date Made Public
-85,hy.activerecord.attributes.issue.scanned_file,PDF File,PDF File
-86,hy.activerecord.attributes.issue.cover_image,Cover Image,Cover Image
-87,hy.activerecord.attributes.news.is_public,Is Public?,Is Public?
-88,hy.activerecord.attributes.news.published_at,Date Made Public,Date Made Public
-89,hy.activerecord.attributes.news.title,Title,Title
-90,hy.activerecord.attributes.news.summary,Summary,Summary
-91,hy.activerecord.attributes.news.text,Text,Text
-92,hy.activerecord.attributes.news.cover_image,Cover Image,Cover Image
-93,hy.activerecord.attributes.news.slideshow,Sliedshow Image,Sliedshow Image
-94,hy.activerecord.attributes.news.slideshows,Sliedshow Images,Sliedshow Images
-95,hy.activerecord.attributes.news.related_item,Related Item,Related Item
-96,hy.activerecord.attributes.news.related_items,Related Items,Related Items
-97,hy.activerecord.attributes.news.related_item_type,Type,Type
-98,hy.activerecord.attributes.news.publication_id,Source,Source
-99,hy.activerecord.attributes.news.issue_id,Issue,Issue
-100,hy.activerecord.attributes.news.illustration_id,Image,Image
-101,hy.activerecord.attributes.news/translation.is_public,Is Public?,Is Public?
-102,hy.activerecord.attributes.news/translation.published_at,Date Made Public,Date Made Public
-103,hy.activerecord.attributes.news/translation.title,Title,Title
-104,hy.activerecord.attributes.news/translation.summary,Summary,Summary
-105,hy.activerecord.attributes.news/translation.text,Text,Text
-106,hy.activerecord.attributes.page_content.name,Name,Name
-107,hy.activerecord.attributes.page_content.content,Text,Text
-108,hy.activerecord.attributes.page_content/translation.content,Text,Text
-109,hy.activerecord.attributes.person.date_birth,Birth Date,Birth Date
-110,hy.activerecord.attributes.person.date_death,Death Date,Death Date
-111,hy.activerecord.attributes.person.is_public,Is Public?,Is Public?
-112,hy.activerecord.attributes.person.name,Name,Name
-113,hy.activerecord.attributes.person.last_name,Last Name,Last Name
-114,hy.activerecord.attributes.person.first_name,First Name,First Name
-115,hy.activerecord.attributes.person.bio,Biography,Biography
-116,hy.activerecord.attributes.person.image,Image,Image
-117,hy.activerecord.attributes.person/translation.is_public,Is Public?,Is Public?
-118,hy.activerecord.attributes.person/translation.name,Name,Name
-119,hy.activerecord.attributes.person/translation.last_name,Last Name,Last Name
-120,hy.activerecord.attributes.person/translation.first_name,First Name,First Name
-121,hy.activerecord.attributes.person/translation.bio,Biography,Biography
-122,hy.activerecord.attributes.person_role.role,Role,Role
-123,hy.activerecord.attributes.person_role.role_types.illustrator,Illustrator,Illustrator
-124,hy.activerecord.attributes.person_role.role_types.editor,Editor,Editor
-125,hy.activerecord.attributes.person_role.role_types.publisher,Publisher,Publisher
-126,hy.activerecord.attributes.person_role.role_types.writer,Writer,Writer
-127,hy.activerecord.attributes.person_role.role_types.printer,Printer,Printer
-128,hy.activerecord.attributes.person_role.role_types.financier,Financier,Financier
-129,hy.activerecord.attributes.person_role.role_types.official,Official,Official
-130,hy.activerecord.attributes.person_role.role_types.subject,Subject,Subject
-131,hy.activerecord.attributes.publication.publication_type,Source Type,Source Type
-132,hy.activerecord.attributes.publication.publication_types.journal,Journal,Journal
-133,hy.activerecord.attributes.publication.publication_types.book,Book,Book
-134,hy.activerecord.attributes.publication.publication_types.original,Original,Original
-135,hy.activerecord.attributes.publication.publication_language,Language,Language
-136,hy.activerecord.attributes.publication.publication_language_id,Language,Language
-137,hy.activerecord.attributes.publication.is_public,Is Public?,Is Public?
-138,hy.activerecord.attributes.publication.published_at,Date Made Public,Date Made Public
-139,hy.activerecord.attributes.publication.year,Year,Year
-140,hy.activerecord.attributes.publication.title,Title,Title
-141,hy.activerecord.attributes.publication.about,About,About
-142,hy.activerecord.attributes.publication.editor,Editor,Editor
-143,hy.activerecord.attributes.publication.publisher,Publisher,Publisher
-144,hy.activerecord.attributes.publication.writer,Writer,Writer
-145,hy.activerecord.attributes.publication.scanned_file,PDF File,PDF File
-146,hy.activerecord.attributes.publication.cover_image,Cover Image,Cover Image
-147,hy.activerecord.attributes.publication.publication_editor,Journal Editor,Journal Editor
-148,hy.activerecord.attributes.publication.publication_editors,Journal Editors,Journal Editors
-149,hy.activerecord.attributes.publication.editors,Editors,Editors
-150,hy.activerecord.attributes.publication.publishers,Publishers,Publishers
-151,hy.activerecord.attributes.publication.writers,Writers,Writers
-152,hy.activerecord.attributes.publication.printers,Printers,Printers
-153,hy.activerecord.attributes.publication.financiers,Financiers,Financiers
-154,hy.activerecord.attributes.publication.officials,Officials,Officials
-155,hy.activerecord.attributes.publication.subjects,Subjects,Subjects
-156,hy.activerecord.attributes.publication.person_roles,Related People,Related People
-157,hy.activerecord.attributes.publication.person_role,Related Person,Related Person
-158,hy.activerecord.attributes.publication/translation.is_public,Is Public?,Is Public?
-159,hy.activerecord.attributes.publication/translation.published_at,Date Made Public,Date Made Public
-160,hy.activerecord.attributes.publication/translation.title,Title,Title
-161,hy.activerecord.attributes.publication/translation.about,About,About
-162,hy.activerecord.attributes.publication/translation.editor,Editor,Editor
-163,hy.activerecord.attributes.publication/translation.publisher,Publisher,Publisher
-164,hy.activerecord.attributes.publication/translation.writer,Writer,Writer
-165,hy.activerecord.attributes.publication_editor.editors,Editors,Editors
-166,hy.activerecord.attributes.publication_editor.publishers,Publishers,Publishers
-167,hy.activerecord.attributes.publication_editor.year_start,Year Start,Year Start
-168,hy.activerecord.attributes.publication_editor.year_end,Year End,Year End
-169,hy.activerecord.attributes.publication_editor.person_roles,Related People,Related People
-170,hy.activerecord.attributes.publication_editor.person_role,Related Person,Related Person
-171,hy.activerecord.attributes.publication_language.is_active,Is Public?,Is Public?
-172,hy.activerecord.attributes.publication_language/translation.language,Language,Language
-173,hy.activerecord.attributes.related_item.related_item_type,Type,Type
-174,hy.activerecord.attributes.related_item.related_item_types.publication,Source,Source
-175,hy.activerecord.attributes.related_item.related_item_types.issue,Issue,Issue
-176,hy.activerecord.attributes.related_item.related_item_types.illustration,Image,Image
-177,hy.activerecord.attributes.related_item.related_item_types.person,Person,Person
-178,hy.activerecord.attributes.related_item.publication_id,Source,Source
-179,hy.activerecord.attributes.related_item.issue_id,Issue,Issue
-180,hy.activerecord.attributes.related_item.illustration_id,Image,Image
-181,hy.activerecord.attributes.related_item.person_id,Person,Person
-182,hy.activerecord.attributes.research.is_public,Is Public?,Is Public?
-183,hy.activerecord.attributes.research.published_at,Date Made Public,Date Made Public
-184,hy.activerecord.attributes.research.title,Title,Title
-185,hy.activerecord.attributes.research.summary,Summary,Summary
-186,hy.activerecord.attributes.research.text,Text,Text
-187,hy.activerecord.attributes.research.cover_image,Cover Image,Cover Image
-188,hy.activerecord.attributes.research.slideshow,Sliedshow Image,Sliedshow Image
-189,hy.activerecord.attributes.research.slideshows,Sliedshow Images,Sliedshow Images
-190,hy.activerecord.attributes.research/translation.is_public,Is Public?,Is Public?
-191,hy.activerecord.attributes.research/translation.published_at,Date Made Public,Date Made Public
-192,hy.activerecord.attributes.research/translation.title,Title,Title
-193,hy.activerecord.attributes.research/translation.summary,Summary,Summary
-194,hy.activerecord.attributes.research/translation.text,Text,Text
-195,hy.activerecord.attributes.role.name,Name,Name
-196,hy.activerecord.attributes.role.is_illustrator,Is Illustrator?,Is Illustrator?
-197,hy.activerecord.attributes.slideshow.image,Image,Image
-198,hy.activerecord.attributes.slideshow.sort,Sort Order,Sort Order
-199,hy.activerecord.attributes.slideshow.caption,Caption,Caption
-200,hy.activerecord.attributes.slideshow/translation.caption,Caption,Caption
-201,hy.activerecord.attributes.tag.name,Name,Name
-202,hy.activerecord.attributes.user.email,Email,Email
-203,hy.activerecord.attributes.user.name,Name,Name
-204,hy.activerecord.attributes.user.role,Role,Role
-205,hy.activerecord.attributes.user.roles.uploader,Uploader,Uploader
-206,hy.activerecord.attributes.user.roles.editor,Editor,Editor
-207,hy.activerecord.attributes.user.roles.admin,Admin,Admin
-208,hy.activerecord.attributes.user.roles.superadmin,Super Admin,Super Admin
-209,hy.crop_alignments.center,Center,Center
-210,hy.crop_alignments.north,North,North
-211,hy.crop_alignments.northwest,North West,North West
-212,hy.crop_alignments.west,West,West
-213,hy.crop_alignments.southwest,South West,South West
-214,hy.crop_alignments.south,South,South
-215,hy.crop_alignments.southeast,South East,South East
-216,hy.crop_alignments.east,East,East
-217,hy.crop_alignments.northeast,North East,North East
-218,hy.labels.translations,Translation Fields,Translation Fields
-219,hy.labels.illustration_count,Images on File,Images on File
-220,hy.labels.issue_count,Issues on File,Issues on File
-221,hy.labels.combined_publications_count,Source Images,Source Images
-222,hy.labels.is_public_status,Public Status,Public Status
-223,hy.labels.required_for_publication,Required fields for making public are missing,Required fields for making public are missing
-224,hy.labels.language_error,%{lang} Error: %{msg},%{lang} Error: %{msg}
-225,hy.labels.language_switcher,Language Switcher,Language Switcher
-226,hy.labels.view,View,View
-227,hy.labels.view_file,View PDF,View PDF
-228,hy.labels.view_file_with_size,View %{name} PDF (%{size}),View %{name} PDF (%{size})
-229,hy.labels.news,News,News
-230,hy.labels.research,Research,Research
-231,hy.labels.related_items,Releated Items,Releated Items
-232,hy.labels.slideshow,Slideshow,Slideshow
-233,hy.labels.publications,Sources,Sources
-234,hy.labels.publication,Source,Source
-235,hy.labels.illustrations,Images,Images
-236,hy.labels.illustration,Image,Image
-237,hy.labels.illustrators,Illustrators,Illustrators
-238,hy.labels.people,People,People
-239,hy.labels.issues,Issues,Issues
-240,hy.labels.all_news,View All News,View All News
-241,hy.labels.all_research,View All Research,View All Research
-242,hy.labels.about,About,About
-243,hy.labels.highlights,Highlights,Highlights
-244,hy.labels.home,Home,Home
-245,hy.labels.contact,Contact,Contact
-246,hy.labels.followus,Follow us on:,Follow us on:
-247,hy.labels.facebook,Facebook,Facebook
-248,hy.labels.twitter,Twitter,Twitter
-249,hy.labels.donors,Funding,Funding
-250,hy.labels.partners,Partners,Partners
-251,hy.labels.contributors,Contributors,Contributors
-252,hy.labels.read_more,Read More,Read More
-253,hy.labels.view_all,View All,View All
-254,hy.labels.view_all_with_count,View All %{number} %{title} Records,View All %{number} %{title} Records
-255,hy.labels.stats,Stats,Stats
-256,hy.labels.journals,Journals,Journals
-257,hy.labels.journal_issues,Journal Issues,Journal Issues
-258,hy.labels.books,Books,Books
-259,hy.labels.originals,Originals,Originals
-260,hy.labels.languages,Languages,Languages
-261,hy.labels.by,By,By
-262,hy.labels.lived,Lived,Lived
-263,hy.labels.roles,Roles,Roles
-264,hy.labels.type,Type,Type
-265,hy.labels.next,Next,Next
-266,hy.labels.previous,Previous,Previous
-267,hy.labels.view_bigger_image,Click to view the original image,Click to view the original image
-268,hy.labels.view_annotations,View Annotations,View Annotations
-269,hy.labels.annotations_for,Annotations For: %{name},Annotations For: %{name}
-270,hy.labels.annotation_help,Click on numbers to view the annotation text,Click on numbers to view the annotation text
-271,hy.labels.publication_date,Published,Published
-272,hy.labels.list,View the records in a list view,View the records in a list view
-273,hy.labels.grid,View the records in a grid view,View the records in a grid view
-274,hy.labels.publication_dates.journal,Issue Dates,Issue Dates
-275,hy.labels.publication_dates.book,Year,Year
-276,hy.labels.publication_dates.original,Year,Year
-277,hy.labels.filters,Filters,Filters
-278,hy.labels.filter.search,Search,Search
-279,hy.labels.filter.source_type,Source Type,Source Type
-280,hy.labels.filter.language,Language,Language
-281,hy.labels.filter.person,Person,Person
-282,hy.labels.filter.role,Role,Role
-283,hy.labels.filter.date,Date,Date
-284,hy.labels.filter.date_explanation,Pick start date or end date or both.,Pick start date or end date or both.
-285,hy.labels.filter.date_start,Start Date,Start Date
-286,hy.labels.filter.date_end,End Date,End Date
-287,hy.labels.filter.date_close,Confirm,Confirm
-288,hy.labels.filter.date_clear,Clear,Clear
-289,hy.labels.filter.no_date,None,None
-290,hy.labels.unknown,Unknown,Unknown
-291,hy.labels.meta.publication_type,Type,Type
-292,hy.labels.meta.publication_language,Language,Language
-293,hy.labels.meta.illustration_count,Images,Images
-294,hy.labels.meta.issue_count,Issues,Issues
-295,hy.labels.meta.publication_count,Sources,Sources
-296,hy.labels.meta.publication_year,Year,Year
-297,hy.labels.meta.creation_year,Year,Year
-298,hy.labels.meta.editor,Editor,Editor
-299,hy.labels.meta.publisher,Publisher,Publisher
-300,hy.labels.meta.writer,Writer,Writer
-301,hy.labels.meta.year_start,Start,Start
-302,hy.labels.meta.year_end,End,End
-303,hy.labels.meta.issue_number,Issue,Issue
-304,hy.labels.meta.publication_date,Published,Published
-305,hy.labels.meta.in_the_news,In The News,In The News
-306,hy.labels.meta.journal,Journal,Journal
-307,hy.labels.meta.published_in,Published In,Published In
-308,hy.labels.meta.date_birth,Born,Born
-309,hy.labels.meta.date_death,Died,Died
-310,hy.labels.meta.tags,Tags,Tags
-311,hy.labels.meta.roles,Roles,Roles
-312,hy.labels.meta.people,People,People
-313,hy.labels.meta.lived,Lived,Lived
-314,hy.messages.no_data,There is no data on record at this time.,There is no data on record at this time.
-315,hy.messages.no_issues,There are no issues on record at this time.,There are no issues on record at this time.
-316,hy.messages.no_illustrations,There are no images on record at this time.,There are no images on record at this time.
-317,hy.navigation_groups.primary,Primary Data,Primary Data
-318,hy.navigation_groups.supporting,Supporting Data,Supporting Data
-319,hy.navigation_groups.news,News Items,News Items
-320,hy.navigation_groups.admin,Admin,Admin
-321,hy.meta.site_name,Beyond Caricature,Beyond Caricature
-322,hy.meta.sub_title,The Oskar Schmerling Digital Archive,The Oskar Schmerling Digital Archive
-323,hy.meta.description,This is a brief description of the site,This is a brief description of the site
-324,hy.meta.twitter_site,@schmerling,@schmerling
-325,hy.languages.en,English,English
-326,hy.languages.ru,Russian,Russian
-327,hy.languages.az,Azeri,Azeri
-328,hy.languages.ka,Georgian,Georgian
-329,hy.languages.hy,Armenian,Armenian
-330,hy.status.yes,Yes,Yes
-331,hy.status.true,Yes,Yes
-332,hy.status.no,No,No
-333,hy.status.false,No,No
-334,hy.devise.failure.deleted_account,Your account has been deleted and you can no longer login.,Your account has been deleted and you can no longer login.
-335,hy.home.index.oskar_alt,Self portrait of Oskar Schmerling holding a whip and wearing horns,Self portrait of Oskar Schmerling holding a whip and wearing horns
-336,hy.home.index.scroll,Scroll,Scroll
-337,hy.home.about.donors.reed,Reed College,Reed College
-338,hy.home.about.donors.nceeer,National Council for Eurasian and East European Research,National Council for Eurasian and East European Research
-339,hy.home.about.partners.geo_library,National Parliamentary Library of Georgia,National Parliamentary Library of Georgia
-340,hy.shared.news_item.related_item_explanation,Related Items,Related Items
+47,hy.activerecord.attributes.highlight.updated_at,Last Updated,Last Updated
+48,hy.activerecord.attributes.highlight/translation.is_public,Is Public?,Is Public?
+49,hy.activerecord.attributes.highlight/translation.published_at,Date Made Public,Date Made Public
+50,hy.activerecord.attributes.highlight/translation.title,Title,Title
+51,hy.activerecord.attributes.highlight/translation.summary,Summary,Summary
+52,hy.activerecord.attributes.highlight/translation.link,Link To,Link To
+53,hy.activerecord.attributes.illustration.person_id,Person,Person
+54,hy.activerecord.attributes.illustration.image,Image,Image
+55,hy.activerecord.attributes.illustration.is_public,Is Public?,Is Public?
+56,hy.activerecord.attributes.illustration.published_at,Date Made Public,Date Made Public
+57,hy.activerecord.attributes.illustration.title,Title,Title
+58,hy.activerecord.attributes.illustration.context,Context,Context
+59,hy.activerecord.attributes.illustration.illustration_annotation,Annotation,Annotation
+60,hy.activerecord.attributes.illustration.illustration_annotations,Annotations,Annotations
+61,hy.activerecord.attributes.illustration.person_role,Person,Person
+62,hy.activerecord.attributes.illustration.updated_at,Last Updated,Last Updated
+63,hy.activerecord.attributes.illustration/translation.is_public,Is Public?,Is Public?
+64,hy.activerecord.attributes.illustration/translation.published_at,Date Made Public,Date Made Public
+65,hy.activerecord.attributes.illustration/translation.title,Title,Title
+66,hy.activerecord.attributes.illustration/translation.context,Context,Context
+67,hy.activerecord.attributes.illustration_annotations.sort,Sort,Sort
+68,hy.activerecord.attributes.illustration_annotations.annotation,Annotation,Annotation
+69,hy.activerecord.attributes.illustration_issue.illustration_id,Image,Image
+70,hy.activerecord.attributes.illustration_issue.issue_id,Issue,Issue
+71,hy.activerecord.attributes.illustration_issue.page_number_start,Page Number Start,Page Number Start
+72,hy.activerecord.attributes.illustration_issue.page_number_end,Page Number End,Page Number End
+73,hy.activerecord.attributes.illustration_issue.is_public,,
+74,hy.activerecord.attributes.illustration_publication.illustration_id,Image,Image
+75,hy.activerecord.attributes.illustration_publication.publication_id,Source,Source
+76,hy.activerecord.attributes.illustration_publication.page_number_start,Page Number Start,Page Number Start
+77,hy.activerecord.attributes.illustration_publication.page_number_end,Page Number End,Page Number End
+78,hy.activerecord.attributes.illustration_publication.is_public,Is Public?,Is Public?
+79,hy.activerecord.attributes.illustration_tag.illustration_id,Image,Image
+80,hy.activerecord.attributes.illustration_tag.tag_id,Tag,Tag
+81,hy.activerecord.attributes.issue.publication,Journal,Journal
+82,hy.activerecord.attributes.issue.publication_id,Journal,Journal
+83,hy.activerecord.attributes.issue.issue_number,Issue Number,Issue Number
+84,hy.activerecord.attributes.issue.date_publication,Publication Date,Publication Date
+85,hy.activerecord.attributes.issue.is_public,Is Public?,Is Public?
+86,hy.activerecord.attributes.issue.published_at,Date Made Public,Date Made Public
+87,hy.activerecord.attributes.issue.scanned_file,PDF File,PDF File
+88,hy.activerecord.attributes.issue.cover_image,Cover Image,Cover Image
+89,hy.activerecord.attributes.issue.updated_at,Last Updated,Last Updated
+90,hy.activerecord.attributes.news.is_public,Is Public?,Is Public?
+91,hy.activerecord.attributes.news.published_at,Date Made Public,Date Made Public
+92,hy.activerecord.attributes.news.title,Title,Title
+93,hy.activerecord.attributes.news.summary,Summary,Summary
+94,hy.activerecord.attributes.news.text,Text,Text
+95,hy.activerecord.attributes.news.cover_image,Cover Image,Cover Image
+96,hy.activerecord.attributes.news.slideshow,Sliedshow Image,Sliedshow Image
+97,hy.activerecord.attributes.news.slideshows,Sliedshow Images,Sliedshow Images
+98,hy.activerecord.attributes.news.related_item,Related Item,Related Item
+99,hy.activerecord.attributes.news.related_items,Related Items,Related Items
+100,hy.activerecord.attributes.news.related_item_type,Type,Type
+101,hy.activerecord.attributes.news.publication_id,Source,Source
+102,hy.activerecord.attributes.news.issue_id,Issue,Issue
+103,hy.activerecord.attributes.news.illustration_id,Image,Image
+104,hy.activerecord.attributes.news.updated_at,Last Updated,Last Updated
+105,hy.activerecord.attributes.news/translation.is_public,Is Public?,Is Public?
+106,hy.activerecord.attributes.news/translation.published_at,Date Made Public,Date Made Public
+107,hy.activerecord.attributes.news/translation.title,Title,Title
+108,hy.activerecord.attributes.news/translation.summary,Summary,Summary
+109,hy.activerecord.attributes.news/translation.text,Text,Text
+110,hy.activerecord.attributes.page_content.name,Name,Name
+111,hy.activerecord.attributes.page_content.content,Text,Text
+112,hy.activerecord.attributes.page_content.updated_at,Last Updated,Last Updated
+113,hy.activerecord.attributes.page_content/translation.content,Text,Text
+114,hy.activerecord.attributes.person.date_birth,Birth Date,Birth Date
+115,hy.activerecord.attributes.person.date_death,Death Date,Death Date
+116,hy.activerecord.attributes.person.is_public,Is Public?,Is Public?
+117,hy.activerecord.attributes.person.published_at,Date Made Public,Date Made Public
+118,hy.activerecord.attributes.person.name,Name,Name
+119,hy.activerecord.attributes.person.last_name,Last Name,Last Name
+120,hy.activerecord.attributes.person.first_name,First Name,First Name
+121,hy.activerecord.attributes.person.bio,Biography,Biography
+122,hy.activerecord.attributes.person.image,Image,Image
+123,hy.activerecord.attributes.person.updated_at,Last Updated,Last Updated
+124,hy.activerecord.attributes.person/translation.is_public,Is Public?,Is Public?
+125,hy.activerecord.attributes.person/translation.published_at,Date Made Public,Date Made Public
+126,hy.activerecord.attributes.person/translation.name,Name,Name
+127,hy.activerecord.attributes.person/translation.last_name,Last Name,Last Name
+128,hy.activerecord.attributes.person/translation.first_name,First Name,First Name
+129,hy.activerecord.attributes.person/translation.bio,Biography,Biography
+130,hy.activerecord.attributes.person_role.role,Role,Role
+131,hy.activerecord.attributes.person_role.role_types.illustrator,Illustrator,Illustrator
+132,hy.activerecord.attributes.person_role.role_types.editor,Editor,Editor
+133,hy.activerecord.attributes.person_role.role_types.publisher,Publisher,Publisher
+134,hy.activerecord.attributes.person_role.role_types.writer,Writer,Writer
+135,hy.activerecord.attributes.person_role.role_types.printer,Printer,Printer
+136,hy.activerecord.attributes.person_role.role_types.financier,Financier,Financier
+137,hy.activerecord.attributes.person_role.role_types.official,Official,Official
+138,hy.activerecord.attributes.person_role.role_types.subject,Subject,Subject
+139,hy.activerecord.attributes.publication.publication_type,Source Type,Source Type
+140,hy.activerecord.attributes.publication.publication_types.journal,Journal,Journal
+141,hy.activerecord.attributes.publication.publication_types.book,Book,Book
+142,hy.activerecord.attributes.publication.publication_types.original,Original,Original
+143,hy.activerecord.attributes.publication.publication_language,Language,Language
+144,hy.activerecord.attributes.publication.publication_language_id,Language,Language
+145,hy.activerecord.attributes.publication.is_public,Is Public?,Is Public?
+146,hy.activerecord.attributes.publication.published_at,Date Made Public,Date Made Public
+147,hy.activerecord.attributes.publication.year,Year,Year
+148,hy.activerecord.attributes.publication.title,Title,Title
+149,hy.activerecord.attributes.publication.about,About,About
+150,hy.activerecord.attributes.publication.editor,Editor,Editor
+151,hy.activerecord.attributes.publication.publisher,Publisher,Publisher
+152,hy.activerecord.attributes.publication.writer,Writer,Writer
+153,hy.activerecord.attributes.publication.scanned_file,PDF File,PDF File
+154,hy.activerecord.attributes.publication.cover_image,Cover Image,Cover Image
+155,hy.activerecord.attributes.publication.publication_editor,Journal Editor,Journal Editor
+156,hy.activerecord.attributes.publication.publication_editors,Journal Editors,Journal Editors
+157,hy.activerecord.attributes.publication.editors,Editors,Editors
+158,hy.activerecord.attributes.publication.publishers,Publishers,Publishers
+159,hy.activerecord.attributes.publication.writers,Writers,Writers
+160,hy.activerecord.attributes.publication.printers,Printers,Printers
+161,hy.activerecord.attributes.publication.financiers,Financiers,Financiers
+162,hy.activerecord.attributes.publication.officials,Officials,Officials
+163,hy.activerecord.attributes.publication.subjects,Subjects,Subjects
+164,hy.activerecord.attributes.publication.person_roles,Related People,Related People
+165,hy.activerecord.attributes.publication.person_role,Related Person,Related Person
+166,hy.activerecord.attributes.publication.updated_at,Last Updated,Last Updated
+167,hy.activerecord.attributes.publication/translation.is_public,Is Public?,Is Public?
+168,hy.activerecord.attributes.publication/translation.published_at,Date Made Public,Date Made Public
+169,hy.activerecord.attributes.publication/translation.title,Title,Title
+170,hy.activerecord.attributes.publication/translation.about,About,About
+171,hy.activerecord.attributes.publication/translation.editor,Editor,Editor
+172,hy.activerecord.attributes.publication/translation.publisher,Publisher,Publisher
+173,hy.activerecord.attributes.publication/translation.writer,Writer,Writer
+174,hy.activerecord.attributes.publication_editor.editors,Editors,Editors
+175,hy.activerecord.attributes.publication_editor.publishers,Publishers,Publishers
+176,hy.activerecord.attributes.publication_editor.year_start,Year Start,Year Start
+177,hy.activerecord.attributes.publication_editor.year_end,Year End,Year End
+178,hy.activerecord.attributes.publication_editor.person_roles,Related People,Related People
+179,hy.activerecord.attributes.publication_editor.person_role,Related Person,Related Person
+180,hy.activerecord.attributes.publication_language.is_active,Is Public?,Is Public?
+181,hy.activerecord.attributes.publication_language.updated_at,Last Updated,Last Updated
+182,hy.activerecord.attributes.publication_language/translation.language,Language,Language
+183,hy.activerecord.attributes.related_item.related_item_type,Type,Type
+184,hy.activerecord.attributes.related_item.related_item_types.publication,Source,Source
+185,hy.activerecord.attributes.related_item.related_item_types.issue,Issue,Issue
+186,hy.activerecord.attributes.related_item.related_item_types.illustration,Image,Image
+187,hy.activerecord.attributes.related_item.related_item_types.person,Person,Person
+188,hy.activerecord.attributes.related_item.publication_id,Source,Source
+189,hy.activerecord.attributes.related_item.issue_id,Issue,Issue
+190,hy.activerecord.attributes.related_item.illustration_id,Image,Image
+191,hy.activerecord.attributes.related_item.person_id,Person,Person
+192,hy.activerecord.attributes.research.is_public,Is Public?,Is Public?
+193,hy.activerecord.attributes.research.published_at,Date Made Public,Date Made Public
+194,hy.activerecord.attributes.research.title,Title,Title
+195,hy.activerecord.attributes.research.summary,Summary,Summary
+196,hy.activerecord.attributes.research.text,Text,Text
+197,hy.activerecord.attributes.research.cover_image,Cover Image,Cover Image
+198,hy.activerecord.attributes.research.slideshow,Sliedshow Image,Sliedshow Image
+199,hy.activerecord.attributes.research.slideshows,Sliedshow Images,Sliedshow Images
+200,hy.activerecord.attributes.research.updated_at,Last Updated,Last Updated
+201,hy.activerecord.attributes.research/translation.is_public,Is Public?,Is Public?
+202,hy.activerecord.attributes.research/translation.published_at,Date Made Public,Date Made Public
+203,hy.activerecord.attributes.research/translation.title,Title,Title
+204,hy.activerecord.attributes.research/translation.summary,Summary,Summary
+205,hy.activerecord.attributes.research/translation.text,Text,Text
+206,hy.activerecord.attributes.role.name,Name,Name
+207,hy.activerecord.attributes.role.is_illustrator,Is Illustrator?,Is Illustrator?
+208,hy.activerecord.attributes.role.updated_at,Last Updated,Last Updated
+209,hy.activerecord.attributes.slideshow.image,Image,Image
+210,hy.activerecord.attributes.slideshow.sort,Sort Order,Sort Order
+211,hy.activerecord.attributes.slideshow.caption,Caption,Caption
+212,hy.activerecord.attributes.slideshow/translation.caption,Caption,Caption
+213,hy.activerecord.attributes.tag.name,Name,Name
+214,hy.activerecord.attributes.tag.updated_at,Last Updated,Last Updated
+215,hy.activerecord.attributes.user.email,Email,Email
+216,hy.activerecord.attributes.user.name,Name,Name
+217,hy.activerecord.attributes.user.role,Role,Role
+218,hy.activerecord.attributes.user.roles.uploader,Uploader,Uploader
+219,hy.activerecord.attributes.user.roles.editor,Editor,Editor
+220,hy.activerecord.attributes.user.roles.admin,Admin,Admin
+221,hy.activerecord.attributes.user.roles.superadmin,Super Admin,Super Admin
+222,hy.activerecord.attributes.user.updated_at,Last Updated,Last Updated
+223,hy.crop_alignments.center,Center,Center
+224,hy.crop_alignments.north,North,North
+225,hy.crop_alignments.northwest,North West,North West
+226,hy.crop_alignments.west,West,West
+227,hy.crop_alignments.southwest,South West,South West
+228,hy.crop_alignments.south,South,South
+229,hy.crop_alignments.southeast,South East,South East
+230,hy.crop_alignments.east,East,East
+231,hy.crop_alignments.northeast,North East,North East
+232,hy.labels.translations,Translation Fields,Translation Fields
+233,hy.labels.illustration_count,Images on File,Images on File
+234,hy.labels.issue_count,Issues on File,Issues on File
+235,hy.labels.combined_publications_count,Source Images,Source Images
+236,hy.labels.is_public_status,Public Status,Public Status
+237,hy.labels.required_for_publication,Required fields for making public are missing,Required fields for making public are missing
+238,hy.labels.language_error,%{lang} Error: %{msg},%{lang} Error: %{msg}
+239,hy.labels.language_switcher,Language Switcher,Language Switcher
+240,hy.labels.view,View,View
+241,hy.labels.view_file,View PDF,View PDF
+242,hy.labels.view_file_with_size,View %{name} PDF (%{size}),View %{name} PDF (%{size})
+243,hy.labels.news,News,News
+244,hy.labels.research,Research,Research
+245,hy.labels.related_items,Releated Items,Releated Items
+246,hy.labels.slideshow,Slideshow,Slideshow
+247,hy.labels.publications,Sources,Sources
+248,hy.labels.publication,Source,Source
+249,hy.labels.illustrations,Images,Images
+250,hy.labels.illustration,Image,Image
+251,hy.labels.illustrators,Illustrators,Illustrators
+252,hy.labels.people,People,People
+253,hy.labels.issues,Issues,Issues
+254,hy.labels.all_news,View All News,View All News
+255,hy.labels.all_research,View All Research,View All Research
+256,hy.labels.about,About,About
+257,hy.labels.highlights,Highlights,Highlights
+258,hy.labels.home,Home,Home
+259,hy.labels.contact,Contact,Contact
+260,hy.labels.followus,Follow us on:,Follow us on:
+261,hy.labels.facebook,Facebook,Facebook
+262,hy.labels.twitter,Twitter,Twitter
+263,hy.labels.donors,Funding,Funding
+264,hy.labels.partners,Partners,Partners
+265,hy.labels.contributors,Contributors,Contributors
+266,hy.labels.read_more,Read More,Read More
+267,hy.labels.view_all,View All,View All
+268,hy.labels.view_all_with_count,View All %{number} %{title} Records,View All %{number} %{title} Records
+269,hy.labels.stats,Stats,Stats
+270,hy.labels.journals,Journals,Journals
+271,hy.labels.journal_issues,Journal Issues,Journal Issues
+272,hy.labels.books,Books,Books
+273,hy.labels.originals,Originals,Originals
+274,hy.labels.languages,Languages,Languages
+275,hy.labels.by,By,By
+276,hy.labels.lived,Lived,Lived
+277,hy.labels.roles,Roles,Roles
+278,hy.labels.type,Type,Type
+279,hy.labels.next,Next,Next
+280,hy.labels.previous,Previous,Previous
+281,hy.labels.view_bigger_image,Click to view the original image,Click to view the original image
+282,hy.labels.view_annotations,View Annotations,View Annotations
+283,hy.labels.annotations_for,Annotations For: %{name},Annotations For: %{name}
+284,hy.labels.annotation_help,Click on numbers to view the annotation text,Click on numbers to view the annotation text
+285,hy.labels.publication_date,Published,Published
+286,hy.labels.list,View the records in a list view,View the records in a list view
+287,hy.labels.grid,View the records in a grid view,View the records in a grid view
+288,hy.labels.publication_dates.journal,Issue Dates,Issue Dates
+289,hy.labels.publication_dates.book,Year,Year
+290,hy.labels.publication_dates.original,Year,Year
+291,hy.labels.filters,Filters,Filters
+292,hy.labels.filter.search,Search,Search
+293,hy.labels.filter.source_type,Source Type,Source Type
+294,hy.labels.filter.language,Language,Language
+295,hy.labels.filter.person,Person,Person
+296,hy.labels.filter.role,Role,Role
+297,hy.labels.filter.date,Date,Date
+298,hy.labels.filter.date_explanation,Pick start date or end date or both.,Pick start date or end date or both.
+299,hy.labels.filter.date_start,Start Date,Start Date
+300,hy.labels.filter.date_end,End Date,End Date
+301,hy.labels.filter.date_close,Confirm,Confirm
+302,hy.labels.filter.date_clear,Clear,Clear
+303,hy.labels.filter.no_date,None,None
+304,hy.labels.unknown,Unknown,Unknown
+305,hy.labels.meta.publication_type,Type,Type
+306,hy.labels.meta.publication_language,Language,Language
+307,hy.labels.meta.illustration_count,Images,Images
+308,hy.labels.meta.issue_count,Issues,Issues
+309,hy.labels.meta.publication_count,Sources,Sources
+310,hy.labels.meta.publication_year,Year,Year
+311,hy.labels.meta.creation_year,Year,Year
+312,hy.labels.meta.editor,Editor,Editor
+313,hy.labels.meta.publisher,Publisher,Publisher
+314,hy.labels.meta.writer,Writer,Writer
+315,hy.labels.meta.year_start,Start,Start
+316,hy.labels.meta.year_end,End,End
+317,hy.labels.meta.issue_number,Issue,Issue
+318,hy.labels.meta.publication_date,Published,Published
+319,hy.labels.meta.in_the_news,In The News,In The News
+320,hy.labels.meta.journal,Journal,Journal
+321,hy.labels.meta.published_in,Published In,Published In
+322,hy.labels.meta.date_birth,Born,Born
+323,hy.labels.meta.date_death,Died,Died
+324,hy.labels.meta.tags,Tags,Tags
+325,hy.labels.meta.roles,Roles,Roles
+326,hy.labels.meta.people,People,People
+327,hy.labels.meta.lived,Lived,Lived
+328,hy.messages.no_data,There is no data on record at this time.,There is no data on record at this time.
+329,hy.messages.no_issues,There are no issues on record at this time.,There are no issues on record at this time.
+330,hy.messages.no_illustrations,There are no images on record at this time.,There are no images on record at this time.
+331,hy.navigation_groups.primary,Primary Data,Primary Data
+332,hy.navigation_groups.supporting,Supporting Data,Supporting Data
+333,hy.navigation_groups.news,News Items,News Items
+334,hy.navigation_groups.admin,Admin,Admin
+335,hy.meta.site_name,Beyond Caricature,Beyond Caricature
+336,hy.meta.sub_title,The Oskar Schmerling Digital Archive,The Oskar Schmerling Digital Archive
+337,hy.meta.description,This is a brief description of the site,This is a brief description of the site
+338,hy.meta.twitter_site,@schmerling,@schmerling
+339,hy.languages.en,English,English
+340,hy.languages.ru,Russian,Russian
+341,hy.languages.az,Azeri,Azeri
+342,hy.languages.ka,Georgian,Georgian
+343,hy.languages.hy,Armenian,Armenian
+344,hy.status.yes,Yes,Yes
+345,hy.status.true,Yes,Yes
+346,hy.status.no,No,No
+347,hy.status.false,No,No
+348,hy.devise.failure.deleted_account,Your account has been deleted and you can no longer login.,Your account has been deleted and you can no longer login.
+349,hy.home.index.oskar_alt,Self portrait of Oskar Schmerling holding a whip and wearing horns,Self portrait of Oskar Schmerling holding a whip and wearing horns
+350,hy.home.index.scroll,Scroll,Scroll
+351,hy.home.about.donors.reed,Reed College,Reed College
+352,hy.home.about.donors.nceeer,National Council for Eurasian and East European Research,National Council for Eurasian and East European Research
+353,hy.home.about.partners.geo_library,National Parliamentary Library of Georgia,National Parliamentary Library of Georgia
+354,hy.shared.news_item.related_item_explanation,Related Items,Related Items

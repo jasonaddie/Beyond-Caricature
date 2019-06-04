@@ -110,6 +110,13 @@ class Tag < ApplicationRecord
     # control the order in the admin nav menu
     weight 160
 
+    configure :updated_at do
+      # remove the time zone
+      pretty_value do
+        value.nil? ? nil : value.strftime("%Y-%m-%d %H:%M")
+      end
+    end
+
     # list page
     list do
       search_by :admin_search
@@ -118,6 +125,7 @@ class Tag < ApplicationRecord
       field :illustration_count do
         label I18n.t('labels.illustration_count')
       end
+      field :updated_at
     end
 
     # show page

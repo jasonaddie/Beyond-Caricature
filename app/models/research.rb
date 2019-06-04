@@ -213,6 +213,13 @@ class Research < ApplicationRecord
       end
     end
 
+    configure :updated_at do
+      # remove the time zone
+      pretty_value do
+        value.nil? ? nil : value.strftime("%Y-%m-%d %H:%M")
+      end
+    end
+
     # list page
     list do
       search_by :admin_search
@@ -222,6 +229,7 @@ class Research < ApplicationRecord
       field :title
       field :summary
       field :published_at
+      field :updated_at
     end
 
     # show page

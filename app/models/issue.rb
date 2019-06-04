@@ -256,6 +256,13 @@ end
       end
     end
 
+    configure :updated_at do
+      # remove the time zone
+      pretty_value do
+        value.nil? ? nil : value.strftime("%Y-%m-%d %H:%M")
+      end
+    end
+
     # list page
     list do
       search_by :admin_search
@@ -269,6 +276,7 @@ end
         label I18n.t('labels.illustration_count')
       end
       field :published_at
+      field :updated_at
     end
 
     # show page

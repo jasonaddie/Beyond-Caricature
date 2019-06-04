@@ -69,6 +69,7 @@ az:
         summary: Summary
         link: Link To
         cover_image: Cover Image
+        updated_at: Last Updated
       highlight/translation:
         is_public: Is Public?
         published_at: Date Made Public
@@ -85,6 +86,7 @@ az:
         illustration_annotation: Annotation
         illustration_annotations: Annotations
         person_role: Person
+        updated_at: Last Updated
       illustration/translation:
         is_public: Is Public?
         published_at: Date Made Public
@@ -117,6 +119,7 @@ az:
         published_at: Date Made Public
         scanned_file: PDF File
         cover_image: Cover Image
+        updated_at: Last Updated
       news:
         is_public: Is Public?
         published_at: Date Made Public
@@ -132,6 +135,7 @@ az:
         publication_id: Source
         issue_id: Issue
         illustration_id: Image
+        updated_at: Last Updated
       news/translation:
         is_public: Is Public?
         published_at: Date Made Public
@@ -141,19 +145,23 @@ az:
       page_content:
         name: Name
         content: Text
+        updated_at: Last Updated
       page_content/translation:
         content: Text
       person:
         date_birth: Birth Date
         date_death: Death Date
         is_public: Is Public?
+        published_at: Date Made Public
         name: Name
         last_name: Last Name
         first_name: First Name
         bio: Biography
         image: Image
+        updated_at: Last Updated
       person/translation:
         is_public: Is Public?
+        published_at: Date Made Public
         name: Name
         last_name: Last Name
         first_name: First Name
@@ -198,6 +206,7 @@ az:
         subjects: Subjects
         person_roles: Related People
         person_role: Related Person
+        updated_at: Last Updated
       publication/translation:
         is_public: Is Public?
         published_at: Date Made Public
@@ -215,6 +224,7 @@ az:
         person_role: Related Person
       publication_language:
         is_active: Is Public?
+        updated_at: Last Updated
       publication_language/translation:
         language: Language
       related_item:
@@ -237,6 +247,7 @@ az:
         cover_image: Cover Image
         slideshow: Sliedshow Image
         slideshows: Sliedshow Images
+        updated_at: Last Updated
       research/translation:
         is_public: Is Public?
         published_at: Date Made Public
@@ -246,6 +257,7 @@ az:
       role:
         name: Name
         is_illustrator: Is Illustrator?
+        updated_at: Last Updated
       slideshow:
         image: Image
         sort: Sort Order
@@ -254,6 +266,7 @@ az:
         caption: Caption
       tag:
         name: Name
+        updated_at: Last Updated
       user:
         email: Email
         name: Name
@@ -263,6 +276,7 @@ az:
           editor: Editor
           admin: Admin
           superadmin: Super Admin
+        updated_at: Last Updated
   crop_alignments:
     center: Center
     north: North
