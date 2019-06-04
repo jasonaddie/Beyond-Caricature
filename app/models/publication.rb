@@ -199,7 +199,7 @@ class Publication < ApplicationRecord
     if options[:person].present?
       # see if person exists
       # if so, get all publications or publication editors this person is assigned to
-      p = Person.published.friendly.select('id').find(options[:person])
+      p = Person.published.select('id').where(slug: options[:person]).first
       if p.present?
         pub_ids = PersonRole.where(person_id: p.id, person_roleable_type: 'Publication').pluck(:person_roleable_id)
         pub_editor_ids = PersonRole.where(person_id: p.id, person_roleable_type: 'PublicationEditor').pluck(:person_roleable_id)
@@ -209,6 +209,8 @@ class Publication < ApplicationRecord
           pub_ids.uniq!
         end
         x = x.where(id: pub_ids)
+      else
+        x = x.none
       end
     end
 
@@ -224,7 +226,7 @@ class Publication < ApplicationRecord
         end
         x = x.where(id: pub_ids)
       else
-        self
+        x = x.none
       end
     end
 

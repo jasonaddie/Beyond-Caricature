@@ -244,6 +244,8 @@ class Illustration < ApplicationRecord
         illustration_ids.flatten!
         illustration_ids.uniq!
         x = x.where(id: illustration_ids)
+      else
+        x = x.none
       end
 
     elsif options[:date_start].present?
@@ -261,6 +263,8 @@ class Illustration < ApplicationRecord
         illustration_ids.flatten!
         illustration_ids.uniq!
         x = x.where(id: illustration_ids)
+      else
+        x = x.none
       end
 
     elsif options[:date_end].present?
@@ -278,6 +282,8 @@ class Illustration < ApplicationRecord
         illustration_ids.flatten!
         illustration_ids.uniq!
         x = x.where(id: illustration_ids)
+      else
+        x = x.none
       end
 
     end
