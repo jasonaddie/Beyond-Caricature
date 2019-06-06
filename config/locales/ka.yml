@@ -426,6 +426,7 @@ ka:
         nceeer: National Council for Eurasian and East European Research
       partners:
         geo_library: National Parliamentary Library of Georgia
+        national_archives: National Archives of Georgia
   shared:
     news_item:
       related_item_explanation: Related Items

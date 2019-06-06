@@ -37,7 +37,7 @@
         <ul class="has-no-bullets">
           <li>
             <%= link_to "https://www.reed.edu/", target: :blank do %>
-              <%= image_tag "reed-college-griffin.png" %>
+              <%= image_tag "logos/reed-college-griffin.png" %>
               <div>
                 <%= t('.donors.reed') %>
               </div>
@@ -45,7 +45,7 @@
           </li>
           <li>
             <%= link_to "https://www.nceeer.org/", target: :blank do %>
-              <%= image_tag "nceeer.png" %>
+              <%= image_tag "logos/nceeer.png" %>
               <div>
                 <%= t('.donors.nceeer') %>
               </div>
@@ -60,9 +60,17 @@
         <ul class="has-no-bullets">
           <li>
             <%= link_to "http://www.nplg.gov.ge/eng/home", target: :blank do %>
-              <%= image_tag "geo_library_logo.png" %>
+              <%= image_tag "logos/geo_library.png" %>
               <div>
                 <%= t('.partners.geo_library') %>
+              </div>
+            <% end %>
+          </li>
+          <li>
+            <%= link_to "http://www.archives.gov.ge/en/home", target: :blank do %>
+              <%= image_tag "logos/national_archives.png" %>
+              <div>
+                <%= t('.partners.national_archives') %>
               </div>
             <% end %>
           </li>
