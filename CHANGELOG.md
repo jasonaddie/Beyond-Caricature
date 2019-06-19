@@ -1,6 +1,11 @@
 This page lists additions, changes, and bug fixes that have been applied to the application code.
 The numbers in brackets (i.e., [0.1]), indicate the version number of the app.
 
+## [0.44] - 2019-06-19
+### Added
+- Contact email on About page
+- Link to Facebook group page in footer
+
 ## [0.43] - 2019-06-19
 ### Added
 - National Archives of Georgia on About page
