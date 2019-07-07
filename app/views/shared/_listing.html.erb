@@ -30,7 +30,7 @@
                     title: record.title,
                     link_path: send(link_path, record),
                     cover_image_path: record.image.thumb(record.generate_image_size_syntax(:square)).url,
-                    illustrator: record.person_role ? record.person_role.name : nil,
+                    illustrator: record.illustrator_names,
                     illustration_count: show_counts == true ? record.illustration_count : nil
                 } %>
             <% end %>

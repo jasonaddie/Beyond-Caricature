@@ -85,7 +85,7 @@ ru:
         context: Context
         illustration_annotation: Annotation
         illustration_annotations: Annotations
-        person_role: Person
+        person_roles: Related People
         updated_at: Last Updated
       illustration/translation:
         is_public: Is Public?

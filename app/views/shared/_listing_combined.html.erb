@@ -30,7 +30,7 @@
                     title: record.title,
                     link_path: send(link_path[model_class], record),
                     cover_image_path: record.image.thumb(record.generate_image_size_syntax(:square)).url,
-                    illustrator: record.person_role ? record.person_role.name : nil
+                    illustrator: record.illustrator_names
                 } %>
             <% end %>
         </div>

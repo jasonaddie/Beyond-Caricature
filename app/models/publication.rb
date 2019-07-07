@@ -495,7 +495,7 @@ class Publication < ApplicationRecord
     configure :person_roles do
       # build simple list of name and role
       pretty_value do
-        bindings[:view].content_tag(:ul) do
+        bindings[:view].content_tag(:ul, class: 'has-no-bullets') do
           bindings[:object].person_roles.group_people_by_role.collect do |role, people|
             bindings[:view].content_tag(:li) do
               bindings[:view].content_tag(:span, role) +

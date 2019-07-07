@@ -29,9 +29,9 @@ class Illustration < ApplicationRecord
   #################
   ## ASSOCIATIONS ##
   #################
-  has_one :person_role, as: :person_roleable, dependent: :destroy
-  accepts_nested_attributes_for :person_role, allow_destroy: true,
-    reject_if: ->(role){ reject_person_role?(role)}
+  has_many :person_roles, as: :person_roleable, dependent: :destroy
+  accepts_nested_attributes_for :person_roles, allow_destroy: true,
+    reject_if: ->(role){ reject_person_roles?(role)}
 
   has_many :illustration_tags, dependent: :destroy
   has_many :tags, through: :illustration_tags
@@ -70,7 +70,7 @@ class Illustration < ApplicationRecord
   #################
   ## VALIDATION ##
   #################
-  validates :person_role, presence: true
+  validates :person_roles, presence: true
   validates_size_of :image, maximum: 5.megabytes
   validates_property :ext, of: :image, in: ['jpg', 'jpeg', 'png', 'JPG', 'JPEG', 'PNG']
 
@@ -125,7 +125,7 @@ class Illustration < ApplicationRecord
               ).pluck(:id)
 
     if people.present?
-      people_illustrations = self.joins(:person_role)
+      people_illustrations = self.joins(:person_roles)
                             .where(person_roles: {person_id: people})
                             .pluck(:id)
 
@@ -209,11 +209,11 @@ class Illustration < ApplicationRecord
     end
 
     if options[:person].present?
-      x = x.joins(:person_role).where(person_roles: {person_id: Person.published.where(slug: options[:person]).pluck(:id)})
+      x = x.joins(:person_roles).where(person_roles: {person_id: Person.published.where(slug: options[:person]).pluck(:id)})
     end
 
     if options[:role].present?
-      x = x.joins(:person_role).where(person_roles: {role_id: Role.where(slug: options[:role]).pluck(:id)})
+      x = x.joins(:person_roles).where(person_roles: {role_id: Role.where(slug: options[:role]).pluck(:id)})
     end
 
     if options[:source].present?
@@ -333,7 +333,7 @@ class Illustration < ApplicationRecord
   end
 
   # if there are no values, then reject
-  def self.reject_person_role?(person)
+  def self.reject_person_roles?(person)
     nontranslation_fields = %w(role_id person)
     found_value = false
 
@@ -362,6 +362,20 @@ class Illustration < ApplicationRecord
 
   def combined_publications_count
     publications_count + issues_count
+  end
+
+  # if there is a person with a role of illustrator, get their name
+  # else return nil
+  # - it is possible that there is more than one name
+  #   in this case the names will be comma separated
+  def illustrator_names
+    names = nil
+
+    if person_roles.present? && person_roles.illustrators.present?
+      names = person_roles.illustrators.map{|x| x.name}.join(', ')
+    end
+
+    return names
   end
 
   #################
@@ -424,10 +438,23 @@ class Illustration < ApplicationRecord
         end
       end
     end
-    configure :person_role do
+    configure :person_roles do
       # build simple list of name and role
       pretty_value do
-        value.nil? ? nil : bindings[:view].link_to(value.name, bindings[:view].url_for(action: 'show', model_name: 'Person', id: value.person_id), class: 'pjax')
+        bindings[:view].content_tag(:ul, class: 'has-no-bullets') do
+          bindings[:object].person_roles.group_people_by_role.collect do |role, people|
+            bindings[:view].content_tag(:li) do
+              bindings[:view].content_tag(:span, role) +
+              bindings[:view].content_tag(:ul) do
+                people.collect do |person|
+                  bindings[:view].content_tag(:li) do
+                    bindings[:view].link_to(person.name, bindings[:view].url_for(action: 'show', model_name: 'Person', id: person.person_id), class: 'pjax')
+                  end
+                end.join.html_safe
+              end
+            end
+          end.join.html_safe
+        end
       end
     end
     configure :illustration_annotations do
@@ -468,7 +495,7 @@ class Illustration < ApplicationRecord
       field :is_public
       field :image
       field :title
-      field :person_role
+      field :person_roles
       field :combined_publications_count do
         label I18n.t('labels.combined_publications_count')
       end
@@ -485,7 +512,7 @@ class Illustration < ApplicationRecord
       field :crop_alignment
       field :title
       field :context
-      field :person_role
+      field :person_roles
       field :illustration_annotations
       field :combined_publications_count do
         label I18n.t('labels.combined_publications_count')
@@ -504,7 +531,7 @@ class Illustration < ApplicationRecord
       field :crop_alignment do
         help I18n.t('admin.help.crop_alignment')
       end
-      field :person_role do
+      field :person_roles do
         help I18n.t('admin.help.person')
       end
       field :translations do

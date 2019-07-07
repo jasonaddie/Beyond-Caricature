@@ -260,3 +260,9 @@ body.rails_admin .sidebar-nav > .nav-stacked.changelog > li > a{
   color: $brand-info;
   padding-top: 12px;
 }
+
+/* do not show bullets in a list  */
+ul.has-no-bullets{
+  list-style: none;
+}
+

@@ -168,4 +168,32 @@ module ApplicationHelper
 
     return roles
   end
+
+
+  # if the publication is a journal, there may be publication roles
+  # and if there are, these roles have years assigned to them,
+  # so we then have to see if the role also exists in publication roles
+  # and if so, they need to be merged
+  # return format: { Role: { Unknown: [person, person, person], 1920: [person] } }
+  def merge_illustration_roles(illustration)
+    roles = {}
+
+    if illustration.present?
+      illustration_roles = illustration.person_roles.group_people_by_role
+
+      # add publication roles
+      if illustration_roles.present?
+        unknown_key = I18n.t('labels.unknown')
+        illustration_roles.each do |role, people|
+          roles[role] = {}
+          roles[role][unknown_key] = []
+          people.each do |person|
+            roles[role][unknown_key] << person
+          end
+        end
+      end
+    end
+
+    return roles
+  end
 end

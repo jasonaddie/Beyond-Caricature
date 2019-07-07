@@ -42,15 +42,29 @@
     <h1 class="title is-3"><%= title @illustration.title %></h1>
     <div class="meta-items-details">
       <ul class="meta-items-list">
-        <% if @illustration.person_role %>
-          <li>
-            <strong><%= t('labels.by') %>:</strong>
-            <%= link_to @illustration.person_role.name, person_path(@illustration.person_role.person), class: 'meta-link' %>
-          </li>
+        <% roles = merge_illustration_roles(@illustration) %>
+        <% if roles.present? %>
+          <% roles.each_with_index do |(role, records), index| %>
+            <li class="<%= index == 0 ? 'new-grouping' : '' %>">
+              <strong><%= role %>:</strong>
+              <% if records.keys.length == 1 && records.keys.first == I18n.t('labels.unknown') %>
+                <%= records.values.flatten.map{|person| link_to(person.name, person_path(person.person), class: 'meta-link')}.join(' ').html_safe %>
+              <% else %>
+                <ul class="indent-list">
+                  <% records.sort.each do |label, people| %>
+                    <li>
+                      <strong><%= label %>:</strong>
+                      <%= people.map{|person| link_to(person.name, person_path(person.person), class: 'meta-link')}.join(' ').html_safe %>
+                    </li>
+                  <% end %>
+                </ul>
+              <% end %>
+            </li>
+          <% end %>
         <% end %>
 
         <% if @illustration.publications.present? || @illustration.issues.present? %>
-          <li>
+          <li class="new-grouping">
             <strong><%= t('labels.meta.published_in') %>:</strong>
             <ul>
               <% if @illustration.publications.present? %>
@@ -72,7 +86,7 @@
         <% end %>
 
         <% if @illustration.tags.present? %>
-          <li>
+          <li class="new-grouping">
             <strong><%= t('labels.meta.tags') %>:</strong>
             <ul>
               <% @illustration.tags.each do |tag| %>
