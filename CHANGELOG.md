@@ -1,6 +1,12 @@
 This page lists additions, changes, and bug fixes that have been applied to the application code.
 The numbers in brackets (i.e., [0.1]), indicate the version number of the app.
 
+## [0.46] - 2019-07-11
+### Added
+- Google analytics code
+- Contact names and emails
+- Logo changes color on hover
+
 ## [0.45] - 2019-07-08
 ### Added
 - Changed Images to be able to have more than one person assigned to it
