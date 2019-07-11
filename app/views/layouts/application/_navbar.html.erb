@@ -2,7 +2,7 @@
   <div class="navbar-container">
     <div class="navbar-brand">
       <%= link_to root_path, class: 'navbar-item', title: t('meta.site_name') do %>
-        <%= image_tag('logo.svg', alt: t('meta.site_name'), class: 'logo') %>
+        <%= inline_svg('logo.svg', alt: t('meta.site_name'), class: 'logo') %>
       <% end %>
 
       <%= render partial: 'layouts/application/navbar_search', locals: {is_desktop_hidden: true, id: 'burger-search'} %>

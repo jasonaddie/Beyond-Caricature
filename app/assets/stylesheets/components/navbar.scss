@@ -12,10 +12,19 @@
   .navbar-brand{
     .navbar-item {
       padding-left: 1.5rem;
-      img{
+      svg{
         max-height: 31px;
         width: 31px;
         height: 31px;
+        use{
+          transition: all .3s ease-in-out;
+          fill: #232323;
+        }
+        &:hover{
+          use{
+            fill: $nav-start-active-color;
+          }
+        }
       }
     }
   }
@@ -156,7 +165,7 @@
         width: percentage(1/12);
         .navbar-item {
           padding-left: 0.75rem;
-          img{
+          svg{
             max-height: 70px;
             width: 70px;
             height: 70px;
