@@ -54,5 +54,15 @@
 
     <%= render partial: 'layouts/application/footer' %>
 
+    <% if Rails.env.production? && ENV['GOOGLE_ANALYTICS_ID'].present? %>
+      <script async src="https://www.googletagmanager.com/gtag/js?id=<%= ENV['GOOGLE_ANALYTICS_ID'] %>"></script>
+      <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+
+        gtag('config', '<%= ENV['GOOGLE_ANALYTICS_ID'] %>');
+      </script>
+    <% end %>
   </body>
 </html>
