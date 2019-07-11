@@ -421,6 +421,16 @@ ru:
       oskar_alt: Self portrait of Oskar Schmerling holding a whip and wearing horns
       scroll: Scroll
     about:
+      contacts:
+        one:
+          name: Site Admin
+          email: oskar@schmerliing.org
+        two:
+          name: Naomi Caffee
+          email: caffee@reed.edu
+        three:
+          name: Robert Denis
+          email: earlofgurney@pm.me
       donors:
         reed: Reed College
         nceeer: National Council for Eurasian and East European Research

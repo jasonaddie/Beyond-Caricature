@@ -13,6 +13,9 @@ body.home.about{
   }
 
   .content ul.contacts {
+    .column{
+      padding: 0.5rem;
+    }
     a{
       color: $grey-dark;
       opacity: 0.7;
@@ -54,7 +57,7 @@ body.home.about{
   body.home.about{
 
     .content ul.contacts{
-      columns: 2;
+      // columns: 2;
     }
 
     .decoration{

@@ -13,13 +13,18 @@
       </div>
     <% end %>
 
-    <h2 class="title is-4"><%= t('labels.contact') %></h2>
+    <% if t('.contacts').keys.length > 0 %>
+      <h2 class="title is-4"><%= t('labels.contact') %></h2>
 
-    <ul class="contacts has-no-bullets">
-      <li>
-        <a href="mailto:oskar@schmerling.org">oskar@schmerling.org</a>
-      </li>
-    </ul>
+      <ul class="contacts has-no-bullets">
+        <% t('.contacts').map{|k,v| v}.each do |contact| %>
+          <li class="columns">
+            <div class="column is-6-tablet is-4-desktop"><%= contact[:name] %></div>
+            <a class="column is-6-tablet is-8-desktop" href="mailto:<%= contact[:email] %>"><%= contact[:email] %></a>
+          </li>
+        <% end %>
+      </ul>
+    <% end %>
 
     <div class="columns donors-partners">
       <div class="column is-6">
