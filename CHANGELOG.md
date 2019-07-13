@@ -1,6 +1,10 @@
 This page lists additions, changes, and bug fixes that have been applied to the application code.
 The numbers in brackets (i.e., [0.1]), indicate the version number of the app.
 
+## [0.47] - 2019-07-11
+### Fixed
+- Site Admin email was mis-spelled
+
 ## [0.46] - 2019-07-11
 ### Added
 - Google analytics code
