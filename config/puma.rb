@@ -32,3 +32,11 @@ environment ENV.fetch("RAILS_ENV") { "development" }
 
 # Allow puma to be restarted by `rails restart` command.
 plugin :tmp_restart
+
+# restart puma workers so memory is kept in check
+before_fork do
+  require 'puma_worker_killer'
+
+  puma_rolling_reset_hours = ENV.fetch("PUMA_ROLLING_RESET_HOURS") { 4 }
+  PumaWorkerKiller.enable_rolling_restart(Integer(puma_rolling_reset_hours) * 3600)
+end

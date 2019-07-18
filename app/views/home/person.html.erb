@@ -81,7 +81,7 @@
       </ul>
 
       <div class="meta-text-container">
-        <div class="meta-text">
+        <div class="meta-text content">
           <%= @person.bio.html_safe %>
         </div>
         <div class='meta-text-more'>
@@ -114,7 +114,9 @@
   <div class="modal-content">
     <h1 class="title is-3"><%= @person.name %></h1>
 
-    <%= @person.bio.html_safe %>
+    <div class="content">
+      <%= @person.bio.html_safe %>
+    </div>
   </div>
   <button class="modal-close is-large" aria-label="close"></button>
 </div>

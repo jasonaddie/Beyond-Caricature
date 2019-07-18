@@ -8,7 +8,11 @@
       <h1 class="title is-uppercase"><%= t('meta.site_name') %></h2>
       <h2 class="subtitle is-capitalized is-size-4"><%= t('meta.sub_title') %></h2>
       <div class="text is-size-5">
-        <%= @page.content.html_safe if @page && @page.content.present? %>
+        <% if @page && @page.content.present? %>
+          <div class="content">
+            <%= @page.content.html_safe %>
+          </div>
+        <% end %>
       </div>
       <%= link_to t('labels.read_more'), about_path, class: 'read-more is-lowercase' %>
     </div>
@@ -42,7 +46,7 @@
               <div class="slideshow-slide-title">
                 <%= link_to highlight.title, highlight.link %>
               </div>
-              <div class="slideshow-slide-summary">
+              <div class="slideshow-slide-summary content">
                 <%= highlight.summary.html_safe %>
               </div>
             </div>

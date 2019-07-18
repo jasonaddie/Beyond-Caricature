@@ -43,15 +43,23 @@ Dragonfly.app.configure do
   # that are generated to file after
   # the image is generated
   before_serve do |job, env|
-    uid = job.store
-    ext = File.extname(uid).gsub('.', '')
+    begin
+      retries ||= 0
+      uid = job.store
+      ext = File.extname(uid).gsub('.', '')
 
-    # only save the thumb if it is an image
-    if (%w(jpg jpeg png).include?(ext))
-      Thumb.create!(
-          :uid => uid,
-          :job => job.signature
-      )
+      # only save the thumb if it is an image
+      if (%w(jpg jpeg png).include?(ext))
+        Thumb.create!(
+            :uid => uid,
+            :job => job.signature
+        )
+      end
+    rescue
+      # retry again up to 3 times total
+      # in case an error occurred while calling job.store
+      Rails.logger.info ">>>> DRAGONFLY BEFORE_SERVER THREW ERROR, TRYING AGAIN"
+      retry if (retries += 1) < 3
     end
   end
 end

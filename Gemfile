@@ -10,6 +10,8 @@ gem 'rails', '~> 5.2.1'
 
 # Use Puma as the app server
 gem 'puma', '~> 3.11'
+# restart puma workers to help manage ram usage
+gem 'puma_worker_killer', '~> 0.1.1'
 # Use SCSS for stylesheets
 gem 'sass-rails', '~> 5.0'
 # Use Uglifier as compressor for JavaScript assets

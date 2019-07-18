@@ -1,6 +1,14 @@
 This page lists additions, changes, and bug fixes that have been applied to the application code.
 The numbers in brackets (i.e., [0.1]), indicate the version number of the app.
 
+## [0.48] - 2019-07-18
+### Added
+- Restart the app server on a periodic basis to keep memory usage to a minimum
+
+### Fixed
+- Formatting for text entered into rich-textboxes (i.e., lists are displayed as lists)
+- Added a retry call when generating image thumbnails in case an error is thrown
+
 ## [0.47] - 2019-07-11
 ### Fixed
 - Site Admin email was mis-spelled
