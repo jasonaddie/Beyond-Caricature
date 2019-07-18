@@ -3,12 +3,16 @@
   <div class="column is-6 is-offset-1 content">
     <h1 class="title is-3"><%= title t('labels.about') %></h1>
 
-    <%= @about.content.html_safe if @about && @about.content.present? %>
+    <% if @about && @about.content.present? %>
+      <div class="content">
+        <%= @about.content.html_safe %>
+      </div>
+    <% end %>
 
     <% if @contributors && @contributors.content.present? %>
       <h2 class="title is-4"><%= t('labels.contributors') %></h2>
 
-      <div class="contributors">
+      <div class="contributors content">
         <%= @contributors.content.html_safe %>
       </div>
     <% end %>

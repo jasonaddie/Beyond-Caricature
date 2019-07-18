@@ -114,7 +114,7 @@
       </ul>
 
       <div class="meta-text-container">
-        <div class="meta-text">
+        <div class="meta-text content">
           <%= @illustration.context.html_safe %>
         </div>
         <div class='meta-text-more'>
@@ -135,7 +135,9 @@
   <div class="modal-content">
     <h1 class="title is-3"><%= @illustration.title %></h1>
 
-    <%= @illustration.context.html_safe %>
+    <div class="content">
+      <%= @illustration.context.html_safe %>
+    </div>
   </div>
   <button class="modal-close is-large" aria-label="close"></button>
 </div>
