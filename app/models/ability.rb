@@ -46,14 +46,15 @@ class Ability
     can :access, :ckeditor
     can :read, :dashboard
     can :read, :changelog
-    # cannot :history, :all
 
-    can :manage, shared_resources
+    # everything but view history
+    can [:read, :create, :destroy, :index, :new, :show, :edit, :export], shared_resources
     can [:read, :create, :destroy], Ckeditor::Picture
     can [:read, :create, :destroy], Ckeditor::AttachmentFile
     return if user.uploader?
 
-    # can :history, :all
+    # add in history view for share_resources
+    can :manage, shared_resources
     can :manage, news_resources
     return if user.editor?
 
