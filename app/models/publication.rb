@@ -17,6 +17,7 @@
 class Publication < ApplicationRecord
   include FullTextSearch
   include CropAlignment
+  include RejectNestedObject
 
   #################
   ## HISTORY TRACKING ##
@@ -41,11 +42,12 @@ class Publication < ApplicationRecord
   has_many :publication_editors, dependent: :destroy
   has_many :related_items, dependent: :nullify
   accepts_nested_attributes_for :publication_editors, allow_destroy: true,
-    reject_if: ->(editor){ reject_publication_editors?(editor)}
+    reject_if: ->(editor){ reject_nested_object?(editor, ['year_start', 'year_end',
+                                                    {'person_roles_attributes': ['role_id', 'person_id']}])}
 
   has_many :person_roles, as: :person_roleable, dependent: :destroy
   accepts_nested_attributes_for :person_roles, allow_destroy: true,
-    reject_if: ->(role){ reject_person_roles?(role)}
+    reject_if: ->(role){ reject_nested_object?(role, %w(role_id person_id))}
 
 
   #################
@@ -288,52 +290,6 @@ class Publication < ApplicationRecord
       options[I18n.t("activerecord.attributes.#{model_name.i18n_key}.publication_types.#{key}")] = key
     end
     return options
-  end
-
-  # if there are no values, then reject
-  def self.reject_person_roles?(person)
-    nontranslation_fields = %w(role_id person)
-    found_value = false
-
-    # check nontranslation fields first
-    nontranslation_fields.each do |field|
-      if !person[field].blank?
-        found_value = true
-        break
-      end
-    end
-    return !found_value
-  end
-
-  # if there are no values in all publication editor translations and years, then reject
-  def self.reject_publication_editors?(editor)
-    nontranslation_fields = %w(editors publishers year_start year_end)
-    found_value = false
-
-    # check nontranslation fields first
-    nontranslation_fields.each do |field|
-      if !editor[field].blank?
-        found_value = true
-        break
-      end
-    end
-
-    # if !found_value
-    #   # no nontranslation, value so now check translation value
-    #   # format is {"translations_attributes"=>{"0"=>{"locale"=>"", "editor"=>"", "publisher"=>""}, "1"=>{"locale"=>"", "editor"=>"", "publisher"=>""}, ... }
-    #   # so get values of translations_attributes hash and then check the field values
-    #   editor["translations_attributes"].values.each do |trans_values|
-    #     translation_fields.each do |field|
-    #       if !trans_values[field].blank?
-    #         found_value = true
-    #         break
-    #       end
-    #     end
-    #     break if found_value
-    #   end
-    # end
-
-    return !found_value
   end
 
   #################

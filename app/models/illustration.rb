@@ -13,6 +13,7 @@
 class Illustration < ApplicationRecord
   include FullTextSearch
   include CropAlignment
+  include RejectNestedObject
 
   #################
   ## HISTORY TRACKING ##
@@ -31,7 +32,7 @@ class Illustration < ApplicationRecord
   #################
   has_many :person_roles, as: :person_roleable, dependent: :destroy
   accepts_nested_attributes_for :person_roles, allow_destroy: true,
-    reject_if: ->(role){ reject_person_roles?(role)}
+    reject_if: ->(role){ reject_nested_object?(role, %w(role_id person_id))}
 
   has_many :illustration_tags, dependent: :destroy
   has_many :tags, through: :illustration_tags
@@ -40,7 +41,7 @@ class Illustration < ApplicationRecord
   # has_many :publications, through: :illustration_publications, -> { not_journals }, inverse_of: :illustrations
   has_many :illustration_annotations, dependent: :destroy
   accepts_nested_attributes_for :illustration_annotations, allow_destroy: true,
-    reject_if: ->(annotation){ reject_annotation?(annotation)}
+    reject_if: ->(annotation){ reject_nested_object?(annotation, %w(x y), %w(annotation))}
 
   has_many :illustration_issues, dependent: :destroy
   has_many :issues, through: :illustration_issues
@@ -297,56 +298,6 @@ class Illustration < ApplicationRecord
 
     return x.distinct
   end
-
-
-
-  # if there are no values in all translations, then reject
-  def self.reject_annotation?(annotation)
-    translation_fields = %w(annotation)
-    nontranslation_fields = %w(sort x y)
-    found_value = false
-
-    # check nontranslation fields first
-    nontranslation_fields.each do |field|
-      if !annotation[field].blank?
-        found_value = true
-        break
-      end
-    end
-
-    if !found_value
-      # no nontranslation, value so now check translation value
-      # format is {"translations_attributes"=>{"0"=>{"locale"=>"", "annotation"=>""}, "1"=>{"locale"=>"", "annotation"=>""}, ... }
-      # so get values of translations_attributes hash and then check the field values
-      annotation["translations_attributes"].values.each do |trans_values|
-        translation_fields.each do |field|
-          if !trans_values[field].blank?
-            found_value = true
-            break
-          end
-        end
-        break if found_value
-      end
-    end
-
-    return !found_value
-  end
-
-  # if there are no values, then reject
-  def self.reject_person_roles?(person)
-    nontranslation_fields = %w(role_id person)
-    found_value = false
-
-    # check nontranslation fields first
-    nontranslation_fields.each do |field|
-      if !person[field].blank?
-        found_value = true
-        break
-      end
-    end
-    return !found_value
-  end
-
 
 
   #################

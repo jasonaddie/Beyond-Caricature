@@ -12,6 +12,7 @@
 class Research < ApplicationRecord
   include FullTextSearch
   include CropAlignment
+  include RejectNestedObject
 
   #################
   ## HISTORY TRACKING ##
@@ -30,11 +31,11 @@ class Research < ApplicationRecord
   #################
   has_many :slideshows, as: :imageable, dependent: :destroy
   accepts_nested_attributes_for :slideshows, allow_destroy: true,
-    reject_if: ->(slideshow){ slideshow['image'].blank?}
+    reject_if: ->(slideshow){ reject_nested_object?(slideshow, %w(image), %w(caption))}
+
   has_many :related_items, as: :news_itemable, dependent: :destroy
   accepts_nested_attributes_for :related_items, allow_destroy: true,
-    reject_if: ->(item){ item['related_item_type'].blank? && item['publication_id'].blank? && item['issue_id'].blank? &&
-                        item['illustration_id'].blank? && item['person_id'].blank?}
+    reject_if: ->(item){ reject_nested_object?(item, %w(related_item_type publication_id issue_id illustration_id person_id))}
 
   #################
   ## TRANSLATIONS ##
