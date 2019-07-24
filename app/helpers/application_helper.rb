@@ -2,7 +2,17 @@ module ApplicationHelper
 
   # update the current url by replacing the locale
   # and if this is a show page, also update the slug
-  def generate_language_switcher_link(locale, record=nil, has_translations=nil, params_key=nil, use_is_public=nil, lang_switcher_fallback_url=nil)
+  # - locale: locale to build the link with
+  # - record: the model record that has the slug
+  # - has_translations: boolean indicating if the record has the slug in translations or in the record itself
+  # - params_key: param name that the slug should be assigned to (e.g., id)
+  # - use_is_public: the translation record to get the slug from must be public
+  # - lang_switcher_fallback_url: if the slug is not found, use this fallback url instead
+  # - parent_record: the model record that is the parent of the 'record' attribute (use when have nested url like: /source/:publication_id/issue/:id)
+  # - parent_has_translations: boolean indicating if the parent record has the slug in translations or in the record itself
+  # - parent_params_key: param name that the should be assign to for the parent record
+  # - parent_use_is_public: the translation record to get the parent slug from must be public
+  def generate_language_switcher_link(locale, record=nil, has_translations=nil, params_key=nil, use_is_public=nil, lang_switcher_fallback_url=nil, parent_record=nil, parent_has_translations=nil, parent_params_key=nil, parent_use_is_public=nil)
     url = nil
     if record && params_key
       # get slug in provided locale
@@ -18,13 +28,28 @@ module ApplicationHelper
         slug = record.slug
       end
 
-      if slug.nil?
+      if parent_record && parent_params_key
+        parent_slug = nil
+        if parent_has_translations
+          if parent_use_is_public
+            parent_slug = parent_record.slug_translations[locale] if parent_record.is_public_translations[locale]
+          else
+            parent_slug = parent_record.slug_translations[locale]
+          end
+        else
+          parent_slug = parent_record.slug
+        end
+      end
+
+      if slug.nil? || (parent_record.present? && parent_slug.nil?)
         # no slug was found for the language, so go to list page
         if lang_switcher_fallback_url
           url = lang_switcher_fallback_url.gsub("/#{I18n.locale}/", "/#{locale}/")
         else
           url = root_path(locale: locale)
         end
+      elsif parent_record.present? && parent_slug.present?
+        url = request.params.merge(locale: locale, "#{params_key}": slug, "#{parent_params_key}": parent_slug)
       else
         url = request.params.merge(locale: locale, "#{params_key}": slug)
       end

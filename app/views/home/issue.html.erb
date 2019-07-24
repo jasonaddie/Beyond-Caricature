@@ -2,9 +2,13 @@
   pub = Publication
 
   @lang_switcher_record = @issue
-  @lang_switcher_has_translations = false
   @lang_switcher_params_key = :id
+  @lang_switcher_has_translations = false
   @lang_switcher_is_public = false
+  @lang_switcher_parent_record = @publication
+  @lang_switcher_parent_params_key = :publication_id
+  @lang_switcher_parent_has_translations = true
+  @lang_switcher_parent_is_public = true
   @lang_switcher_fallback_url = source_path(@publication)
   set_meta_tags(generate_share_image_syntax(@issue, :cover_image))
 
