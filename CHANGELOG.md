@@ -1,6 +1,15 @@
 This page lists additions, changes, and bug fixes that have been applied to the application code.
 The numbers in brackets (i.e., [0.1]), indicate the version number of the app.
 
+## [0.49] - 2019-07-31
+### Added
+- Upload user cannot view record histories
+- Refactored code that tests if nested objects in a form should be saved (i.e., slideshow in the News form)
+
+### Fixed
+- Language switcher properly sets URL on issue page
+- Editing News and Research records was ignoring new captions in the slideshow
+
 ## [0.48] - 2019-07-18
 ### Added
 - Restart the app server on a periodic basis to keep memory usage to a minimum
