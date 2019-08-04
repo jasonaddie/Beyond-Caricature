@@ -174,8 +174,8 @@ body.home.index{
     .intro{
       padding: 100px 100px 40px;
       h1{
-        font-size: 3.7rem;
-        line-height: 4.3rem;
+        font-size: 3.4rem;
+        line-height: 4.0rem;
       }
     }
     .listings{
@@ -191,6 +191,17 @@ body.home.index{
       // stretch the background color out to the window sides
       margin-left: calc(-100vw / 2 + (1364px - 40px) / 2);
       margin-right: calc(-100vw / 2 + (1364px - 40px) / 2);
+    }
+  }
+}
+
+@media (min-width: 1400px){
+  body.home.index{
+    .intro{
+      h1{
+        font-size: 3.7rem;
+        line-height: 4.3rem;
+      }
     }
   }
 }
