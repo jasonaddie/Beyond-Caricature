@@ -1,6 +1,10 @@
 This page lists additions, changes, and bug fixes that have been applied to the application code.
 The numbers in brackets (i.e., [0.1]), indicate the version number of the app.
 
+## [0.50] - 2019-08-04
+### Fixed
+- Title on homepage was wrapping at certain screen sizes
+
 ## [0.49] - 2019-07-31
 ### Added
 - Upload user cannot view record histories
