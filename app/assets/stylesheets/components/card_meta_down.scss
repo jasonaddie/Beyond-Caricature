@@ -4,6 +4,9 @@
 .card.card-meta-down{
   height: 100%;
   box-shadow: none;
+  &:hover{
+    box-shadow: -5px 7px 12px rgba(0, 0, 0, 0.1);
+  }
   .card-content{
     padding: 0.8rem;
     font-size: 0.8rem;
