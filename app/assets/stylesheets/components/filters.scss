@@ -145,6 +145,11 @@
         display: block;
       }
     }
+    &.is-active{
+      .dropdown-trigger .button .icon i.down-arrow{
+        transform: rotate(180deg);
+      }
+    }
   }
   .filter-select{
     .select2{
