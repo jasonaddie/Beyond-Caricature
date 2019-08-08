@@ -144,6 +144,29 @@
       .dropdown-item.calendar{
         display: block;
       }
+      .dropdown-item.action-buttons{
+        button{
+          letter-spacing: 1.7px;
+          background-color: $nav-start-active-color;
+          text-transform: lowercase;
+          opacity: 0.7;
+          color: #fff;
+          padding: 8px 12px;
+          border-radius: 12px;
+          white-space: nowrap;
+          &:hover{
+            opacity: 1;
+            color: #fff;
+          }
+          &.button-close{
+            margin-left: .25rem;
+          }
+          &.button-clear{
+            background-color: $body-background-color;
+            color: $header-line-color;
+          }
+        }
+      }
     }
     &.is-active{
       .dropdown-trigger .button .icon i.down-arrow{
@@ -265,4 +288,11 @@
       }
     }
   }
+}
+
+
+// datepicker styles
+.ui-state-active, .ui-widget-content .ui-state-active{
+  background: $nav-start-active-color;
+  border-color: $grey-dark;
 }
