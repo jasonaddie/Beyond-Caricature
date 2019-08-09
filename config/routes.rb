@@ -10,9 +10,13 @@ Rails.application.routes.draw do
 
   get '/robots.txt' => 'home#robots'
 
+
   ####################
   # have locale in url
   scope ":locale", locale: /#{I18n.available_locales.join("|")}/ do
+
+  # pdf viewer routes
+  mount PdfjsViewer::Rails::Engine => "/pdfjs", as: 'pdfjs'
 
     devise_for :users, :controllers => { :registrations => 'users/registrations' }
 

@@ -84,7 +84,9 @@
             <%= link_to t('labels.view_file_with_size',
                             size: number_to_human_size(@issue.scanned_file_size),
                             name: t('labels.meta.issue_number')),
-                        @issue.scanned_file.url, target: :blank, class: 'meta-link-file' %>
+                        pdfjs.full_path(file: @issue.scanned_file.url),
+                        target: :blank,
+                        class: 'meta-link-file' %>
           </li>
         <% end %>
       </ul>

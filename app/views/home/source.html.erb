@@ -111,7 +111,9 @@
             <%= link_to t('labels.view_file_with_size',
                             size: number_to_human_size(@publication.scanned_file_size),
                             name: pub.human_enum_name(:publication_type, @publication.publication_type)),
-                        @publication.scanned_file.url, target: :blank, class: 'meta-link-file' %>
+                        pdfjs.full_path(file: @publication.scanned_file.url),
+                        target: :blank,
+                        class: 'meta-link-file' %>
           </li>
         <% end %>
       </ul>
