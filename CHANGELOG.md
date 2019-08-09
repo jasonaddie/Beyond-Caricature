@@ -1,6 +1,15 @@
 This page lists additions, changes, and bug fixes that have been applied to the application code.
 The numbers in brackets (i.e., [0.1]), indicate the version number of the app.
 
+## [0.51] - 2019-08-09
+### Added
+- Library to view PDF files in the browser (some browsers were just downloading the file)
+- Applied some styling to the date filters
+- Hover style for the Source, News, and Research cards that appear on list pages
+
+### Fixed
+- Date filter down arrow now rotates when the date filter is open (just like the other drop down filters)
+
 ## [0.50] - 2019-08-04
 ### Fixed
 - Title on homepage was wrapping at certain screen sizes
