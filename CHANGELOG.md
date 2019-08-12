@@ -1,6 +1,10 @@
 This page lists additions, changes, and bug fixes that have been applied to the application code.
 The numbers in brackets (i.e., [0.1]), indicate the version number of the app.
 
+## [0.52] - 2019-08-12
+### Added
+- Rotate log files on server so they do not take up disk space
+
 ## [0.51] - 2019-08-09
 ### Added
 - Library to view PDF files in the browser (some browsers were just downloading the file)
