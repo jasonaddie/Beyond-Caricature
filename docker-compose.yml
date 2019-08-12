@@ -1,5 +1,12 @@
 version: '3.7'
 
+x-logging:
+  &default-logging
+  options:
+    max-size: '12m'
+    max-file: '5'
+  driver: json-file
+
 services:
   db:
     container_name: schmerling_postgres
@@ -10,6 +17,7 @@ services:
       - 5433:5432
     networks:
       - net1
+    logging: *default-logging
 
   app:
     container_name: schmerling_app
@@ -21,6 +29,7 @@ services:
       - db
     networks:
       - net1
+    logging: *default-logging
 
   server:
     container_name: schmerling_nginx
@@ -38,6 +47,7 @@ services:
       CLIENT_MAX_BODY_SIZE: '20m'
       PROXY_SEND_TIMEOUT: 30
       PROXY_READ_TIMEOUT: 30
+    logging: *default-logging
 
 volumes:
   db-data:
