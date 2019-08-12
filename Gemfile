@@ -16,13 +16,8 @@ gem 'puma_worker_killer', '~> 0.1.1'
 gem 'sass-rails', '~> 5.0'
 # Use Uglifier as compressor for JavaScript assets
 gem 'uglifier', '>= 1.3.0'
-# Transpile app-like JavaScript. Read more: https://github.com/rails/webpacker
-gem 'webpacker', '~> 3.5', '>= 3.5.5'
 # See https://github.com/rails/execjs#readme for more supported runtimes
 # gem 'mini_racer', '~> 0.2.4', platforms: :ruby
-
-# use react components
-gem 'react_on_rails', '~> 11.1', '>= 11.1.8'
 
 # Use CoffeeScript for .coffee assets and views
 gem 'coffee-rails', '~> 4.2'

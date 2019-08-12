@@ -24,7 +24,6 @@ RUN apk add --update --no-cache \
     git \
     imagemagick \
     nodejs-current \
-    yarn \
     tzdata
 
 WORKDIR /app
@@ -37,10 +36,6 @@ RUN bundle config --global frozen 1 \
  && rm -rf /usr/local/bundle/cache/*.gem \
  && find /usr/local/bundle/gems/ -name "*.c" -delete \
  && find /usr/local/bundle/gems/ -name "*.o" -delete
-
-# Install yarn packages
-COPY package.json yarn.lock /app/
-RUN yarn install
 
 # Add the Rails app
 ADD . /app
