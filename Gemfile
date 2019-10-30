@@ -46,7 +46,7 @@ gem 'rails_admin', '~> 1.4', '>= 1.4.2'
 gem 'rails_admin_material', '~> 0.2.1'
 
 # authentication
-gem 'devise', '~> 4.2'
+gem 'devise', '~> 4.7'
 
 # authorization
 gem 'cancancan', '~> 2.3'
