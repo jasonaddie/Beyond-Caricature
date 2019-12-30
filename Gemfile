@@ -9,7 +9,7 @@ gem 'rails', '~> 5.2.1'
 # gem 'sqlite3'
 
 # Use Puma as the app server
-gem 'puma', '~> 3.11'
+gem 'puma', '~> 3.12'
 # restart puma workers to help manage ram usage
 gem 'puma_worker_killer', '~> 0.1.1'
 # Use SCSS for stylesheets
