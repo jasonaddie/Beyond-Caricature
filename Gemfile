@@ -94,7 +94,7 @@ gem 'stringex', '~> 2.8', '>= 2.8.5'
 gem 'lograge', '~> 0.10.0'
 
 # convert markdown to html
-gem 'redcarpet', '~> 3.4'
+gem 'redcarpet', '~> 3.5'
 
 # send error emails
 gem 'exception_notification', '~> 4.3'
