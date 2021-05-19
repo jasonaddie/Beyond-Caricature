@@ -216,7 +216,9 @@ GEM
     mime-types (3.2.2)
       mime-types-data (~> 3.2015)
     mime-types-data (3.2018.0812)
-    mimemagic (0.3.2)
+    mimemagic (0.3.10)
+      nokogiri (~> 1)
+      rake
     mini_mime (1.0.1)
     mini_portile2 (2.4.0)
     minitest (5.13.0)
@@ -239,7 +241,8 @@ GEM
       sass-rails (~> 5.0)
     pg (0.18.4)
     public_suffix (3.0.3)
-    puma (3.12.2)
+    puma (4.3.8)
+      nio4r (~> 2.0)
     puma_worker_killer (0.1.1)
       get_process_mem (~> 0.2)
       puma (>= 2.7, < 5)
@@ -404,7 +407,7 @@ DEPENDENCIES
   paper_trail-association_tracking
   pdfjs_viewer-rails
   pg (~> 0.18.4)
-  puma (~> 3.12)
+  puma (~> 4.3)
   puma_worker_killer (~> 0.1.1)
   rails (~> 5.2.1)
   rails_admin (~> 1.4, >= 1.4.2)
