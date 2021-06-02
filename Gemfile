@@ -77,7 +77,7 @@ gem 'ckeditor', github: 'galetahub/ckeditor'
 gem 'pg', '~> 0.18.4'
 
 # image storage / processing
-gem 'dragonfly', '~> 1.2'
+gem 'dragonfly', '~> 1.4'
 # store images on s3
 gem 'dragonfly-s3_data_store', '~> 1.3'
 
